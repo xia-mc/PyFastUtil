@@ -1,18 +1,18 @@
 import glob
 import os
 import shutil
-import sysconfig
+import itertools
 
 from setuptools import setup, Extension
 
 IS_WINDOWS = os.name == 'nt'
-PYTHON_INCLUDE = sysconfig.get_paths()['include']
+
 if IS_WINDOWS:
     # Windows uses MSVC
     EXTRA_COMPILE_ARG = [
-        '/O2', '/W4', '/std:c++latest', '/WX',
+        '/O2', '/Ob2', '/GL', '/W4', '/std:c++latest', '/WX',
         '/wd4068',  # ignore unknown pragma error
-        '/wd4710',  # ignore not inline
+        '/EHsc', '/arch:AVX2'
     ]
     EXTRA_LINK_ARG = []
 else:
@@ -24,9 +24,12 @@ else:
     EXTRA_LINK_ARG = ['-shared']
 
 if __name__ == '__main__':
+    if os.path.exists("./build"):
+        shutil.rmtree("./build")
+
     # init sources
     sources = []
-    for root, dirs, files in os.walk("./pyfastutil/src"):
+    for root, dirs, files in itertools.chain(os.walk("./pyfastutil/src"), os.walk("./x86simdsort/lib")):
         for file in files:
             if file.endswith(".cpp"):
                 sources.append(os.path.join(root, file))
@@ -37,7 +40,7 @@ if __name__ == '__main__':
         language="c++",
         extra_compile_args=EXTRA_COMPILE_ARG,
         extra_link_args=EXTRA_LINK_ARG,
-        include_dirs=['./pyfastutil/src']
+        include_dirs=['./pyfastutil/src', './x86simdsort/lib', './x86simdsort/src']
     )
 
     # build

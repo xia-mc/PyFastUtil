@@ -6,7 +6,7 @@
 #define PYFASTUTIL_PYTHONPCH_H
 
 #pragma warning(push, 0)
-#include <Python.h>
+#include "Python.h"
 #pragma warning(pop)
 
 #endif //PYFASTUTIL_PYTHONPCH_H

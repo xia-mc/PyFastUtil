@@ -4,14 +4,17 @@
 
 #include "IntArrayList.h"
 #include <vector>
-#include "algorithm"
+#include <algorithm>
+#include <stdexcept>
 #include "utils/PointerUtils.h"
 #include "utils/ParseUtils.h"
+#include "utils/TimSort.h"
+#include "utils/simd/SIMDSort.h"
 
 extern "C" {
 typedef struct IntArrayList {
     PyObject_HEAD;
-    std::vector<long> vector = std::vector<long>();
+    std::vector<int> vector = std::vector<int>();
 } IntArrayList;
 
 static PyTypeObject IntArrayListType = {
@@ -58,11 +61,11 @@ static int IntArrayList_init(IntArrayList *self, PyObject *args, PyObject *kwarg
 
             PyObject *item;
             while ((item = PyIter_Next(iter)) != nullptr) {
-                long value = PyLong_AsLong(item);
+                int value = PyLong_AsLong(item);
                 if (PyErr_Occurred()) {
                     SAFE_DECREF(iter);
                     SAFE_DECREF(item);
-                    PyErr_SetString(PyExc_RuntimeError, "Failed to convert item to C long during iteration.");
+                    PyErr_SetString(PyExc_RuntimeError, "Failed to convert item to C int during iteration.");
                     return -1;
                 }
                 self->vector.push_back(value);
@@ -102,11 +105,11 @@ static PyObject *IntArrayList_from_range(PyObject *args) {
 
         if (step > 0) {
             for (auto i = start; i < stop; i += step) {
-                list->vector.push_back(static_cast<long>(i));
+                list->vector.push_back(static_cast<int>(i));
             }
         } else {
             for (auto i = start; i > stop; i += step) {
-                list->vector.push_back(static_cast<long>(i));
+                list->vector.push_back(static_cast<int>(i));
             }
         }
     } catch (const std::exception &e) {
@@ -138,9 +141,8 @@ static PyObject *IntArrayList_copy(PyObject *pySelf) {
 static PyObject *IntArrayList_append(PyObject *pySelf, PyObject *object) {
     auto *self = reinterpret_cast<IntArrayList *>(pySelf);
 
-    long value = PyLong_AsLong(object);
+    int value = PyLong_AsLong(object);
     if (PyErr_Occurred()) {
-        PyErr_SetString(PyExc_TypeError, "Arg '__object' must be an integer.");
         return nullptr;
     }
 
@@ -179,7 +181,7 @@ static PyObject *IntArrayList_extend(PyObject *pySelf, PyObject *iterable) {
         PyObject *item;
         try {
             while ((item = PyIter_Next(iter)) != nullptr) {
-                long value = PyLong_AsLong(item);
+                int value = PyLong_AsLong(item);
                 SAFE_DECREF(item);
 
                 if (PyErr_Occurred()) {
@@ -208,7 +210,6 @@ static PyObject *IntArrayList_pop(PyObject *pySelf, PyObject *args) {
     Py_ssize_t pyIndex = vecSize - 1;
 
     if (!PyArg_ParseTuple(args, "|n", &pyIndex)) {
-        PyErr_SetString(PyExc_TypeError, "pyIndex must be an integer.");
         return nullptr;
     }
 
@@ -242,12 +243,11 @@ static PyObject *IntArrayList_pop(PyObject *pySelf, PyObject *args) {
 static PyObject *IntArrayList_index(PyObject *pySelf, PyObject *args) {
     auto *self = reinterpret_cast<IntArrayList *>(pySelf);
 
-    long value;
+    int value;
     Py_ssize_t start = 0;
     auto stop = static_cast<Py_ssize_t>(self->vector.size());
 
     if (!PyArg_ParseTuple(args, "l|nn", &value, &start, &stop)) {
-        PyErr_SetString(PyExc_TypeError, "Args must be (value, [start, [stop]]).");
         return nullptr;
     }
 
@@ -273,14 +273,163 @@ static PyObject *IntArrayList_index(PyObject *pySelf, PyObject *args) {
     return PyLong_FromSsize_t(index);
 }
 
+static PyObject *IntArrayList_count(PyObject *pySelf, PyObject *object) {
+    auto *self = reinterpret_cast<IntArrayList *>(pySelf);
+
+    int value = PyLong_AsLong(object);
+    if (value == -1 && PyErr_Occurred()) {
+        return nullptr;
+    }
+
+    try {
+        size_t result = std::count(self->vector.begin(), self->vector.end(), value);
+
+        return PyLong_FromSize_t(result);
+    } catch (const std::exception &e) {
+        PyErr_SetString(PyExc_RuntimeError, e.what());
+        return nullptr;
+    }
+}
+
+static PyObject *IntArrayList_insert(PyObject *pySelf, PyObject *args) {
+    auto *self = reinterpret_cast<IntArrayList *>(pySelf);
+
+    Py_ssize_t index;
+    int value;
+
+    if (!PyArg_ParseTuple(args, "nl", &index, &value)) {
+        return nullptr;
+    }
+
+    // fix index
+    const auto vecSize = static_cast<Py_ssize_t>(self->vector.size());
+    if (index < 0) {
+        index = std::max(static_cast<Py_ssize_t>(0), vecSize + index);
+    } else if (index > vecSize) {
+        index = vecSize;
+    }
+
+    // do insert
+    try {
+        self->vector.insert(self->vector.begin() + index, value);
+    } catch (const std::exception &e) {
+        PyErr_SetString(PyExc_RuntimeError, e.what());
+        return nullptr;
+    }
+
+    Py_RETURN_NONE;
+}
+
+static PyObject *IntArrayList_remove(PyObject *pySelf, PyObject *object) {
+    auto *self = reinterpret_cast<IntArrayList *>(pySelf);
+
+    int value = PyLong_AsLong(object);
+    if (PyErr_Occurred()) {
+        return nullptr;
+    }
+
+    try {
+        auto it = std::find(self->vector.begin(), self->vector.end(), value);
+
+        if (it != self->vector.end()) {
+            self->vector.erase(it);
+        } else {
+            PyErr_SetString(PyExc_ValueError, "Value is not in list.");
+            return nullptr;
+        }
+    } catch (const std::exception &e) {
+        PyErr_SetString(PyExc_RuntimeError, e.what());
+        return nullptr;
+    }
+
+    Py_RETURN_NONE;
+}
+
+static PyObject *IntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *kwargs) {
+    auto *self = reinterpret_cast<IntArrayList *>(pySelf);
+
+    PyObject *keyFunc = nullptr;
+    int reverseInt = 0;  // default: false
+    static const char *kwlist[] = {"key", "reverse", nullptr};
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|Oi", const_cast<char **>(kwlist), &keyFunc, &reverseInt)) {
+        return nullptr;
+    }
+
+    const bool reverse = reverseInt == 1;
+
+    // do sort
+    try {
+        if (keyFunc == nullptr || keyFunc == Py_None) {
+            // simd sort with auto-fallback
+            simd::simd_sort(self->vector.begin(), self->vector.end(), reverse);
+        } else {
+            // sort with key function
+            const auto keyWrapper = [keyFunc](int value) -> PyObject * {
+                // call key function
+                PyObject *arg = PyLong_FromLong(value);
+                if (arg == nullptr) {
+                    throw std::runtime_error("Failed to create argument for key function.");
+                }
+                PyObject *result = PyObject_CallFunctionObjArgs(keyFunc, arg, nullptr);
+                SAFE_DECREF(arg);
+                if (result == nullptr) {
+                    throw std::runtime_error("Key function call failed.");
+                }
+                return result;
+            };
+
+            const auto cmpWrapper = [&keyWrapper](int a, int b) -> bool {
+                // do comp
+                PyObject *keyA = keyWrapper(a);
+                PyObject *keyB = keyWrapper(b);
+                int cmpResult = PyObject_RichCompareBool(keyA, keyB, Py_LT);  // a < b ?
+                SAFE_DECREF(keyA);
+                SAFE_DECREF(keyB);
+                if (cmpResult == -1) {
+                    throw std::runtime_error("Failed to comparison.");
+                }
+                return cmpResult == 1;
+            };
+
+            if (self->vector.size() < 5000) {
+                if (reverse) {
+                    std::sort(self->vector.begin(), self->vector.end(), [cmpWrapper](int a, int b) {
+                        return cmpWrapper(b, a);  // reverse
+                    });
+                } else {
+                    std::sort(self->vector.begin(), self->vector.end(), cmpWrapper);
+                }
+            } else {
+                if (reverse) {
+                    gfx::timsort(self->vector.begin(), self->vector.end(), [cmpWrapper](int a, int b) {
+                        return cmpWrapper(b, a);  // reverse
+                    });
+                } else {
+                    gfx::timsort(self->vector.begin(), self->vector.end(), cmpWrapper);
+                }
+            }
+        }
+    } catch (const std::exception &e) {
+        PyErr_SetString(PyExc_RuntimeError, e.what());
+        return nullptr;
+    }
+
+    Py_RETURN_NONE;
+}
+
 
 static PyMethodDef IntArrayList_methods[] = {
         {"from_range", (PyCFunction) IntArrayList_from_range, METH_VARARGS | METH_STATIC},
-        {"copy", (PyCFunction) IntArrayList_copy,             METH_NOARGS},
-        {"append", (PyCFunction) IntArrayList_append,         METH_O},
-        {"extend", (PyCFunction) IntArrayList_extend,         METH_O},
-        {"pop", (PyCFunction) IntArrayList_pop,               METH_VARARGS},
-        {"index", (PyCFunction) IntArrayList_index,           METH_VARARGS},
+        {"copy",       (PyCFunction) IntArrayList_copy,       METH_NOARGS},
+        {"append",     (PyCFunction) IntArrayList_append,     METH_O},
+        {"extend",     (PyCFunction) IntArrayList_extend,     METH_O},
+        {"pop",        (PyCFunction) IntArrayList_pop,        METH_VARARGS},
+        {"index",      (PyCFunction) IntArrayList_index,      METH_VARARGS},
+        {"count",      (PyCFunction) IntArrayList_count,      METH_O},
+        {"insert",     (PyCFunction) IntArrayList_insert,     METH_VARARGS},
+        {"remove",     (PyCFunction) IntArrayList_remove,     METH_O},
+        {"sort",       (PyCFunction) IntArrayList_sort,       METH_VARARGS | METH_KEYWORDS},
         {nullptr}
 };
 
