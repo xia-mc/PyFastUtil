@@ -10,11 +10,13 @@
 #include "utils/ParseUtils.h"
 #include "utils/TimSort.h"
 #include "utils/simd/SIMDSort.h"
+#include "utils/memory/AlignedAllocator.h"
 
 extern "C" {
 typedef struct IntArrayList {
     PyObject_HEAD;
-    std::vector<int> vector = std::vector<int>();
+    // we use 64 bytes memory aligned to support faster SIMD, suggestion by ChatGPT.
+    std::vector<int, AlignedAllocator<int, 64>> vector = std::vector<int, AlignedAllocator<int, 64>>();
 } IntArrayList;
 
 static PyTypeObject IntArrayListType = {
@@ -362,7 +364,7 @@ static PyObject *IntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *k
     try {
         if (keyFunc == nullptr || keyFunc == Py_None) {
             // simd sort with auto-fallback
-            simd::simd_sort(self->vector.begin(), self->vector.end(), reverse);
+            simd::simdsort(self->vector, reverse);
         } else {
             // sort with key function
             const auto keyWrapper = [keyFunc](int value) -> PyObject * {

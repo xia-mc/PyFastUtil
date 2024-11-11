@@ -9,10 +9,11 @@
 #include <algorithm>
 #include <immintrin.h>
 #include <iostream>
+#include "utils/memory/AlignedAllocator.h"
 
 namespace simd {
 
-    void simd_sort(std::vector<int>::iterator begin, std::vector<int>::iterator end, const bool &reverse = false);
+    void simdsort(std::vector<int, AlignedAllocator<int, 64>>& vector, const bool &reverse = false);
 
 }
 

@@ -6,122 +6,201 @@
 #include <vector>
 #include <algorithm>
 #include <immintrin.h>
+#include <utils/PythonPCH.h>
 #include "SIMD.h"
 #include "utils/TimSort.h"
+#include "utils/memory/AlignedAllocator.h"
 
 namespace simd {
+    constexpr size_t SSE41_BLOCK_SIZE = 4;
+    constexpr size_t AVX2_BLOCK_SIZE = 8;
+    constexpr size_t AVX512_BLOCK_SIZE = 16;
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "portability-simd-intrinsics"
 
     /**
-     * Sort 4 int32 with AVX2
+     * sort 8 nums with avx2
      */
-    __forceinline void sort4_epi32_avx2(__m256i &vec4_epi32, const bool &reverse) {
-        __m256i shuffled_vec;
+    __forceinline void sort8_epi32_avx2(__m256i &vec, bool reverse) {
+        __m256i swapped = _mm256_permutevar8x32_epi32(vec, _mm256_set_epi32(7, 6, 5, 4, 3, 2, 1, 0));
+        __m256i minVals = _mm256_min_epi32(vec, swapped);
+        __m256i maxVals = _mm256_max_epi32(vec, swapped);
+        vec = reverse ? maxVals : minVals;
 
-        shuffled_vec = _mm256_shuffle_epi32(vec4_epi32, _MM_SHUFFLE(3, 2, 1, 0));
-        if (reverse) {
-            vec4_epi32 = _mm256_max_epi32(vec4_epi32, shuffled_vec);
-            shuffled_vec = _mm256_min_epi32(vec4_epi32, shuffled_vec);
-        } else {
-            vec4_epi32 = _mm256_min_epi32(vec4_epi32, shuffled_vec);
-            shuffled_vec = _mm256_max_epi32(vec4_epi32, shuffled_vec);
-        }
-        vec4_epi32 = _mm256_blend_epi32(vec4_epi32, shuffled_vec, 0b01010101);
+        swapped = _mm256_permutevar8x32_epi32(vec, _mm256_set_epi32(6, 7, 4, 5, 2, 3, 0, 1));
+        minVals = _mm256_min_epi32(vec, swapped);
+        maxVals = _mm256_max_epi32(vec, swapped);
+        vec = reverse ? maxVals : minVals;
 
-        shuffled_vec = _mm256_shuffle_epi32(vec4_epi32, _MM_SHUFFLE(2, 3, 0, 1));
-        if (reverse) {
-            vec4_epi32 = _mm256_max_epi32(vec4_epi32, shuffled_vec);
-            shuffled_vec = _mm256_min_epi32(vec4_epi32, shuffled_vec);
-        } else {
-            vec4_epi32 = _mm256_min_epi32(vec4_epi32, shuffled_vec);
-            shuffled_vec = _mm256_max_epi32(vec4_epi32, shuffled_vec);
-        }
-        vec4_epi32 = _mm256_blend_epi32(vec4_epi32, shuffled_vec, 0b00110011);
+        swapped = _mm256_permutevar8x32_epi32(vec, _mm256_set_epi32(5, 4, 7, 6, 1, 0, 3, 2));
+        minVals = _mm256_min_epi32(vec, swapped);
+        maxVals = _mm256_max_epi32(vec, swapped);
+        vec = reverse ? maxVals : minVals;
 
-        shuffled_vec = _mm256_shuffle_epi32(vec4_epi32, _MM_SHUFFLE(1, 0, 3, 2));
-        if (reverse) {
-            vec4_epi32 = _mm256_max_epi32(vec4_epi32, shuffled_vec);
-            shuffled_vec = _mm256_min_epi32(vec4_epi32, shuffled_vec);
-        } else {
-            vec4_epi32 = _mm256_min_epi32(vec4_epi32, shuffled_vec);
-            shuffled_vec = _mm256_max_epi32(vec4_epi32, shuffled_vec);
-        }
-        vec4_epi32 = _mm256_blend_epi32(vec4_epi32, shuffled_vec, 0b00001111);
+        swapped = _mm256_permutevar8x32_epi32(vec, _mm256_set_epi32(3, 2, 1, 0, 7, 6, 5, 4));
+        minVals = _mm256_min_epi32(vec, swapped);
+        maxVals = _mm256_max_epi32(vec, swapped);
+        vec = reverse ? maxVals : minVals;
     }
 
     /**
-     * Sort 16 int32 with AVX512
+     * sort 16 nums with avx512
      */
-    __forceinline void sort16_epi32_avx512(__m512i &vec16_epi32, const bool &reverse) {
-        __m512i tmp;
+    __forceinline void sort16_epi32_avx512(__m512i &vec, bool reverse) {
+        __m512i swapped = _mm512_permutexvar_epi32(_mm512_set_epi32(
+                15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0), vec);
+        __m512i minVals = _mm512_min_epi32(vec, swapped);
+        __m512i maxVals = _mm512_max_epi32(vec, swapped);
+        vec = reverse ? maxVals : minVals;
 
-        tmp = _mm512_permutexvar_epi32(_mm512_set_epi32(15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0),
-                                       vec16_epi32);
-        if (reverse) {
-            vec16_epi32 = _mm512_max_epi32(vec16_epi32, tmp);
-            tmp = _mm512_min_epi32(vec16_epi32, tmp);
-        } else {
-            vec16_epi32 = _mm512_min_epi32(vec16_epi32, tmp);
-            tmp = _mm512_max_epi32(vec16_epi32, tmp);
-        }
-        vec16_epi32 = _mm512_mask_blend_epi32(0xAAAA, vec16_epi32, tmp); // Blend with mask 0xAAAA (1010101010101010)
+        swapped = _mm512_permutexvar_epi32(_mm512_set_epi32(
+                14, 15, 12, 13, 10, 11, 8, 9, 6, 7, 4, 5, 2, 3, 0, 1), vec);
+        minVals = _mm512_min_epi32(vec, swapped);
+        maxVals = _mm512_max_epi32(vec, swapped);
+        vec = reverse ? maxVals : minVals;
 
-        tmp = _mm512_permutexvar_epi32(_mm512_set_epi32(14, 15, 12, 13, 10, 11, 8, 9, 6, 7, 4, 5, 2, 3, 0, 1),
-                                       vec16_epi32);
-        if (reverse) {
-            vec16_epi32 = _mm512_max_epi32(vec16_epi32, tmp);
-            tmp = _mm512_min_epi32(vec16_epi32, tmp);
-        } else {
-            vec16_epi32 = _mm512_min_epi32(vec16_epi32, tmp);
-            tmp = _mm512_max_epi32(vec16_epi32, tmp);
-        }
-        vec16_epi32 = _mm512_mask_blend_epi32(0xCCCC, vec16_epi32, tmp); // Blend with mask 0xCCCC (1100110011001100)
+        swapped = _mm512_permutexvar_epi32(_mm512_set_epi32(
+                13, 12, 15, 14, 9, 8, 11, 10, 5, 4, 7, 6, 1, 0, 3, 2), vec);
+        minVals = _mm512_min_epi32(vec, swapped);
+        maxVals = _mm512_max_epi32(vec, swapped);
+        vec = reverse ? maxVals : minVals;
 
-        tmp = _mm512_permutexvar_epi32(_mm512_set_epi32(13, 12, 15, 14, 9, 8, 11, 10, 5, 4, 7, 6, 1, 0, 3, 2),
-                                       vec16_epi32);
-        if (reverse) {
-            vec16_epi32 = _mm512_max_epi32(vec16_epi32, tmp);
-            tmp = _mm512_min_epi32(vec16_epi32, tmp);
-        } else {
-            vec16_epi32 = _mm512_min_epi32(vec16_epi32, tmp);
-            tmp = _mm512_max_epi32(vec16_epi32, tmp);
-        }
-        vec16_epi32 = _mm512_mask_blend_epi32(0xF0F0, vec16_epi32, tmp); // Blend with mask 0xF0F0 (1111000011110000)
+        swapped = _mm512_permutexvar_epi32(_mm512_set_epi32(
+                11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 15, 14, 13, 12), vec);
+        minVals = _mm512_min_epi32(vec, swapped);
+        maxVals = _mm512_max_epi32(vec, swapped);
+        vec = reverse ? maxVals : minVals;
+    }
 
-        tmp = _mm512_permutexvar_epi32(_mm512_set_epi32(11, 10, 9, 8, 15, 14, 13, 12, 3, 2, 1, 0, 7, 6, 5, 4),
-                                       vec16_epi32);
-        if (reverse) {
-            vec16_epi32 = _mm512_max_epi32(vec16_epi32, tmp);
-            tmp = _mm512_min_epi32(vec16_epi32, tmp);
-        } else {
-            vec16_epi32 = _mm512_min_epi32(vec16_epi32, tmp);
-            tmp = _mm512_max_epi32(vec16_epi32, tmp);
-        }
-        vec16_epi32 = _mm512_mask_blend_epi32(0xFF00, vec16_epi32, tmp); // Blend with mask 0xFF00 (1111111100000000)
+    /**
+     * Merge sorted blocks with SIMD optimization, or fallback
+     */
+    __forceinline void
+    mergeSortedBlocks(std::vector<int, AlignedAllocator<int, 64>> &data, size_t block_size, bool reverse) {
+        size_t n = data.size();
+        auto temp = std::vector<int, AlignedAllocator<int, 64>>(data.size());
 
-        tmp = _mm512_permutexvar_epi32(_mm512_set_epi32(7, 6, 5, 4, 3, 2, 1, 0, 15, 14, 13, 12, 11, 10, 9, 8),
-                                       vec16_epi32);
-        if (reverse) {
-            vec16_epi32 = _mm512_max_epi32(vec16_epi32, tmp);
-            tmp = _mm512_min_epi32(vec16_epi32, tmp);
-        } else {
-            vec16_epi32 = _mm512_min_epi32(vec16_epi32, tmp);
-            tmp = _mm512_max_epi32(vec16_epi32, tmp);
+        auto *src = &data;
+        auto *dst = &temp;
+
+        for (size_t size = block_size; size < n; size *= 2) {
+            for (size_t left = 0; left < n; left += 2 * size) {
+                size_t mid = std::min(left + size - 1, n - 1);
+                size_t right = std::min(left + 2 * size - 1, n - 1);
+
+                size_t i = left, j = mid + 1, k = left;
+
+                // merge 2 sorted blocks with AVX-512
+                while (IS_AVX512_SUPPORTED && i <= mid - AVX512_BLOCK_SIZE + 1 && j <= right - AVX512_BLOCK_SIZE + 1) {
+                    __m512i vec_i = _mm512_load_si512(&((*src)[i]));
+                    __m512i vec_j = _mm512_load_si512(&((*src)[j]));
+
+                    __m512i min_vals = _mm512_min_epi32(vec_i, vec_j);
+                    __m512i max_vals = _mm512_max_epi32(vec_i, vec_j);
+
+                    if (!reverse) {
+                        _mm512_store_si512(&((*dst)[k]), min_vals);
+                        k += AVX512_BLOCK_SIZE;
+                        i += AVX512_BLOCK_SIZE;
+                    } else {
+                        _mm512_store_si512(&((*dst)[k]), max_vals);
+                        k += AVX512_BLOCK_SIZE;
+                        j += AVX512_BLOCK_SIZE;
+                    }
+                }
+
+                // merge 2 sorted blocks with AVX2
+                while (IS_AVX2_SUPPORTED && i <= mid - AVX2_BLOCK_SIZE + 1 && j <= right - AVX2_BLOCK_SIZE + 1) {
+                    __m256i vec_i = _mm256_load_si256(reinterpret_cast<__m256i *>(&((*src)[i])));
+                    __m256i vec_j = _mm256_load_si256(reinterpret_cast<__m256i *>(&((*src)[j])));
+
+                    __m256i min_vals = _mm256_min_epi32(vec_i, vec_j);
+                    __m256i max_vals = _mm256_max_epi32(vec_i, vec_j);
+
+                    if (!reverse) {
+                        _mm256_store_si256((__m256i *) &((*dst)[k]), min_vals);
+                        k += AVX2_BLOCK_SIZE;
+                        i += AVX2_BLOCK_SIZE;
+                    } else {
+                        _mm256_store_si256((__m256i *) &((*dst)[k]), max_vals);
+                        k += AVX2_BLOCK_SIZE;
+                        j += AVX2_BLOCK_SIZE;
+                    }
+                }
+
+                // merge 2 sorted blocks with SSE4.1
+                while (IS_SSE41_SUPPORTED && i <= mid - SSE41_BLOCK_SIZE + 1 && j <= right - SSE41_BLOCK_SIZE + 1) {
+                    __m128i vec_i = _mm_load_si128((__m128i *) &((*src)[i]));
+                    __m128i vec_j = _mm_load_si128((__m128i *) &((*src)[j]));
+
+                    __m128i min_vals = _mm_min_epi32(vec_i, vec_j);
+                    __m128i max_vals = _mm_max_epi32(vec_i, vec_j);
+
+                    if (!reverse) {
+                        _mm_store_si128((__m128i *) &((*dst)[k]), min_vals);
+                        k += SSE41_BLOCK_SIZE;
+                        i += SSE41_BLOCK_SIZE;
+                    } else {
+                        _mm_store_si128((__m128i *) &((*dst)[k]), max_vals);
+                        k += SSE41_BLOCK_SIZE;
+                        j += SSE41_BLOCK_SIZE;
+                    }
+                }
+
+                // elements left
+                while (i <= mid && j <= right) {
+                    if ((!reverse && (*src)[i] < (*src)[j]) || (reverse && (*src)[i] > (*src)[j])) {
+                        (*dst)[k++] = (*src)[i++];
+                    } else {
+                        (*dst)[k++] = (*src)[j++];
+                    }
+                }
+
+                while (i <= mid) {
+                    (*dst)[k++] = (*src)[i++];
+                }
+
+                while (j <= right) {
+                    (*dst)[k++] = (*src)[j++];
+                }
+            }
+
+            // data for next merge
+            std::swap(src, dst);
         }
-        vec16_epi32 = _mm512_mask_blend_epi32(0xFFFF, vec16_epi32, tmp); // Final blend with mask 0xFFFF (all elements)
+
+        // copy the final result
+        if (src != &data) {
+            std::copy(temp.begin(), temp.end(), data.begin());
+        }
     }
 
 #pragma clang diagnostic pop
 
     /**
-     * Sort int32 with SIMD, or fallback to std::sort/timsort if unsupported
+     * Try to sort with simd optimize, or fallback if unsupported
+     * MAKE SURE VECTOR IS ALIGNED!
+     * @param vector vector to sort
      */
-    void simd_sort(std::vector<int>::iterator begin, std::vector<int>::iterator end, const bool &reverse) {
-        size_t size = std::distance(begin, end);
+    void simdsort(std::vector<int, AlignedAllocator<int, 64>> &vector, const bool &reverse) {
+        const auto size = vector.size();
         if (size <= 1) return;
-        if (!simd::IS_AVX2_SUPPORTED && !simd::IS_AVX512_SUPPORTED) {
+
+        const auto begin = vector.begin();
+        const auto end = vector.end();
+
+        if (size < 8) {
+            if (reverse) {
+                std::sort(begin, end, std::greater<>());
+            } else {
+                std::sort(begin, end);
+            }
+            return;
+        }
+
+        if (!IS_AVX2_SUPPORTED && !IS_AVX512_SUPPORTED) {
+            // fallback
             if (size > 5000) {
                 if (reverse) {
                     gfx::timsort(begin, end, std::greater<>());
@@ -135,42 +214,43 @@ namespace simd {
                     std::sort(begin, end);
                 }
             }
+            return;
         }
 
+        // get pointer to do simd
         int *data = &(*begin);
+        size_t sortedCount = 0;
+        size_t minBlockSize = AVX512_BLOCK_SIZE;
 
-        // If size >= 16 and AVX512 is supported, use AVX512
-        if (simd::IS_AVX512_SUPPORTED && size >= 16) {
-            for (size_t i = 0; i + 16 <= size; i += 16) {
-                __m512i vec16_epi32 = _mm512_loadu_si512((void *) &data[i]);  // Load 16 int32 elements
-                sort16_epi32_avx512(vec16_epi32, reverse);                  // Sort using AVX512
-                _mm512_storeu_si512((void *) &data[i], vec16_epi32);          // Store back the sorted values
+        if (IS_AVX512_SUPPORTED && sortedCount + AVX512_BLOCK_SIZE < size) {
+            // simd sort with avx512
+            for (; sortedCount + AVX512_BLOCK_SIZE <= size; sortedCount += AVX512_BLOCK_SIZE) {
+                __m512i vec = _mm512_load_si512(data + sortedCount);  // load
+                sort16_epi32_avx512(vec, reverse);  // sort
+                _mm512_store_si512(data + sortedCount, vec);  // store
             }
-            // Update the pointer to the remaining elements
-            data += (size / 16) * 16;
-            size = size % 16;  // Remaining elements after AVX512 processing
         }
 
-        // If size >= 4 and AVX2 is supported, use AVX2
-        if (simd::IS_AVX2_SUPPORTED && size >= 4) {
-            for (size_t i = 0; i + 4 <= size; i += 4) {
-                __m256i vec4_epi32 = _mm256_loadu_si256((__m256i *) &data[i]);  // Load 4 int32 elements
-                sort4_epi32_avx2(vec4_epi32, reverse);                        // Sort using AVX2
-                _mm256_storeu_si256((__m256i *) &data[i], vec4_epi32);          // Store back the sorted values
+        if (IS_AVX2_SUPPORTED && sortedCount + AVX2_BLOCK_SIZE < size) {
+            // simd sort with avx2
+            for (; sortedCount + AVX2_BLOCK_SIZE <= size; sortedCount += AVX2_BLOCK_SIZE) {
+                __m256i vec = _mm256_load_si256((__m256i *) (data + sortedCount));  // load
+                sort8_epi32_avx2(vec, reverse);  // sort
+                _mm256_store_si256((__m256i *) (data + sortedCount), vec);  // store
             }
-            // Update the pointer to the remaining elements
-            data += (size / 4) * 4;
-            size = size % 4;  // Remaining elements after AVX2 processing
+            minBlockSize = 8;
         }
 
-        // Use std::sort for any remaining elements
-        if (size > 0) {
+        if (sortedCount < size) {
             if (reverse) {
-                std::sort(data, data + size, std::greater<>());
+                std::sort(begin + static_cast<std::vector<int>::difference_type>(sortedCount), end,
+                          std::greater<>());
             } else {
-                std::sort(data, data + size);
+                std::sort(begin + static_cast<std::vector<int>::difference_type>(sortedCount), end);
             }
         }
-    }
 
+        // merge all sorted blocks
+        mergeSortedBlocks(vector, minBlockSize, reverse);
+    }
 }
