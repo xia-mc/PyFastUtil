@@ -9,7 +9,7 @@
 #include "utils/PointerUtils.h"
 #include "utils/ParseUtils.h"
 #include "utils/TimSort.h"
-#include "utils/simd/SIMDSort.h"
+#include "utils/simd/BitonicSort.h"
 #include "utils/memory/AlignedAllocator.h"
 
 extern "C" {

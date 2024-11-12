@@ -8,7 +8,8 @@
 #include <cstdlib>
 
 template <typename T, std::size_t Alignment>
-struct AlignedAllocator {
+class AlignedAllocator {
+public:
     using value_type [[maybe_unused]] = T;
     using pointer [[maybe_unused]] = T*;
     using const_pointer [[maybe_unused]] = const T*;

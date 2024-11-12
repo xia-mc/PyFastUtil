@@ -1,3 +1,6 @@
+import sys
+sys.path.append('D:\\PyFastUtil')
+
 import timeit
 import numpy
 import random

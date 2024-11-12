@@ -2,8 +2,8 @@
 // Created by xia__mc on 2024/11/11.
 //
 
-#ifndef PYFASTUTIL_SIMDSORT_H
-#define PYFASTUTIL_SIMDSORT_H
+#ifndef PYFASTUTIL_BITONICSORT_H
+#define PYFASTUTIL_BITONICSORT_H
 
 #include <vector>
 #include <algorithm>
@@ -13,9 +13,11 @@
 
 namespace simd {
 
+    void init();
+
     void simdsort(std::vector<int, AlignedAllocator<int, 64>>& vector, const bool &reverse = false);
 
 }
 
 
-#endif //PYFASTUTIL_SIMDSORT_H
+#endif //PYFASTUTIL_BITONICSORT_H
