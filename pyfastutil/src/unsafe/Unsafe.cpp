@@ -29,8 +29,6 @@ static PyObject *Unsafe_enter(PyObject *self, [[maybe_unused]] PyObject *args) {
 }
 
 static PyObject *Unsafe_exit([[maybe_unused]] PyObject *pySelf, [[maybe_unused]] PyObject *args) {
-    auto *self = reinterpret_cast<Unsafe *>(pySelf);
-
     Py_RETURN_NONE;
 }
 
