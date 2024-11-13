@@ -6,25 +6,26 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
-#include "utils/PointerUtils.h"
+#include "utils/PythonUtils.h"
 #include "utils/ParseUtils.h"
 #include "utils/TimSort.h"
 #include "utils/simd/BitonicSort.h"
+#include "utils/simd/Utils.h"
 #include "utils/memory/AlignedAllocator.h"
 
 extern "C" {
 typedef struct IntArrayList {
     PyObject_HEAD;
     // we use 64 bytes memory aligned to support faster SIMD, suggestion by ChatGPT.
-    std::vector<int, AlignedAllocator<int, 64>> vector = std::vector<int, AlignedAllocator<int, 64>>();
+    std::vector<int, AlignedAllocator<int, 64>> vector;
 } IntArrayList;
 
 static PyTypeObject IntArrayListType = {
         PyVarObject_HEAD_INIT(&PyType_Type, 0)
 };
 
-__forceinline void parseArgs(PyObject *args, PyObject *kwargs, PyObject *&pyIterable, Py_ssize_t &pySize) {
-    static constexpr const char *kwlist[] = {"__iterable", "pySize", nullptr};
+__forceinline void parseArgs(PyObject *&args, PyObject *&kwargs, PyObject *&pyIterable, Py_ssize_t &pySize) {
+    static constexpr const char *kwlist[] = {"iterable", "exceptSize", nullptr};
 
     PyObject *arg1 = nullptr;
 
@@ -43,6 +44,8 @@ __forceinline void parseArgs(PyObject *args, PyObject *kwargs, PyObject *&pyIter
 }
 
 static int IntArrayList_init(IntArrayList *self, PyObject *args, PyObject *kwargs) {
+    new(&self->vector) std::vector<int, AlignedAllocator<int, 64>>();
+
     PyObject *pyIterable = nullptr;
     Py_ssize_t pySize = -1;
 
@@ -55,6 +58,12 @@ static int IntArrayList_init(IntArrayList *self, PyObject *args, PyObject *kwarg
         }
 
         if (pyIterable != nullptr) {
+            if (Py_TYPE(pyIterable) == &IntArrayListType) {  // IntArrayList is a final class
+                auto *iter = reinterpret_cast<IntArrayList *>(pyIterable);
+                self->vector = iter->vector;
+                return 0;
+            }
+
             PyObject *iter = PyObject_GetIter(pyIterable);
             if (iter == nullptr) {
                 PyErr_SetString(PyExc_TypeError, "Arg '__iterable' is not iterable.");
@@ -89,32 +98,40 @@ static void IntArrayList_dealloc(IntArrayList *self) {
     Py_TYPE(self)->tp_free((PyObject *) self);
 }
 
-static PyObject *IntArrayList_from_range(PyObject *args) {
+static PyObject *IntArrayList_from_range([[maybe_unused]] PyObject *cls, PyObject *args) {
     Py_ssize_t start, stop, step;
 
     if (!PyParse_EvalRange(args, start, stop, step)) {
         return nullptr;
     }
 
-    IntArrayList *list = PyObject_New(IntArrayList, &IntArrayListType);
+    auto *list = Py_CreateObj<IntArrayList>(IntArrayListType);
     if (list == nullptr) return PyErr_NoMemory();
 
     try {
-        // PyParse_EvalRange ensure step != 0
-        if ((step > 0 && start >= stop) || (step < 0 && start <= stop)) {
-            return reinterpret_cast<PyObject *>(list);
+        Py_ssize_t elements;
+        if (step > 0) {
+            if (start >= stop) {
+                return reinterpret_cast<PyObject *>(list);
+            }
+            elements = (stop - start + step - 1) / step;
+        } else { // step < 0
+            if (start <= stop) {
+                return reinterpret_cast<PyObject *>(list);
+            }
+            elements = ((start - stop) / (-step)) + 1;
         }
 
-        if (step > 0) {
-            for (auto i = start; i < stop; i += step) {
-                list->vector.push_back(static_cast<int>(i));
-            }
-        } else {
-            for (auto i = start; i > stop; i += step) {
-                list->vector.push_back(static_cast<int>(i));
-            }
+        list->vector.resize(elements);
+
+        Py_ssize_t current = start;
+        for (Py_ssize_t idx = 0; idx < elements; ++idx) {
+            list->vector[idx] = static_cast<int>(current);
+            current += step;
         }
+
     } catch (const std::exception &e) {
+        list->vector.~vector();
         PyObject_Del(list);
         PyErr_SetString(PyExc_RuntimeError, e.what());
         return nullptr;
@@ -123,10 +140,28 @@ static PyObject *IntArrayList_from_range(PyObject *args) {
     return reinterpret_cast<PyObject *>(list);
 }
 
+static PyObject *IntArrayList_resize(PyObject *pySelf, PyObject *pySize) {
+    auto *self = reinterpret_cast<IntArrayList *>(pySelf);
+
+    if (!PyLong_Check(pySize)) {
+        PyErr_SetString(PyExc_TypeError, "Expected an int object.");
+        return nullptr;
+    }
+
+    try {
+        self->vector.resize(PyLong_AsSize_t(pySize));
+    } catch (const std::exception &e) {
+        PyErr_SetString(PyExc_RuntimeError, e.what());
+        return nullptr;
+    }
+
+    Py_RETURN_NONE;
+}
+
 static PyObject *IntArrayList_copy(PyObject *pySelf) {
     auto *self = reinterpret_cast<IntArrayList *>(pySelf);
 
-    IntArrayList *copy = PyObject_New(IntArrayList, &IntArrayListType);
+    auto *copy = Py_CreateObj<IntArrayList>(IntArrayListType);
     if (copy == nullptr) return PyErr_NoMemory();
 
     try {
@@ -423,6 +458,7 @@ static PyObject *IntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *k
 
 static PyMethodDef IntArrayList_methods[] = {
         {"from_range", (PyCFunction) IntArrayList_from_range, METH_VARARGS | METH_STATIC},
+        {"resize",     (PyCFunction) IntArrayList_resize,     METH_O},
         {"copy",       (PyCFunction) IntArrayList_copy,       METH_NOARGS},
         {"append",     (PyCFunction) IntArrayList_append,     METH_O},
         {"extend",     (PyCFunction) IntArrayList_extend,     METH_O},

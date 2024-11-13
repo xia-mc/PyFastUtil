@@ -46,9 +46,9 @@ def pyfastutil():
 
 
 if __name__ == '__main__':
-    time_pyfastutil = timeit.Timer(pyfastutil, setup=setup_pyfastutil).timeit(REPEAT) / REPEAT
-    time_python_list = timeit.Timer(python_list, setup=setup_python).timeit(REPEAT) / REPEAT
-    time_numpy = timeit.Timer(numpy_, setup=setup_numpy).timeit(REPEAT) / REPEAT
+    time_python_list = sum(timeit.repeat(python_list, setup=setup_python, repeat=REPEAT, number=1)) / REPEAT
+    time_numpy = sum(timeit.repeat(numpy_, setup=setup_numpy, repeat=REPEAT, number=1)) / REPEAT
+    time_pyfastutil = sum(timeit.repeat(pyfastutil, setup=setup_pyfastutil, repeat=REPEAT, number=1)) / REPEAT
 
     print("Batch size:", SIZE)
     print("Repeat:", REPEAT)

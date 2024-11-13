@@ -3,8 +3,9 @@
 //
 
 #include "PyFastUtil.h"
-#include "ints/IntArrayList.h"
 #include "utils/simd/BitonicSort.h"
+#include "ints/IntArrayList.h"
+#include "unsafe/Unsafe.h"
 
 static struct PyModuleDef pyfastutilModule = {
         PyModuleDef_HEAD_INIT,
@@ -25,6 +26,7 @@ PyMODINIT_FUNC PyInit___pyfastutil() {
         return nullptr;
 
     PyModule_AddObject(parent, "IntArrayList", PyInit_IntArrayList());
+    PyModule_AddObject(parent, "Unsafe", PyInit_Unsafe());
 
     return parent;
 }
