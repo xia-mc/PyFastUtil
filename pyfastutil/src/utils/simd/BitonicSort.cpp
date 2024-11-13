@@ -9,6 +9,7 @@
 #ifndef __arm64__
 
 #include <immintrin.h>
+#include "utils/simd/Utils.h"
 
 #endif
 
@@ -16,7 +17,6 @@
 #include "SIMD.h"
 #include "utils/TimSort.h"
 #include "utils/memory/AlignedAllocator.h"
-#include "utils/simd/Utils.h"
 #include "utils/memory/PreFetch.h"
 
 namespace simd {
