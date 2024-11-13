@@ -6,6 +6,7 @@
 #define PYFASTUTIL_INTARRAYLIST_H
 
 #include "utils/PythonPCH.h"
+#include "Compat.h"
 
 PyMODINIT_FUNC PyInit_IntArrayList();
 

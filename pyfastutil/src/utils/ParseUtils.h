@@ -6,6 +6,7 @@
 #define PYFASTUTIL_PARSEUTILS_H
 
 #include "PythonPCH.h"
+#include "Compat.h"
 
 /**
  * Try to parse args like built-in range function

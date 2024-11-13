@@ -7,8 +7,8 @@
 
 #include <immintrin.h>
 #include "SIMD.h"
-#include "utils/memory/AlignedAllocator.h"
 #include "utils/memory/PreFetch.h"
+#include "Compat.h"
 
 namespace simd {
 
@@ -18,7 +18,7 @@ namespace simd {
      * @param to Pointer to the destination memory.
      * @param count Number of elements to copy (not bytes).
      */
-    __forceinline void simdMemCpy(int* from, int* to, size_t count) {
+    __forceinline void simdMemCpy(int *from, int *to, size_t count) {
         size_t copied = 0;
 
         // Adjust prefetch distances based on SIMD instruction set
@@ -45,8 +45,8 @@ namespace simd {
                     prefetchL1(from + copied + AVX2_PREFETCH_DISTANCE);
                 }
 
-                __m256i vec = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(from + copied));
-                _mm256_storeu_si256(reinterpret_cast<__m256i*>(to + copied), vec);
+                __m256i vec = _mm256_loadu_si256(reinterpret_cast<const __m256i *>(from + copied));
+                _mm256_storeu_si256(reinterpret_cast<__m256i *>(to + copied), vec);
             }
         }
 
@@ -57,8 +57,8 @@ namespace simd {
                     prefetchL1(from + copied + SSE41_PREFETCH_DISTANCE);
                 }
 
-                __m128i vec = _mm_loadu_si128(reinterpret_cast<const __m128i*>(from + copied));
-                _mm_storeu_si128(reinterpret_cast<__m128i*>(to + copied), vec);
+                __m128i vec = _mm_loadu_si128(reinterpret_cast<const __m128i *>(from + copied));
+                _mm_storeu_si128(reinterpret_cast<__m128i *>(to + copied), vec);
             }
         }
 
@@ -76,7 +76,7 @@ namespace simd {
      * @param to Pointer to the destination memory.
      * @param count Number of elements to copy (not bytes).
      */
-    __forceinline void simdMemCpyAligned(int* from, int* to, size_t count) {
+    __forceinline void simdMemCpyAligned(int *from, int *to, size_t count) {
         size_t copied = 0;
 
         // Adjust prefetch distances based on SIMD instruction set
@@ -103,8 +103,8 @@ namespace simd {
                     prefetchL1(from + copied + AVX2_PREFETCH_DISTANCE);
                 }
 
-                __m256i vec = _mm256_load_si256(reinterpret_cast<const __m256i*>(from + copied));
-                _mm256_store_si256(reinterpret_cast<__m256i*>(to + copied), vec);
+                __m256i vec = _mm256_load_si256(reinterpret_cast<const __m256i *>(from + copied));
+                _mm256_store_si256(reinterpret_cast<__m256i *>(to + copied), vec);
             }
         }
 
@@ -115,8 +115,8 @@ namespace simd {
                     prefetchL1(from + copied + SSE41_PREFETCH_DISTANCE);
                 }
 
-                __m128i vec = _mm_load_si128(reinterpret_cast<const __m128i*>(from + copied));
-                _mm_store_si128(reinterpret_cast<__m128i*>(to + copied), vec);
+                __m128i vec = _mm_load_si128(reinterpret_cast<const __m128i *>(from + copied));
+                _mm_store_si128(reinterpret_cast<__m128i *>(to + copied), vec);
             }
         }
 

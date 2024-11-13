@@ -21,7 +21,7 @@ static struct PyModuleDef pyfastutilModule = {
 PyMODINIT_FUNC PyInit___pyfastutil() {
     simd::init();
 
-    PyObject* parent = PyModule_Create(&pyfastutilModule);
+    PyObject *parent = PyModule_Create(&pyfastutilModule);
     if (parent == nullptr)
         return nullptr;
 

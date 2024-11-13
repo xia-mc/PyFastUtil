@@ -6,6 +6,7 @@
 #define PYFASTUTIL_PYTHONUTILS_H
 
 #include "PythonPCH.h"
+#include "Compat.h"
 
 static __forceinline void SAFE_DECREF(PyObject *&object) {
     if (object == nullptr)

@@ -6,6 +6,7 @@
 #define PYFASTUTIL_PREFETCH_H
 
 #include <cstdlib>
+#include "Compat.h"
 
 __forceinline void prefetchL1(const void *pointer) {
     _mm_prefetch(reinterpret_cast<const char *>(pointer), 3);  // _MM_HINT_T0

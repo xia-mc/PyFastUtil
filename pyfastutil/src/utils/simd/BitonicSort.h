@@ -6,16 +6,14 @@
 #define PYFASTUTIL_BITONICSORT_H
 
 #include <vector>
-#include <algorithm>
-#include <immintrin.h>
-#include <iostream>
 #include "utils/memory/AlignedAllocator.h"
+#include "Compat.h"
 
 namespace simd {
 
     void init();
 
-    void simdsort(std::vector<int, AlignedAllocator<int, 64>>& vector, const bool &reverse = false);
+    void simdsort(std::vector<int, AlignedAllocator<int, 64>> &vector, const bool &reverse = false);
 
 }
 

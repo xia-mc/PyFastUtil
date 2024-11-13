@@ -33,16 +33,9 @@
 
 #include <algorithm>
 #include <functional>
-#include <iterator>
-#include <ranges>
 #include <utility>
 #include <vector>
-
-// Semantic versioning macros
-
-#define GFX_TIMSORT_VERSION_MAJOR 3
-#define GFX_TIMSORT_VERSION_MINOR 0
-#define GFX_TIMSORT_VERSION_PATCH 0
+#include "Compat.h"
 
 // Diagnostic selection macros
 
@@ -101,7 +94,7 @@ namespace gfx {
 
             template<typename Compare, typename Projection>
             static __forceinline void binarySort(iter_t const lo, iter_t const hi, iter_t start,
-                                   Compare comp, Projection proj) {
+                                                 Compare comp, Projection proj) {
                 GFX_TIMSORT_ASSERT(lo <= start);
                 GFX_TIMSORT_ASSERT(start <= hi);
                 if (start == lo) {
@@ -116,7 +109,7 @@ namespace gfx {
 
             template<typename Compare, typename Projection>
             static __forceinline diff_t countRunAndMakeAscending(iter_t const lo, iter_t const hi,
-                                                   Compare comp, Projection proj) {
+                                                                 Compare comp, Projection proj) {
                 GFX_TIMSORT_ASSERT(lo < hi);
 
                 auto runHi = std::ranges::next(lo);
@@ -618,7 +611,7 @@ namespace gfx {
 
             template<typename Compare, typename Projection>
             static __forceinline void merge(iter_t const lo, iter_t const mid, iter_t const hi,
-                              Compare comp, Projection proj) {
+                                            Compare comp, Projection proj) {
                 GFX_TIMSORT_ASSERT(lo <= mid);
                 GFX_TIMSORT_ASSERT(mid <= hi);
 
@@ -716,7 +709,7 @@ namespace gfx {
             typename Projection = std::identity
     >
     requires std::sortable<std::ranges::iterator_t<Range>, Compare, Projection>
-    auto timmerge(Range &&range, std::ranges::iterator_t<Range> middle,
+    [[maybe_unused]] auto timmerge(Range &&range, std::ranges::iterator_t<Range> middle,
                   Compare comp = {}, Projection proj = {})
     -> std::ranges::borrowed_iterator_t<Range> {
         return gfx::timmerge(std::begin(range), middle, std::end(range), comp, proj);

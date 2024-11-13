@@ -10,6 +10,7 @@
 #include <future>
 #include <atomic>
 #include <queue>
+#include "Compat.h"
 
 class ScheduledThreadPool {
 public:
@@ -25,7 +26,7 @@ public:
         std::future<T> future = task.get_future();
 
         std::lock_guard<std::mutex> lock(mutex);
-        std::function<void()> finalTask = [&task](){task();};
+        std::function<void()> finalTask = [&task]() { task(); };
         tasks.emplace(finalTask);
 
         tasksReady.notify_one();
@@ -38,7 +39,7 @@ public:
         std::future<void> future = task.get_future();
 
         std::lock_guard<std::mutex> lock(mutex);
-        std::function<void()> finalTask = [&task](){task();};
+        std::function<void()> finalTask = [&task]() { task(); };
         tasks.emplace(finalTask);
 
         tasksReady.notify_one();
