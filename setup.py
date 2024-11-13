@@ -19,7 +19,7 @@ else:
     # Unix-like uses GCC/Clang
     EXTRA_COMPILE_ARG = [
         "-O3", "-funroll-loops", "-flto", "-fPIC",
-        "-std=gnu++2b", "-Wall", "-Werror", "-fvisibility=hidden"
+        "-std=c++2b", "-Wall", "-Werror", "-fvisibility=hidden"
     ]
     EXTRA_LINK_ARG = ["-shared"]
 

@@ -53,8 +53,13 @@ jobs:
         python -m pip install flake8 pytest pytest-cov
         python -m pip install -r requirements.txt
     - name: Build
+      shell: bash
       run: |
-        if [[ "$RUNNER_OS" == "Windows" ]]; then ./build.cmd; else chmod +x ./build.sh && ./build.sh; fi
+        if [[ "$RUNNER_OS" == "Windows" ]]; then
+          ./build.cmd
+        else
+          chmod +x ./build.sh && ./build.sh
+        fi
     - name: Test with pytest and generate coverage report
       run: |
         pytest --cov=your_package_name --cov-report=xml
