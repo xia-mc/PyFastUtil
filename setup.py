@@ -1,7 +1,6 @@
 import glob
 import os
 import shutil
-import itertools
 
 from setuptools import setup, Extension
 
@@ -33,7 +32,7 @@ if __name__ == "__main__":
 
     # init sources
     sources = []
-    for root, dirs, files in itertools.chain(os.walk("./pyfastutil/src"), os.walk("./x86simdsort/lib")):
+    for root, dirs, files in os.walk("./pyfastutil/src"):
         for file in files:
             if file.endswith(".cpp"):
                 sources.append(os.path.join(root, file))
@@ -44,7 +43,7 @@ if __name__ == "__main__":
         language="c++",
         extra_compile_args=EXTRA_COMPILE_ARG,
         extra_link_args=EXTRA_LINK_ARG,
-        include_dirs=["./pyfastutil/src", "./x86simdsort/lib", "./x86simdsort/src"]
+        include_dirs=["./pyfastutil/src"]
     )
 
     # build
@@ -61,7 +60,7 @@ if __name__ == "__main__":
 
     if files:
         sourceFile = files[0]
-        targetFile = os.path.join("./pyfastutil", "__pyfastutil.pyd")
+        targetFile = os.path.join("./pyfastutil", "__pyfastutil.pyd" if IS_WINDOWS else "__pyfastutil.so")
 
         shutil.move(sourceFile, targetFile)
         print(f"File moved and renamed from {sourceFile} to {targetFile}")
