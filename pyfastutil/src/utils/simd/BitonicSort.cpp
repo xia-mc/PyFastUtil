@@ -39,7 +39,7 @@ namespace simd {
 #endif
 
     void init() {
-#ifndef __APPLE__
+#ifndef __arm64__
         if (IS_AVX2_SUPPORTED) {
             avx2Marks = new AVX2_MARKS();
         }
@@ -52,7 +52,7 @@ namespace simd {
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "portability-simd-intrinsics"
 #pragma ide diagnostic ignored "NullDereference"
-#ifndef __APPLE__
+#ifndef __arm64__
 
     __forceinline void sort8Epi32AVX2(__m256i &vec) {
         __m256i swapped = _mm256_permutevar8x32_epi32(vec, avx2Marks->M1);
