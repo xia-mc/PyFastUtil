@@ -1,4 +1,4 @@
 @echo off
-call .\.venv\Scripts\activate
+call .\.venv\Scripts\activate.bat
 python ./setup.py build_ext --inplace
 call deactivate
