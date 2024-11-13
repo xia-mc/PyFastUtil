@@ -105,7 +105,7 @@ bool osSupportsAVX() {
     if (!(cpuid_ecx & (1 << 27))) {
         return false; // XSAVE not supported, so XGETBV cannot be used
     }
-#if defined(__arm__) || defined(__arm64__)
+#if defined(__APPLE__)  // IDK why
     return false;
 #elif defined(__GNUC__) && (__GNUC__ >= 8)
     // GCC 8+ has __builtin_ia32_xgetbv()
