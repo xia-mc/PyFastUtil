@@ -328,7 +328,7 @@ namespace simd {
             return;
         }
 
-#ifdef __arm__
+#if defined(__arm__) || defined(__arm64__)
         if (size > 5000) {
             if (reverse) {
                 gfx::timsort(begin, end, std::greater<>());
