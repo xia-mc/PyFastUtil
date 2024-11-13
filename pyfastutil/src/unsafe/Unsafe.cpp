@@ -116,7 +116,7 @@ static PyObject *Unsafe_set([[maybe_unused]] PyObject *self, PyObject *args) {
     }
 
     const Py_ssize_t pySize = PyBytes_Size(pyBytes);
-    if (pySize == -1 || pySize > static_cast<Py_ssize_t>(SIZE_MAX)) {
+    if (pySize == -1 || pySize > SIZE_MAX) {
         PyErr_SetString(PyExc_TypeError, "Invalid bytes.");
         return nullptr;
     }

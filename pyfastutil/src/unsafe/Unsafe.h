@@ -6,7 +6,6 @@
 #define PYFASTUTIL_UNSAFE_H
 
 #include "utils/PythonPCH.h"
-#include "Compat.h"
 
 PyMODINIT_FUNC PyInit_Unsafe();
 

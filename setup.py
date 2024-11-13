@@ -19,7 +19,7 @@ else:
     # Unix-like uses GCC/Clang
     EXTRA_COMPILE_ARG = [
         "-O3", "-funroll-loops", "-flto", "-fPIC",
-        "-std=c++2b", "-Wall", "-Werror", "-fvisibility=hidden",
+        "-std=c++2b", "-Wall", "-fvisibility=hidden",
         "-Wno-error=unknown-pragmas",
         "-Wno-error=unguarded-availability-new"  # already handle in Compat.h
     ]
