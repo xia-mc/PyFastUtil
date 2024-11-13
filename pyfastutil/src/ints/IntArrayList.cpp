@@ -10,7 +10,6 @@
 #include "utils/ParseUtils.h"
 #include "utils/TimSort.h"
 #include "utils/simd/BitonicSort.h"
-#include "utils/simd/Utils.h"
 #include "utils/memory/AlignedAllocator.h"
 
 extern "C" {

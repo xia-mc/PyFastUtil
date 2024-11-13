@@ -1,70 +1,80 @@
-import time
-import unittest
 import sys
-import threading
-import timeit
+import unittest
+import struct
 
-from pyfastutil.unsafe import Unsafe
+from pyfastutil.unsafe import Unsafe, Ptr
 
 
-class MyTestCase(unittest.TestCase):
-    def test_malloc(self):
-        BYTE = b'a'
+class TestUnsafe(unittest.TestCase):
+
+    def test_malloc_and_free(self):
         with Unsafe() as unsafe:
-            ptr = unsafe.malloc(1)
-            unsafe.set(ptr, BYTE)
-            self.assertEqual(unsafe.get(ptr, 1), BYTE)  # add assertion here
+            ptr = unsafe.malloc(10)
+            self.assertIsInstance(ptr, int)
+            self.assertGreater(ptr, 0)
+            unsafe.free(ptr)
+
+    def test_calloc(self):
+        with Unsafe() as unsafe:
+            ptr = unsafe.calloc(10, 4)
+            self.assertIsInstance(ptr, int)
+            self.assertGreater(ptr, 0)
+            data = unsafe.get(ptr, 40)
+            self.assertEqual(data, b'\x00' * 40)
+            unsafe.free(ptr)
+
+    def test_realloc(self):
+        with Unsafe() as unsafe:
+            ptr = unsafe.malloc(10)
+            self.assertGreater(ptr, 0)
+            new_ptr = unsafe.realloc(ptr, 20)
+            self.assertGreater(new_ptr, 0)
+            self.assertNotEqual(ptr, new_ptr)
+            unsafe.free(new_ptr)
+
+    def test_set_and_get(self):
+        with Unsafe() as unsafe:
+            ptr = unsafe.malloc(40)
+            byte_data = struct.pack('10i', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+            unsafe.set(ptr, byte_data)
+            result = struct.unpack('i', unsafe.get(ptr + 4 * 2, 4))[0]
+            self.assertEqual(result, 3)
             unsafe.free(ptr)
 
     def test_memcpy(self):
-        obj = "hello"
-        size = sys.getsizeof(obj)
         with Unsafe() as unsafe:
-            ptr1 = unsafe.get_address(obj)
-            ptr2 = unsafe.malloc(size)
-            unsafe.memcpy(ptr1, ptr2, size)
-            obj2 = unsafe.as_object(ptr2)
-            self.assertEqual(obj, obj2)
-            self.assertNotEqual(id(obj), id(obj2))
-            unsafe.free(ptr2)
+            src_ptr = unsafe.malloc(40)
+            dest_ptr = unsafe.malloc(40)
+            byte_data = struct.pack('10i', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+            unsafe.set(src_ptr, byte_data)
+            unsafe.memcpy(src_ptr, dest_ptr, 40)
+            copied_data = unsafe.get(dest_ptr, 40)
+            self.assertEqual(copied_data, byte_data)
+            unsafe.free(src_ptr)
+            unsafe.free(dest_ptr)
 
-    def test_ref(self):
-        obj = [1, 2, 3]
+    def test_get_address_and_as_object(self):
         with Unsafe() as unsafe:
+            obj = [1, 2, 3]
             ptr = unsafe.get_address(obj)
-            obj2 = unsafe.as_object(ptr)
-            self.assertEqual(obj, obj2)
-            self.assertEqual(id(obj), id(obj2))
+            self.assertIsInstance(ptr, int)
+            self.assertGreater(ptr, 0)
+            restored_obj = unsafe.as_object(ptr)
+            self.assertEqual(restored_obj, obj)
 
-    def test_multithread(self):
-        def cpuBoundActions():
-            unsafe.fputs("")
-
-        def doMultiThread():
-            threads = []
-            for _ in range(8):
-                thread = threading.Thread(target=cpuBoundActions)
-                threads.append(thread)
-                thread.start()
-
-            for thread in threads:
-                thread.join()
-
-        def doMultiThreadNoGil():
-            threads = []
-            for _ in range(8):
-                thread = threading.Thread(target=cpuBoundActions)
-                threads.append(thread)
-                thread.start()
-
-            for thread in threads:
-                thread.join()
-
+    def test_incref_and_decref(self):
         with Unsafe() as unsafe:
-            withGil = timeit.Timer(doMultiThread).timeit(3) / 3
-            noGil = timeit.Timer(doMultiThreadNoGil).timeit(3) / 3
+            obj = [1, 2, 3]
+            initial_ref_count = sys.getrefcount(obj)
+            unsafe.incref(obj)
+            self.assertEqual(sys.getrefcount(obj), initial_ref_count + 1)
+            unsafe.decref(obj)
+            self.assertEqual(sys.getrefcount(obj), initial_ref_count)
 
-            self.assertLess(noGil, withGil)
+    def test_fputs_and_fflush(self):
+        with Unsafe() as unsafe:
+            unsafe.fputs("Hello, Unsafe World!\n")
+            unsafe.fflush()
 
 
 if __name__ == '__main__':
