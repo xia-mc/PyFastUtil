@@ -108,6 +108,8 @@ bool osSupportsAVX() {
 #if defined(__GNUC__) && (__GNUC__ >= 8)
     // GCC 8+ has __builtin_ia32_xgetbv()
     unsigned long long xcrFeatureMask = __builtin_ia32_xgetbv(0);
+#elifdef __arm__
+    return false;
 #else
     __asm__ __volatile__(
             "xgetbv"

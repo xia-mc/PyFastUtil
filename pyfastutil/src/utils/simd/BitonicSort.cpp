@@ -6,7 +6,7 @@
 #include <vector>
 #include <algorithm>
 
-#ifndef __arm64__
+#ifndef __arm__
 
 #include <immintrin.h>
 #include "utils/simd/Utils.h"
@@ -20,7 +20,7 @@
 #include "utils/memory/PreFetch.h"
 
 namespace simd {
-#ifndef __arm64__
+#ifndef __arm__
     struct alignas(32) AVX2_MARKS {
         alignas(32) const __m256i M1 = _mm256_set_epi32(7, 6, 5, 4, 3, 2, 1, 0);
         alignas(32) const __m256i M2 = _mm256_set_epi32(6, 7, 4, 5, 2, 3, 0, 1);
@@ -39,7 +39,7 @@ namespace simd {
 #endif
 
     void init() {
-#ifndef __arm64__
+#ifndef __arm__
         if (IS_AVX2_SUPPORTED) {
             avx2Marks = new AVX2_MARKS();
         }
@@ -52,7 +52,7 @@ namespace simd {
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "portability-simd-intrinsics"
 #pragma ide diagnostic ignored "NullDereference"
-#ifndef __arm64__
+#ifndef __arm__
 
     __forceinline void sort8Epi32AVX2(__m256i &vec) {
         __m256i swapped = _mm256_permutevar8x32_epi32(vec, avx2Marks->M1);
@@ -328,7 +328,7 @@ namespace simd {
             return;
         }
 
-#ifdef __arm64__
+#ifdef __arm__
         if (size > 5000) {
             if (reverse) {
                 gfx::timsort(begin, end, std::greater<>());
