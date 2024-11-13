@@ -1,6 +1,7 @@
 from typing import final, TypeVar
 
 Ptr = TypeVar("Ptr", bound=int)
+NullPtr: Ptr
 
 @final
 class Unsafe:
