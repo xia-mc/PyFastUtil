@@ -187,7 +187,7 @@ bool isSSE41Supported() {
 
 #else
 // For unknown compiler, AVX support is unknown, default is unsupported.
-constexpr bool osSupportsAVX() {
+bool osSupportsAVX() {
     return false;
 }
 
@@ -207,7 +207,7 @@ bool isSSE41Supported() {
 
 #else
 // For non-x86 architectures, AVX is not supported
-constexpr bool osSupportsAVX() {
+bool osSupportsAVX() {
     return false;
 }
 
