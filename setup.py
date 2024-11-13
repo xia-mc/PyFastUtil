@@ -20,7 +20,8 @@ else:
     EXTRA_COMPILE_ARG = [
         "-O3", "-funroll-loops", "-flto", "-fPIC",
         "-std=c++2b", "-Wall", "-Werror", "-fvisibility=hidden",
-        "-Wno-error=unknown-pragmas"
+        "-Wno-error=unknown-pragmas",
+        "-Wno-error=unguarded-availability-new"  # already handle in Compat.h
     ]
     EXTRA_LINK_ARG = ["-shared"]
 

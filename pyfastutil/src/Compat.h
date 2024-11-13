@@ -28,7 +28,7 @@ namespace compat {
     /**
      * Helper function to get the macOS version
      */
-    bool isMacos1015OrNewer() {
+    static __forceinline bool isMacos1015OrNewer() {
 #ifdef __APPLE__
         struct utsname sys_info;
         if (uname(&sys_info) != 0) {
