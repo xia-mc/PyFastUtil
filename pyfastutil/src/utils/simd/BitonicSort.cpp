@@ -5,7 +5,13 @@
 
 #include <vector>
 #include <algorithm>
+
+#ifndef __arm64__
+
 #include <immintrin.h>
+
+#endif
+
 #include <utils/PythonPCH.h>
 #include "SIMD.h"
 #include "utils/TimSort.h"
@@ -14,6 +20,7 @@
 #include "utils/memory/PreFetch.h"
 
 namespace simd {
+#ifndef __arm64__
     struct alignas(32) AVX2_MARKS {
         alignas(32) const __m256i M1 = _mm256_set_epi32(7, 6, 5, 4, 3, 2, 1, 0);
         alignas(32) const __m256i M2 = _mm256_set_epi32(6, 7, 4, 5, 2, 3, 0, 1);
@@ -29,19 +36,23 @@ namespace simd {
 
     static AVX2_MARKS *avx2Marks = nullptr;
     static AVX512_MARKS *avx512Marks = nullptr;
+#endif
 
     void init() {
+#ifndef __APPLE__
         if (IS_AVX2_SUPPORTED) {
             avx2Marks = new AVX2_MARKS();
         }
         if (IS_AVX512_SUPPORTED) {
             avx512Marks = new AVX512_MARKS();
         }
+#endif
     }
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "portability-simd-intrinsics"
 #pragma ide diagnostic ignored "NullDereference"
+#ifndef __APPLE__
 
     __forceinline void sort8Epi32AVX2(__m256i &vec) {
         __m256i swapped = _mm256_permutevar8x32_epi32(vec, avx2Marks->M1);
@@ -293,6 +304,7 @@ namespace simd {
         }
     }
 
+#endif
 #pragma clang diagnostic pop
 
     /**
@@ -316,6 +328,21 @@ namespace simd {
             return;
         }
 
+#ifdef __arm64__
+        if (size > 5000) {
+            if (reverse) {
+                gfx::timsort(begin, end, std::greater<>());
+            } else {
+                gfx::timsort(begin, end);
+            }
+        } else {
+            if (reverse) {
+                std::sort(begin, end, std::greater<>());
+            } else {
+                std::sort(begin, end);
+            }
+        }
+#else
         if (!IS_AVX2_SUPPORTED && !IS_AVX512_SUPPORTED) {
             // fallback
             if (size > 5000) {
@@ -393,5 +420,6 @@ namespace simd {
             mergeSortedBlocksReversed(vector, minBlockSize);
         else
             mergeSortedBlocks(vector, minBlockSize);
+#endif
     }
 }

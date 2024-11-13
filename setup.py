@@ -21,7 +21,7 @@ else:
         "-O3", "-funroll-loops", "-flto", "-fPIC",
         "-std=c++2b", "-Wall", "-fvisibility=hidden",
         "-Wno-error=unknown-pragmas",
-        "-Wno-error=unguarded-availability-new"  # already handle in Compat.h
+        # "-Wno-error=unguarded-availability-new"  # already handle in Compat.h, and this option doesn't exist on gcc
     ]
     EXTRA_LINK_ARG = ["-shared"]
 
