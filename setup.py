@@ -61,7 +61,7 @@ if __name__ == "__main__":
 
     if files:
         sourceFile = files[0]
-        targetFile = os.path.join("./pyfastutil", "__pyfastutil" + ".pyd" if IS_WINDOWS else ".so")
+        targetFile = os.path.join("./pyfastutil", "__pyfastutil" + (".pyd" if IS_WINDOWS else ".so"))
 
         shutil.move(sourceFile, targetFile)
         print(f"File moved and renamed from {sourceFile} to {targetFile}")
