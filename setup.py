@@ -55,12 +55,12 @@ if __name__ == "__main__":
     )
 
     # output
-    pattern = "./__pyfastutil.cp*-*_*.pyd"
+    pattern = "./__pyfastutil.cp*-*_*" + ".pyd" if IS_WINDOWS else ".so"
     files = glob.glob(pattern)
 
     if files:
         sourceFile = files[0]
-        targetFile = os.path.join("./pyfastutil", "__pyfastutil.pyd" if IS_WINDOWS else "__pyfastutil.so")
+        targetFile = os.path.join("./pyfastutil", "__pyfastutil" + ".pyd" if IS_WINDOWS else ".so")
 
         shutil.move(sourceFile, targetFile)
         print(f"File moved and renamed from {sourceFile} to {targetFile}")
