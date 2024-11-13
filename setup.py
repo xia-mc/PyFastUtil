@@ -55,7 +55,8 @@ if __name__ == "__main__":
     )
 
     # output
-    pattern = "./__pyfastutil.cp*-*_*" + ".pyd" if IS_WINDOWS else ".so"
+    pattern: str
+    pattern = "./build/lib.*-cpython-*/__pyfastutil.*"
     files = glob.glob(pattern)
 
     if files:
