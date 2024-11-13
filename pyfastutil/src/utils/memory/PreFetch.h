@@ -7,6 +7,13 @@
 
 #include "Compat.h"
 
+#ifdef __clang__
+#define _MM_HINT_T0 3 // NOLINT(*-reserved-identifier)
+#define _MM_HINT_T1 2 // NOLINT(*-reserved-identifier)
+#define _MM_HINT_T2 1 // NOLINT(*-reserved-identifier)
+#define _MM_HINT_NTA 0 // NOLINT(*-reserved-identifier)
+#endif
+
 __forceinline void prefetchL1(const void *pointer) {
     _mm_prefetch(reinterpret_cast<const char *>(pointer), _MM_HINT_T0);
 }
