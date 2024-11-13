@@ -26,7 +26,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
   build:
-    name: Test on Multiple Platforms
+    name: Build & Test
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -54,7 +54,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Build
       run: |
-        if [[ "$RUNNER_OS" == "Windows" ]]; then ./build.cmd; else ./build.sh; fi
+        if [[ "$RUNNER_OS" == "Windows" ]]; then ./build.cmd; else chmod +x ./build.sh && ./build.sh; fi
     - name: Test with pytest and generate coverage report
       run: |
         pytest --cov=your_package_name --cov-report=xml
