@@ -105,21 +105,23 @@ bool osSupportsAVX() {
     if (!(cpuid_ecx & (1 << 27))) {
         return false; // XSAVE not supported, so XGETBV cannot be used
     }
-#if defined(__GNUC__) && (__GNUC__ >= 8)
+#if defined(__arm__) || defined(__arm64__)
+    return false;
+#elif defined(__GNUC__) && (__GNUC__ >= 8)
     // GCC 8+ has __builtin_ia32_xgetbv()
     unsigned long long xcrFeatureMask = __builtin_ia32_xgetbv(0);
-#elif defined(__arm__) || defined(__arm64__)
-    return false;
+    // Check if XMM (bit 1) and YMM (bit 2) state are enabled by OS
+    return (xcrFeatureMask & 0x6) == 0x6; // Both XMM and YMM must be enabled
 #else
     __asm__ __volatile__(
             "xgetbv"
             : "=a"(eax), "=d"(edx)
             : "c"(0)
         );
-        unsigned long long xcrFeatureMask = ((unsigned long long)edx << 32) | eax;
-#endif
+    unsigned long long xcrFeatureMask = ((unsigned long long)edx << 32) | eax;
     // Check if XMM (bit 1) and YMM (bit 2) state are enabled by OS
     return (xcrFeatureMask & 0x6) == 0x6; // Both XMM and YMM must be enabled
+#endif
 }
 
 bool isAVX2Supported() {
