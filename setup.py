@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     # output
     pattern: str
-    pattern = "./build/lib.*-cpython-*/__pyfastutil.*"
+    pattern = "./build/lib.*/__pyfastutil.*"
     files = glob.glob(pattern)
 
     if files:
