@@ -279,7 +279,7 @@ static PyObject *IntArrayList_index(PyObject *pySelf, PyObject *args) {
     Py_ssize_t start = 0;
     auto stop = static_cast<Py_ssize_t>(self->vector.size());
 
-    if (!PyArg_ParseTuple(args, "l|nn", &value, &start, &stop)) {
+    if (!PyArg_ParseTuple(args, "i|nn", &value, &start, &stop)) {
         return nullptr;
     }
 
@@ -329,7 +329,7 @@ static PyObject *IntArrayList_insert(PyObject *pySelf, PyObject *args) {
     Py_ssize_t index;
     int value;
 
-    if (!PyArg_ParseTuple(args, "nl", &index, &value)) {
+    if (!PyArg_ParseTuple(args, "ni", &index, &value)) {
         return nullptr;
     }
 
