@@ -6,9 +6,6 @@
 #include "mutex"
 
 extern "C" {
-typedef struct Unsafe {
-    PyObject_HEAD;
-} Unsafe;
 
 static PyTypeObject UnsafeType = {
         PyVarObject_HEAD_INIT(&PyType_Type, 0)
@@ -159,6 +156,10 @@ static PyObject *Unsafe_decref([[maybe_unused]] PyObject *self, PyObject *pyObje
     Py_RETURN_NONE;
 }
 
+static PyObject *Unsafe_refcnt([[maybe_unused]] PyObject *self, PyObject *pyObject) {
+    return PyLong_FromSsize_t(Py_REFCNT(pyObject));
+}
+
 static PyObject *Unsafe_fputs([[maybe_unused]] PyObject *pySelf, PyObject *pyStr) {
     if (!PyUnicode_Check(pyStr)) {
         PyErr_SetString(PyExc_TypeError, "Argument must be a string.");
@@ -217,6 +218,7 @@ static PyMethodDef Unsafe_methods[] = {
         {"memcpy",      (PyCFunction) Unsafe_memcpy,     METH_VARARGS, nullptr},
         {"incref",      (PyCFunction) Unsafe_incref,     METH_O,       nullptr},
         {"decref",      (PyCFunction) Unsafe_decref,     METH_O,       nullptr},
+        {"refcnt",      (PyCFunction) Unsafe_refcnt,     METH_O,       nullptr},
         {"fputs",       (PyCFunction) Unsafe_fputs,      METH_O,       nullptr},
         {"fflush",      (PyCFunction) Unsafe_fflush,     METH_NOARGS,  nullptr},
         {"fgets",       (PyCFunction) Unsafe_fgets,      METH_O,       nullptr},

@@ -13,17 +13,17 @@
 #elif defined(__aarch64__) || defined(__arm__)
 // ARM platform (32-bit or 64-bit)
     // Using __builtin_prefetch for ARM platforms
-    #define _MM_HINT_T0 0  // Prefetch to L1
-    #define _MM_HINT_T1 0  // Prefetch to L2 (no direct equivalent, use L1)
-    #define _MM_HINT_T2 0  // Prefetch to L3 (no direct equivalent, use L1)
-    #define _MM_HINT_NTA 0 // Non-temporal prefetch (no direct equivalent, fallback to L1)
+#define _MM_HINT_T0 0  // Prefetch to L1
+#define _MM_HINT_T1 0  // Prefetch to L2 (no direct equivalent, use L1)
+#define _MM_HINT_T2 0  // Prefetch to L3 (no direct equivalent, use L1)
+#define _MM_HINT_NTA 0 // Non-temporal prefetch (no direct equivalent, fallback to L1)
 
     // Define _mm_prefetch to use __builtin_prefetch for ARM
-    #define _mm_prefetch(p, hint) __builtin_prefetch(p, 0, hint)
+#define _mm_prefetch(p, hint) __builtin_prefetch(p, 0, hint)
 
 #else
     // Other platforms: No prefetch available
-    #define _mm_prefetch(p, hint) ((void)0)  // No-op for unsupported platforms
+#define _mm_prefetch(p, hint) ((void)0)  // No-op for unsupported platforms
 #endif
 
 __forceinline void prefetchL1(const void *pointer) {

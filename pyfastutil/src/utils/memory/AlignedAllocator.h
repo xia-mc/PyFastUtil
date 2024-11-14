@@ -6,6 +6,7 @@
 #define PYFASTUTIL_ALIGNEDALLOCATOR_H
 
 #include <cstdlib>
+#include "stdexcept"
 #include "Compat.h"
 
 template<typename T, std::size_t Alignment>

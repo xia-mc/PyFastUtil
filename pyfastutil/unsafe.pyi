@@ -169,6 +169,14 @@ class Unsafe:
         """
         pass
 
+    def refcnt(self, __object: object) -> int:
+        """
+        Get the reference count of a Python object.
+
+        :param __object: The Python object.
+        """
+        pass
+
     def fputs(self, __str: str) -> None:
         """
         Writes a string to a low-level output stream.

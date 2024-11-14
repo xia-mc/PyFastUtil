@@ -8,7 +8,8 @@
 #include "PythonPCH.h"
 #include "Compat.h"
 
-static __forceinline void SAFE_DECREF(PyObject *&object) {
+template<typename T>
+static __forceinline void SAFE_DECREF(T *&object) {
     if (object == nullptr)
         return;
     Py_DECREF(object);
@@ -23,6 +24,40 @@ static __forceinline T *Py_CreateObj(PyTypeObject &typeObj) {
 template<typename T>
 static __forceinline T *Py_CreateObjNoInit(PyTypeObject &typeObj) {
     return reinterpret_cast<T *>(_PyObject_New(&typeObj));
+}
+
+/**
+ * Try to parse args like built-in range function
+ * If not successful, function will raise python exception.
+ * @return if successful
+ */
+static __forceinline bool PyParse_EvalRange(PyObject *&args, Py_ssize_t &start, Py_ssize_t &stop, Py_ssize_t &step) {
+    Py_ssize_t arg1 = PY_SSIZE_T_MAX;
+    Py_ssize_t arg2 = PY_SSIZE_T_MAX;
+    Py_ssize_t arg3 = PY_SSIZE_T_MAX;
+
+    if (!PyArg_ParseTuple(args, "n|nn", &arg1, &arg2, &arg3)) {
+        return false;
+    }
+
+    if (arg2 == PY_SSIZE_T_MAX) {
+        start = 0;
+        stop = arg1;
+        step = 1;
+    } else if (arg3 == PY_SSIZE_T_MAX) {
+        start = arg1;
+        stop = arg2;
+        step = 1;
+    } else if (arg3 != 0) {
+        start = arg1;
+        stop = arg2;
+        step = arg3;
+    } else {
+        PyErr_SetString(PyExc_ValueError, "Arg 3 must not be zero.");
+        return false;
+    }
+
+    return true;
 }
 
 #endif //PYFASTUTIL_PYTHONUTILS_H

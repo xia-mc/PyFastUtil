@@ -710,7 +710,7 @@ namespace gfx {
     >
     requires std::sortable<std::ranges::iterator_t<Range>, Compare, Projection>
     [[maybe_unused]] auto timmerge(Range &&range, std::ranges::iterator_t<Range> middle,
-                  Compare comp = {}, Projection proj = {})
+                                   Compare comp = {}, Projection proj = {})
     -> std::ranges::borrowed_iterator_t<Range> {
         return gfx::timmerge(std::begin(range), middle, std::end(range), comp, proj);
     }

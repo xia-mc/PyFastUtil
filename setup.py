@@ -24,7 +24,7 @@ else:
         "-fno-tree-vectorize"
         # "-Wno-error=unguarded-availability-new"  # already handle in Compat.h, and this option doesn't exist on gcc
     ]
-    EXTRA_LINK_ARG = ["-shared"]
+    EXTRA_LINK_ARG = ["-bundle"]
 
 if __name__ == "__main__":
     if os.path.exists("./build"):

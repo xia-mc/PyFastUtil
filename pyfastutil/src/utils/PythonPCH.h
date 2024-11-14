@@ -11,4 +11,6 @@
 
 #pragma warning(pop)
 
+#include "Compat.h"
+
 #endif //PYFASTUTIL_PYTHONPCH_H

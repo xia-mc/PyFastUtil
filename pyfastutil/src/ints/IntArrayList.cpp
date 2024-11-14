@@ -6,18 +6,14 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
+#include <iostream>
 #include "utils/PythonUtils.h"
-#include "utils/ParseUtils.h"
 #include "utils/TimSort.h"
 #include "utils/simd/BitonicSort.h"
 #include "utils/memory/AlignedAllocator.h"
+#include "ints/IntArrayListIter.h"
 
 extern "C" {
-typedef struct IntArrayList {
-    PyObject_HEAD;
-    // we use 64 bytes memory aligned to support faster SIMD, suggestion by ChatGPT.
-    std::vector<int, AlignedAllocator<int, 64>> vector;
-} IntArrayList;
 
 static PyTypeObject IntArrayListType = {
         PyVarObject_HEAD_INIT(&PyType_Type, 0)
@@ -454,28 +450,45 @@ static PyObject *IntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *k
     Py_RETURN_NONE;
 }
 
+Py_ssize_t IntArrayList_len(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntArrayList *>(pySelf);
+
+    return static_cast<Py_ssize_t>(self->vector.size());
+}
+
+
+PyObject *IntArrayList_iter(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntArrayList *>(pySelf);
+
+    return reinterpret_cast<PyObject *>(IntArrayListIter_create(self));
+}
+
 
 static PyMethodDef IntArrayList_methods[] = {
         {"from_range", (PyCFunction) IntArrayList_from_range, METH_VARARGS | METH_STATIC},
-        {"resize",     (PyCFunction) IntArrayList_resize,     METH_O},
-        {"copy",       (PyCFunction) IntArrayList_copy,       METH_NOARGS},
-        {"append",     (PyCFunction) IntArrayList_append,     METH_O},
-        {"extend",     (PyCFunction) IntArrayList_extend,     METH_O},
-        {"pop",        (PyCFunction) IntArrayList_pop,        METH_VARARGS},
-        {"index",      (PyCFunction) IntArrayList_index,      METH_VARARGS},
-        {"count",      (PyCFunction) IntArrayList_count,      METH_O},
-        {"insert",     (PyCFunction) IntArrayList_insert,     METH_VARARGS},
-        {"remove",     (PyCFunction) IntArrayList_remove,     METH_O},
-        {"sort",       (PyCFunction) IntArrayList_sort,       METH_VARARGS | METH_KEYWORDS},
+        {"resize", (PyCFunction) IntArrayList_resize, METH_O},
+        {"copy", (PyCFunction) IntArrayList_copy, METH_NOARGS},
+        {"append", (PyCFunction) IntArrayList_append, METH_O},
+        {"extend", (PyCFunction) IntArrayList_extend, METH_O},
+        {"pop", (PyCFunction) IntArrayList_pop, METH_VARARGS},
+        {"index", (PyCFunction) IntArrayList_index, METH_VARARGS},
+        {"count", (PyCFunction) IntArrayList_count, METH_O},
+        {"insert", (PyCFunction) IntArrayList_insert, METH_VARARGS},
+        {"remove", (PyCFunction) IntArrayList_remove, METH_O},
+        {"sort", (PyCFunction) IntArrayList_sort, METH_VARARGS | METH_KEYWORDS},
         {nullptr}
 };
 
 static struct PyModuleDef IntArrayList_module = {
         PyModuleDef_HEAD_INIT,
         "__pyfastutil.IntArrayList",
-        "A IntArrayList_module that creates an IntArrayList",
+        "An IntArrayList_module that creates an IntArrayList",
         -1,
         nullptr, nullptr, nullptr, nullptr, nullptr
+};
+
+static PySequenceMethods IntArrayList_asSequence = {
+        .sq_length = (lenfunc) IntArrayList_len
 };
 
 void initializeIntArrayListType(PyTypeObject &type) {
@@ -483,6 +496,8 @@ void initializeIntArrayListType(PyTypeObject &type) {
     type.tp_basicsize = sizeof(IntArrayList);
     type.tp_itemsize = 0;
     type.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
+    type.tp_as_sequence = &IntArrayList_asSequence;
+    type.tp_iter = IntArrayList_iter;
     type.tp_methods = IntArrayList_methods;
     type.tp_init = (initproc) IntArrayList_init;
     type.tp_new = PyType_GenericNew;

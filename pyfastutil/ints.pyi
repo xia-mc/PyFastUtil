@@ -1,4 +1,4 @@
-from typing import overload, Iterable, SupportsIndex, final
+from typing import overload, Iterable, SupportsIndex, final, Iterator, _T_co
 
 
 @final
@@ -131,5 +131,48 @@ class IntArrayList(list[int]):
             >>> my_list.resize(2)
             >>> print(my_list)
             [1, 2]
+        """
+        pass
+
+
+@final
+class IntArrayListIter(Iterator[int]):
+    """
+    Iterator for IntArrayList.
+
+    This class provides an iterator over an `IntArrayList`, allowing you to iterate over the elements
+    of the list one by one.
+
+    Note:
+        This class cannot be directly instantiated by users. It is designed to be used internally by
+        `IntArrayList` and can only be obtained by calling the `__iter__` method on an `IntArrayList` object.
+
+    Example:
+        >>> int_list = IntArrayList([1, 2, 3])
+        >>> iter_obj = iter(int_list)  # This returns an IntArrayListIter instance
+        >>> next(iter_obj)
+        1
+        >>> next(iter_obj)
+        2
+        >>> next(iter_obj)
+        3
+        >>> next(iter_obj)  # Raises StopIteration
+
+    Raises:
+        TypeError: If attempted to be instantiated directly.
+    """
+
+    def __next__(self) -> int:
+        """
+        Return the next element in the iteration.
+
+        This method retrieves the next element from the `IntArrayList` that this iterator is associated with.
+        If all elements have been iterated over, it raises a `StopIteration` exception.
+
+        Returns:
+            int: The next integer in the `IntArrayList`.
+
+        Raises:
+            StopIteration: If there are no more elements to iterate over.
         """
         pass
