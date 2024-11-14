@@ -1,10 +1,12 @@
 import glob
 import os
+import platform
 import shutil
 
 from setuptools import setup, Extension
 
 IS_WINDOWS = os.name == "nt"
+IS_MACOS = platform.system() == "Darwin"
 
 if IS_WINDOWS:
     # Windows uses MSVC
@@ -21,9 +23,12 @@ else:
         "-std=c++2b", "-Wall", "-fvisibility=hidden",
         "-Wno-error=unknown-pragmas",
         "-mavx", "-mavx2", "-mavx512f", "-mavx512bw", "-mavx512dq", "-mavx512vl",
-        "-fno-tree-vectorize", "-faligned-allocation"
+        "-fno-tree-vectorize"
     ]
     EXTRA_LINK_ARG = []
+
+    if IS_MACOS:
+        EXTRA_COMPILE_ARG.append("-faligned-allocation")
 
 if __name__ == "__main__":
     if os.path.exists("./build"):
