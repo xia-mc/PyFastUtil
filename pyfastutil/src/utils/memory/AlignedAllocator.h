@@ -30,19 +30,10 @@ public:
 
 #ifdef _WIN32
         ptr = _aligned_malloc(n * sizeof(T), Alignment);
-//#elif defined(__APPLE__)
-//        size_t size = n * sizeof(T);
-//        if (size % Alignment != 0) {
-//            size += Alignment - (size % Alignment);
-//        }
-//
-//        if (compat::isMacos1015OrNewer()) {
-//            ptr = std::aligned_alloc(Alignment, n * sizeof(T));
-//        } else {
-//            if (posix_memalign(&ptr, Alignment, n * sizeof(T)) != 0) {
-//                ptr = nullptr;
-//            }
-//        }
+#elif defined(__APPLE__)
+        if (posix_memalign(&ptr, Alignment, n * sizeof(T)) != 0) {
+            ptr = nullptr;
+        }
 #else
         ptr = std::aligned_alloc(Alignment, n * sizeof(T));
 #endif
