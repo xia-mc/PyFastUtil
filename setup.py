@@ -21,8 +21,7 @@ else:
         "-std=c++2b", "-Wall", "-fvisibility=hidden",
         "-Wno-error=unknown-pragmas",
         "-mavx", "-mavx2", "-mavx512f", "-mavx512bw", "-mavx512dq", "-mavx512vl",
-        "-fno-tree-vectorize"
-        # "-Wno-error=unguarded-availability-new"  # already handle in Compat.h, and this option doesn't exist on gcc
+        "-fno-tree-vectorize", "-faligned-allocation"
     ]
     EXTRA_LINK_ARG = []
 

@@ -6,7 +6,6 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
-#include <iostream>
 #include "utils/PythonUtils.h"
 #include "utils/TimSort.h"
 #include "utils/simd/BitonicSort.h"
