@@ -8,7 +8,7 @@
 #include <immintrin.h>
 #include "SIMD.h"
 #include "utils/memory/PreFetch.h"
-#include "Compat.h"
+#include "cstring"
 
 namespace simd {
     constexpr size_t AVX512_PREFETCH_DISTANCE = AVX512_INTS * 4; // Prefetch 4 cache lines ahead
