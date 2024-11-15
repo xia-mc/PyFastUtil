@@ -1,12 +1,12 @@
 import sys
-sys.path.append('D:\\PyFastUtil')
+sys.path.append('/')
 
 import timeit
 import numpy
 import random
 from pyfastutil.ints import IntArrayList
 
-SIZE = int(1e7)
+SIZE = int(10000)
 REPEAT = 3
 UNSORT_LIST = [random.randint(0, SIZE) for i in range(SIZE)]
 

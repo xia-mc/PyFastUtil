@@ -1,5 +1,6 @@
 import unittest
 from pyfastutil.ints import IntArrayList
+from tests.benchmark import benchmark_IntArrayList
 
 
 class TestIntArrayList(unittest.TestCase):
@@ -159,6 +160,9 @@ class TestIntArrayList(unittest.TestCase):
         lst = IntArrayList([1, 2, 3])
         with self.assertRaises(ValueError):
             lst.remove(99)
+
+    def test_benchmark(self):
+        self.assertEqual(benchmark_IntArrayList.main(), None)
 
 
 if __name__ == '__main__':

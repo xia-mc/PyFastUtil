@@ -214,88 +214,94 @@ static PyObject *IntArrayList_append(PyObject *pySelf, PyObject *object) {
     Py_RETURN_NONE;
 }
 
-static PyObject *IntArrayList_extend(PyObject *pySelf, PyObject *iterable) {
+static PyObject *IntArrayList_extend(PyObject *pySelf, PyObject *const *args, const Py_ssize_t nargs) {
     auto *self = reinterpret_cast<IntArrayList *>(pySelf);
 
-    if (iterable != nullptr) {
-        // int list
-        if (Py_TYPE(iterable) == &IntArrayListType) {  // IntArrayList is a final class
-            auto *iter = reinterpret_cast<IntArrayList *>(iterable);
-            self->vector.insert(self->vector.end(), iter->vector.begin(), iter->vector.end());
-            Py_RETURN_NONE;
-        }
+    // FASTCALL ensure args != nullptr
+    if (nargs != 1) {
+        PyErr_SetString(PyExc_TypeError, "extend() takes exactly one argument");
+        return nullptr;
+    }
 
-        // python iterable
-        PyObject *iter = PyObject_GetIter(iterable);
-        if (iter == nullptr) {
-            return nullptr;
-        }
+    PyObject *iterable = args[0];
 
-        Py_ssize_t hint = PyObject_LengthHint(iterable, 0);
-        if (hint > 0) {
-            self->vector.reserve(self->vector.size() + hint);
-        }
+    // fast extend
+    if (Py_TYPE(iterable) == &IntArrayListType) {
+        auto *iter = reinterpret_cast<IntArrayList *>(iterable);
+        self->vector.insert(self->vector.end(), iter->vector.begin(), iter->vector.end());
+        Py_RETURN_NONE;
+    }
 
-        PyObject *item;
-        try {
-            while ((item = PyIter_Next(iter)) != nullptr) {
-                int value = PyLong_AsLong(item);
-                SAFE_DECREF(item);
+    // python iterable extend
+    PyObject *iter = PyObject_GetIter(iterable);
+    if (iter == nullptr) {
+        return nullptr;
+    }
 
-                if (PyErr_Occurred()) {
-                    SAFE_DECREF(iter);
-                    return nullptr;
-                }
+    // pre alloc
+    Py_ssize_t hint = PyObject_LengthHint(iterable, 0);
+    if (hint > 0) {
+        self->vector.reserve(self->vector.size() + hint);
+    }
 
-                self->vector.push_back(value);
-            }
-        } catch (const std::exception &e) {
-            PyErr_SetString(PyExc_RuntimeError, e.what());
+    // do extend
+    PyObject *item;
+    while ((item = PyIter_Next(iter)) != nullptr) {
+        int value = PyLong_AsLong(item);
+        SAFE_DECREF(item);
+
+        if (PyErr_Occurred()) {
             SAFE_DECREF(iter);
             return nullptr;
         }
 
-        SAFE_DECREF(iter);
+        self->vector.push_back(value);
     }
 
+    if (PyErr_Occurred()) {
+        SAFE_DECREF(iter);
+        return nullptr;
+    }
+
+    SAFE_DECREF(iter);
     Py_RETURN_NONE;
 }
 
-static PyObject *IntArrayList_pop(PyObject *pySelf, PyObject *args) {
+
+static PyObject *IntArrayList_pop(PyObject *pySelf, PyObject *const *args, const Py_ssize_t nargs) {
     auto *self = reinterpret_cast<IntArrayList *>(pySelf);
 
     const auto vecSize = static_cast<Py_ssize_t>(self->vector.size());
-    Py_ssize_t pyIndex = vecSize - 1;
+    Py_ssize_t index = vecSize - 1;
 
-    if (!PyArg_ParseTuple(args, "|n", &pyIndex)) {
-        return nullptr;
-    }
-
-    if (pyIndex < 0) {
-        pyIndex = vecSize + pyIndex;
-    }
-
-    if (pyIndex < 0 || pyIndex >= vecSize) {
-        PyErr_SetString(PyExc_IndexError, "index out of range.");
-        return nullptr;
-    }
-
-
-    try {
-        // cache the return value
-        const auto popped = self->vector[static_cast<size_t>(pyIndex)];
-        // do pop
-        self->vector.erase(self->vector.begin() + pyIndex);
-
-        PyObject *pyPopped = PyLong_FromLong(popped);
-        if (!pyPopped) {
+    if (nargs == 1) {
+        index = PyLong_AsSsize_t(args[0]);
+        if (index == -1 && PyErr_Occurred()) {
             return nullptr;
         }
-        return pyPopped;
-    } catch (const std::exception &e) {
-        PyErr_SetString(PyExc_RuntimeError, e.what());
+
+        if (index < 0) {
+            index += vecSize;
+        }
+
+        if (index < 0 || index >= vecSize) {
+            PyErr_SetString(PyExc_IndexError, "index out of range");
+            return nullptr;
+        }
+    } else if (nargs > 1) {
+        PyErr_SetString(PyExc_TypeError, "pop() takes at most 1 argument");
         return nullptr;
+    } else {
+        const auto popped = self->vector[static_cast<size_t>(index)];
+        self->vector.pop_back();
+
+        return PyLong_FromLong(popped);
     }
+
+    const auto popped = self->vector[static_cast<size_t>(index)];
+    self->vector.erase(self->vector.begin() + index);
+
+    return PyLong_FromLong(popped);
 }
 
 static PyObject *IntArrayList_index(PyObject *pySelf, PyObject *args) {
@@ -685,11 +691,47 @@ static PyObject *IntArrayList_add(PyObject *pySelf, PyObject *pyValue) {
 }
 
 static PyObject *IntArrayList_iadd(PyObject *pySelf, PyObject *iterable) {
-    if (IntArrayList_extend(pySelf, iterable) == nullptr) {
-        // extend method handle error message
+    auto *self = reinterpret_cast<IntArrayList *>(pySelf);
+
+    // fast extend
+    if (Py_TYPE(iterable) == &IntArrayListType) {
+        auto *iter = reinterpret_cast<IntArrayList *>(iterable);
+        self->vector.insert(self->vector.end(), iter->vector.begin(), iter->vector.end());
+        Py_RETURN_NONE;
+    }
+
+    // python iterable extend
+    PyObject *iter = PyObject_GetIter(iterable);
+    if (iter == nullptr) {
         return nullptr;
     }
 
+    // pre alloc
+    Py_ssize_t hint = PyObject_LengthHint(iterable, 0);
+    if (hint > 0) {
+        self->vector.reserve(self->vector.size() + hint);
+    }
+
+    // do extend
+    PyObject *item;
+    while ((item = PyIter_Next(iter)) != nullptr) {
+        int value = PyLong_AsLong(item);
+        SAFE_DECREF(item);
+
+        if (PyErr_Occurred()) {
+            SAFE_DECREF(iter);
+            return nullptr;
+        }
+
+        self->vector.push_back(value);
+    }
+
+    if (PyErr_Occurred()) {
+        SAFE_DECREF(iter);
+        return nullptr;
+    }
+
+    SAFE_DECREF(iter);
     Py_INCREF(pySelf);
     return pySelf;
 }
@@ -1067,8 +1109,8 @@ static PyMethodDef IntArrayList_methods[] = {
         {"tolist", (PyCFunction) IntArrayList_to_list, METH_NOARGS},
         {"copy", (PyCFunction) IntArrayList_copy, METH_NOARGS},
         {"append", (PyCFunction) IntArrayList_append, METH_O},
-        {"extend", (PyCFunction) IntArrayList_extend, METH_O},
-        {"pop", (PyCFunction) IntArrayList_pop, METH_VARARGS},
+        {"extend", (PyCFunction) IntArrayList_extend, METH_FASTCALL},
+        {"pop", (PyCFunction) IntArrayList_pop, METH_FASTCALL},
         {"index", (PyCFunction) IntArrayList_index, METH_VARARGS},
         {"count", (PyCFunction) IntArrayList_count, METH_O},
         {"insert", (PyCFunction) IntArrayList_insert, METH_VARARGS},

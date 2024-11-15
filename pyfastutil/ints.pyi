@@ -36,7 +36,7 @@ class IntArrayList(list[int]):
     """
 
     @overload
-    def __init__(self, exceptSize: int):
+    def __init__(self, exceptSize: int) -> None:
         """
         Initializes an empty `IntArrayList` with a preallocated size.
 
@@ -76,7 +76,7 @@ class IntArrayList(list[int]):
 
     @staticmethod
     @overload
-    def from_range(__start: SupportsIndex, __stop: SupportsIndex, __step: SupportsIndex = 1):
+    def from_range(__start: SupportsIndex, __stop: SupportsIndex, __step: SupportsIndex = 1) -> IntArrayList:
         """
         Creates an `IntArrayList` from a range of integers, similar to the built-in `range()` function.
 
@@ -96,7 +96,7 @@ class IntArrayList(list[int]):
 
     @staticmethod
     @overload
-    def from_range(__stop: SupportsIndex):
+    def from_range(__stop: SupportsIndex) -> IntArrayList:
         """
         Creates an `IntArrayList` from a range of integers starting from 0 to the specified stop value.
 
@@ -112,7 +112,7 @@ class IntArrayList(list[int]):
         """
         pass
 
-    def resize(self, __size: int):
+    def resize(self, __size: int) -> None:
         """
         Resizes the `IntArrayList` to the specified size.
 

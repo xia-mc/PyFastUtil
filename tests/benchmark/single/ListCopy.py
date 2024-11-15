@@ -1,5 +1,5 @@
 import sys
-sys.path.append('D:\\PyFastUtil')
+sys.path.append('/')
 
 import timeit
 import numpy
