@@ -143,8 +143,14 @@ static PyObject *IntArrayList_resize(PyObject *pySelf, PyObject *pySize) {
         return nullptr;
     }
 
+    Py_ssize_t pySSize = PyLong_AsSsize_t(pySize);
+    if (pySSize < 0) {
+        PyErr_SetString(PyExc_ValueError, "Invalid size.");
+        return nullptr;
+    }
+
     try {
-        self->vector.resize(PyLong_AsSize_t(pySize));
+        self->vector.resize(static_cast<size_t>(pySSize));
     } catch (const std::exception &e) {
         PyErr_SetString(PyExc_RuntimeError, e.what());
         return nullptr;
