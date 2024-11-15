@@ -309,7 +309,7 @@ namespace simd {
 
     /**
      * Try to sort with simd optimize, or fallback if unsupported
-     * MAKE SURE VECTOR IS ALIGNED!
+     * MAKE SURE VECTOR IS ALIGNED with 64 bytes!
      * @param vector vector to sort
      */
     void simdsort(std::vector<int, AlignedAllocator<int, 64>> &vector, const bool &reverse) {
@@ -365,9 +365,6 @@ namespace simd {
         int *data = &(*begin);
         size_t sortedCount = 0;
         size_t minBlockSize = AVX512_INTS;
-
-        constexpr size_t AVX512_PREFETCH_DISTANCE = AVX512_INTS * 4; // Prefetch 4 cache lines ahead
-        constexpr size_t AVX2_PREFETCH_DISTANCE = AVX2_INTS * 4;     // Prefetch 4 cache lines ahead
 
         if (IS_AVX512_SUPPORTED && sortedCount + AVX512_INTS < size) {
             // simd sort with avx512

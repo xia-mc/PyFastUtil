@@ -15,7 +15,7 @@ if IS_WINDOWS:
         "/wd4068",  # ignore unknown pragma error
         "/EHsc"
     ]
-    EXTRA_LINK_ARG = []
+    EXTRA_LINK_ARG = ["/LTCG"]
 else:
     # Unix-like uses GCC/Clang
     EXTRA_COMPILE_ARG = [
@@ -25,7 +25,7 @@ else:
         "-mavx", "-mavx2", "-mavx512f", "-mavx512bw", "-mavx512dq", "-mavx512vl",
         "-fno-tree-vectorize"
     ]
-    EXTRA_LINK_ARG = []
+    EXTRA_LINK_ARG = ["-flto"]
 
     if IS_MACOS:
         EXTRA_COMPILE_ARG.append("-faligned-allocation")

@@ -6,10 +6,9 @@
 #define PYFASTUTIL_PYTHONUTILS_H
 
 #include "PythonPCH.h"
-#include "Compat.h"
 
 template<typename T>
-static __forceinline void SAFE_DECREF(T *&object) {
+static void SAFE_DECREF(T *&object) {
     if (object == nullptr)
         return;
     Py_DECREF(object);
@@ -17,13 +16,18 @@ static __forceinline void SAFE_DECREF(T *&object) {
 }
 
 template<typename T>
-static __forceinline T *Py_CreateObj(PyTypeObject &typeObj) {
+static T *Py_CreateObj(PyTypeObject &typeObj) {
     return reinterpret_cast<T *>(PyObject_CallObject((PyObject *) &typeObj, nullptr));
 }
 
 template<typename T>
-static __forceinline T *Py_CreateObjNoInit(PyTypeObject &typeObj) {
-    return reinterpret_cast<T *>(_PyObject_New(&typeObj));
+static T *Py_CreateObj(PyTypeObject &typeObj, PyObject *args) {
+    return reinterpret_cast<T *>(PyObject_CallObject((PyObject *) &typeObj, args));
+}
+
+template<typename T>
+static T *Py_CreateObjNoInit(PyTypeObject &typeObj) {
+    return reinterpret_cast<T *>(PyObject_New(T, &typeObj));
 }
 
 /**
@@ -31,7 +35,7 @@ static __forceinline T *Py_CreateObjNoInit(PyTypeObject &typeObj) {
  * If not successful, function will raise python exception.
  * @return if successful
  */
-static __forceinline bool PyParse_EvalRange(PyObject *&args, Py_ssize_t &start, Py_ssize_t &stop, Py_ssize_t &step) {
+static inline bool PyParse_EvalRange(PyObject *&args, Py_ssize_t &start, Py_ssize_t &stop, Py_ssize_t &step) {
     Py_ssize_t arg1 = PY_SSIZE_T_MAX;
     Py_ssize_t arg2 = PY_SSIZE_T_MAX;
     Py_ssize_t arg3 = PY_SSIZE_T_MAX;
@@ -59,5 +63,7 @@ static __forceinline bool PyParse_EvalRange(PyObject *&args, Py_ssize_t &start, 
 
     return true;
 }
+
+#define Py_RETURN_BOOL(b) { if (b) Py_RETURN_TRUE; else Py_RETURN_FALSE; }
 
 #endif //PYFASTUTIL_PYTHONUTILS_H

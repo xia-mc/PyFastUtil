@@ -13,9 +13,10 @@ typedef struct IntArrayListIter {
     PyObject_HEAD;
     IntArrayList *container;
     size_t index;
+    bool reversed;
 } IntArrayListIter;
 
-IntArrayListIter *IntArrayListIter_create(IntArrayList *list);
+IntArrayListIter *IntArrayListIter_create(IntArrayList *list, bool reversed = false);
 
 }
 

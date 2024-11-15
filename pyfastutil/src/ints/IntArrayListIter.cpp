@@ -11,12 +11,19 @@ static PyTypeObject IntArrayListIterType = {
         PyVarObject_HEAD_INIT(&PyType_Type, 0)
 };
 
-IntArrayListIter *IntArrayListIter_create(IntArrayList *list) {
+IntArrayListIter *IntArrayListIter_create(IntArrayList *list, bool reversed) {
     auto *instance = Py_CreateObjNoInit<IntArrayListIter>(IntArrayListIterType);
+    if (instance == nullptr) return nullptr;
 
     Py_INCREF(list);
     instance->container = list;
-    instance->index = 0;
+    if (reversed) {
+        instance->index = (!list->vector.empty()) ? list->vector.size() - 1 : 0;
+        instance->reversed = true;
+    } else {
+        instance->index = 0;
+        instance->reversed = false;
+    }
 
     return instance;
 }
@@ -29,14 +36,32 @@ static void IntArrayListIter_dealloc(IntArrayListIter *self) {
 static PyObject *IntArrayListIter_next(PyObject *pySelf) {
     auto *self = reinterpret_cast<IntArrayListIter *>(pySelf);
 
-    if (self->index >= self->container->vector.size()) {
-        PyErr_SetNone(PyExc_StopIteration);
-        return nullptr;
-    }
+    if (self->reversed) {
+        if (self->index == 0) {
+            // last iteration
+            int element = self->container->vector[self->index];
+            self->index = SIZE_MAX;
+            return PyLong_FromLong(static_cast<long>(element));
+        }
+        if (self->index == SIZE_MAX) {
+            // already finish iteration
+            PyErr_SetNone(PyExc_StopIteration);
+            return nullptr;
+        }
 
-    auto element = self->container->vector[self->index];
-    self->index++;
-    return PyLong_FromLong(static_cast<long>(element));
+        int element = self->container->vector[self->index];
+        self->index--;
+        return PyLong_FromLong(static_cast<long>(element));
+    } else {
+        if (self->index >= self->container->vector.size()) {
+            PyErr_SetNone(PyExc_StopIteration);
+            return nullptr;
+        }
+
+        int element = self->container->vector[self->index];
+        self->index++;
+        return PyLong_FromLong(static_cast<long>(element));
+    }
 }
 
 static PyObject *IntArrayListIter_iter(PyObject *pySelf) {
@@ -78,7 +103,7 @@ PyMODINIT_FUNC PyInit_IntArrayListIter() {
         return nullptr;
 
     Py_INCREF(&IntArrayListIterType);
-    if (PyModule_AddObject(object, "IntArrayList", (PyObject *) &IntArrayListIterType) < 0) {
+    if (PyModule_AddObject(object, "IntArrayListIter", (PyObject *) &IntArrayListIterType) < 0) {
         Py_DECREF(&IntArrayListIterType);
         Py_DECREF(object);
         return nullptr;
