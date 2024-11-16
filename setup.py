@@ -22,7 +22,7 @@ else:
         "-O3", "-funroll-loops", "-flto", "-fPIC",
         "-std=c++2b", "-Wall", "-fvisibility=hidden",
         "-Wno-error=unknown-pragmas",
-        "-mavx", "-mavx2", "-mavx512f", "-mavx512bw", "-mavx512dq", "-mavx512vl",
+        # "-mavx", "-mavx2", "-mavx512f", "-mavx512bw", "-mavx512dq", "-mavx512vl",
         "-fno-tree-vectorize"
     ]
     EXTRA_LINK_ARG = ["-flto"]
