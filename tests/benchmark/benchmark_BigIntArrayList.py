@@ -26,14 +26,12 @@ def setup_pyfastutil():
 
 def python_sort():
     global pythonList
-    # pythonList.sort()
-    print("Skipped sort.")
+    pythonList.sort()
 
 
 def pyfastutil_sort():
     global pyFastUtilList
-    # pyFastUtilList.sort()
-    print("Skipped sort.")
+    pyFastUtilList.sort()
 
 
 def python_append():
