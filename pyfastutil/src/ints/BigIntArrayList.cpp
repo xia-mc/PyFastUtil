@@ -413,10 +413,10 @@ static PyObject *BigIntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject
     auto *self = reinterpret_cast<BigIntArrayList *>(pySelf);
 
     PyObject *keyFunc = nullptr;
-    long long reverseInt = 0;  // default: false
+    int reverseInt = 0;  // default: false
     static const char *kwlist[] = {"key", "reverse", nullptr};
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|OL", const_cast<char **>(kwlist), &keyFunc, &reverseInt)) {
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|Oi", const_cast<char **>(kwlist), &keyFunc, &reverseInt)) {
         return nullptr;
     }
 
