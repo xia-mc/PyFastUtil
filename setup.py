@@ -19,11 +19,10 @@ if IS_WINDOWS:
 else:
     # Unix-like uses GCC/Clang
     EXTRA_COMPILE_ARG = [
-        "-O3", "-funroll-loops", "-flto", "-fPIC",
+        "-O3", "-flto", "-fPIC",
         "-std=c++2b", "-Wall", "-fvisibility=hidden",
         "-Wno-error=unknown-pragmas",
-        "-Wno-error=psabi",
-        # "-mavx", "-mavx2", "-mavx512f", "-mavx512bw", "-mavx512dq", "-mavx512vl",
+        "-mavx", "-mavx2", "-mavx512f", "-mavx512bw", "-mavx512dq", "-mavx512vl",
         "-fno-tree-vectorize"
     ]
     EXTRA_LINK_ARG = ["-flto"]
