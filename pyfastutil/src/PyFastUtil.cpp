@@ -6,6 +6,8 @@
 #include "utils/simd/BitonicSort.h"
 #include "ints/IntArrayList.h"
 #include "ints/IntArrayListIter.h"
+#include "ints/BigIntArrayList.h"
+#include "ints/BigIntArrayListIter.h"
 #include "unsafe/Unsafe.h"
 
 static struct PyModuleDef pyfastutilModule = {
@@ -28,6 +30,8 @@ PyMODINIT_FUNC PyInit___pyfastutil() {
 
     PyModule_AddObject(parent, "IntArrayList", PyInit_IntArrayList());
     PyModule_AddObject(parent, "IntArrayListIter", PyInit_IntArrayListIter());
+    PyModule_AddObject(parent, "BigIntArrayList", PyInit_BigIntArrayList());
+    PyModule_AddObject(parent, "BigIntArrayListIter", PyInit_BigIntArrayListIter());
 
     PyModule_AddObject(parent, "Unsafe", PyInit_Unsafe());
 

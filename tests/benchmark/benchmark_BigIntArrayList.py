@@ -1,13 +1,13 @@
 import timeit
 import random
-from pyfastutil.ints import IntArrayList
+from pyfastutil.ints import BigIntArrayList
 
 SIZE = int(1e4)
 REPEAT = 5
-UNSORT_LIST = [random.randint(0, SIZE) for _ in range(SIZE)]
+UNSORT_LIST = [random.randint(2 ** 31, 2 ** 63 - 1) for _ in range(SIZE)]
 
 pythonList = list(UNSORT_LIST)
-pyFastUtilList = IntArrayList(UNSORT_LIST)
+pyFastUtilList = BigIntArrayList(UNSORT_LIST)
 
 
 def setup_python():
@@ -17,7 +17,7 @@ def setup_python():
 
 def setup_pyfastutil():
     global pyFastUtilList
-    pyFastUtilList = IntArrayList(UNSORT_LIST)
+    pyFastUtilList = BigIntArrayList(UNSORT_LIST)
 
 
 def python_sort():
@@ -91,7 +91,7 @@ def pyfastutil_extend():
 
 
 def main():
-    print(f"---Python list & IntArrayList Benchmark---")
+    print(f"---Python list & BigIntArrayList Benchmark---")
     print(f"Batch size: {SIZE}")
     print(f"Repeat: {REPEAT}\n")
 
@@ -105,7 +105,7 @@ def main():
     total_speed += sort_speed
     num_operations += 1
     print(f"Python list sort time: {time_python_sort * 1000:.2f} ms")
-    print(f"PyFastUtil IntArrayList sort time: {time_pyfastutil_sort * 1000:.2f} ms")
+    print(f"PyFastUtil BigIntArrayList sort time: {time_pyfastutil_sort * 1000:.2f} ms")
     print(f"PyFastUtil speed of Python list (sort): {sort_speed:.3f} %\n")
 
     # Benchmark append()
@@ -115,7 +115,7 @@ def main():
     total_speed += append_speed
     num_operations += 1
     print(f"Python list append time: {time_python_append * 1000:.2f} ms")
-    print(f"PyFastUtil IntArrayList append time: {time_pyfastutil_append * 1000:.2f} ms")
+    print(f"PyFastUtil BigIntArrayList append time: {time_pyfastutil_append * 1000:.2f} ms")
     print(f"PyFastUtil speed of Python list (append): {append_speed:.3f} %\n")
 
     # Benchmark insert()
@@ -125,7 +125,7 @@ def main():
     total_speed += insert_speed
     num_operations += 1
     print(f"Python list insert time: {time_python_insert * 1000:.2f} ms")
-    print(f"PyFastUtil IntArrayList insert time: {time_pyfastutil_insert * 1000:.2f} ms")
+    print(f"PyFastUtil BigIntArrayList insert time: {time_pyfastutil_insert * 1000:.2f} ms")
     print(f"PyFastUtil speed of Python list (insert): {insert_speed:.3f} %\n")
 
     # Benchmark pop()
@@ -135,7 +135,7 @@ def main():
     total_speed += pop_speed
     num_operations += 1
     print(f"Python list pop time: {time_python_pop * 1000:.2f} ms")
-    print(f"PyFastUtil IntArrayList pop time: {time_pyfastutil_pop * 1000:.2f} ms")
+    print(f"PyFastUtil BigIntArrayList pop time: {time_pyfastutil_pop * 1000:.2f} ms")
     print(f"PyFastUtil speed of Python list (pop): {pop_speed:.3f} %\n")
 
     # Benchmark remove()
@@ -145,7 +145,7 @@ def main():
     total_speed += remove_speed
     num_operations += 1
     print(f"Python list remove time: {time_python_remove * 1000:.2f} ms")
-    print(f"PyFastUtil IntArrayList remove time: {time_pyfastutil_remove * 1000:.2f} ms")
+    print(f"PyFastUtil BigIntArrayList remove time: {time_pyfastutil_remove * 1000:.2f} ms")
     print(f"PyFastUtil speed of Python list (remove): {remove_speed:.3f} %\n")
 
     # Benchmark extend()
@@ -155,7 +155,7 @@ def main():
     total_speed += extend_speed
     num_operations += 1
     print(f"Python list extend time: {time_python_extend * 1000:.2f} ms")
-    print(f"PyFastUtil IntArrayList extend time: {time_pyfastutil_extend * 1000:.2f} ms")
+    print(f"PyFastUtil BigIntArrayList extend time: {time_pyfastutil_extend * 1000:.2f} ms")
     print(f"PyFastUtil speed of Python list (extend): {extend_speed:.3f} %\n")
 
     # Calculate and print average speed

@@ -2,6 +2,7 @@
   <profile version="1.0">
     <option name="myName" value="Project Default" />
     <inspection_tool class="OCUnusedIncludeDirective" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="strategy" value="RemoveCompletelyUnused" />
       <option name="showInHeaders" value="true" />
     </inspection_tool>
     <inspection_tool class="PyCompatibilityInspection" enabled="true" level="WARNING" enabled_by_default="true">

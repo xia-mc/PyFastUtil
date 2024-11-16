@@ -19,6 +19,10 @@ namespace simd {
     const size_t SSE41_INTS = SSE41_BLOCK_SIZE / (8 * sizeof(int));
     const size_t AVX2_INTS = AVX2_BLOCK_SIZE / (8 * sizeof(int));
     const size_t AVX512_INTS = AVX512_BLOCK_SIZE / (8 * sizeof(int));
+
+    const size_t SSE41_LONG_LONGS = SSE41_BLOCK_SIZE / (8 * sizeof(long long));
+    const size_t AVX2_LONG_LONGS = AVX2_BLOCK_SIZE / (8 * sizeof(long long));
+    const size_t AVX512_LONG_LONGS = AVX512_BLOCK_SIZE / (8 * sizeof(long long));
 }
 
 #endif //PYFASTUTIL_SIMD_H
