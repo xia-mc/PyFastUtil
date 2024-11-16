@@ -19,6 +19,9 @@
 #include "utils/memory/AlignedAllocator.h"
 #include "utils/memory/PreFetch.h"
 
+template <typename T>
+concept IntOrLongLong = std::same_as<T, int> || std::same_as<T, long long>;
+
 namespace simd {
 #if !defined(__arm__) && !defined(__arm64__)
     struct alignas(32) AVX2_MARKS {
@@ -38,12 +41,12 @@ namespace simd {
     static AVX512_MARKS *avx512Marks = nullptr;
 #endif
 
-    void init() {
+    static void init() {
 #if !defined(__arm__) && !defined(__arm64__)
-        if (IS_AVX2_SUPPORTED) {
+        if (IS_AVX2_SUPPORTED && avx2Marks == nullptr) {
             avx2Marks = new AVX2_MARKS();
         }
-        if (IS_AVX512_SUPPORTED) {
+        if (IS_AVX512_SUPPORTED && avx512Marks == nullptr) {
             avx512Marks = new AVX512_MARKS();
         }
 #endif
@@ -371,39 +374,10 @@ namespace simd {
      * Merge sorted blocks with SIMD optimization, or fallback
      * make sure aligned
      */
-    __forceinline void mergeSortedBlocks(std::vector<int, AlignedAllocator<int, 64>> &data, const size_t &blockSize) {
+    template <IntOrLongLong T>
+    __forceinline void mergeSortedBlocks(std::vector<T, AlignedAllocator<T, 64>> &data, const size_t &blockSize) {
         const size_t total = data.size();
-        auto temp = std::vector<int, AlignedAllocator<int, 64>>(total);
-
-        bool cycle = true;
-        size_t mid;
-        size_t right;
-        for (size_t size = blockSize; size < total; size *= 2) {
-            size_t left = 0;
-            prefetchL1(&data + left);
-            prefetchL1(&temp + left);
-            for (; left < total; left += 2 * size) {
-                mid = std::min(left + size - 1, total - 1);
-                right = std::min(left + 2 * size - 1, total - 1);
-                if (cycle) {
-                    doSingleMerge(left, mid, right, data, temp);
-                } else {
-                    doSingleMerge(left, mid, right, temp, data);
-                }
-            }
-
-            cycle = !cycle;
-        }
-
-        // copy the final result
-        if (!cycle) {
-            simdMemCpyAligned(temp.data(), data.data(), temp.size());
-        }
-    }
-
-    __forceinline void mergeSortedBlocks(std::vector<long long, AlignedAllocator<long long, 64>> &data, const size_t &blockSize) {
-        const size_t total = data.size();
-        auto temp = std::vector<long long, AlignedAllocator<long long, 64>>(total);
+        auto temp = std::vector<T, AlignedAllocator<T, 64>>(total);
 
         bool cycle = true;
         size_t mid;
@@ -434,41 +408,11 @@ namespace simd {
     /**
      * Merge sorted blocks with SIMD optimization reversed, or fallback
      */
+    template <IntOrLongLong T>
     __forceinline void
-    mergeSortedBlocksReversed(std::vector<int, AlignedAllocator<int, 64>> &data, const size_t &blockSize) {
+    mergeSortedBlocksReversed(std::vector<T, AlignedAllocator<T, 64>> &data, const size_t &blockSize) {
         const size_t total = data.size();
-        auto temp = std::vector<int, AlignedAllocator<int, 64>>(total);
-
-        bool cycle = true;
-        size_t mid;
-        size_t right;
-        for (size_t size = blockSize; size < total; size *= 2) {
-            size_t left = 0;
-            prefetchL1(&data + left);
-            prefetchL1(&temp + left);
-            for (; left < total; left += 2 * size) {
-                mid = std::min(left + size - 1, total - 1);
-                right = std::min(left + 2 * size - 1, total - 1);
-                if (cycle) {
-                    doSingleMergeReversed(left, mid, right, data, temp);
-                } else {
-                    doSingleMergeReversed(left, mid, right, temp, data);
-                }
-            }
-
-            cycle = !cycle;
-        }
-
-        // copy the final result
-        if (!cycle) {
-            simdMemCpyAligned(temp.data(), data.data(), temp.size());
-        }
-    }
-
-    __forceinline void
-    mergeSortedBlocksReversed(std::vector<long long, AlignedAllocator<long long, 64>> &data, const size_t &blockSize) {
-        const size_t total = data.size();
-        auto temp = std::vector<long long, AlignedAllocator<long long, 64>>(total);
+        auto temp = std::vector<T, AlignedAllocator<T, 64>>(total);
 
         bool cycle = true;
         size_t mid;
