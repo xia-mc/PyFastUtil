@@ -31,8 +31,7 @@ def python_sort():
 
 def pyfastutil_sort():
     global pyFastUtilList
-    # pyFastUtilList.sort()
-    print("Skipped sort.")
+    pyFastUtilList.sort()
 
 
 def python_append():

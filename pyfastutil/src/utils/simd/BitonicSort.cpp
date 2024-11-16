@@ -19,9 +19,6 @@
 #include "utils/memory/AlignedAllocator.h"
 #include "utils/memory/PreFetch.h"
 
-template <typename T>
-concept IntOrLongLong = std::same_as<T, int> || std::same_as<T, long long>;
-
 namespace simd {
 #if !defined(__arm__) && !defined(__arm64__)
     struct alignas(32) AVX2_MARKS {
@@ -374,7 +371,7 @@ namespace simd {
      * Merge sorted blocks with SIMD optimization, or fallback
      * make sure aligned
      */
-    template <IntOrLongLong T>
+    template <typename T, typename = std::enable_if_t<std::is_same_v<T, int> || std::is_same_v<T, long long>>>
     __forceinline void mergeSortedBlocks(std::vector<T, AlignedAllocator<T, 64>> &data, const size_t &blockSize) {
         const size_t total = data.size();
         auto temp = std::vector<T, AlignedAllocator<T, 64>>(total);
@@ -408,7 +405,7 @@ namespace simd {
     /**
      * Merge sorted blocks with SIMD optimization reversed, or fallback
      */
-    template <IntOrLongLong T>
+    template <typename T, typename = std::enable_if_t<std::is_same_v<T, int> || std::is_same_v<T, long long>>>
     __forceinline void
     mergeSortedBlocksReversed(std::vector<T, AlignedAllocator<T, 64>> &data, const size_t &blockSize) {
         const size_t total = data.size();
