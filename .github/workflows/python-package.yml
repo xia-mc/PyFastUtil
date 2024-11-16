@@ -26,7 +26,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
   build:
-    name: Test
+    name: Build
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -60,6 +60,24 @@ jobs:
         else
           chmod +x ./build.sh && ./build.sh
         fi
+
+    - name: Find Correct Build
+      id: findbuild
+      shell: bash
+      run: |
+        if [[ "$RUNNER_OS" == "Windows" ]]; then
+          output=__pyfastutil.pyd
+        else
+          output=__pyfastutil.so
+        fi
+        echo "::set-output name=libname::$output"
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ steps.findbuild.outputs.libname }}
+        path: pyfastutil/${{ steps.findbuild.outputs.libname }}
+        
     - name: Test with pytest and generate coverage report
       run: |
         pytest --cov=your_package_name --cov-report=xml

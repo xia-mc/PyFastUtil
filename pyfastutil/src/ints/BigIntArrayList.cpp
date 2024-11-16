@@ -412,9 +412,9 @@ static PyObject *BigIntArrayList_remove(PyObject *pySelf, PyObject *object) {
 static PyObject *BigIntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *kwargs) {
     auto *self = reinterpret_cast<BigIntArrayList *>(pySelf);
 
-    PyObject *keyFunc = nullptr;
+    PyObject *keyFunc = Py_None;
     int reverseInt = 0;  // default: false
-    static const char *kwlist[] = {"key", "reverse", nullptr};
+    static constexpr const char *kwlist[] = {"key", "reverse", nullptr};
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|Oi", const_cast<char **>(kwlist), &keyFunc, &reverseInt)) {
         return nullptr;
@@ -424,7 +424,7 @@ static PyObject *BigIntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject
 
     // do sort
     try {
-        if (keyFunc == nullptr || keyFunc == Py_None) {
+        if (keyFunc == Py_None) {
             if (self->vector.size() >= 32) {
                 // simd sort with auto-fallback
                 Py_BEGIN_ALLOW_THREADS

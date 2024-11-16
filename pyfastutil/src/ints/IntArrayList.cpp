@@ -414,7 +414,7 @@ static PyObject *IntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *k
 
     PyObject *keyFunc = nullptr;
     int reverseInt = 0;  // default: false
-    static const char *kwlist[] = {"key", "reverse", nullptr};
+    static constexpr const char *kwlist[] = {"key", "reverse", nullptr};
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|Oi", const_cast<char **>(kwlist), &keyFunc, &reverseInt)) {
         return nullptr;
