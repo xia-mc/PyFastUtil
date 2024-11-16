@@ -73,15 +73,12 @@ jobs:
           else
             output=__pyfastutil.so
           fi
-          extension="${output##*.}"
           echo "::set-output name=libname::$output"
-          echo "::set-output name=extension::$extension"
 
-      # 上传构建工件，并在文件名中添加操作系统和 Python 版本后缀
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: "__pyfastutil-${{ matrix.os }}-py${{ matrix.python-version }}.${{ steps.findbuild.outputs.extension }}"
+          name: "${{ matrix.os }}_py${{ matrix.python-version }}-${{ steps.findbuild.outputs.libname }}"
           path: pyfastutil/${{ steps.findbuild.outputs.libname }}"
 
       - name: Test with pytest and generate coverage report
