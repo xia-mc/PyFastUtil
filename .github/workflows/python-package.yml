@@ -78,7 +78,7 @@ jobs:
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.os }}_py${{ matrix.python-version }}-${{ steps.findbuild.outputs.libname }}
+          name: ${{ steps.findbuild.outputs.libname }}
           path: pyfastutil/${{ steps.findbuild.outputs.libname }}"
 
       - name: Test with pytest and generate coverage report
