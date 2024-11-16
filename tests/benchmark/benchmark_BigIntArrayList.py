@@ -1,10 +1,14 @@
 import timeit
 import random
+import ctypes
 from pyfastutil.ints import BigIntArrayList
+
+INT_MAX = (2 ** (ctypes.sizeof(ctypes.c_int) * 8 - 1)) - 1
+LONG_LONG_MAX = (2 ** (ctypes.sizeof(ctypes.c_longlong) * 8 - 1)) - 1
 
 SIZE = int(1e4)
 REPEAT = 5
-UNSORT_LIST = [random.randint(2 ** 31, 2 ** 63 - 1) for _ in range(SIZE)]
+UNSORT_LIST = [random.randint(INT_MAX + 1, LONG_LONG_MAX) for _ in range(SIZE)]
 
 pythonList = list(UNSORT_LIST)
 pyFastUtilList = BigIntArrayList(UNSORT_LIST)
