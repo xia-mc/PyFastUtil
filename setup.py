@@ -34,18 +34,14 @@ else:
 
 class CustomBuildExt(build_ext):
     def build_extensions(self):
-        if IS_MACOS:
-            C_EXTRA_COMPILE_ARG = ["-std=c23" if arg == "-std=c++2b" else "-std=c++2b" for arg in EXTRA_COMPILE_ARG]
-        else:
-            C_EXTRA_COMPILE_ARG = EXTRA_COMPILE_ARG
+        if not IS_MACOS:
+            super().build_extensions()
 
         for ext in self.extensions:
             for i, source in enumerate(ext.sources):
-                if source.endswith(".c"):
-                    ext.extra_compile_args = C_EXTRA_COMPILE_ARG
-                elif source.endswith(".cpp"):
-                    ext.extra_compile_args = EXTRA_COMPILE_ARG
-        build_ext.build_extensions(self)
+                if source.endswith('.c'):
+                    ext.sources[i] = source.replace('.c', '.cpp')  # Let setuptools compile with clang++
+        super().build_extensions()
 
 
 if __name__ == "__main__":
