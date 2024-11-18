@@ -5,6 +5,10 @@
 #ifndef PYFASTUTIL_PYTHONPCH_H
 #define PYFASTUTIL_PYTHONPCH_H
 
+#if !defined(__cplusplus) && !defined(nullptr)
+#define nullptr NULL
+#endif
+
 #pragma warning(push, 0)
 
 #include "Python.h"
