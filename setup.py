@@ -33,18 +33,6 @@ else:
         os.environ['CC'] = 'clang++'
 
 
-class CustomBuildExt(build_ext):
-    def build_extensions(self):
-        if not IS_MACOS:
-            super().build_extensions()
-
-        for ext in self.extensions:
-            for i, source in enumerate(ext.sources):
-                if source.endswith('.c'):
-                    ext.sources[i] = source.replace('.c', '.cpp')  # Let setuptools compile with clang++
-        super().build_extensions()
-
-
 if __name__ == "__main__":
     if os.path.exists("./build"):
         shutil.rmtree("./build")
@@ -72,8 +60,7 @@ if __name__ == "__main__":
         name="__pyfastutil",
         version="0.0.1",
         description="C++ implementation of PyFastUtil.",
-        ext_modules=modules,
-        cmdclass={'build_ext': CustomBuildExt}
+        ext_modules=modules
     )
 
     # output
