@@ -4,6 +4,7 @@ import platform
 import shutil
 
 from setuptools import setup, Extension
+from setuptools.command.build_ext import build_ext
 
 IS_WINDOWS = os.name == "nt"
 IS_MACOS = platform.system() == "Darwin"
@@ -11,7 +12,7 @@ IS_MACOS = platform.system() == "Darwin"
 if IS_WINDOWS:
     # Windows uses MSVC
     EXTRA_COMPILE_ARG = [
-        "/O2", "/Ob2", "/GL", "/W4", "/std:c++latest", "/WX",
+        "/O2", "/Ob2", "/GL", "/W4", "/std:c++latest", "/WX", "/MP",
         "/wd4068",  # ignore unknown pragma error
         "/EHsc"
     ]
@@ -29,6 +30,23 @@ else:
 
     if IS_MACOS:
         EXTRA_COMPILE_ARG.append("-faligned-allocation")
+
+
+class CustomBuildExt(build_ext):
+    def build_extensions(self):
+        if IS_MACOS:
+            C_EXTRA_COMPILE_ARG = ["-std=c23" if arg == "-std=c++2b" else "-std=c++2b" for arg in EXTRA_COMPILE_ARG]
+        else:
+            C_EXTRA_COMPILE_ARG = EXTRA_COMPILE_ARG
+
+        for ext in self.extensions:
+            for i, source in enumerate(ext.sources):
+                if source.endswith(".c"):
+                    ext.extra_compile_args = C_EXTRA_COMPILE_ARG
+                elif source.endswith(".cpp"):
+                    ext.extra_compile_args = EXTRA_COMPILE_ARG
+        build_ext.build_extensions(self)
+
 
 if __name__ == "__main__":
     if os.path.exists("./build"):
@@ -57,7 +75,8 @@ if __name__ == "__main__":
         name="__pyfastutil",
         version="0.0.1",
         description="C++ implementation of PyFastUtil.",
-        ext_modules=modules
+        ext_modules=modules,
+        cmdclass={'build_ext': CustomBuildExt}
     )
 
     # output

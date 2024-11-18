@@ -30,6 +30,10 @@
 #define IS_PYTHON_312_OR_LATER
 #endif
 
+#if !defined(Py_XNewRef) && defined(Py_XINCREF)  // 3.9
+#define Py_XNewRef(obj) (Py_XINCREF(obj), obj)
+#endif
+
 #ifdef __cplusplus
 namespace compat {
 
