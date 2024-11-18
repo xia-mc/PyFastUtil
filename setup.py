@@ -12,7 +12,7 @@ IS_MACOS = platform.system() == "Darwin"
 if IS_WINDOWS:
     # Windows uses MSVC
     EXTRA_COMPILE_ARG = [
-        "/O2", "/Ob2", "/GL", "/W4", "/std:c++latest", "/WX", "/MP",
+        "/O2", "/Ob2", "/GL", "/W4", "/std:c++latest", "/WX",
         "/wd4068",  # ignore unknown pragma error
         "/EHsc"
     ]
@@ -30,6 +30,7 @@ else:
 
     if IS_MACOS:
         EXTRA_COMPILE_ARG.append("-faligned-allocation")
+        os.environ['CC'] = 'clang++'
 
 
 class CustomBuildExt(build_ext):
