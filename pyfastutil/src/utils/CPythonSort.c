@@ -1270,7 +1270,6 @@ unsafe_latin_compare(PyObject *v, PyObject *w, MergeState *ms) {
 static __forceinline int
 unsafe_long_compare(PyObject *v, PyObject *w, MergeState *ms) {
     (void) ms;
-    PyLongObject *vl, *wl;
     intptr_t v0, w0;
     int res;
 
@@ -1283,11 +1282,8 @@ unsafe_long_compare(PyObject *v, PyObject *w, MergeState *ms) {
 #endif
 
 #ifdef IS_PYTHON_312_OR_LATER
-    vl = (PyLongObject *) v;
-    wl = (PyLongObject *) w;
-
-    v0 = _PyLong_CompactValue(vl);
-    w0 = _PyLong_CompactValue(wl);
+    v0 = _PyLong_CompactValue((PyLongObject *) v);
+    w0 = _PyLong_CompactValue((PyLongObject *) w);
 #else
     v0 = PyLong_AsSsize_t(v);
     w0 = PyLong_AsSsize_t(w);
@@ -1482,8 +1478,11 @@ PyObject *CPython_sort(PyObject **items, Py_ssize_t size, PyObject *keyfunc, int
 
             if (keys_are_all_same_type) {
                 if (key_type == &PyLong_Type &&
-                    ints_are_bounded &&
-                    !_PyLong_IsCompact((PyLongObject *) key)) {
+                    ints_are_bounded
+#ifdef IS_PYTHON_312_OR_LATER
+                    && !_PyLong_IsCompact((PyLongObject *) key)
+#endif
+                    ) {
 
                     ints_are_bounded = 0;
                 } else if (key_type == &PyUnicode_Type &&
