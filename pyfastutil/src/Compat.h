@@ -9,7 +9,7 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 
-#ifdef __APPLE__
+#if defined(__APPLE__) && defined(__cplusplus)
 #include <string>
 #include <sys/utsname.h>
 #endif
