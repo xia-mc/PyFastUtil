@@ -11,7 +11,7 @@ extern "C" {
 
 #include "PythonPCH.h"
 
-// 函数声明
+
 PyObject *CPython_sort(PyObject **items, Py_ssize_t size, PyObject *keyfunc, int reverse);
 
 #ifdef __cplusplus

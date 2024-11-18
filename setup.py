@@ -41,20 +41,23 @@ if __name__ == "__main__":
             if file.endswith(".cpp") or file.endswith(".c"):
                 sources.append(os.path.join(root, file))
 
-    module1 = Extension(
-        name="__pyfastutil",
-        sources=sources,
-        extra_compile_args=EXTRA_COMPILE_ARG,
-        extra_link_args=EXTRA_LINK_ARG,
-        include_dirs=["./pyfastutil/src"]
-    )
+    modules = [
+        Extension(
+            name="__pyfastutil",
+            sources=sources,
+            language="c++",
+            extra_compile_args=EXTRA_COMPILE_ARG,
+            extra_link_args=EXTRA_LINK_ARG,
+            include_dirs=["./pyfastutil/src"]
+        )
+    ]
 
     # build
     setup(
         name="__pyfastutil",
         version="0.0.1",
         description="C++ implementation of PyFastUtil.",
-        ext_modules=[module1]
+        ext_modules=modules
     )
 
     # output

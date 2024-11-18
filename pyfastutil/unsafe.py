@@ -4,6 +4,6 @@ from typing import TypeVar
 from .__pyfastutil import Unsafe as __Unsafe
 
 Ptr = TypeVar("Ptr", bound=int)
-NullPtr: Ptr = 0
+NULL: Ptr = 0
 
 Unsafe = __Unsafe.Unsafe

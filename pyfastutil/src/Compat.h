@@ -22,6 +22,14 @@
 #define __forceinline inline
 #endif
 
+#ifndef __cplusplus
+#include "stdbool.h"
+#endif
+
+#if PY_VERSION_HEX >= 0x030C0000  // 3.12
+#define IS_PYTHON_312_OR_LATER
+#endif
+
 #ifdef __cplusplus
 namespace compat {
 

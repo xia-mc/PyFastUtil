@@ -2,7 +2,7 @@ import sys
 import unittest
 import struct
 
-from pyfastutil.unsafe import Unsafe, Ptr, NullPtr
+from pyfastutil.unsafe import Unsafe, Ptr, NULL
 
 
 class TestUnsafe(unittest.TestCase):
@@ -29,7 +29,7 @@ class TestUnsafe(unittest.TestCase):
             self.assertGreater(ptr, 0)
             new_ptr = unsafe.realloc(ptr, 20)
             self.assertGreater(new_ptr, 0)
-            self.assertNotEqual(new_ptr, NullPtr)
+            self.assertNotEqual(new_ptr, NULL)
             unsafe.free(new_ptr)
 
     def test_set_and_get(self):

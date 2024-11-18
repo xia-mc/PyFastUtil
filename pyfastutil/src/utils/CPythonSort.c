@@ -1197,7 +1197,7 @@ merge_force_collapse(MergeState *ms) {
  * ms->key_compare will always point to one of these: */
 
 /* Heterogeneous compare: default, always safe to fall back on. */
-static int
+static __forceinline int
 safe_object_compare(PyObject *v, PyObject *w, MergeState *ms) {
     /* No assumptions necessary! */
     (void) ms;
@@ -1208,7 +1208,7 @@ safe_object_compare(PyObject *v, PyObject *w, MergeState *ms) {
  * (ms->key_richcompare is set to ob_type->tp_richcompare in the
  *  pre-sort check.)
  */
-static int
+static __forceinline int
 unsafe_object_compare(PyObject *v, PyObject *w, MergeState *ms) {
     PyObject *res_obj;
     int res;
@@ -1243,7 +1243,7 @@ unsafe_object_compare(PyObject *v, PyObject *w, MergeState *ms) {
 }
 
 /* Latin string compare: safe for any two latin (one byte per char) strings. */
-static int
+static __forceinline int
 unsafe_latin_compare(PyObject *v, PyObject *w, MergeState *ms) {
     (void) ms;
     Py_ssize_t len;
@@ -1267,7 +1267,7 @@ unsafe_latin_compare(PyObject *v, PyObject *w, MergeState *ms) {
 }
 
 /* Bounded int compare: compare any two longs that fit in a single machine word. */
-static int
+static __forceinline int
 unsafe_long_compare(PyObject *v, PyObject *w, MergeState *ms) {
     (void) ms;
     PyLongObject *vl, *wl;
@@ -1277,14 +1277,21 @@ unsafe_long_compare(PyObject *v, PyObject *w, MergeState *ms) {
     /* Modified from Objects/longobject.c:long_compare, assuming: */
     assert(Py_IS_TYPE(v, &PyLong_Type));
     assert(Py_IS_TYPE(w, &PyLong_Type));
+#ifdef IS_PYTHON_312_OR_LATER
     assert(_PyLong_IsCompact((PyLongObject *) v));
     assert(_PyLong_IsCompact((PyLongObject *) w));
+#endif
 
+#ifdef IS_PYTHON_312_OR_LATER
     vl = (PyLongObject *) v;
     wl = (PyLongObject *) w;
 
     v0 = _PyLong_CompactValue(vl);
     w0 = _PyLong_CompactValue(wl);
+#else
+    v0 = PyLong_AsSsize_t(v);
+    w0 = PyLong_AsSsize_t(w);
+#endif
 
     res = v0 < w0;
     assert(res == PyObject_RichCompareBool(v, w, Py_LT));
@@ -1292,7 +1299,7 @@ unsafe_long_compare(PyObject *v, PyObject *w, MergeState *ms) {
 }
 
 /* Float compare: compare any two floats. */
-static int
+static __forceinline int
 unsafe_float_compare(PyObject *v, PyObject *w, MergeState *ms) {
     (void) ms;
     int res;
@@ -1312,7 +1319,7 @@ unsafe_float_compare(PyObject *v, PyObject *w, MergeState *ms) {
  * but run on the list [x[0] for x in L]. This allows us to optimize compares
  * on two levels (as long as [x[0] for x in L] is type-homogeneous.) The idea is
  * that most tuple compares don't involve x[1:]. */
-static int
+static __forceinline int
 unsafe_tuple_compare(PyObject *v, PyObject *w, MergeState *ms) {
     PyTupleObject *vt, *wt;
     Py_ssize_t i, vlen, wlen;
