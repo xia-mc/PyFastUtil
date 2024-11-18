@@ -27,7 +27,7 @@ elif IS_MACOS:
     ]
     EXTRA_LINK_ARG = ["-flto"]
 
-    os.environ["CFLAGS"] = "-std=c23"
+    os.environ["CFLAGS"] = "-std=c2x"
     os.environ["CXXFLAGS"] = "-std=c++2b"
 else:
     # Default uses GCC
