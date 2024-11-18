@@ -38,13 +38,12 @@ if __name__ == "__main__":
     sources = []
     for root, dirs, files in os.walk("./pyfastutil/src"):
         for file in files:
-            if file.endswith(".cpp"):
+            if file.endswith(".cpp") or file.endswith(".c"):
                 sources.append(os.path.join(root, file))
 
     module1 = Extension(
         name="__pyfastutil",
         sources=sources,
-        language="c++",
         extra_compile_args=EXTRA_COMPILE_ARG,
         extra_link_args=EXTRA_LINK_ARG,
         include_dirs=["./pyfastutil/src"]

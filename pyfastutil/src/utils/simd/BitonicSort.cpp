@@ -19,7 +19,7 @@
 #include "utils/memory/AlignedAllocator.h"
 #include "utils/memory/PreFetch.h"
 
-template <typename T>
+template<typename T>
 concept IntOrLongLong = std::same_as<T, int> || std::same_as<T, long long>;
 
 namespace simd {
@@ -123,8 +123,8 @@ namespace simd {
     }
 
     [[maybe_unused]] __forceinline void doSingleMerge(const size_t &left, const size_t &mid, const size_t &right,
-                                     std::vector<int, AlignedAllocator<int, 64>> &src,
-                                     std::vector<int, AlignedAllocator<int, 64>> &dst) {
+                                                      std::vector<int, AlignedAllocator<int, 64>> &src,
+                                                      std::vector<int, AlignedAllocator<int, 64>> &dst) {
         size_t i = left, j = mid + 1, k = left;
 
         // merge 2 sorted blocks with AVX-512
@@ -252,9 +252,10 @@ namespace simd {
         }
     }
 
-    [[maybe_unused]] __forceinline void doSingleMergeReversed(const size_t &left, const size_t &mid, const size_t &right,
-                                             std::vector<int, AlignedAllocator<int, 64>> &src,
-                                             std::vector<int, AlignedAllocator<int, 64>> &dst) {
+    [[maybe_unused]] __forceinline void
+    doSingleMergeReversed(const size_t &left, const size_t &mid, const size_t &right,
+                          std::vector<int, AlignedAllocator<int, 64>> &src,
+                          std::vector<int, AlignedAllocator<int, 64>> &dst) {
         size_t i = left, j = mid + 1, k = left;
 
         // merge 2 sorted blocks with AVX-512
@@ -311,9 +312,10 @@ namespace simd {
         }
     }
 
-    [[maybe_unused]] __forceinline void doSingleMergeReversed(const size_t &left, const size_t &mid, const size_t &right,
-                                             std::vector<long long, AlignedAllocator<long long, 64>> &src,
-                                             std::vector<long long, AlignedAllocator<long long, 64>> &dst) {
+    [[maybe_unused]] __forceinline void
+    doSingleMergeReversed(const size_t &left, const size_t &mid, const size_t &right,
+                          std::vector<long long, AlignedAllocator<long long, 64>> &src,
+                          std::vector<long long, AlignedAllocator<long long, 64>> &dst) {
         size_t i = left, j = mid + 1, k = left;
 
         // merge 2 sorted blocks with AVX-512
@@ -374,7 +376,7 @@ namespace simd {
      * Merge sorted blocks with SIMD optimization, or fallback
      * make sure aligned
      */
-    template <IntOrLongLong T>
+    template<IntOrLongLong T>
     __forceinline void mergeSortedBlocks(std::vector<T, AlignedAllocator<T, 64>> &data, const size_t &blockSize) {
         const size_t total = data.size();
         auto temp = std::vector<T, AlignedAllocator<T, 64>>(total);
@@ -408,7 +410,7 @@ namespace simd {
     /**
      * Merge sorted blocks with SIMD optimization reversed, or fallback
      */
-    template <IntOrLongLong T>
+    template<IntOrLongLong T>
     __forceinline void
     mergeSortedBlocksReversed(std::vector<T, AlignedAllocator<T, 64>> &data, const size_t &blockSize) {
         const size_t total = data.size();

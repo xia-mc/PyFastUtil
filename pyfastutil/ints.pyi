@@ -177,6 +177,7 @@ class IntArrayListIter(Iterator[int]):
         """
         pass
 
+
 @final
 class BigIntArrayList(list[int]):
     """

@@ -6,9 +6,10 @@
 #define PYFASTUTIL_PYTHONUTILS_H
 
 #include "PythonPCH.h"
+#include "Compat.h"
 
 template<typename T>
-static void SAFE_DECREF(T *&object) {
+static __forceinline void SAFE_DECREF(T *&object) {
     if (object == nullptr)
         return;
     Py_DECREF(object);
@@ -16,17 +17,17 @@ static void SAFE_DECREF(T *&object) {
 }
 
 template<typename T>
-static T *Py_CreateObj(PyTypeObject &typeObj) {
+static __forceinline T *Py_CreateObj(PyTypeObject &typeObj) {
     return reinterpret_cast<T *>(PyObject_CallObject((PyObject *) &typeObj, nullptr));
 }
 
 template<typename T>
-static T *Py_CreateObj(PyTypeObject &typeObj, PyObject *args) {
+static __forceinline T *Py_CreateObj(PyTypeObject &typeObj, PyObject *args) {
     return reinterpret_cast<T *>(PyObject_CallObject((PyObject *) &typeObj, args));
 }
 
 template<typename T>
-static T *Py_CreateObjNoInit(PyTypeObject &typeObj) {
+static __forceinline T *Py_CreateObjNoInit(PyTypeObject &typeObj) {
     return reinterpret_cast<T *>(PyObject_New(T, &typeObj));
 }
 

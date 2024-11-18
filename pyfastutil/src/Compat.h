@@ -22,13 +22,13 @@
 #define __forceinline inline
 #endif
 
-
+#ifdef __cplusplus
 namespace compat {
 
     /**
      * Helper function to get the macOS version
      */
-    static __forceinline bool isMacos1015OrNewer() {
+    [[maybe_unused]] static __forceinline bool isMacos1015OrNewer() {
 #ifdef __APPLE__
         struct utsname sys_info;
         if (uname(&sys_info) != 0) {
@@ -46,6 +46,7 @@ namespace compat {
     }
 
 }
+#endif
 
 #pragma clang diagnostic pop
 

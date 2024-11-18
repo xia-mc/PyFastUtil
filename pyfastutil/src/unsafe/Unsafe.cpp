@@ -215,7 +215,7 @@ static PyMethodDef Unsafe_methods[] = {
         {"set",         (PyCFunction) Unsafe_set,        METH_VARARGS, nullptr},
         {"get_address", (PyCFunction) Unsafe_getAddress, METH_O,       nullptr},
         {"as_object",   (PyCFunction) Unsafe_as_object,  METH_O,       nullptr},
-        {"memcpy",  (PyCFunction) Unsafe_memcpy,     METH_VARARGS, nullptr},
+        {"memcpy",      (PyCFunction) Unsafe_memcpy,     METH_VARARGS, nullptr},
         {"incref",      (PyCFunction) Unsafe_incref,     METH_O,       nullptr},
         {"decref",      (PyCFunction) Unsafe_decref,     METH_O,       nullptr},
         {"refcnt",      (PyCFunction) Unsafe_refcnt,     METH_O,       nullptr},

@@ -6,12 +6,17 @@
 #define PYFASTUTIL_UTILS_H
 
 #if !defined(_MSC_VER)
+
 #include "cstring"
+
 #endif
 
 #if defined(__x86_64__) || defined(_M_X64) || defined(__i386__) || defined(_M_IX86)
+
 #include <immintrin.h>
+
 #endif
+
 #include "SIMD.h"
 #include "utils/memory/PreFetch.h"
 
@@ -250,7 +255,8 @@ namespace simd {
                 }
 
                 auto left = _mm256_load_si256(reinterpret_cast<const __m256i *>(data + processed));
-                auto right = _mm256_load_si256(reinterpret_cast<const __m256i *>(data + count - processed - AVX2_LONG_LONGS));
+                auto right = _mm256_load_si256(
+                        reinterpret_cast<const __m256i *>(data + count - processed - AVX2_LONG_LONGS));
 
                 _mm256_store_si256(reinterpret_cast<__m256i *>(data + processed), right);
                 _mm256_store_si256(reinterpret_cast<__m256i *>(data + count - processed - AVX2_LONG_LONGS), left);
@@ -264,7 +270,8 @@ namespace simd {
                 }
 
                 auto left = _mm_load_si128(reinterpret_cast<const __m128i *>(data + processed));
-                auto right = _mm_load_si128(reinterpret_cast<const __m128i *>(data + count - processed - SSE41_LONG_LONGS));
+                auto right = _mm_load_si128(
+                        reinterpret_cast<const __m128i *>(data + count - processed - SSE41_LONG_LONGS));
 
                 _mm_store_si128(reinterpret_cast<__m128i *>(data + processed), right);
                 _mm_store_si128(reinterpret_cast<__m128i *>(data + count - processed - SSE41_LONG_LONGS), left);
