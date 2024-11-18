@@ -4,7 +4,6 @@ import platform
 import shutil
 
 from setuptools import setup, Extension
-from setuptools.command.build_ext import build_ext
 
 IS_WINDOWS = os.name == "nt"
 IS_MACOS = platform.system() == "Darwin"
@@ -17,8 +16,21 @@ if IS_WINDOWS:
         "/EHsc"
     ]
     EXTRA_LINK_ARG = ["/LTCG"]
+elif IS_MACOS:
+    # macOS uses Clang
+    EXTRA_COMPILE_ARG = [
+        "-O3", "-flto", "-fPIC",
+        "-Wall", "-fvisibility=hidden",
+        "-Wno-error=unknown-pragmas",
+        "-mavx", "-mavx2", "-mavx512f", "-mavx512bw", "-mavx512dq", "-mavx512vl",
+        "-fno-tree-vectorize", "-faligned-allocation"
+    ]
+    EXTRA_LINK_ARG = ["-flto"]
+
+    os.environ["CFLAGS"] = "-stdc23"
+    os.environ["CXXFLAGS"] = "-std=c++2b"
 else:
-    # Unix-like uses GCC/Clang
+    # Default uses GCC
     EXTRA_COMPILE_ARG = [
         "-O3", "-flto", "-fPIC",
         "-std=c++2b", "-Wall", "-fvisibility=hidden",
@@ -27,10 +39,6 @@ else:
         "-fno-tree-vectorize"
     ]
     EXTRA_LINK_ARG = ["-flto"]
-
-    if IS_MACOS:
-        EXTRA_COMPILE_ARG.append("-faligned-allocation")
-        os.environ['CC'] = 'clang++'
 
 
 if __name__ == "__main__":
