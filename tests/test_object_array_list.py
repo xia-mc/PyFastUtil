@@ -124,6 +124,16 @@ class TestObjectArrayList(unittest.TestCase):
         iterated = [x for x in lst]
         self.assertEqual(iterated, [1, 2, 3])
 
+    def test_empty_iter(self):  # bug
+        lst = ObjectArrayList()
+        iterated = [x for x in lst]
+        self.assertEqual(iterated, [])
+
+    def test_empty_pop(self):  # bug
+        lst = ObjectArrayList()
+        with self.assertRaises(IndexError):
+            lst.pop()
+
     # Test count and index
     def test_count(self):
         lst = ObjectArrayList([1, 2, 2, 3])

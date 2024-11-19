@@ -271,6 +271,11 @@ static PyObject *IntArrayList_extend(PyObject *pySelf, PyObject *const *args, co
 static PyObject *IntArrayList_pop(PyObject *pySelf, PyObject *const *args, const Py_ssize_t nargs) {
     auto *self = reinterpret_cast<IntArrayList *>(pySelf);
 
+    if (self->vector.empty()) {
+        PyErr_SetString(PyExc_IndexError, "pop from empty list");
+        return nullptr;
+    }
+
     const auto vecSize = static_cast<Py_ssize_t>(self->vector.size());
     Py_ssize_t index = vecSize - 1;
 
