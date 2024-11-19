@@ -1,13 +1,13 @@
 import timeit
 import random
-from pyfastutil.ints import IntArrayList
+from pyfastutil.objects import ObjectLinkedList
 
 SIZE = int(1e4)
 REPEAT = 3
-UNSORT_LIST = [random.randint(0, SIZE) for _ in range(SIZE)]
+UNSORT_LIST = [random.choice([str, int, float, bytes])(random.randint(0, SIZE)) for _ in range(SIZE)]
 
 pythonList = list(UNSORT_LIST)
-pyFastUtilList = IntArrayList(UNSORT_LIST)
+pyFastUtilList = ObjectLinkedList(UNSORT_LIST)
 
 
 # Setup functions to reset the lists
@@ -18,18 +18,18 @@ def setup_python():
 
 def setup_pyfastutil():
     global pyFastUtilList
-    pyFastUtilList = IntArrayList(UNSORT_LIST)
+    pyFastUtilList = ObjectLinkedList(UNSORT_LIST)
 
 
 # Benchmark functions
 def python_sort():
     global pythonList
-    pythonList.sort()
+    pythonList.sort(key=lambda obj: str(obj))
 
 
 def pyfastutil_sort():
     global pyFastUtilList
-    pyFastUtilList.sort()
+    pyFastUtilList = ObjectLinkedList(sorted(pyFastUtilList, key=lambda obj: str(obj)))
 
 
 def python_append():
@@ -117,7 +117,7 @@ def pyfastutil_extend():
 
 # Main benchmarking function
 def main():
-    print(f"---Python list & IntArrayList Benchmark---")
+    print(f"---Python list & ObjectLinkedList Benchmark---")
     print(f"Batch size: {SIZE}")
     print(f"Repeat: {REPEAT}\n")
 
@@ -144,7 +144,7 @@ def main():
         num_operations += 1
 
         print(f"Python list {name} time: {time_python * 1000:.2f} ms")
-        print(f"PyFastUtil IntArrayList {name} time: {time_pyfastutil * 1000:.2f} ms")
+        print(f"PyFastUtil ObjectLinkedList {name} time: {time_pyfastutil * 1000:.2f} ms")
         print(f"PyFastUtil speed of Python list ({name}): {speed:.3f} %\n")
 
     # Calculate and print average speed

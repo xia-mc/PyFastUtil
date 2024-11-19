@@ -10,6 +10,8 @@
 #include "ints/BigIntArrayListIter.h"
 #include "objects/ObjectArrayList.h"
 #include "objects/ObjectArrayListIter.h"
+#include "objects/ObjectLinkedList.h"
+#include "objects/ObjectLinkedListIter.h"
 #include "unsafe/Unsafe.h"
 
 static struct PyModuleDef pyfastutilModule = {
@@ -36,6 +38,8 @@ PyMODINIT_FUNC PyInit___pyfastutil() {
     PyModule_AddObject(parent, "BigIntArrayListIter", PyInit_BigIntArrayListIter());
     PyModule_AddObject(parent, "ObjectArrayList", PyInit_ObjectArrayList());
     PyModule_AddObject(parent, "ObjectArrayListIter", PyInit_ObjectArrayListIter());
+    PyModule_AddObject(parent, "ObjectLinkedList", PyInit_ObjectLinkedList());
+    PyModule_AddObject(parent, "ObjectLinkedListIter", PyInit_ObjectLinkedListIter());
 
     PyModule_AddObject(parent, "Unsafe", PyInit_Unsafe());
 

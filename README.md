@@ -24,13 +24,104 @@ English | [简体中文](./README_CN.md)
 
 **PyFastUtil** is a high-performance utility library for Python, inspired by the popular [FastUtil](https://fastutil.di.unimi.it/) library in Java. However, **PyFastUtil is not a Python binding of any existing library**, but a **complete re-implementation** from scratch, designed to bring the same efficiency and functionality to Python.
 
-> **Note**: PyFastUtil is still in its **early development phase**. The codebase is under active development and is not yet ready for production use. We are working hard to make it feature-complete and thoroughly tested before releasing it on PyPI.
+> **Note**: PyFastUtil is still in its **early development phase**. The codebase is under active development and is not yet ready for production use. 
+> We are working hard to make it feature-complete and thoroughly tested before releasing it on PyPI.
 
 ### Features
 
 - Implements all corresponding Python data structure interfaces, while providing significant performance improvements through targeted optimizations. Users can choose the most suitable data structure for their specific needs.
 - Fully implemented in C/C++, leveraging hardware-specific optimizations such as SIMD to maximize the performance of data structures.
 - Offers efficient Python bindings for certain C APIs, allowing advanced users to perform low-level, "unsafe" operations when needed.
+
+### Performance Benchmark
+
+> **Note**: For some very fast O(1) operations (such as `pop` and `extend`), PyFastUtil may perform slightly worse than Python's native implementation due to the non-negligible overhead of CPython's C extension calls. We are working on optimizing this.
+
+#### Specialized List Benchmark (e.g., `IntArrayList`)
+
+```text
+---Python list & IntArrayList Benchmark---
+Batch size: 10000
+Repeat: 3
+
+Python list sort time: 0.82 ms
+PyFastUtil IntArrayList sort time: 0.03 ms
+PyFastUtil speed of Python list (sort): 2346.991 %
+
+Python list append time: 0.28 ms
+PyFastUtil IntArrayList append time: 0.31 ms
+PyFastUtil speed of Python list (append): 89.886 %
+
+Python list insert time: 70.51 ms
+PyFastUtil IntArrayList insert time: 10.59 ms
+PyFastUtil speed of Python list (insert): 665.616 %
+
+Python list pop time: 0.31 ms
+PyFastUtil IntArrayList pop time: 0.34 ms
+PyFastUtil speed of Python list (pop): 90.092 %
+
+Python list remove time: 5.14 ms
+PyFastUtil IntArrayList remove time: 2.52 ms
+PyFastUtil speed of Python list (remove): 204.007 %
+
+Python list contains time: 259.78 ms
+PyFastUtil IntArrayList contains time: 12.24 ms
+PyFastUtil speed of Python list (contains): 2122.882 %
+
+Python list index time: 232.94 ms
+PyFastUtil IntArrayList index time: 2.92 ms
+PyFastUtil speed of Python list (index): 7964.229 %
+
+Python list extend time: 0.09 ms
+PyFastUtil IntArrayList extend time: 0.15 ms
+PyFastUtil speed of Python list (extend): 59.879 %
+
+
+Avg speed of PyFastUtil compared to Python list: 1692.948 %
+```
+
+#### Generic List Benchmark (e.g., `ObjectArrayList`)
+
+```text
+---Python list & ObjectArrayList Benchmark---
+Batch size: 10000
+Repeat: 3
+
+Python list sort time: 82.11 ms
+PyFastUtil ObjectArrayList sort time: 80.52 ms
+PyFastUtil speed of Python list (sort): 101.963 %
+
+Python list append time: 0.29 ms
+PyFastUtil ObjectArrayList append time: 0.32 ms
+PyFastUtil speed of Python list (append): 89.097 %
+
+Python list insert time: 70.45 ms
+PyFastUtil ObjectArrayList insert time: 20.46 ms
+PyFastUtil speed of Python list (insert): 344.407 %
+
+Python list pop time: 0.31 ms
+PyFastUtil ObjectArrayList pop time: 0.28 ms
+PyFastUtil speed of Python list (pop): 112.496 %
+
+Python list remove time: 5.23 ms
+PyFastUtil ObjectArrayList remove time: 5.15 ms
+PyFastUtil speed of Python list (remove): 101.612 %
+
+Python list contains time: 1074.47 ms
+PyFastUtil ObjectArrayList contains time: 16.07 ms
+PyFastUtil speed of Python list (contains): 6684.718 %
+
+Python list index time: 873.44 ms
+PyFastUtil ObjectArrayList index time: 6.71 ms
+PyFastUtil speed of Python list (index): 13016.306 %
+
+Python list extend time: 0.08 ms
+PyFastUtil ObjectArrayList extend time: 0.11 ms
+PyFastUtil speed of Python list (extend): 75.165 %
+
+
+Avg speed of PyFastUtil compared to Python list: 2565.720 %
+```
 
 ## Installation
 

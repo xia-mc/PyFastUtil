@@ -1,4 +1,4 @@
-from typing import overload, Iterable, SupportsIndex, final, Iterator
+from typing import overload, Iterable, final, Iterator, Self
 
 
 @final
@@ -94,6 +94,24 @@ class ObjectArrayList(list):
         """
         pass
 
+    def to_list(self) -> list:
+        """
+        Converts the `ObjectArrayList` to a standard Python list.
+
+        This method returns a new list containing the same elements as the `ObjectArrayList` in the same order. The returned list
+        will be a standard Python list, which can be used with all the usual Python list operations.
+
+        Returns:
+            list: A new list containing all the elements of the `ObjectArrayList`.
+
+        Example:
+            >>> my_list = ObjectArrayList([1, 2, "3"])
+            >>> py_list = my_list.to_list()
+            >>> print(py_list)
+            [1, 2, "3"]
+        """
+        pass
+
 
 @final
 class ObjectArrayListIter(Iterator):
@@ -131,6 +149,99 @@ class ObjectArrayListIter(Iterator):
 
         Returns:
             object: The next object in the `ObjectArrayList`.
+
+        Raises:
+            StopIteration: If there are no more elements to iterate over.
+        """
+        pass
+
+
+@final
+class ObjectLinkedList(list):
+    """
+    A specialized linked list that stores Python objects, optimized for efficient insertion and deletion.
+
+    `ObjectLinkedList` is implemented as a doubly linked list, providing O(1) time complexity for insertions and deletions
+    at both the head and tail, as well as for operations involving iterators. However, random access by index (e.g., `list[i]`)
+    requires O(n) time, as the list must be traversed to reach the desired element.
+
+    This class behaves similarly to Python's built-in `list`, but is optimized for cases where frequent insertions and deletions
+    are required, rather than random access.
+
+    Example:
+        >>> obj_list = ObjectLinkedList()
+        >>> obj_list.append(1)
+        >>> obj_list.append("hello")
+        >>> obj_list.insert(0, 3.14)
+        >>> print(obj_list)
+        [3.14, 1, "hello"]
+
+    Note:
+        - Insertion and deletion are O(1).
+        - Accessing elements by index is O(n).
+        - Iteration over the list is O(1) per step, making it efficient for sequential access.
+
+    Raises:
+        TypeError: If an invalid operation is attempted.
+    """
+    pass
+
+    def to_list(self) -> list:
+        """
+        Converts the `ObjectLinkedList` to a standard Python list.
+
+        This method returns a new list containing the same elements as the `ObjectLinkedList` in the same order. The returned list
+        will be a standard Python list, which can be used with all the usual Python list operations.
+
+        Returns:
+            list: A new list containing all the elements of the `ObjectLinkedList`.
+
+        Example:
+            >>> my_list = ObjectLinkedList([1, 2, "3"])
+            >>> py_list = my_list.to_list()
+            >>> print(py_list)
+            [1, 2, "3"]
+        """
+        pass
+
+
+@final
+class ObjectLinkedListIter(Iterator):
+    """
+    Iterator for `ObjectLinkedList`.
+
+    This class provides an iterator over an `ObjectLinkedList`, allowing you to iterate over the elements
+    of the list one by one in O(1) time per step. The iterator maintains a reference to the list and iterates
+    through it in constant time for each element, making it very efficient for sequential access.
+
+    Note:
+        This class cannot be directly instantiated by users. It is designed to be used internally by
+        `ObjectLinkedList` and can only be obtained by calling the `__iter__` method on an `ObjectLinkedList` object.
+
+    Example:
+        >>> obj_list = ObjectLinkedList([1, "hello", 3.14])
+        >>> iter_obj = iter(obj_list)  # This returns an ObjectLinkedListIter instance
+        >>> next(iter_obj)
+        1
+        >>> next(iter_obj)
+        "hello"
+        >>> next(iter_obj)
+        3.14
+        >>> next(iter_obj)  # Raises StopIteration
+
+    Raises:
+        TypeError: If attempted to be instantiated directly.
+    """
+
+    def __next__(self) -> object:
+        """
+        Return the next element in the iteration.
+
+        This method retrieves the next element from the `ObjectLinkedList` that this iterator is associated with.
+        If all elements have been iterated over, it raises a `StopIteration` exception.
+
+        Returns:
+            object: The next object in the `ObjectLinkedList`.
 
         Raises:
             StopIteration: If there are no more elements to iterate over.

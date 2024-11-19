@@ -134,6 +134,24 @@ class IntArrayList(list[int]):
         """
         pass
 
+    def to_list(self) -> list[int]:
+        """
+        Converts the `IntArrayList` to a standard Python list.
+
+        This method returns a new list containing the same elements as the `IntArrayList` in the same order. The returned list
+        will be a standard Python list, which can be used with all the usual Python list operations.
+
+        Returns:
+            list[int]: A new list containing all the elements of the `IntArrayList`.
+
+        Example:
+            >>> my_list = IntArrayList([1, 2, 3])
+            >>> py_list = my_list.to_list()
+            >>> print(py_list)
+            [1, 2, 3]
+        """
+        pass
+
 
 @final
 class IntArrayListIter(Iterator[int]):
@@ -308,6 +326,24 @@ class BigIntArrayList(list[int]):
             >>> my_list.resize(2)
             >>> print(my_list)
             [1, 2]
+        """
+        pass
+
+    def to_list(self) -> list[int]:
+        """
+        Converts the `BigIntArrayList` to a standard Python list.
+
+        This method returns a new list containing the same elements as the `BigIntArrayList` in the same order. The returned list
+        will be a standard Python list, which can be used with all the usual Python list operations.
+
+        Returns:
+            list[int]: A new list containing all the elements of the `BigIntArrayList`.
+
+        Example:
+            >>> my_list = BigIntArrayList([1, 2, 3])
+            >>> py_list = my_list.to_list()
+            >>> print(py_list)
+            [1, 2, 3]
         """
         pass
 

@@ -2,8 +2,8 @@
 // Created by xia__mc on 2024/11/12.
 //
 
-#ifndef PYFASTUTIL_UTILS_H
-#define PYFASTUTIL_UTILS_H
+#ifndef PYFASTUTIL_SIMD_UTILS_H
+#define PYFASTUTIL_SIMD_UTILS_H
 
 #if !defined(_MSC_VER)
 
@@ -284,4 +284,4 @@ namespace simd {
 #endif
     }
 }
-#endif //PYFASTUTIL_UTILS_H
+#endif //PYFASTUTIL_SIMD_UTILS_H

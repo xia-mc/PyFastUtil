@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=75.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyFastUtil"
+version = "0.0.9"
+authors = [
+    { name = "xia__mc", email = "xiayichun0512@gmail.com" },
+]
+description = "PyFastUtil provides fast, fully Python-compatible data structures along with bindings to low-level interfaces."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/xia-mc/PyFastUtil"
+Issues = "https://github.com/xia-mc/PyFastUtil/issues"

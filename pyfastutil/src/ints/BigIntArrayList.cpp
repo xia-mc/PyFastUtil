@@ -320,20 +320,28 @@ static PyObject *BigIntArrayList_index(PyObject *pySelf, PyObject *args) {
         return nullptr;
     }
 
-    // valid check
-    if (start < 0 || start > static_cast<Py_ssize_t>(self->vector.size())) {
-        PyErr_SetString(PyExc_IndexError, "start index out of range.");
-        return nullptr;
+    if (start < 0) {
+        start += static_cast<Py_ssize_t>(self->vector.size());
     }
-    if (stop < 0 || stop > static_cast<Py_ssize_t>(self->vector.size())) {
-        PyErr_SetString(PyExc_IndexError, "stop index out of range.");
+    if (stop < 0) {
+        stop += static_cast<Py_ssize_t>(self->vector.size());
+    }
+
+    if (start < 0) {
+        start = 0;
+    }
+    if (stop > static_cast<Py_ssize_t>(self->vector.size())) {
+        stop = static_cast<Py_ssize_t>(self->vector.size());
+    }
+
+    if (start > stop) {
+        PyErr_SetString(PyExc_ValueError, "start index cannot be greater than stop index.");
         return nullptr;
     }
 
-    // do index
     auto it = std::find(self->vector.begin() + start, self->vector.begin() + stop, value);
 
-    if (it == self->vector.end()) {
+    if (it == self->vector.begin() + stop) {
         PyErr_SetString(PyExc_ValueError, "Value is not in list.");
         return nullptr;
     }
@@ -473,7 +481,7 @@ static PyObject *BigIntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject
 
             if (self->vector.size() < 5000) {
                 if (reverse) {
-                    std::sort(self->vector.begin(), self->vector.end(), [cmpWrapper](long long a, long long b) {
+                    std::sort(self->vector.begin(), self->vector.end(), [&cmpWrapper](long long a, long long b) {
                         return cmpWrapper(b, a);  // reverse
                     });
                 } else {
@@ -481,7 +489,7 @@ static PyObject *BigIntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject
                 }
             } else {
                 if (reverse) {
-                    gfx::timsort(self->vector.begin(), self->vector.end(), [cmpWrapper](long long a, long long b) {
+                    gfx::timsort(self->vector.begin(), self->vector.end(), [&cmpWrapper](long long a, long long b) {
                         return cmpWrapper(b, a);  // reverse
                     });
                 } else {
@@ -1111,22 +1119,22 @@ static PyObject *BigIntArrayList_str(PyObject *pySelf) {
 }
 
 static PyMethodDef BigIntArrayList_methods[] = {
-        {"from_range",        (PyCFunction) BigIntArrayList_from_range,    METH_VARARGS | METH_STATIC},
-        {"resize",            (PyCFunction) BigIntArrayList_resize,        METH_O},
-        {"tolist",            (PyCFunction) BigIntArrayList_to_list,       METH_NOARGS},
-        {"copy",              (PyCFunction) BigIntArrayList_copy,          METH_NOARGS},
-        {"append",            (PyCFunction) BigIntArrayList_append,        METH_O},
-        {"extend",            (PyCFunction) BigIntArrayList_extend,        METH_FASTCALL},
-        {"pop",               (PyCFunction) BigIntArrayList_pop,           METH_FASTCALL},
-        {"index",             (PyCFunction) BigIntArrayList_index,         METH_VARARGS},
-        {"count",             (PyCFunction) BigIntArrayList_count,         METH_O},
-        {"insert",            (PyCFunction) BigIntArrayList_insert,        METH_VARARGS},
-        {"remove",            (PyCFunction) BigIntArrayList_remove,        METH_O},
-        {"sort",              (PyCFunction) BigIntArrayList_sort,          METH_VARARGS | METH_KEYWORDS},
-        {"reverse",           (PyCFunction) BigIntArrayList_reverse,       METH_NOARGS},
-        {"clear",             (PyCFunction) BigIntArrayList_clear,         METH_NOARGS},
-        {"__rmul__",          (PyCFunction) BigIntArrayList_rmul,          METH_O},
-        {"__reversed__",      (PyCFunction) BigIntArrayList_reversed,      METH_NOARGS},
+        {"from_range", (PyCFunction) BigIntArrayList_from_range, METH_VARARGS | METH_STATIC},
+        {"resize", (PyCFunction) BigIntArrayList_resize, METH_O},
+        {"to_list", (PyCFunction) BigIntArrayList_to_list, METH_NOARGS},
+        {"copy", (PyCFunction) BigIntArrayList_copy, METH_NOARGS},
+        {"append", (PyCFunction) BigIntArrayList_append, METH_O},
+        {"extend", (PyCFunction) BigIntArrayList_extend, METH_FASTCALL},
+        {"pop", (PyCFunction) BigIntArrayList_pop, METH_FASTCALL},
+        {"index", (PyCFunction) BigIntArrayList_index, METH_VARARGS},
+        {"count", (PyCFunction) BigIntArrayList_count, METH_O},
+        {"insert", (PyCFunction) BigIntArrayList_insert, METH_VARARGS},
+        {"remove", (PyCFunction) BigIntArrayList_remove, METH_O},
+        {"sort", (PyCFunction) BigIntArrayList_sort, METH_VARARGS | METH_KEYWORDS},
+        {"reverse", (PyCFunction) BigIntArrayList_reverse, METH_NOARGS},
+        {"clear", (PyCFunction) BigIntArrayList_clear, METH_NOARGS},
+        {"__rmul__", (PyCFunction) BigIntArrayList_rmul, METH_O},
+        {"__reversed__", (PyCFunction) BigIntArrayList_reversed, METH_NOARGS},
 #ifdef IS_PYTHON_39_OR_LATER
         {"__class_getitem__", (PyCFunction) BigIntArrayList_class_getitem, METH_O | METH_CLASS},
 #endif

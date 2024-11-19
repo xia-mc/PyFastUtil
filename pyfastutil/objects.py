@@ -2,6 +2,12 @@
 from .__pyfastutil import ObjectArrayList as __ObjectArrayList
 # noinspection PyUnresolvedReferences
 from .__pyfastutil import ObjectArrayListIter as __ObjectArrayListIter
+# noinspection PyUnresolvedReferences
+from .__pyfastutil import ObjectLinkedList as __ObjectLinkedList
+# noinspection PyUnresolvedReferences
+from .__pyfastutil import ObjectLinkedListIter as __ObjectLinkedListIter
 
 ObjectArrayList = __ObjectArrayList.ObjectArrayList
 ObjectArrayListIter = __ObjectArrayListIter.ObjectArrayListIter
+ObjectLinkedList = __ObjectLinkedList.ObjectLinkedList
+ObjectLinkedListIter = __ObjectLinkedListIter.ObjectLinkedListIter

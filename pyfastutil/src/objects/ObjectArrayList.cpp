@@ -136,11 +136,8 @@ static PyObject *ObjectArrayList_to_list(PyObject *pySelf) {
             return nullptr;
         }
 
-        // Use PyList_SetItem to ensure the reference count is increased
-        if (PyList_SetItem(result, i, item) < 0) {
-            SAFE_DECREF(result);
-            return nullptr;
-        }
+        PyList_SET_ITEM(result, i, item);
+        Py_INCREF(item);
     }
 
     return result;
@@ -291,20 +288,28 @@ static PyObject *ObjectArrayList_index(PyObject *pySelf, PyObject *args) {
         return nullptr;
     }
 
-    // valid check
-    if (start < 0 || start > static_cast<Py_ssize_t>(self->vector.size())) {
-        PyErr_SetString(PyExc_IndexError, "start index out of range.");
-        return nullptr;
+    if (start < 0) {
+        start += static_cast<Py_ssize_t>(self->vector.size());
     }
-    if (stop < 0 || stop > static_cast<Py_ssize_t>(self->vector.size())) {
-        PyErr_SetString(PyExc_IndexError, "stop index out of range.");
+    if (stop < 0) {
+        stop += static_cast<Py_ssize_t>(self->vector.size());
+    }
+
+    if (start < 0) {
+        start = 0;
+    }
+    if (stop > static_cast<Py_ssize_t>(self->vector.size())) {
+        stop = static_cast<Py_ssize_t>(self->vector.size());
+    }
+
+    if (start > stop) {
+        PyErr_SetString(PyExc_ValueError, "start index cannot be greater than stop index.");
         return nullptr;
     }
 
-    // do index
     auto it = std::find(self->vector.begin() + start, self->vector.begin() + stop, value);
 
-    if (it == self->vector.end()) {
+    if (it == self->vector.begin() + stop) {
         PyErr_SetString(PyExc_ValueError, "Value is not in list.");
         return nullptr;
     }
@@ -395,8 +400,8 @@ static PyObject *ObjectArrayList_sort(PyObject *pySelf, PyObject *args, PyObject
 
     // do sort
     return CPython_sort(self->vector.data(),
-                 static_cast<Py_ssize_t>(self->vector.size()),
-                 keyFunc == Py_None ? nullptr : keyFunc, reverseInt);
+                        static_cast<Py_ssize_t>(self->vector.size()),
+                        keyFunc == Py_None ? nullptr : keyFunc, reverseInt);
 }
 
 static Py_ssize_t ObjectArrayList_len(PyObject *pySelf) {
@@ -1047,21 +1052,21 @@ static PyObject *ObjectArrayList_str(PyObject *pySelf) {
 }
 
 static PyMethodDef ObjectArrayList_methods[] = {
-        {"resize",            (PyCFunction) ObjectArrayList_resize,        METH_O},
-        {"tolist",            (PyCFunction) ObjectArrayList_to_list,       METH_NOARGS},
-        {"copy",              (PyCFunction) ObjectArrayList_copy,          METH_NOARGS},
-        {"append",            (PyCFunction) ObjectArrayList_append,        METH_O},
-        {"extend",            (PyCFunction) ObjectArrayList_extend,        METH_FASTCALL},
-        {"pop",               (PyCFunction) ObjectArrayList_pop,           METH_FASTCALL},
-        {"index",             (PyCFunction) ObjectArrayList_index,         METH_VARARGS},
-        {"count",             (PyCFunction) ObjectArrayList_count,         METH_O},
-        {"insert",            (PyCFunction) ObjectArrayList_insert,        METH_VARARGS},
-        {"remove",            (PyCFunction) ObjectArrayList_remove,        METH_O},
-        {"sort",              (PyCFunction) ObjectArrayList_sort,          METH_VARARGS | METH_KEYWORDS},
-        {"reverse",           (PyCFunction) ObjectArrayList_reverse,       METH_NOARGS},
-        {"clear",             (PyCFunction) ObjectArrayList_clear,         METH_NOARGS},
-        {"__rmul__",          (PyCFunction) ObjectArrayList_rmul,          METH_O},
-        {"__reversed__",      (PyCFunction) ObjectArrayList_reversed,      METH_NOARGS},
+        {"resize", (PyCFunction) ObjectArrayList_resize, METH_O},
+        {"to_list", (PyCFunction) ObjectArrayList_to_list, METH_NOARGS},
+        {"copy", (PyCFunction) ObjectArrayList_copy, METH_NOARGS},
+        {"append", (PyCFunction) ObjectArrayList_append, METH_O},
+        {"extend", (PyCFunction) ObjectArrayList_extend, METH_FASTCALL},
+        {"pop", (PyCFunction) ObjectArrayList_pop, METH_FASTCALL},
+        {"index", (PyCFunction) ObjectArrayList_index, METH_VARARGS},
+        {"count", (PyCFunction) ObjectArrayList_count, METH_O},
+        {"insert", (PyCFunction) ObjectArrayList_insert, METH_VARARGS},
+        {"remove", (PyCFunction) ObjectArrayList_remove, METH_O},
+        {"sort", (PyCFunction) ObjectArrayList_sort, METH_VARARGS | METH_KEYWORDS},
+        {"reverse", (PyCFunction) ObjectArrayList_reverse, METH_NOARGS},
+        {"clear", (PyCFunction) ObjectArrayList_clear, METH_NOARGS},
+        {"__rmul__", (PyCFunction) ObjectArrayList_rmul, METH_O},
+        {"__reversed__", (PyCFunction) ObjectArrayList_reversed, METH_NOARGS},
 #ifdef IS_PYTHON_39_OR_LATER
         {"__class_getitem__", (PyCFunction) ObjectArrayList_class_getitem, METH_O | METH_CLASS},
 #endif
