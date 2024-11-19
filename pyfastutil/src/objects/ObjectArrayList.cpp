@@ -998,9 +998,11 @@ static PyObject *ObjectArrayList_compare(PyObject *pySelf, PyObject *pyValue, in
     }
 }
 
+#ifdef IS_PYTHON_39_OR_LATER
 static PyObject *ObjectArrayList_class_getitem(PyObject *cls, PyObject *item) {
     return Py_GenericAlias(cls, item);
 }
+#endif
 
 static __forceinline PyObject *ObjectArrayList_repr(PyObject *pySelf) {
     auto *self = reinterpret_cast<ObjectArrayList *>(pySelf);
@@ -1055,7 +1057,9 @@ static PyMethodDef ObjectArrayList_methods[] = {
         {"clear",             (PyCFunction) ObjectArrayList_clear,         METH_NOARGS},
         {"__rmul__",          (PyCFunction) ObjectArrayList_rmul,          METH_O},
         {"__reversed__",      (PyCFunction) ObjectArrayList_reversed,      METH_NOARGS},
+#ifdef IS_PYTHON_39_OR_LATER
         {"__class_getitem__", (PyCFunction) ObjectArrayList_class_getitem, METH_O | METH_CLASS},
+#endif
         {nullptr}
 };
 

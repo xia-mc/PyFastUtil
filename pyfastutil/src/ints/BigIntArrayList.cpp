@@ -1064,9 +1064,11 @@ static PyObject *BigIntArrayList_compare(PyObject *pySelf, PyObject *pyValue, in
     }
 }
 
+#ifdef IS_PYTHON_39_OR_LATER
 static PyObject *BigIntArrayList_class_getitem(PyObject *cls, PyObject *item) {
     return Py_GenericAlias(cls, item);
 }
+#endif
 
 static __forceinline PyObject *BigIntArrayList_repr(PyObject *pySelf) {
     auto *self = reinterpret_cast<BigIntArrayList *>(pySelf);
@@ -1120,7 +1122,9 @@ static PyMethodDef BigIntArrayList_methods[] = {
         {"clear",             (PyCFunction) BigIntArrayList_clear,         METH_NOARGS},
         {"__rmul__",          (PyCFunction) BigIntArrayList_rmul,          METH_O},
         {"__reversed__",      (PyCFunction) BigIntArrayList_reversed,      METH_NOARGS},
+#ifdef IS_PYTHON_39_OR_LATER
         {"__class_getitem__", (PyCFunction) BigIntArrayList_class_getitem, METH_O | METH_CLASS},
+#endif
         {nullptr}
 };
 
