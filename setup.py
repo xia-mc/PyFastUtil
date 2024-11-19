@@ -21,8 +21,7 @@ elif IS_MACOS:
         "-Wall", "-fvisibility=hidden",
         "-Wno-error=unknown-pragmas",
         "-mavx", "-mavx2", "-mavx512f", "-mavx512bw", "-mavx512dq", "-mavx512vl",
-        "-fno-tree-vectorize", "-faligned-allocation",
-        "-std=c++20"
+        "-fno-tree-vectorize", "-faligned-allocation"
     ]
     EXTRA_LINK_ARG = ["-flto"]
 
