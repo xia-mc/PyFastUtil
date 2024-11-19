@@ -9,6 +9,33 @@
 #include "stdexcept"
 #include "Compat.h"
 
+__forceinline void *alignedAlloc(const size_t &n, const size_t &alignment) {
+    void *ptr;
+
+#ifdef _WIN32
+    ptr = _aligned_malloc(n, alignment);
+#elif defined(__APPLE__)
+    if (posix_memalign(&ptr, alignment, n) != 0) {
+        ptr = nullptr;
+    }
+#else
+    ptr = std::aligned_alloc(alignment, n);
+#endif
+
+
+    if (ptr == nullptr)
+        throw std::bad_alloc();
+    return ptr;
+}
+
+__forceinline void alignedFree(void *ptr) {
+#ifdef _WIN32
+    _aligned_free(ptr);
+#else
+    std::free(ptr);
+#endif
+}
+
 template<typename T, std::size_t Alignment>
 class AlignedAllocator {
 public:
@@ -26,30 +53,11 @@ public:
     explicit AlignedAllocator(const AlignedAllocator<U, Alignment> &) {}
 
     [[maybe_unused]] __forceinline T *allocate(std::size_t n) {
-        void *ptr;
-
-#ifdef _WIN32
-        ptr = _aligned_malloc(n * sizeof(T), Alignment);
-#elif defined(__APPLE__)
-        if (posix_memalign(&ptr, Alignment, n * sizeof(T)) != 0) {
-            ptr = nullptr;
-        }
-#else
-        ptr = std::aligned_alloc(Alignment, n * sizeof(T));
-#endif
-
-
-        if (ptr == nullptr)
-            throw std::bad_alloc();
-        return static_cast<T *>(ptr);
+        return static_cast<T *>(alignedAlloc(n * sizeof(T), Alignment));
     }
 
     [[maybe_unused]] __forceinline void deallocate(T *ptr, std::size_t) noexcept {
-#ifdef _WIN32
-        _aligned_free(ptr);
-#else
-        std::free(ptr);
-#endif
+        alignedFree(ptr);
     }
 
     // Rebind allocator to another type

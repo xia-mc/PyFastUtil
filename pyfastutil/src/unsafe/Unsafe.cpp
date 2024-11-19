@@ -4,6 +4,7 @@
 
 #include "Unsafe.h"
 #include "mutex"
+#include "utils/memory/AlignedAllocator.h"
 
 extern "C" {
 
@@ -79,6 +80,34 @@ static PyObject *Unsafe_free([[maybe_unused]] PyObject *self, PyObject *pyAddres
     }
 
     free(reinterpret_cast<void *>(address));
+    Py_RETURN_NONE;
+}
+
+static PyObject *Unsafe_alignedMalloc([[maybe_unused]] PyObject *self, PyObject *args) {
+    size_t size;
+    size_t alignment;
+    if (!PyArg_ParseTuple(args, "KK", &size, &alignment)) {
+        return nullptr;
+    }
+    if (PyErr_Occurred()) {
+        return nullptr;
+    }
+
+    void *ptr = alignedAlloc(size, alignment);
+    if (ptr == nullptr) {
+        PyErr_SetString(PyExc_MemoryError, "Failed to alloc memory.");
+        return nullptr;
+    }
+    return PyLong_FromSize_t(reinterpret_cast<uintptr_t>(ptr));
+}
+
+static PyObject *Unsafe_alignedFree([[maybe_unused]] PyObject *self, PyObject *pyAddress) {
+    const uintptr_t address = PyLong_AsSize_t(pyAddress);
+    if (PyErr_Occurred()) {
+        return nullptr;
+    }
+
+    alignedFree(reinterpret_cast<void *>(address));
     Py_RETURN_NONE;
 }
 
@@ -205,24 +234,26 @@ static PyObject *Unsafe_fgets([[maybe_unused]] PyObject *pySelf, PyObject *pyBuf
 }
 
 static PyMethodDef Unsafe_methods[] = {
-        {"__enter__",   (PyCFunction) Unsafe_enter,      METH_NOARGS,  nullptr},
-        {"__exit__",    (PyCFunction) Unsafe_exit,       METH_VARARGS, nullptr},
-        {"malloc",      (PyCFunction) Unsafe_malloc,     METH_O,       nullptr},
-        {"calloc",      (PyCFunction) Unsafe_calloc,     METH_VARARGS, nullptr},
-        {"realloc",     (PyCFunction) Unsafe_realloc,    METH_VARARGS, nullptr},
-        {"free",        (PyCFunction) Unsafe_free,       METH_O,       nullptr},
-        {"get",         (PyCFunction) Unsafe_get,        METH_VARARGS, nullptr},
-        {"set",         (PyCFunction) Unsafe_set,        METH_VARARGS, nullptr},
-        {"get_address", (PyCFunction) Unsafe_getAddress, METH_O,       nullptr},
-        {"as_object",   (PyCFunction) Unsafe_as_object,  METH_O,       nullptr},
-        {"memcpy",      (PyCFunction) Unsafe_memcpy,     METH_VARARGS, nullptr},
-        {"incref",      (PyCFunction) Unsafe_incref,     METH_O,       nullptr},
-        {"decref",      (PyCFunction) Unsafe_decref,     METH_O,       nullptr},
-        {"refcnt",      (PyCFunction) Unsafe_refcnt,     METH_O,       nullptr},
-        {"fputs",       (PyCFunction) Unsafe_fputs,      METH_O,       nullptr},
-        {"fflush",      (PyCFunction) Unsafe_fflush,     METH_NOARGS,  nullptr},
-        {"fgets",       (PyCFunction) Unsafe_fgets,      METH_O,       nullptr},
-        {nullptr,       nullptr, 0,                                    nullptr}
+        {"__enter__",      (PyCFunction) Unsafe_enter,         METH_NOARGS,  nullptr},
+        {"__exit__",       (PyCFunction) Unsafe_exit,          METH_VARARGS, nullptr},
+        {"malloc",         (PyCFunction) Unsafe_malloc,        METH_O,       nullptr},
+        {"calloc",         (PyCFunction) Unsafe_calloc,        METH_VARARGS, nullptr},
+        {"realloc",        (PyCFunction) Unsafe_realloc,       METH_VARARGS, nullptr},
+        {"free",           (PyCFunction) Unsafe_free,          METH_O,       nullptr},
+        {"aligned_malloc", (PyCFunction) Unsafe_alignedMalloc, METH_VARARGS, nullptr},
+        {"aligned_free",   (PyCFunction) Unsafe_alignedFree,   METH_O,       nullptr},
+        {"get",            (PyCFunction) Unsafe_get,           METH_VARARGS, nullptr},
+        {"set",            (PyCFunction) Unsafe_set,           METH_VARARGS, nullptr},
+        {"get_address",    (PyCFunction) Unsafe_getAddress,    METH_O,       nullptr},
+        {"as_object",      (PyCFunction) Unsafe_as_object,     METH_O,       nullptr},
+        {"memcpy",         (PyCFunction) Unsafe_memcpy,        METH_VARARGS, nullptr},
+        {"incref",         (PyCFunction) Unsafe_incref,        METH_O,       nullptr},
+        {"decref",         (PyCFunction) Unsafe_decref,        METH_O,       nullptr},
+        {"refcnt",         (PyCFunction) Unsafe_refcnt,        METH_O,       nullptr},
+        {"fputs",          (PyCFunction) Unsafe_fputs,         METH_O,       nullptr},
+        {"fflush",         (PyCFunction) Unsafe_fflush,        METH_NOARGS,  nullptr},
+        {"fgets",          (PyCFunction) Unsafe_fgets,         METH_O,       nullptr},
+        {nullptr,          nullptr, 0,                                       nullptr}
 };
 
 

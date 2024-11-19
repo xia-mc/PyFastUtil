@@ -84,6 +84,29 @@ class Unsafe:
         """
         pass
 
+    def aligned_malloc(self, __size: int, __alignment: int) -> Ptr:
+        """
+        Allocates a block of memory of the given size, aligned to the specified boundary.
+
+        :param __size: The number of bytes to allocate.
+        :param __alignment: The alignment boundary in bytes. Must be a power of two.
+        :return: A pointer (integer representing the memory address) to the allocated and aligned memory block.
+
+        **Warning**: The allocated memory is uninitialized. You are responsible for managing this memory
+        and freeing it with `aligned_free` when no longer needed.
+        """
+        pass
+
+    def aligned_free(self, __pointer: Ptr) -> None:
+        """
+        Frees a previously allocated block of memory that was aligned with `aligned_malloc`.
+
+        :param __pointer: The pointer to the aligned memory block to free.
+
+        **Warning**: After calling this function, the pointer becomes invalid and should not be used.
+        """
+        pass
+
     def get(self, __pointer: Ptr, __size: int) -> bytes:
         """
         Reads a block of memory and returns its contents as a bytes object.

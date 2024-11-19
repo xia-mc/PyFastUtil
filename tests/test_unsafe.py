@@ -14,6 +14,14 @@ class TestUnsafe(unittest.TestCase):
             self.assertGreater(ptr, 0)
             unsafe.free(ptr)
 
+    def test_aligned_malloc_and_free(self):
+        with Unsafe() as unsafe:
+            ptr = unsafe.aligned_malloc(10, 64)
+            self.assertIsInstance(ptr, int)
+            self.assertGreater(ptr, 0)
+            self.assertEqual(ptr % 64, 0)
+            unsafe.aligned_free(ptr)
+
     def test_calloc(self):
         with Unsafe() as unsafe:
             ptr = unsafe.calloc(10, 4)
