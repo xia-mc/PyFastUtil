@@ -165,3 +165,4 @@ cython_debug/
 /pyfastutil/IntArrayList.pyd
 /pyfastutil/__pyfastutil.so
 /result.json
+/cmake-build-debug/

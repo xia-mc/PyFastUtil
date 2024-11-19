@@ -36,6 +36,11 @@ static void IntArrayListIter_dealloc(IntArrayListIter *self) {
 static PyObject *IntArrayListIter_next(PyObject *pySelf) {
     auto *self = reinterpret_cast<IntArrayListIter *>(pySelf);
 
+    if (self->container->vector.empty()) {
+        PyErr_SetNone(PyExc_StopIteration);
+        return nullptr;
+    }
+
     if (self->reversed) {
         if (self->index == 0) {
             // last iteration

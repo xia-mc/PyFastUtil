@@ -6,7 +6,6 @@
 #define PYFASTUTIL_OBJECTARRAYLIST_H
 
 #include "utils/PythonPCH.h"
-#include "utils/memory/AlignedAllocator.h"
 #include <vector>
 
 extern "C" {

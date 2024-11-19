@@ -36,6 +36,11 @@ static void BigIntArrayListIter_dealloc(BigIntArrayListIter *self) {
 static PyObject *BigIntArrayListIter_next(PyObject *pySelf) {
     auto *self = reinterpret_cast<BigIntArrayListIter *>(pySelf);
 
+    if (self->container->vector.empty()) {
+        PyErr_SetNone(PyExc_StopIteration);
+        return nullptr;
+    }
+
     if (self->reversed) {
         if (self->index == 0) {
             // last iteration
