@@ -15,8 +15,9 @@
 ## 让 Python 更快一点
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/xia-mc/PyFastUtil)](https://img.shields.io/github/issues/Nova-Committee/CheatDetector)
-[![Build](https://github.com/xia-mc/PyFastUtil/actions/workflows/python-package.yml/badge.svg)](https://github.com/xia-mc/PyFastUtil/actions)
+[![Issues](https://img.shields.io/github/issues/xia-mc/PyFastUtil)](https://img.shields.io/github/issues/xia-mc/PyFastUtil)
+![Version](https://img.shields.io/badge/CPython-3.9_or_later-blue)
+[![Build](https://img.shields.io/github/actions/workflow/status/xia-mc/PyFastUtil/python-package.yml)](https://github.com/xia-mc/PyFastUtil/actions)
 
 </div>
 
