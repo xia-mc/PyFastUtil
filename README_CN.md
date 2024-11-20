@@ -18,8 +18,9 @@
 ## 让 Python 更快一点
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/xia-mc/PyFastUtil)](https://img.shields.io/github/issues/Nova-Committee/CheatDetector)
-[![Build](https://github.com/xia-mc/PyFastUtil/actions/workflows/python-package.yml/badge.svg)](https://github.com/xia-mc/PyFastUtil/actions)
+[![Issues](https://img.shields.io/github/issues/xia-mc/PyFastUtil)](https://img.shields.io/github/issues/xia-mc/PyFastUtil)
+![Version](https://img.shields.io/badge/CPython-3.9_or_later-blue)
+[![Build](https://img.shields.io/github/actions/workflow/status/xia-mc/PyFastUtil/python-package.yml)](https://github.com/xia-mc/PyFastUtil/actions)
 
 </div>
 
@@ -39,6 +40,10 @@
 ### 性能测试
 
 > **注意**: 对于一些非常快速的 O(1) 操作（如 `pop`、`extend`），PyFastUtil 的性能可能会略逊于 Python 原生实现。这是由于 CPython 调用 C 扩展时的不可忽视的开销所致。我们正在努力优化这一点。
+
+> CPU: AMD Ryzen 7 5700G
+> 
+> Windows 11 23H2, Python 3.12, MSVC 19.41.34120
 
 #### 针对类型特化的列表（以 `IntArrayList` 为例）
 

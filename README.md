@@ -19,8 +19,9 @@ English | [简体中文](./README_CN.md)
 ## Make Python Fast Again
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/xia-mc/PyFastUtil)](https://img.shields.io/github/issues/Nova-Committee/CheatDetector)
-[![Build](https://github.com/xia-mc/PyFastUtil/actions/workflows/python-package.yml/badge.svg)](https://github.com/xia-mc/PyFastUtil/actions)
+[![Issues](https://img.shields.io/github/issues/xia-mc/PyFastUtil)](https://img.shields.io/github/issues/xia-mc/PyFastUtil)
+![Version](https://img.shields.io/badge/CPython-3.9_or_later-blue)
+[![Build](https://img.shields.io/github/actions/workflow/status/xia-mc/PyFastUtil/python-package.yml)](https://github.com/xia-mc/PyFastUtil/actions)
 
 </div>
 
@@ -40,6 +41,10 @@ English | [简体中文](./README_CN.md)
 ### Performance Benchmark
 
 > **Note**: For some very fast O(1) operations (such as `pop` and `extend`), PyFastUtil may perform slightly worse than Python's native implementation due to the non-negligible overhead of CPython's C extension calls. We are working on optimizing this.
+
+> CPU: AMD Ryzen 7 5700G
+> 
+> Windows 11 23H2, Python 3.12, MSVC 19.41.34120
 
 #### Specialized List Benchmark (e.g., `IntArrayList`)
 
