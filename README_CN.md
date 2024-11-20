@@ -5,7 +5,7 @@
 # PyFastUtil
 
 <p>
-   <img src="./mascot.png" alt="Project Mascot" width="400">
+   <img src="./mascot.png" alt="Project Mascot" width="500">
 </p>
 
 ## 让 Python 更快一点

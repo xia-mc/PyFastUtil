@@ -5,7 +5,7 @@ English | [简体中文](./README_CN.md)
 # PyFastUtil
 
 <p>
-   <img src="./mascot.png" alt="Project Mascot" width="400">
+   <img src="./mascot.png" alt="Project Mascot" width="500">
 </p>
 
 ## Make Python Fast Again
