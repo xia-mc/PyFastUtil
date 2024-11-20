@@ -4,13 +4,17 @@ English | [简体中文](./README_CN.md)
 
 # PyFastUtil
 
-[//]: # (  <p>)
 
-[//]: # (    <!--suppress CheckImageSize -->)
+> You can view the image [here](https://x.com/kokola10032/status/1812480707643506704).
 
-[//]: # (      <img src="./mascot.png" alt="Project Mascot" width="320">)
+[//]: # (<p>)
 
-[//]: # (  </p>)
+[//]: # (   <img src="https://pbs.twimg.com/media/GSc5lbxWMAAOM9l?format=png" alt="Project Mascot" width="400">)
+
+[//]: # (</p>)
+
+[//]: # ()
+[//]: # (Image author: [Twitter@kokola10032]&#40;https://x.com/kokola10032&#41;)
 
 ## Make Python Fast Again
 
