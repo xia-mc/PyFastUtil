@@ -37,6 +37,9 @@ English | [简体中文](./README_CN.md)
 
 > **Note**: For some very fast O(1) operations (such as `pop` and `extend`), PyFastUtil may perform slightly worse than Python's native implementation due to the non-negligible overhead of CPython's C extension calls. We are working on optimizing this.
 
+> CPU: AMD Ryzen 7 5700G
+> Windows 11 23H2, Python 3.12, MSVC 19.41.34120
+
 #### Specialized List Benchmark (e.g., `IntArrayList`)
 
 ```text
