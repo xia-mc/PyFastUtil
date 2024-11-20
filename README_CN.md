@@ -37,6 +37,10 @@
 
 > **注意**: 对于一些非常快速的 O(1) 操作（如 `pop`、`extend`），PyFastUtil 的性能可能会略逊于 Python 原生实现。这是由于 CPython 调用 C 扩展时的不可忽视的开销所致。我们正在努力优化这一点。
 
+> CPU: AMD Ryzen 7 5700G
+> 
+> Windows 11 23H2, Python 3.12, MSVC 19.41.34120
+
 #### 针对类型特化的列表（以 `IntArrayList` 为例）
 
 ```text
