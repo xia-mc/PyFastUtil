@@ -110,7 +110,7 @@
 #define IFLT(X, Y) if ((k = ISLT(X, Y)) < 0) goto fail;  \
            if (k)
 
-static void
+static __forceinline void
 free_list_items(PyObject **items, bool use_qsbr) {
 #ifdef Py_GIL_DISABLED
     _PyListArray *array = _Py_CONTAINER_OF(items, _PyListArray, ob_item);
@@ -127,7 +127,7 @@ free_list_items(PyObject **items, bool use_qsbr) {
 }
 
 /* Reverse a slice of a list in place, from lo up to (exclusive) hi. */
-static void
+static __forceinline void
 reverse_slice(PyObject **lo, PyObject **hi) {
     assert(lo && hi);
 
@@ -299,7 +299,7 @@ gallop_right(MergeState *ms, PyObject *key, PyObject **a, Py_ssize_t n, Py_ssize
 }
 
 /* Conceptually a MergeState's constructor. */
-static void
+static __forceinline void
 merge_init(MergeState *ms, Py_ssize_t list_size, int has_keyfunc,
            sortslice *lo) {
     assert(ms != NULL);
@@ -355,7 +355,7 @@ merge_compute_minrun(Py_ssize_t n) {
  * length n.
  * Compute the "power" of the first run. See listsort.txt for details.
  */
-static int
+static __forceinline int
 powerloop(Py_ssize_t s1, Py_ssize_t n1, Py_ssize_t n2, Py_ssize_t n) {
     int result = 0;
     assert(s1 >= 0);
@@ -449,7 +449,7 @@ upon return.
 
 Returns -1 in case of error.
 */
-static Py_ssize_t
+static __forceinline Py_ssize_t
 count_run(MergeState *ms, sortslice *slo, Py_ssize_t nremaining) {
     Py_ssize_t k; /* used by IFLT macro expansion */
     Py_ssize_t n;
@@ -550,7 +550,7 @@ count_run(MergeState *ms, sortslice *slo, Py_ssize_t nremaining) {
    Even in case of error, the output slice will be some permutation of
    the input (nothing is lost or duplicated).
 */
-static int
+static __forceinline int
 binarysort(MergeState *ms, const sortslice *ss, Py_ssize_t n, Py_ssize_t ok) {
     Py_ssize_t k; /* for IFLT macro expansion */
     PyObject **const a = ss->keys;
@@ -704,7 +704,7 @@ key, and the last n-k should follow key.
 
 Returns -1 on error.  See listsort.txt for info on the method.
 */
-static Py_ssize_t
+static __forceinline Py_ssize_t
 gallop_left(MergeState *ms, PyObject *key, PyObject **a, Py_ssize_t n, Py_ssize_t hint) {
     Py_ssize_t ofs;
     Py_ssize_t lastofs;
@@ -816,7 +816,7 @@ merge_getmem(MergeState *ms, Py_ssize_t need) {
  * should have na <= nb.  See listsort.txt for more info.  Return 0 if
  * successful, -1 if error.
  */
-static Py_ssize_t
+static __forceinline Py_ssize_t
 merge_lo(MergeState *ms, sortslice ssa, Py_ssize_t na,
          sortslice ssb, Py_ssize_t nb) {
     Py_ssize_t k;
@@ -946,7 +946,7 @@ merge_lo(MergeState *ms, sortslice ssa, Py_ssize_t na,
  * should have na >= nb.  See listsort.txt for more info.  Return 0 if
  * successful, -1 if error.
  */
-static Py_ssize_t
+static __forceinline Py_ssize_t
 merge_hi(MergeState *ms, sortslice ssa, Py_ssize_t na,
          sortslice ssb, Py_ssize_t nb) {
     Py_ssize_t k;
@@ -1083,7 +1083,7 @@ merge_hi(MergeState *ms, sortslice ssa, Py_ssize_t na,
 /* Merge the two runs at stack indices i and i+1.
  * Returns 0 on success, -1 on error.
  */
-static Py_ssize_t
+static __forceinline Py_ssize_t
 merge_at(MergeState *ms, Py_ssize_t i) {
     sortslice ssa, ssb;
     Py_ssize_t na, nb;
@@ -1148,7 +1148,7 @@ merge_at(MergeState *ms, Py_ssize_t i) {
  *
  * Returns 0 on success, -1 on error.
  */
-static int
+static __forceinline int
 found_new_run(MergeState *ms, Py_ssize_t n2) {
     assert(ms);
     if (ms->n) {
@@ -1172,7 +1172,7 @@ found_new_run(MergeState *ms, Py_ssize_t n2) {
  *
  * Returns 0 on success, -1 on error.
  */
-static int
+static __forceinline int
 merge_force_collapse(MergeState *ms) {
     struct s_slice *p = ms->pending;
 
@@ -1373,7 +1373,7 @@ ascending or descending, according to their function values.
 
 The reverse flag can be set to sort in descending order.
 [clinic start generated code]*/
-PyObject *CPython_sort(PyObject **items, Py_ssize_t size, PyObject *keyfunc, int reverse)
+PyObject * CPython_sort(PyObject **items, Py_ssize_t size, PyObject *keyfunc, int reverse)
 /*[clinic end generated code: output=57b9f9c5e23fbe42 input=667bf25d0e3a3676]*/
 {
     MergeState ms;

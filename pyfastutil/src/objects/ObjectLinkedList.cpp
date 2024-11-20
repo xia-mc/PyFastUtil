@@ -348,66 +348,30 @@ static PyObject *ObjectLinkedList_sort(PyObject *pySelf, PyObject *args, PyObjec
         return nullptr;
     }
 
-    const bool reverse = reverseInt == 1;
-
-    try {
-        if (keyFunc == Py_None) {
-            // do sort
-            self->list.sort([&reverse](PyObject *a, PyObject *b) {
-                if (reverse) {
-                    return PyObject_RichCompareBool(b, a, Py_LT);
-                } else {
-                    return PyObject_RichCompareBool(a, b, Py_LT);
-                }
-            });
-            self->modCount++;
-        } else {
-            // sort with key function
-            const auto keyWrapper = [keyFunc](PyObject *value) -> PyObject * {
-                // call key function
-                PyObject *result = PyObject_CallFunctionObjArgs(keyFunc, value, nullptr);
-                if (result == nullptr) {
-                    throw std::runtime_error("Key function call failed.");
-                }
-                return result;
-            };
-
-            const auto cmpWrapper = [&keyWrapper](PyObject *a, PyObject *b) -> bool {
-                // do comp
-                PyObject *keyA = keyWrapper(a);
-                PyObject *keyB = keyWrapper(b);
-                int cmpResult = PyObject_RichCompareBool(keyA, keyB, Py_LT);  // a < b ?
-                SAFE_DECREF(keyA);
-                SAFE_DECREF(keyB);
-                if (cmpResult == -1) {
-                    throw std::runtime_error("Failed to comparison.");
-                }
-                return cmpResult == 1;
-            };
-
-            if (self->list.size() < 5000) {
-                if (reverse) {
-                    self->list.sort([&cmpWrapper](PyObject *a, PyObject *b) {
-                        return cmpWrapper(b, a);  // reverse
-                    });
-                } else {
-                    self->list.sort(cmpWrapper);
-                }
-            } else {
-                if (reverse) {
-                    self->list.sort([&cmpWrapper](PyObject *a, PyObject *b) {
-                        return cmpWrapper(b, a);  // reverse
-                    });
-                } else {
-                    self->list.sort(cmpWrapper);
-                }
-            }
-            self->modCount++;
-        }
-    } catch (const std::exception &e) {
-        PyErr_SetString(PyExc_RuntimeError, e.what());
+    // costs extra memory
+    const auto vecSize = self->list.size();
+    auto **pyData = static_cast<PyObject **>(PyMem_Malloc(sizeof(PyObject *) * vecSize));
+    if (pyData == nullptr) {
+        PyErr_NoMemory();
         return nullptr;
     }
+
+    auto iter = self->list.begin();
+    for (size_t i = 0; i < vecSize; ++i, ++iter) {
+        pyData[i] = *iter;
+    }
+
+    CPython_sort(pyData,
+                 static_cast<Py_ssize_t>(vecSize),
+                 keyFunc == Py_None ? nullptr : keyFunc, reverseInt);
+
+    iter = self->list.begin();
+    for (size_t i = 0; i < vecSize; ++i, ++iter) {
+        *iter = pyData[i];
+    }
+
+    PyMem_FREE(pyData);
+    self->modCount++;
 
     Py_RETURN_NONE;
 }

@@ -169,3 +169,13 @@ Avg speed of PyFastUtil compared to Python list: 2565.720 %
 ## 贡献
 
 欢迎贡献！请随时提交问题或拉取请求。请注意，项目处于早期阶段，我们非常感谢任何反馈或建议。
+
+## 感谢
+
+本项目部分代码基于以下优秀的开源项目：
+
+- [CPython](https://github.com/python/cpython): Python 官方解释器的实现，遵循 [Python Software Foundation License](https://docs.python.org/3/license.html)。
+- [cpp-TimSort](https://github.com/timsort/cpp-TimSort): C++ 实现的 TimSort 算法，遵循 [MIT License](https://github.com/timsort/cpp-TimSort/blob/master/LICENSE)。
+
+特别感谢这些开源项目的贡献者们！
+

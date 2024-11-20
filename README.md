@@ -170,3 +170,12 @@ This project is licensed under the **Apache License 2.0**. See the [LICENSE](LIC
 ## Contributing
 
 Contributions are welcome! Feel free to submit issues or pull requests. Please note that the project is in an early stage, and we appreciate any feedback or suggestions.
+
+## Acknowledgements
+
+This project includes code from the following amazing open-source projects:
+
+- [CPython](https://github.com/python/cpython): The official Python interpreter, licensed under the [Python Software Foundation License](https://docs.python.org/3/license.html).
+- [cpp-TimSort](https://github.com/timsort/cpp-TimSort): A C++ implementation of the TimSort algorithm, licensed under the [MIT License](https://github.com/timsort/cpp-TimSort/blob/master/LICENSE).
+
+Special thanks to the contributors of these open-source projects!

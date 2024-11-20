@@ -12,6 +12,7 @@
 #include "utils/simd/Utils.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "ints/IntArrayListIter.h"
+#include "utils/CPythonSort.h"
 
 extern "C" {
 
@@ -451,51 +452,27 @@ static PyObject *IntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *k
                 }
             }
         } else {
-            // sort with key function
-            const auto keyWrapper = [keyFunc](int value) -> PyObject * {
-                // call key function
-                PyObject *arg = PyLong_FromLong(value);
-                if (arg == nullptr) {
-                    throw std::runtime_error("Failed to create argument for key function.");
-                }
-                PyObject *result = PyObject_CallFunctionObjArgs(keyFunc, arg, nullptr);
-                SAFE_DECREF(arg);
-                if (result == nullptr) {
-                    throw std::runtime_error("Key function call failed.");
-                }
-                return result;
-            };
-
-            const auto cmpWrapper = [&keyWrapper](int a, int b) -> bool {
-                // do comp
-                PyObject *keyA = keyWrapper(a);
-                PyObject *keyB = keyWrapper(b);
-                int cmpResult = PyObject_RichCompareBool(keyA, keyB, Py_LT);  // a < b ?
-                SAFE_DECREF(keyA);
-                SAFE_DECREF(keyB);
-                if (cmpResult == -1) {
-                    throw std::runtime_error("Failed to comparison.");
-                }
-                return cmpResult == 1;
-            };
-
-            if (self->vector.size() < 5000) {
-                if (reverse) {
-                    std::sort(self->vector.begin(), self->vector.end(), [&cmpWrapper](int a, int b) {
-                        return cmpWrapper(b, a);  // reverse
-                    });
-                } else {
-                    std::sort(self->vector.begin(), self->vector.end(), cmpWrapper);
-                }
-            } else {
-                if (reverse) {
-                    gfx::timsort(self->vector.begin(), self->vector.end(), [&cmpWrapper](int a, int b) {
-                        return cmpWrapper(b, a);  // reverse
-                    });
-                } else {
-                    gfx::timsort(self->vector.begin(), self->vector.end(), cmpWrapper);
-                }
+            // sort with key function, costs extra memory
+            const auto vecSize = self->vector.size();
+            auto vecData = self->vector.data();
+            auto **pyData = static_cast<PyObject **>(PyMem_Malloc(sizeof(PyObject *) * vecSize));
+            if (pyData == nullptr) {
+                PyErr_NoMemory();
+                return nullptr;
             }
+
+            for (size_t i = 0; i < vecSize; ++i) {
+                pyData[i] = PyLong_FromLong(static_cast<long>(vecData[i]));
+            }
+
+            CPython_sort(pyData, static_cast<Py_ssize_t>(vecSize), keyFunc, reverseInt);
+
+            for (size_t i = 0; i < vecSize; ++i) {
+                vecData[i] = static_cast<int>(PyLong_AsLong(pyData[i]));
+                Py_DECREF(pyData[i]);
+            }
+
+            PyMem_FREE(pyData);
         }
     } catch (const std::exception &e) {
         PyErr_SetString(PyExc_RuntimeError, e.what());
