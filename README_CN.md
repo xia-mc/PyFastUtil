@@ -4,16 +4,9 @@
 
 # PyFastUtil
 
-> 你可以在 [这里](https://x.com/kokola10032/status/1812480707643506704) 查看图片.
-
-[//]: # (<p>)
-
-[//]: # (   <img src="https://pbs.twimg.com/media/GSc5lbxWMAAOM9l?format=png" alt="Project Mascot" width="400">)
-
-[//]: # (</p>)
-
-[//]: # ()
-[//]: # (Image author: [Twitter@kokola10032]&#40;https://x.com/kokola10032&#41;)
+<p>
+   <img src="./mascot.png" alt="Project Mascot" width="400">
+</p>
 
 ## 让 Python 更快一点
 
@@ -179,3 +172,4 @@ Avg speed of PyFastUtil compared to Python list: 2565.720 %
 
 特别感谢这些开源项目的贡献者们！
 
+“看板娘”图像由画师 [kokola](https://x.com/kokola10032) 提供，并已获得使用许可。您可以在 [X](https://x.com/kokola10032/status/1812480707643506704) 上查看原图。

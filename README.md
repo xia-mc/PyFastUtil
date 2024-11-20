@@ -4,17 +4,9 @@ English | [简体中文](./README_CN.md)
 
 # PyFastUtil
 
-
-> You can view the image [here](https://x.com/kokola10032/status/1812480707643506704).
-
-[//]: # (<p>)
-
-[//]: # (   <img src="https://pbs.twimg.com/media/GSc5lbxWMAAOM9l?format=png" alt="Project Mascot" width="400">)
-
-[//]: # (</p>)
-
-[//]: # ()
-[//]: # (Image author: [Twitter@kokola10032]&#40;https://x.com/kokola10032&#41;)
+<p>
+   <img src="./mascot.png" alt="Project Mascot" width="400">
+</p>
 
 ## Make Python Fast Again
 
@@ -179,3 +171,5 @@ This project includes code from the following amazing open-source projects:
 - [cpp-TimSort](https://github.com/timsort/cpp-TimSort): A C++ implementation of the TimSort algorithm, licensed under the [MIT License](https://github.com/timsort/cpp-TimSort/blob/master/LICENSE).
 
 Special thanks to the contributors of these open-source projects!
+
+The "mascot" image is provided by the artist [kokola](https://x.com/kokola10032) and is used with permission. You can find the original image on [X](https://x.com/kokola10032/status/1812480707643506704).
