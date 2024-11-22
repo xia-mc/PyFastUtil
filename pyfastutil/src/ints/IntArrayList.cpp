@@ -168,7 +168,7 @@ static PyObject *IntArrayList_to_list(PyObject *pySelf) {
     if (result == nullptr) return PyErr_NoMemory();
 
     for (Py_ssize_t i = 0; i < size; ++i) {
-        PyObject *item = PyLong_FromLong(self->vector[i]);
+        PyObject *item = PyFast_FromInt(self->vector[i]);
         if (item == nullptr) {
             SAFE_DECREF(result);
             return nullptr;
@@ -301,13 +301,13 @@ static PyObject *IntArrayList_pop(PyObject *pySelf, PyObject *const *args, const
         const auto popped = self->vector[static_cast<size_t>(index)];
         self->vector.pop_back();
 
-        return PyLong_FromLong(popped);
+        return PyFast_FromInt(popped);
     }
 
     const auto popped = self->vector[static_cast<size_t>(index)];
     self->vector.erase(self->vector.begin() + index);
 
-    return PyLong_FromLong(popped);
+    return PyFast_FromInt(popped);
 }
 
 static PyObject *IntArrayList_index(PyObject *pySelf, PyObject *args) {
@@ -512,7 +512,7 @@ static PyObject *IntArrayList_getitem(PyObject *pySelf, Py_ssize_t pyIndex) {
     }
 
     try {
-        return PyLong_FromLong(self->vector[static_cast<size_t>(pyIndex)]);
+        return PyFast_FromInt(self->vector[static_cast<size_t>(pyIndex)]);
     } catch (const std::exception &e) {
         PyErr_SetString(PyExc_RuntimeError, e.what());
         return nullptr;
@@ -544,7 +544,7 @@ static PyObject *IntArrayList_getitem_slice(PyObject *pySelf, PyObject *slice) {
 
     for (Py_ssize_t i = 0; i < sliceLength; i++) {
         Py_ssize_t index = start + i * step;
-        PyObject *item = PyLong_FromLong(self->vector[static_cast<size_t>(index)]);
+        PyObject *item = PyFast_FromInt(self->vector[static_cast<size_t>(index)]);
         if (item == nullptr) {
             SAFE_DECREF(result);
             return nullptr;
@@ -1095,6 +1095,25 @@ static PyObject *IntArrayList_str(PyObject *pySelf) {
     return IntArrayList_repr(pySelf);
 }
 
+static int IntArrayList_get_buffer(PyObject *pySelf, Py_buffer *view, [[maybe_unused]] int flags) {
+    if (view == nullptr) return -1;
+    auto *self = reinterpret_cast<IntArrayList *>(pySelf);
+
+    self->shape = static_cast<Py_ssize_t>(self->vector.size());
+    view->format = const_cast<char *>("i");
+    view->buf = self->vector.data();
+    view->len = static_cast<Py_ssize_t>(self->vector.size() * sizeof(int));
+    view->itemsize = sizeof(int);
+    view->readonly = 0;
+    view->ndim = 1;
+    view->shape = &self->shape;
+    view->strides = nullptr;
+    view->suboffsets = nullptr;
+    view->internal = nullptr;
+
+    return 0;
+}
+
 static PyMethodDef IntArrayList_methods[] = {
         {"from_range", (PyCFunction) IntArrayList_from_range, METH_VARARGS | METH_STATIC},
         {"resize", (PyCFunction) IntArrayList_resize, METH_O},
@@ -1145,6 +1164,11 @@ static PyMappingMethods IntArrayList_asMapping = {
         IntArrayList_setitem_slice
 };
 
+static PyBufferProcs IntArrayList_asBuffer = {
+        IntArrayList_get_buffer,
+        nullptr
+};
+
 void initializeIntArrayListType(PyTypeObject &type) {
     type.tp_name = "IntArrayList";
     type.tp_basicsize = sizeof(IntArrayList);
@@ -1163,6 +1187,7 @@ void initializeIntArrayListType(PyTypeObject &type) {
     type.tp_richcompare = IntArrayList_compare;
     type.tp_repr = IntArrayList_repr;
     type.tp_str = IntArrayList_str;
+    type.tp_as_buffer = &IntArrayList_asBuffer;
 }
 
 #pragma clang diagnostic push

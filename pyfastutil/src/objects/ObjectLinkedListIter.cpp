@@ -96,6 +96,7 @@ static PyObject *ObjectLinkedListIter_next(PyObject *pySelf) {
 }
 
 static PyObject *ObjectLinkedListIter_iter(PyObject *pySelf) {
+    Py_INCREF(pySelf);
     return pySelf;
 }
 

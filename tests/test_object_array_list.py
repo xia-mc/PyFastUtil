@@ -1,4 +1,8 @@
+import ctypes
 import unittest
+
+import numpy
+
 from pyfastutil.objects import ObjectArrayList
 from tests.benchmark import benchmark_ObjectArrayList
 
@@ -168,6 +172,22 @@ class TestObjectArrayList(unittest.TestCase):
 
     def test_benchmark(self):
         self.assertEqual(benchmark_ObjectArrayList.main(), None)
+
+    def test_numpy(self):
+        lst = ObjectArrayList([1, 2, 3])
+        numpyLst = numpy.array(lst)
+        numpyLstFast = numpy.asarray(lst)
+        self.assertEqual(lst, numpyLst)
+        self.assertEqual(lst, numpyLstFast)
+
+    def test_numpy_limit(self):
+        INT_MAX = (2 ** (ctypes.sizeof(ctypes.c_int) * 8 - 1)) - 1
+        INT_MIN = -INT_MAX - 1
+        lst = ObjectArrayList([INT_MIN, INT_MAX])
+        numpyLst = numpy.array(lst)
+        numpyLstFast = numpy.asarray(lst)
+        self.assertEqual(lst, numpyLst)
+        self.assertEqual(lst, numpyLstFast)
 
 
 if __name__ == '__main__':

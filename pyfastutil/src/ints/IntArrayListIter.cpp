@@ -46,7 +46,7 @@ static PyObject *IntArrayListIter_next(PyObject *pySelf) {
             // last iteration
             int element = self->container->vector[self->index];
             self->index = SIZE_MAX;
-            return PyLong_FromLong(static_cast<long>(element));
+            return PyFast_FromInt(element);
         }
         if (self->index == SIZE_MAX) {
             // already finish iteration
@@ -56,7 +56,7 @@ static PyObject *IntArrayListIter_next(PyObject *pySelf) {
 
         int element = self->container->vector[self->index];
         self->index--;
-        return PyLong_FromLong(static_cast<long>(element));
+        return PyFast_FromInt(element);
     } else {
         if (self->index >= self->container->vector.size()) {
             PyErr_SetNone(PyExc_StopIteration);
@@ -65,11 +65,12 @@ static PyObject *IntArrayListIter_next(PyObject *pySelf) {
 
         int element = self->container->vector[self->index];
         self->index++;
-        return PyLong_FromLong(static_cast<long>(element));
+        return PyFast_FromInt(element);
     }
 }
 
 static PyObject *IntArrayListIter_iter(PyObject *pySelf) {
+    Py_INCREF(pySelf);
     return pySelf;
 }
 

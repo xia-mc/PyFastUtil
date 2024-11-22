@@ -1,8 +1,8 @@
+import struct
 import sys
 import unittest
-import struct
 
-from pyfastutil.unsafe import Unsafe, Ptr, NULL
+from pyfastutil.unsafe import Unsafe, NULL
 
 
 class TestUnsafe(unittest.TestCase):

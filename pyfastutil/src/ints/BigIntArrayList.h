@@ -14,6 +14,7 @@ typedef struct BigIntArrayList {
     PyObject_HEAD;
     // we use 64 bytes memory aligned to support faster SIMD, suggestion by ChatGPT.
     std::vector<long long, AlignedAllocator<long long, 64>> vector;
+    Py_ssize_t shape = 0;
 } BigIntArrayList;
 }
 

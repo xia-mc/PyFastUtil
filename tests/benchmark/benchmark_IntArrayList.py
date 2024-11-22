@@ -24,12 +24,12 @@ def setup_pyfastutil():
 # Benchmark functions
 def python_sort():
     global pythonList
-    pythonList.sort()
+    pythonList.sort(key=lambda obj: str(obj))
 
 
 def pyfastutil_sort():
     global pyFastUtilList
-    pyFastUtilList.sort()
+    pyFastUtilList.sort(key=lambda obj: str(obj))
 
 
 def python_append():

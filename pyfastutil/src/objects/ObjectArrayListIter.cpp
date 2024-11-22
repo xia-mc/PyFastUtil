@@ -73,6 +73,7 @@ static PyObject *ObjectArrayListIter_next(PyObject *pySelf) {
 }
 
 static PyObject *ObjectArrayListIter_iter(PyObject *pySelf) {
+    Py_INCREF(pySelf);
     return pySelf;
 }
 

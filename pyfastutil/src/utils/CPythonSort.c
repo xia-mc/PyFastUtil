@@ -121,7 +121,7 @@ free_list_items(PyObject **items, bool use_qsbr) {
         PyMem_Free(array);
     }
 #else
-    (void)use_qsbr;
+    (void) use_qsbr;
     PyMem_Free(items);
 #endif
 }
@@ -646,22 +646,34 @@ binarysort(MergeState *ms, const sortslice *ss, Py_ssize_t n, Py_ssize_t ok) {
             R = k ? M : R;
             L = k ? L : Mp1;
 #endif
-        } while (L < R);
-        assert(L == R);
-        /* a[:L] holds all elements from a[:ok] <= pivot now, so pivot belongs
-           at index L. Slide a[L:ok] to the right a slot to make room for it.
-           Caution: using memmove is much slower under MSVC 5; we're not
-           usually moving many slots. Years later: under Visual Studio 2022,
-           memmove seems just slightly slower than doing it "by hand". */
-        for (M = ok; M > L; --M)
-            a[M] = a[M - 1];
-        a[L] = pivot;
-        if (has_values) {
-            pivot = v[ok];
-            for (M = ok; M > L; --M)
-                v[M] = v[M - 1];
-            v[L] = pivot;
         }
+
+while (L < R);
+assert(L == R);
+/* a[:L] holds all elements from a[:ok] <= pivot now, so pivot belongs
+   at index L. Slide a[L:ok] to the right a slot to make room for it.
+   Caution: using memmove is much slower under MSVC 5; we're not
+   usually moving many slots. Years later: under Visual Studio 2022,
+   memmove seems just slightly slower than doing it "by hand". */
+for (
+M = ok;
+M >
+L;
+--M)
+a[M] = a[M - 1];
+a[L] =
+pivot;
+if (has_values) {
+pivot = v[ok];
+for (
+M = ok;
+M >
+L;
+--M)
+v[M] = v[M - 1];
+v[L] =
+pivot;
+}
 }
 #endif // pick binary or regular insertion sort
 return 0;
@@ -1373,7 +1385,7 @@ ascending or descending, according to their function values.
 
 The reverse flag can be set to sort in descending order.
 [clinic start generated code]*/
-PyObject * CPython_sort(PyObject **items, Py_ssize_t size, PyObject *keyfunc, int reverse)
+PyObject *CPython_sort(PyObject **items, Py_ssize_t size, PyObject *keyfunc, int reverse)
 /*[clinic end generated code: output=57b9f9c5e23fbe42 input=667bf25d0e3a3676]*/
 {
     MergeState ms;
@@ -1479,10 +1491,10 @@ PyObject * CPython_sort(PyObject **items, Py_ssize_t size, PyObject *keyfunc, in
             if (keys_are_all_same_type) {
                 if (key_type == &PyLong_Type &&
                     ints_are_bounded
-#ifdef IS_PYTHON_312_OR_LATER
+                    #ifdef IS_PYTHON_312_OR_LATER
                     && !_PyLong_IsCompact((PyLongObject *) key)
 #endif
-                    ) {
+                        ) {
 
                     ints_are_bounded = 0;
                 } else if (key_type == &PyUnicode_Type &&

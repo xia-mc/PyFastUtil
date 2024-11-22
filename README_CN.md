@@ -155,6 +155,7 @@ Avg speed of PyFastUtil compared to Python list: 2565.720 %
 ## 开发路线图
 
 - [ ] 实现核心数据结构（例如，快速列表、映射、集合）。
+- [x] Numpy 支持。
 - [ ] 提供 SIMD 和内联汇编的 Python 绑定。
 - [ ] 进行全面的测试和基准测试。
 - [ ] 发布到 PyPI。

@@ -110,7 +110,8 @@ def main():
 
     # Benchmark append()
     time_python_append = sum(timeit.repeat(python_append, setup=setup_python, repeat=REPEAT, number=1)) / REPEAT
-    time_pyfastutil_append = sum(timeit.repeat(pyfastutil_append, setup=setup_pyfastutil, repeat=REPEAT, number=1)) / REPEAT
+    time_pyfastutil_append = sum(
+        timeit.repeat(pyfastutil_append, setup=setup_pyfastutil, repeat=REPEAT, number=1)) / REPEAT
     append_speed = time_python_append / time_pyfastutil_append * 100
     total_speed += append_speed
     num_operations += 1
@@ -120,7 +121,8 @@ def main():
 
     # Benchmark insert()
     time_python_insert = sum(timeit.repeat(python_insert, setup=setup_python, repeat=REPEAT, number=1)) / REPEAT
-    time_pyfastutil_insert = sum(timeit.repeat(pyfastutil_insert, setup=setup_pyfastutil, repeat=REPEAT, number=1)) / REPEAT
+    time_pyfastutil_insert = sum(
+        timeit.repeat(pyfastutil_insert, setup=setup_pyfastutil, repeat=REPEAT, number=1)) / REPEAT
     insert_speed = time_python_insert / time_pyfastutil_insert * 100
     total_speed += insert_speed
     num_operations += 1
@@ -140,7 +142,8 @@ def main():
 
     # Benchmark remove()
     time_python_remove = sum(timeit.repeat(python_remove, setup=setup_python, repeat=REPEAT, number=1)) / REPEAT
-    time_pyfastutil_remove = sum(timeit.repeat(pyfastutil_remove, setup=setup_pyfastutil, repeat=REPEAT, number=1)) / REPEAT
+    time_pyfastutil_remove = sum(
+        timeit.repeat(pyfastutil_remove, setup=setup_pyfastutil, repeat=REPEAT, number=1)) / REPEAT
     remove_speed = time_python_remove / time_pyfastutil_remove * 100
     total_speed += remove_speed
     num_operations += 1
@@ -150,7 +153,8 @@ def main():
 
     # Benchmark extend()
     time_python_extend = sum(timeit.repeat(python_extend, setup=setup_python, repeat=REPEAT, number=1)) / REPEAT
-    time_pyfastutil_extend = sum(timeit.repeat(pyfastutil_extend, setup=setup_pyfastutil, repeat=REPEAT, number=1)) / REPEAT
+    time_pyfastutil_extend = sum(
+        timeit.repeat(pyfastutil_extend, setup=setup_pyfastutil, repeat=REPEAT, number=1)) / REPEAT
     extend_speed = time_python_extend / time_pyfastutil_extend * 100
     total_speed += extend_speed
     num_operations += 1

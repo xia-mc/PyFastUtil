@@ -155,6 +155,7 @@ This project is licensed under the **Apache License 2.0**. See the [LICENSE](LIC
 ## Roadmap
 
 - [ ] Implement core data structures (e.g., fast lists, maps, sets).
+- [x] Numpy support.
 - [ ] Provide SIMD and inline assembly bindings for Python.
 - [ ] Thorough testing and benchmarking.
 - [ ] PyPI release.

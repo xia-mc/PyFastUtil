@@ -1,4 +1,8 @@
+import ctypes
 import unittest
+
+import numpy
+
 from pyfastutil.ints import BigIntArrayList
 from tests.benchmark import benchmark_BigIntArrayList
 
@@ -178,6 +182,22 @@ class TestBigIntArrayList(unittest.TestCase):
 
     def test_benchmark(self):
         self.assertEqual(benchmark_BigIntArrayList.main(), None)
+
+    def test_numpy(self):
+        lst = BigIntArrayList([1, 2, 3])
+        numpyLst = numpy.array(lst)
+        numpyLstFast = numpy.asarray(lst)
+        self.assertEqual(lst, numpyLst)
+        self.assertEqual(lst, numpyLstFast)
+
+    def test_numpy_limit(self):
+        LONG_LONG_MAX = (2 ** (ctypes.sizeof(ctypes.c_longlong) * 8 - 1)) - 1
+        LONG_LONG_MIN = -LONG_LONG_MAX - 1
+        lst = BigIntArrayList([LONG_LONG_MIN, LONG_LONG_MAX])
+        numpyLst = numpy.array(lst)
+        numpyLstFast = numpy.asarray(lst)
+        self.assertEqual(lst, numpyLst)
+        self.assertEqual(lst, numpyLstFast)
 
 
 if __name__ == '__main__':
