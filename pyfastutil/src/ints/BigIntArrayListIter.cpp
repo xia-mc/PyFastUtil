@@ -46,7 +46,7 @@ static PyObject *BigIntArrayListIter_next(PyObject *pySelf) {
             // last iteration
             long long element = self->container->vector[self->index];
             self->index = SIZE_MAX;
-            return PyFast_FromLongLong(element);
+            return PyLong_FromLongLong(element);
         }
         if (self->index == SIZE_MAX) {
             // already finish iteration
@@ -56,7 +56,7 @@ static PyObject *BigIntArrayListIter_next(PyObject *pySelf) {
 
         long long element = self->container->vector[self->index];
         self->index--;
-        return PyFast_FromLongLong(element);
+        return PyLong_FromLongLong(element);
     } else {
         if (self->index >= self->container->vector.size()) {
             PyErr_SetNone(PyExc_StopIteration);
@@ -65,7 +65,7 @@ static PyObject *BigIntArrayListIter_next(PyObject *pySelf) {
 
         long long element = self->container->vector[self->index];
         self->index++;
-        return PyFast_FromLongLong(element);
+        return PyLong_FromLongLong(element);
     }
 }
 

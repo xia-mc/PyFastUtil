@@ -168,7 +168,7 @@ static PyObject *IntArrayList_to_list(PyObject *pySelf) {
     if (result == nullptr) return PyErr_NoMemory();
 
     for (Py_ssize_t i = 0; i < size; ++i) {
-        PyObject *item = PyFast_FromInt(self->vector[i]);
+        PyObject *item = PyLong_FromLong(self->vector[i]);
         if (item == nullptr) {
             SAFE_DECREF(result);
             return nullptr;
@@ -301,13 +301,13 @@ static PyObject *IntArrayList_pop(PyObject *pySelf, PyObject *const *args, const
         const auto popped = self->vector[static_cast<size_t>(index)];
         self->vector.pop_back();
 
-        return PyFast_FromInt(popped);
+        return PyLong_FromLong(popped);
     }
 
     const auto popped = self->vector[static_cast<size_t>(index)];
     self->vector.erase(self->vector.begin() + index);
 
-    return PyFast_FromInt(popped);
+    return PyLong_FromLong(popped);
 }
 
 static PyObject *IntArrayList_index(PyObject *pySelf, PyObject *args) {
@@ -462,7 +462,7 @@ static PyObject *IntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *k
             }
 
             for (size_t i = 0; i < vecSize; ++i) {
-                pyData[i] = PyFast_FromInt(vecData[i]);
+                pyData[i] = PyLong_FromLong(vecData[i]);
             }
 
             CPython_sort(pyData, static_cast<Py_ssize_t>(vecSize), keyFunc, reverseInt);
@@ -512,7 +512,7 @@ static PyObject *IntArrayList_getitem(PyObject *pySelf, Py_ssize_t pyIndex) {
     }
 
     try {
-        return PyFast_FromInt(self->vector[static_cast<size_t>(pyIndex)]);
+        return PyLong_FromLong(self->vector[static_cast<size_t>(pyIndex)]);
     } catch (const std::exception &e) {
         PyErr_SetString(PyExc_RuntimeError, e.what());
         return nullptr;
@@ -544,7 +544,7 @@ static PyObject *IntArrayList_getitem_slice(PyObject *pySelf, PyObject *slice) {
 
     for (Py_ssize_t i = 0; i < sliceLength; i++) {
         Py_ssize_t index = start + i * step;
-        PyObject *item = PyFast_FromInt(self->vector[static_cast<size_t>(index)]);
+        PyObject *item = PyLong_FromLong(self->vector[static_cast<size_t>(index)]);
         if (item == nullptr) {
             SAFE_DECREF(result);
             return nullptr;
