@@ -67,4 +67,88 @@ static inline bool PyParse_EvalRange(PyObject *&args, Py_ssize_t &start, Py_ssiz
 
 #define Py_RETURN_BOOL(b) { if (b) Py_RETURN_TRUE; else Py_RETURN_FALSE; }
 
+static __forceinline int PyFast_AsInt(PyObject *obj) {
+    const auto *longObj = reinterpret_cast<PyLongObject *>(obj);
+
+    const Py_ssize_t size = Py_SIZE(longObj);
+    if (size == 0) {
+        return 0;
+    }
+
+    const int result = static_cast<int>(longObj->long_value.ob_digit[0]);
+    return size < 0 ? -result : result;
+}
+
+static __forceinline PyObject *PyFast_FromInt(int value) {
+    if (value == 0) {
+        return PyLong_FromLong(0);
+    }
+
+    auto *result = reinterpret_cast<PyLongObject *>(
+            PyObject_Malloc(sizeof(PyLongObject) + (1 - 1) * sizeof(digit))
+    );
+    if (!result) {
+        PyErr_NoMemory();
+        return nullptr;
+    }
+
+    PyObject_INIT(result, &PyLong_Type);
+
+    Py_SET_SIZE(result, value < 0 ? -1 : 1);
+    result->long_value.ob_digit[0] = value < 0 ? -value : value;
+    return reinterpret_cast<PyObject *>(result);
+}
+
+
+static __forceinline long long PyFast_AsLongLong(PyObject *obj) {
+    const auto *longObj = reinterpret_cast<PyLongObject *>(obj);
+
+    const Py_ssize_t size = Py_SIZE(longObj);
+    if (size == 0) {
+        return 0;
+    }
+
+
+    const auto absSize = Py_ABS(size);
+
+    unsigned long long value = 0;
+    for (Py_ssize_t i = 0; i < absSize; i++) {
+        value += (unsigned long long) longObj->long_value.ob_digit[i] << (i * PyLong_SHIFT);
+    }
+
+    const auto result = (long long) value;
+    return size < 0 ? -result : result;
+}
+
+static __forceinline PyObject *PyFast_FromLongLong(long long value) {
+    if (value == 0) {
+        return PyLong_FromLong(0);
+    }
+
+    Py_ssize_t size = 0;
+    unsigned long long absValue = Py_ABS(value);
+
+    unsigned long long temp = absValue;
+    while (temp > 0) {
+        temp >>= PyLong_SHIFT;
+        size++;
+    }
+
+    auto *result = reinterpret_cast<PyLongObject *>(PyObject_Malloc(sizeof(PyLongObject) + (size - 1) * sizeof(digit)));
+    if (!result) {
+        PyErr_NoMemory();
+        return nullptr;
+    }
+
+    PyObject_INIT(result, &PyLong_Type);
+
+    Py_SET_SIZE(result, value < 0 ? -size : size);
+    for (Py_ssize_t i = 0; i < size; i++) {
+        result->long_value.ob_digit[i] = absValue & ((1 << PyLong_SHIFT) - 1);
+        absValue >>= PyLong_SHIFT;
+    }
+
+    return reinterpret_cast<PyObject *>(result);
+}
+
 #endif //PYFASTUTIL_PYTHONUTILS_H

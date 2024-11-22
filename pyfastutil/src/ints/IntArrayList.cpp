@@ -462,13 +462,13 @@ static PyObject *IntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *k
             }
 
             for (size_t i = 0; i < vecSize; ++i) {
-                pyData[i] = PyLong_FromLong(static_cast<long>(vecData[i]));
+                pyData[i] = PyFast_FromInt(vecData[i]);
             }
 
             CPython_sort(pyData, static_cast<Py_ssize_t>(vecSize), keyFunc, reverseInt);
 
             for (size_t i = 0; i < vecSize; ++i) {
-                vecData[i] = static_cast<int>(PyLong_AsLong(pyData[i]));
+                vecData[i] = PyFast_AsInt(pyData[i]);
                 Py_DECREF(pyData[i]);
             }
 
