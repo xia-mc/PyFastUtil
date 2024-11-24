@@ -34,7 +34,7 @@ English | [简体中文](./README_CN.md)
 
 > **Note**: For some very fast O(1) operations (such as `pop` and `extend`), PyFastUtil may perform slightly worse than Python's native implementation due to the non-negligible overhead of CPython's C extension calls. We are working on optimizing this.
 
-> CPU: AMD Ryzen 7 5700G
+> CPU: AMD Ryzen 7 5700G (AVX2)
 > 
 > Windows 11 23H2, Python 3.12, MSVC 19.41.34120
 
@@ -45,40 +45,40 @@ English | [简体中文](./README_CN.md)
 Batch size: 10000
 Repeat: 3
 
-Python list sort time: 0.82 ms
+Python list sort time: 1.31 ms
 PyFastUtil IntArrayList sort time: 0.03 ms
-PyFastUtil speed of Python list (sort): 2346.991 %
+PyFastUtil speed of Python list (sort): 4139.240 %
 
-Python list append time: 0.28 ms
-PyFastUtil IntArrayList append time: 0.31 ms
-PyFastUtil speed of Python list (append): 89.886 %
+Python list append time: 0.44 ms
+PyFastUtil IntArrayList append time: 0.43 ms
+PyFastUtil speed of Python list (append): 102.314 %
 
-Python list insert time: 70.51 ms
-PyFastUtil IntArrayList insert time: 10.59 ms
-PyFastUtil speed of Python list (insert): 665.616 %
+Python list insert time: 71.75 ms
+PyFastUtil IntArrayList insert time: 10.68 ms
+PyFastUtil speed of Python list (insert): 671.948 %
 
-Python list pop time: 0.31 ms
-PyFastUtil IntArrayList pop time: 0.34 ms
-PyFastUtil speed of Python list (pop): 90.092 %
+Python list pop time: 0.34 ms
+PyFastUtil IntArrayList pop time: 0.40 ms
+PyFastUtil speed of Python list (pop): 85.341 %
 
-Python list remove time: 5.14 ms
-PyFastUtil IntArrayList remove time: 2.52 ms
-PyFastUtil speed of Python list (remove): 204.007 %
+Python list remove time: 5.13 ms
+PyFastUtil IntArrayList remove time: 2.55 ms
+PyFastUtil speed of Python list (remove): 201.138 %
 
-Python list contains time: 259.78 ms
-PyFastUtil IntArrayList contains time: 12.24 ms
-PyFastUtil speed of Python list (contains): 2122.882 %
+Python list contains time: 536.74 ms
+PyFastUtil IntArrayList contains time: 15.29 ms
+PyFastUtil speed of Python list (contains): 3511.205 %
 
-Python list index time: 232.94 ms
-PyFastUtil IntArrayList index time: 2.92 ms
-PyFastUtil speed of Python list (index): 7964.229 %
+Python list index time: 414.75 ms
+PyFastUtil IntArrayList index time: 3.85 ms
+PyFastUtil speed of Python list (index): 10764.189 %
 
 Python list extend time: 0.09 ms
-PyFastUtil IntArrayList extend time: 0.15 ms
-PyFastUtil speed of Python list (extend): 59.879 %
+PyFastUtil IntArrayList extend time: 0.20 ms
+PyFastUtil speed of Python list (extend): 44.228 %
 
 
-Avg speed of PyFastUtil compared to Python list: 1692.948 %
+Avg speed of PyFastUtil compared to Python list: 2439.950 %
 ```
 
 #### Generic List Benchmark (e.g., `ObjectArrayList`)
@@ -88,40 +88,40 @@ Avg speed of PyFastUtil compared to Python list: 1692.948 %
 Batch size: 10000
 Repeat: 3
 
-Python list sort time: 82.11 ms
-PyFastUtil ObjectArrayList sort time: 80.52 ms
-PyFastUtil speed of Python list (sort): 101.963 %
+Python list sort time: 125.56 ms
+PyFastUtil ObjectArrayList sort time: 116.61 ms
+PyFastUtil speed of Python list (sort): 107.668 %
 
-Python list append time: 0.29 ms
-PyFastUtil ObjectArrayList append time: 0.32 ms
-PyFastUtil speed of Python list (append): 89.097 %
+Python list append time: 0.30 ms
+PyFastUtil ObjectArrayList append time: 0.35 ms
+PyFastUtil speed of Python list (append): 86.724 %
 
-Python list insert time: 70.45 ms
-PyFastUtil ObjectArrayList insert time: 20.46 ms
-PyFastUtil speed of Python list (insert): 344.407 %
+Python list insert time: 81.55 ms
+PyFastUtil ObjectArrayList insert time: 23.95 ms
+PyFastUtil speed of Python list (insert): 340.471 %
 
-Python list pop time: 0.31 ms
-PyFastUtil ObjectArrayList pop time: 0.28 ms
-PyFastUtil speed of Python list (pop): 112.496 %
+Python list pop time: 0.44 ms
+PyFastUtil ObjectArrayList pop time: 0.32 ms
+PyFastUtil speed of Python list (pop): 139.226 %
 
-Python list remove time: 5.23 ms
-PyFastUtil ObjectArrayList remove time: 5.15 ms
-PyFastUtil speed of Python list (remove): 101.612 %
+Python list remove time: 5.25 ms
+PyFastUtil ObjectArrayList remove time: 5.14 ms
+PyFastUtil speed of Python list (remove): 102.170 %
 
-Python list contains time: 1074.47 ms
-PyFastUtil ObjectArrayList contains time: 16.07 ms
-PyFastUtil speed of Python list (contains): 6684.718 %
+Python list contains time: 1140.28 ms
+PyFastUtil ObjectArrayList contains time: 16.37 ms
+PyFastUtil speed of Python list (contains): 6966.576 %
 
-Python list index time: 873.44 ms
-PyFastUtil ObjectArrayList index time: 6.71 ms
-PyFastUtil speed of Python list (index): 13016.306 %
+Python list index time: 866.88 ms
+PyFastUtil ObjectArrayList index time: 6.77 ms
+PyFastUtil speed of Python list (index): 12803.132 %
 
-Python list extend time: 0.08 ms
-PyFastUtil ObjectArrayList extend time: 0.11 ms
-PyFastUtil speed of Python list (extend): 75.165 %
+Python list extend time: 0.12 ms
+PyFastUtil ObjectArrayList extend time: 0.15 ms
+PyFastUtil speed of Python list (extend): 80.975 %
 
 
-Avg speed of PyFastUtil compared to Python list: 2565.720 %
+Avg speed of PyFastUtil compared to Python list: 2578.368 %
 ```
 
 ## Installation

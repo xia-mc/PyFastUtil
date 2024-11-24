@@ -4,7 +4,7 @@ import unittest
 import numpy
 
 from pyfastutil.objects import ObjectLinkedList
-from tests.benchmark import benchmark_ObjectLinkedList
+from tests.benchmark import benchmark_list
 
 
 class TestObjectLinkedList(unittest.TestCase):
@@ -155,7 +155,7 @@ class TestObjectLinkedList(unittest.TestCase):
             lst.remove(99)
 
     def test_benchmark(self):
-        self.assertEqual(benchmark_ObjectLinkedList.main(), None)
+        self.assertEqual(benchmark_list.main(ObjectLinkedList), None)
 
     def test_numpy(self):
         lst = ObjectLinkedList([1, 2, 3])

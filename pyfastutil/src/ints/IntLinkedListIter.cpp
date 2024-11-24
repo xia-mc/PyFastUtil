@@ -1,19 +1,19 @@
 //
-// Created by xia__mc on 2024/11/19.
+// Created by xia__mc on 2024/11/24.
 //
 
-#include "ObjectLinkedListIter.h"
+#include "IntLinkedListIter.h"
 #include "utils/PythonUtils.h"
 #include "utils/Utils.h"
 
 extern "C" {
 
-static PyTypeObject ObjectLinkedListIterType = {
+static PyTypeObject IntLinkedListIterType = {
         PyVarObject_HEAD_INIT(&PyType_Type, 0)
 };
 
-ObjectLinkedListIter *ObjectLinkedListIter_create(ObjectLinkedList *list, bool reversed) {
-    auto *instance = Py_CreateObjNoInit<ObjectLinkedListIter>(ObjectLinkedListIterType);
+IntLinkedListIter *IntLinkedListIter_create(IntLinkedList *list, bool reversed) {
+    auto *instance = Py_CreateObjNoInit<IntLinkedListIter>(IntLinkedListIterType);
     if (instance == nullptr) return nullptr;
 
     Py_INCREF(list);
@@ -32,12 +32,12 @@ ObjectLinkedListIter *ObjectLinkedListIter_create(ObjectLinkedList *list, bool r
     return instance;
 }
 
-static void ObjectLinkedListIter_dealloc(ObjectLinkedListIter *self) {
+static void IntLinkedListIter_dealloc(IntLinkedListIter *self) {
     SAFE_DECREF(self->container);
     Py_TYPE(self)->tp_free((PyObject *) self);
 }
 
-static __forceinline void updateCache(ObjectLinkedListIter *&self) {
+static __forceinline void updateCache(IntLinkedListIter *&self) {
     if (self->cacheModCount == self->container->modCount) {
         return;
     }
@@ -52,8 +52,8 @@ static __forceinline void updateCache(ObjectLinkedListIter *&self) {
     self->cacheModCount = self->container->modCount;
 }
 
-static PyObject *ObjectLinkedListIter_next(PyObject *pySelf) {
-    auto *self = reinterpret_cast<ObjectLinkedListIter *>(pySelf);
+static PyObject *IntLinkedListIter_next(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntLinkedListIter *>(pySelf);
 
     if (self->container->list.empty()) {
         PyErr_SetNone(PyExc_StopIteration);
@@ -63,10 +63,9 @@ static PyObject *ObjectLinkedListIter_next(PyObject *pySelf) {
     if (self->reversed) {
         if (self->index == 0) {
             // last iteration
-            PyObject *element = *(--self->container->list.end());
+            int element = *(--self->container->list.end());
             self->index = SIZE_MAX;
-            Py_INCREF(element);
-            return element;
+            return PyLong_FromLong(element);
         }
         if (self->index == SIZE_MAX) {
             // already finish iteration
@@ -75,11 +74,10 @@ static PyObject *ObjectLinkedListIter_next(PyObject *pySelf) {
         }
 
         updateCache(self);
-        PyObject *element = *self->cacheIter;
+        int element = *self->cacheIter;
         self->index--;
         self->cacheIter--;
-        Py_INCREF(element);
-        return element;
+        return PyLong_FromLong(element);
     } else {
         if (self->index >= self->container->list.size()) {
             PyErr_SetNone(PyExc_StopIteration);
@@ -87,56 +85,55 @@ static PyObject *ObjectLinkedListIter_next(PyObject *pySelf) {
         }
 
         updateCache(self);
-        PyObject *element = *self->cacheIter;
+        int element = *self->cacheIter;
         self->index++;
         self->cacheIter++;
-        Py_INCREF(element);
-        return element;
+        return PyLong_FromLong(element);
     }
 }
 
-static PyObject *ObjectLinkedListIter_iter(PyObject *pySelf) {
+static PyObject *IntLinkedListIter_iter(PyObject *pySelf) {
     Py_INCREF(pySelf);
     return pySelf;
 }
 
-static PyMethodDef ObjectLinkedListIter_methods[] = {
+static PyMethodDef IntLinkedListIter_methods[] = {
         {nullptr}
 };
 
-static struct PyModuleDef ObjectLinkedListIter_module = {
+static struct PyModuleDef IntLinkedListIter_module = {
         PyModuleDef_HEAD_INIT,
-        "__pyfastutil.ObjectLinkedListIter",
-        "An ObjectLinkedListIter_module that creates an ObjectLinkedList",
+        "__pyfastutil.IntLinkedListIter",
+        "An IntLinkedListIter_module that creates an IntLinkedList",
         -1,
         nullptr, nullptr, nullptr, nullptr, nullptr
 };
 
-void initializeObjectLinkedListIterType(PyTypeObject &type) {
-    type.tp_name = "ObjectLinkedListIter";
-    type.tp_basicsize = sizeof(ObjectLinkedListIter);
+void initializeIntLinkedListIterType(PyTypeObject &type) {
+    type.tp_name = "IntLinkedListIter";
+    type.tp_basicsize = sizeof(IntLinkedListIter);
     type.tp_itemsize = 0;
     type.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
-    type.tp_iter = ObjectLinkedListIter_iter;
-    type.tp_iternext = ObjectLinkedListIter_next;
-    type.tp_methods = ObjectLinkedListIter_methods;
-    type.tp_dealloc = (destructor) ObjectLinkedListIter_dealloc;
+    type.tp_iter = IntLinkedListIter_iter;
+    type.tp_iternext = IntLinkedListIter_next;
+    type.tp_methods = IntLinkedListIter_methods;
+    type.tp_dealloc = (destructor) IntLinkedListIter_dealloc;
     type.tp_alloc = PyType_GenericAlloc;
     type.tp_free = PyObject_Del;
 }
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
-PyMODINIT_FUNC PyInit_ObjectLinkedListIter() {
-    initializeObjectLinkedListIterType(ObjectLinkedListIterType);
+PyMODINIT_FUNC PyInit_IntLinkedListIter() {
+    initializeIntLinkedListIterType(IntLinkedListIterType);
 
-    PyObject *object = PyModule_Create(&ObjectLinkedListIter_module);
+    PyObject *object = PyModule_Create(&IntLinkedListIter_module);
     if (object == nullptr)
         return nullptr;
 
-    Py_INCREF(&ObjectLinkedListIterType);
-    if (PyModule_AddObject(object, "ObjectLinkedListIter", (PyObject *) &ObjectLinkedListIterType) < 0) {
-        Py_DECREF(&ObjectLinkedListIterType);
+    Py_INCREF(&IntLinkedListIterType);
+    if (PyModule_AddObject(object, "IntLinkedListIter", (PyObject *) &IntLinkedListIterType) < 0) {
+        Py_DECREF(&IntLinkedListIterType);
         Py_DECREF(object);
         return nullptr;
     }

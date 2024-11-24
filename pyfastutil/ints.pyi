@@ -389,3 +389,131 @@ class BigIntArrayListIter(Iterator[int]):
             StopIteration: If there are no more elements to iterate over.
         """
         pass
+
+@final
+class IntLinkedList(list[int]):
+    """
+    A specialized linked list for integers, optimized for efficient insertion and deletion.
+
+    `IntLinkedList` is implemented as a doubly linked list, providing O(1) time complexity for insertions and deletions
+    at both the head and tail, as well as for operations involving iterators. However, random access by index (e.g., `list[i]`)
+    requires O(n) time, as the list must be traversed to reach the desired element.
+
+    This class behaves similarly to Python's built-in `list`, but is specifically optimized for storing integers and for
+    scenarios where frequent insertions and deletions are required, rather than random access.
+
+    Example:
+        >>> int_list = IntLinkedList()
+        >>> int_list.append(1)
+        >>> int_list.append(2)
+        >>> int_list.insert(0, 3)
+        >>> print(int_list)
+        [3, 1, 2]
+
+    Note:
+        - Insertion and deletion are O(1).
+        - Accessing elements by index is O(n).
+        - Iteration over the list is O(1) per step, making it efficient for sequential access.
+
+    Raises:
+        TypeError: If an invalid operation is attempted.
+    """
+
+    @staticmethod
+    @overload
+    def from_range(__start: SupportsIndex, __stop: SupportsIndex, __step: SupportsIndex = 1) -> IntLinkedList:
+        """
+        Creates an `IntLinkedList` from a range of integers, similar to the built-in `range()` function.
+
+        Parameters:
+            __start (SupportsIndex): The starting value of the range (inclusive).
+            __stop (SupportsIndex): The stopping value of the range (exclusive).
+            __step (SupportsIndex, optional): The step between each value in the range. Defaults to 1.
+
+        Returns:
+            IntLinkedList: A new `IntLinkedList` object containing the integers in the specified range.
+
+        Example:
+            >>> IntLinkedList.from_range(1, 10, 2)
+            [1, 3, 5, 7, 9]
+        """
+        pass
+
+    @staticmethod
+    @overload
+    def from_range(__stop: SupportsIndex) -> IntLinkedList:
+        """
+        Creates an `IntLinkedList` from a range of integers starting from 0 to the specified stop value.
+
+        Parameters:
+            __stop (SupportsIndex): The stopping value of the range (exclusive).
+
+        Returns:
+            IntLinkedList: A new `IntLinkedList` object containing the integers from 0 up to `__stop`.
+
+        Example:
+            >>> IntLinkedList.from_range(5)
+            [0, 1, 2, 3, 4]
+        """
+        pass
+
+    def to_list(self) -> list[int]:
+        """
+        Converts the `IntLinkedList` to a standard Python list.
+
+        This method returns a new list containing the same elements as the `IntLinkedList` in the same order. The returned list
+        will be a standard Python list, which can be used with all the usual Python list operations.
+
+        Returns:
+            list[int]: A new list containing all the elements of the `IntLinkedList`.
+
+        Example:
+            >>> int_list = IntLinkedList([1, 2, 3])
+            >>> py_list = int_list.to_list()
+            >>> print(py_list)
+            [1, 2, 3]
+        """
+        pass
+
+@final
+class IntLinkedListIter(Iterator[int]):
+    """
+    Iterator for `IntLinkedList`.
+
+    This class provides an iterator over an `IntLinkedList`, allowing you to iterate over the elements
+    of the list one by one in O(1) time per step. The iterator maintains a reference to the list and iterates
+    through it in constant time for each element, making it very efficient for sequential access.
+
+    Note:
+        This class cannot be directly instantiated by users. It is designed to be used internally by
+        `IntLinkedList` and can only be obtained by calling the `__iter__` method on an `IntLinkedList` object.
+
+    Example:
+        >>> int_list = IntLinkedList([1, 2, 3])
+        >>> iter_obj = iter(int_list)  # This returns an IntLinkedListIter instance
+        >>> next(iter_obj)
+        1
+        >>> next(iter_obj)
+        2
+        >>> next(iter_obj)
+        3
+        >>> next(iter_obj)  # Raises StopIteration
+
+    Raises:
+        TypeError: If attempted to be instantiated directly.
+    """
+
+    def __next__(self) -> int:
+        """
+        Return the next element in the iteration.
+
+        This method retrieves the next element from the `IntLinkedList` that this iterator is associated with.
+        If all elements have been iterated over, it raises a `StopIteration` exception.
+
+        Returns:
+            int: The next integer in the `IntLinkedList`.
+
+        Raises:
+            StopIteration: If there are no more elements to iterate over.
+        """
+        pass

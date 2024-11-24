@@ -4,7 +4,7 @@ import unittest
 import numpy
 
 from pyfastutil.ints import BigIntArrayList
-from tests.benchmark import benchmark_BigIntArrayList
+from tests.benchmark import benchmark_list
 
 
 class TestBigIntArrayList(unittest.TestCase):
@@ -181,7 +181,7 @@ class TestBigIntArrayList(unittest.TestCase):
             lst.remove(99)
 
     def test_benchmark(self):
-        self.assertEqual(benchmark_BigIntArrayList.main(), None)
+        self.assertEqual(benchmark_list.main(BigIntArrayList), None)
 
     def test_numpy(self):
         lst = BigIntArrayList([1, 2, 3])

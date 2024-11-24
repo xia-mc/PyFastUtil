@@ -175,6 +175,19 @@ static PyObject *Unsafe_memcpy([[maybe_unused]] PyObject *self, PyObject *args) 
     Py_RETURN_NONE;
 }
 
+static PyObject *Unsafe_memset([[maybe_unused]] PyObject *self, PyObject *args) {
+    uintptr_t address;
+    int val;
+    size_t size;
+    if (!PyArg_ParseTuple(args, "KiK", &address, &val, &size)) {
+        return nullptr;
+    }
+
+    memset(reinterpret_cast<void *>(address), val, size);
+
+    Py_RETURN_NONE;
+}
+
 static PyObject *Unsafe_incref([[maybe_unused]] PyObject *self, PyObject *pyObject) {
     Py_INCREF(pyObject);
     Py_RETURN_NONE;
@@ -247,6 +260,7 @@ static PyMethodDef Unsafe_methods[] = {
         {"get_address",    (PyCFunction) Unsafe_getAddress,    METH_O,       nullptr},
         {"as_object",      (PyCFunction) Unsafe_as_object,     METH_O,       nullptr},
         {"memcpy",         (PyCFunction) Unsafe_memcpy,        METH_VARARGS, nullptr},
+        {"memset",         (PyCFunction) Unsafe_memset,        METH_VARARGS, nullptr},
         {"incref",         (PyCFunction) Unsafe_incref,        METH_O,       nullptr},
         {"decref",         (PyCFunction) Unsafe_decref,        METH_O,       nullptr},
         {"refcnt",         (PyCFunction) Unsafe_refcnt,        METH_O,       nullptr},

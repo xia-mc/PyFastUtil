@@ -2,7 +2,7 @@ import unittest
 import numpy
 import ctypes
 from pyfastutil.ints import IntArrayList
-from tests.benchmark import benchmark_IntArrayList
+from tests.benchmark import benchmark_list
 
 
 class TestIntArrayList(unittest.TestCase):
@@ -179,7 +179,7 @@ class TestIntArrayList(unittest.TestCase):
             lst.remove(99)
 
     def test_benchmark(self):
-        self.assertEqual(benchmark_IntArrayList.main(), None)
+        self.assertEqual(benchmark_list.main(IntArrayList), None)
 
     def test_numpy(self):
         lst = IntArrayList([1, 2, 3])

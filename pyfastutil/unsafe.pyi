@@ -173,6 +173,27 @@ class Unsafe:
         """
         pass
 
+    def memset(self, __address: Ptr, __val: int, __size: int) -> None:
+        """
+        Sets a block of memory to a specified value.
+
+        :param __address: The pointer to the memory block to be set.
+        :param __val: The value to set each byte of the memory block to (0-255).
+        :param __size: The number of bytes to set.
+
+        **Description**:
+        This function initializes a memory block with a specified value. Each byte in the block of
+        memory, starting from the given address, will be set to the provided value.
+
+        **Warning**:
+        - Ensure that the memory block starting at `__address` is valid and large enough to hold
+          `__size` bytes. Writing to invalid memory can cause undefined behavior.
+        - The value `__val` is treated as a single byte (0-255). If a value outside this range is
+          provided, it will be truncated to fit within a byte.
+        ```
+        """
+        pass
+
     def incref(self, __object: object) -> None:
         """
         Increments the reference count of a Python object.

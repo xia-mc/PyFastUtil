@@ -1,8 +1,8 @@
 //
-// Created by xia__mc on 2024/11/19.
+// Created by xia__mc on 2024/11/24.
 //
 
-#include "ObjectLinkedList.h"
+#include "IntLinkedList.h"
 #include <list>
 #include <algorithm>
 #include <stdexcept>
@@ -11,16 +11,16 @@
 #include "utils/simd/BitonicSort.h"
 #include "utils/simd/Utils.h"
 #include "utils/memory/AlignedAllocator.h"
-#include "objects/ObjectLinkedListIter.h"
+#include "ints/IntLinkedListIter.h"
 #include "utils/CPythonSort.h"
 #include "utils/Utils.h"
 
 extern "C" {
-static PyTypeObject ObjectLinkedListType = {
+static PyTypeObject IntLinkedListType = {
         PyVarObject_HEAD_INIT(&PyType_Type, 0)
 };
 
-static int ObjectLinkedList_init(ObjectLinkedList *self, PyObject *args, PyObject *kwargs) {
+static int IntLinkedList_init(IntLinkedList *self, PyObject *args, PyObject *kwargs) {
     new(&self->list) std::list<PyObject *>();
     self->modCount = 0;
 
@@ -36,8 +36,8 @@ static int ObjectLinkedList_init(ObjectLinkedList *self, PyObject *args, PyObjec
     // init list
     try {
         if (pyIterable != nullptr) {
-            if (Py_TYPE(pyIterable) == &ObjectLinkedListType) {  // ObjectLinkedList is a final class
-                auto *iter = reinterpret_cast<ObjectLinkedList *>(pyIterable);
+            if (Py_TYPE(pyIterable) == &IntLinkedListType) {  // IntLinkedList is a final class
+                auto *iter = reinterpret_cast<IntLinkedList *>(pyIterable);
                 self->list = iter->list;
                 return 0;
             }
@@ -50,7 +50,15 @@ static int ObjectLinkedList_init(ObjectLinkedList *self, PyObject *args, PyObjec
 
             PyObject *item;
             while ((item = PyIter_Next(iter)) != nullptr) {
-                self->list.push_back(item);
+                int value = PyLong_AsLong(item);
+                if (PyErr_Occurred()) {
+                    SAFE_DECREF(iter);
+                    SAFE_DECREF(item);
+                    PyErr_SetString(PyExc_RuntimeError, "Failed to convert item to C int during iteration.");
+                    return -1;
+                }
+                self->list.push_back(value);
+                SAFE_DECREF(item);
             }
             SAFE_DECREF(iter);
             if (PyErr_Occurred()) return -1;
@@ -63,16 +71,53 @@ static int ObjectLinkedList_init(ObjectLinkedList *self, PyObject *args, PyObjec
     return 0;
 }
 
-static void ObjectLinkedList_dealloc(ObjectLinkedList *self) {
-    for (PyObject *item: self->list) {
-        SAFE_DECREF(item);
-    }
+static void IntLinkedList_dealloc(IntLinkedList *self) {
     self->list.~list();
     Py_TYPE(self)->tp_free((PyObject *) self);
 }
 
-static PyObject *ObjectLinkedList_to_list(PyObject *pySelf) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_from_range([[maybe_unused]] PyObject *cls, PyObject *args) {
+    Py_ssize_t start, stop, step;
+
+    if (!PyParse_EvalRange(args, start, stop, step)) {
+        return nullptr;
+    }
+
+    auto *list = Py_CreateObj<IntLinkedList>(IntLinkedListType);
+    if (list == nullptr) return PyErr_NoMemory();
+
+    try {
+        Py_ssize_t elements;
+        if (step > 0) {
+            if (start >= stop) {
+                return reinterpret_cast<PyObject *>(list);
+            }
+            elements = (stop - start + step - 1) / step;
+        } else { // step < 0
+            if (start <= stop) {
+                return reinterpret_cast<PyObject *>(list);
+            }
+            elements = ((start - stop) / (-step));
+        }
+
+        Py_ssize_t current = start;
+        for (Py_ssize_t idx = 0; idx < elements; ++idx) {
+            list->list.push_back(static_cast<int>(current));
+            current += step;
+        }
+
+    } catch (const std::exception &e) {
+        list->list.~list();
+        PyObject_Del(list);
+        PyErr_SetString(PyExc_RuntimeError, e.what());
+        return nullptr;
+    }
+
+    return reinterpret_cast<PyObject *>(list);
+}
+
+static PyObject *IntLinkedList_to_list(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     const auto size = static_cast<Py_ssize_t>(self->list.size());
     PyObject *result = PyList_New(size);
@@ -80,11 +125,7 @@ static PyObject *ObjectLinkedList_to_list(PyObject *pySelf) {
 
     auto iter = self->list.begin();
     for (Py_ssize_t i = 0; i < size; ++i, ++iter) {
-        PyObject *item = *iter;
-        if (item == nullptr) {
-            SAFE_DECREF(result);
-            return nullptr;
-        }
+        PyObject *item = PyLong_FromLong(*iter);
 
         PyList_SET_ITEM(result, i, item);
         Py_INCREF(item);
@@ -93,17 +134,14 @@ static PyObject *ObjectLinkedList_to_list(PyObject *pySelf) {
     return result;
 }
 
-static PyObject *ObjectLinkedList_copy(PyObject *pySelf) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_copy(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
-    auto *copy = Py_CreateObj<ObjectLinkedList>(ObjectLinkedListType);
+    auto *copy = Py_CreateObj<IntLinkedList>(IntLinkedListType);
     if (copy == nullptr) return PyErr_NoMemory();
 
     try {
         copy->list = self->list;
-        for (const auto &item: copy->list) {
-            Py_INCREF(item);
-        }
     } catch (const std::exception &e) {
         PyObject_Del(copy);
         PyErr_SetString(PyExc_RuntimeError, e.what());
@@ -113,8 +151,8 @@ static PyObject *ObjectLinkedList_copy(PyObject *pySelf) {
     return reinterpret_cast<PyObject *>(copy);
 }
 
-static PyObject *ObjectLinkedList_append(PyObject *pySelf, PyObject *object) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_append(PyObject *pySelf, PyObject *object) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     PyObject *value = object;
     if (PyErr_Occurred()) {
@@ -122,8 +160,7 @@ static PyObject *ObjectLinkedList_append(PyObject *pySelf, PyObject *object) {
     }
 
     try {
-        self->list.push_back(value);
-        Py_INCREF(value);
+        self->list.push_back(PyLong_AsLong(value));
         self->modCount++;
     } catch (const std::exception &e) {
         PyErr_SetString(PyExc_RuntimeError, e.what());
@@ -133,8 +170,8 @@ static PyObject *ObjectLinkedList_append(PyObject *pySelf, PyObject *object) {
     Py_RETURN_NONE;
 }
 
-static PyObject *ObjectLinkedList_extend(PyObject *pySelf, PyObject *const *args, const Py_ssize_t nargs) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_extend(PyObject *pySelf, PyObject *const *args, const Py_ssize_t nargs) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     // FASTCALL ensure args != nullptr
     if (nargs != 1) {
@@ -145,12 +182,9 @@ static PyObject *ObjectLinkedList_extend(PyObject *pySelf, PyObject *const *args
     PyObject *iterable = args[0];
 
     // fast extend
-    if (Py_TYPE(iterable) == &ObjectLinkedListType) {
-        auto *iter = reinterpret_cast<ObjectLinkedList *>(iterable);
+    if (Py_TYPE(iterable) == &IntLinkedListType) {
+        auto *iter = reinterpret_cast<IntLinkedList *>(iterable);
         self->list.insert(self->list.end(), iter->list.begin(), iter->list.end());
-        for (const auto &item: iter->list) {
-            Py_INCREF(item);
-        }
         self->modCount++;
         Py_RETURN_NONE;
     }
@@ -166,10 +200,12 @@ static PyObject *ObjectLinkedList_extend(PyObject *pySelf, PyObject *const *args
     while ((item = PyIter_Next(iter)) != nullptr) {
         if (PyErr_Occurred()) {
             SAFE_DECREF(iter);
+            SAFE_DECREF(item);
             return nullptr;
         }
 
-        self->list.push_back(item);
+        self->list.push_back(PyLong_AsLong(item));
+        SAFE_DECREF(item);
     }
     self->modCount++;
 
@@ -183,8 +219,8 @@ static PyObject *ObjectLinkedList_extend(PyObject *pySelf, PyObject *const *args
 }
 
 
-static PyObject *ObjectLinkedList_pop(PyObject *pySelf, PyObject *const *args, const Py_ssize_t nargs) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_pop(PyObject *pySelf, PyObject *const *args, const Py_ssize_t nargs) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     if (self->list.empty()) {
         PyErr_SetString(PyExc_IndexError, "pop from empty list");
@@ -215,23 +251,23 @@ static PyObject *ObjectLinkedList_pop(PyObject *pySelf, PyObject *const *args, c
         const auto popped = self->list.back();
         self->list.pop_back();
         self->modCount++;
-        return popped;
+        return PyLong_FromLong(popped);
     }
 
     auto popped = at(self->list, index);
     self->list.erase(popped);
     self->modCount++;
-    return *popped;
+    return PyLong_FromLong(*popped);
 }
 
-static PyObject *ObjectLinkedList_index(PyObject *pySelf, PyObject *args) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_index(PyObject *pySelf, PyObject *args) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
-    PyObject *value;
+    int value;
     Py_ssize_t start = 0;
     auto stop = static_cast<Py_ssize_t>(self->list.size());
 
-    if (!PyArg_ParseTuple(args, "O|nn", &value, &start, &stop)) {
+    if (!PyArg_ParseTuple(args, "i|nn", &value, &start, &stop)) {
         return nullptr;
     }
 
@@ -266,11 +302,16 @@ static PyObject *ObjectLinkedList_index(PyObject *pySelf, PyObject *args) {
     return PyLong_FromSsize_t(index);
 }
 
-static PyObject *ObjectLinkedList_count(PyObject *pySelf, PyObject *object) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_count(PyObject *pySelf, PyObject *object) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
+
+    int value = PyLong_AsLong(object);
+    if (value == -1 && PyErr_Occurred()) {
+        return nullptr;
+    }
 
     try {
-        size_t result = std::count(self->list.begin(), self->list.end(), object);
+        size_t result = std::count(self->list.begin(), self->list.end(), value);
 
         return PyLong_FromSize_t(result);
     } catch (const std::exception &e) {
@@ -279,13 +320,13 @@ static PyObject *ObjectLinkedList_count(PyObject *pySelf, PyObject *object) {
     }
 }
 
-static PyObject *ObjectLinkedList_insert(PyObject *pySelf, PyObject *args) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_insert(PyObject *pySelf, PyObject *args) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     Py_ssize_t index;
-    PyObject *value;
+    int value;
 
-    if (!PyArg_ParseTuple(args, "nO", &index, &value)) {
+    if (!PyArg_ParseTuple(args, "ni", &index, &value)) {
         return nullptr;
     }
 
@@ -300,7 +341,6 @@ static PyObject *ObjectLinkedList_insert(PyObject *pySelf, PyObject *args) {
     // do insert
     try {
         self->list.insert(at(self->list, index), value);
-        Py_INCREF(value);
         self->modCount++;
     } catch (const std::exception &e) {
         PyErr_SetString(PyExc_RuntimeError, e.what());
@@ -310,10 +350,10 @@ static PyObject *ObjectLinkedList_insert(PyObject *pySelf, PyObject *args) {
     Py_RETURN_NONE;
 }
 
-static PyObject *ObjectLinkedList_remove(PyObject *pySelf, PyObject *object) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_remove(PyObject *pySelf, PyObject *object) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
-    PyObject *value = object;
+    int value = PyLong_AsLong(object);
     if (PyErr_Occurred()) {
         return nullptr;
     }
@@ -323,7 +363,6 @@ static PyObject *ObjectLinkedList_remove(PyObject *pySelf, PyObject *object) {
 
         if (it != self->list.end()) {
             self->list.erase(it);
-            SAFE_DECREF(value);
             self->modCount++;
         } else {
             PyErr_SetString(PyExc_ValueError, "Value is not in list.");
@@ -337,8 +376,8 @@ static PyObject *ObjectLinkedList_remove(PyObject *pySelf, PyObject *object) {
     Py_RETURN_NONE;
 }
 
-static PyObject *ObjectLinkedList_sort(PyObject *pySelf, PyObject *args, PyObject *kwargs) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_sort(PyObject *pySelf, PyObject *args, PyObject *kwargs) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     PyObject *keyFunc = Py_None;
     int reverseInt = 0;  // default: false
@@ -348,51 +387,61 @@ static PyObject *ObjectLinkedList_sort(PyObject *pySelf, PyObject *args, PyObjec
         return nullptr;
     }
 
-    // costs extra memory
-    const auto vecSize = self->list.size();
-    auto **pyData = static_cast<PyObject **>(PyMem_Malloc(sizeof(PyObject *) * vecSize));
-    if (pyData == nullptr) {
-        PyErr_NoMemory();
-        return nullptr;
+    if (keyFunc == Py_None) {
+        if (reverseInt == 1) {
+            self->list.sort(std::greater());
+        } else {
+            self->list.sort();
+        }
+        self->modCount++;
+    } else {
+        // costs extra memory
+        const auto vecSize = self->list.size();
+        auto **pyData = static_cast<PyObject **>(PyMem_Malloc(sizeof(PyObject *) * vecSize));
+        if (pyData == nullptr) {
+            PyErr_NoMemory();
+            return nullptr;
+        }
+
+        auto iter = self->list.begin();
+        for (size_t i = 0; i < vecSize; ++i, ++iter) {
+            pyData[i] = PyLong_FromLong(*iter);
+        }
+
+        CPython_sort(pyData,
+                     static_cast<Py_ssize_t>(vecSize),
+                     keyFunc, reverseInt);
+
+        iter = self->list.begin();
+        for (size_t i = 0; i < vecSize; ++i, ++iter) {
+            *iter = PyFast_AsInt(pyData[i]);
+            Py_DECREF(pyData[i]);
+        }
+
+        PyMem_FREE(pyData);
+        self->modCount++;
     }
-
-    auto iter = self->list.begin();
-    for (size_t i = 0; i < vecSize; ++i, ++iter) {
-        pyData[i] = *iter;
-    }
-
-    CPython_sort(pyData,
-                 static_cast<Py_ssize_t>(vecSize),
-                 keyFunc == Py_None ? nullptr : keyFunc, reverseInt);
-
-    iter = self->list.begin();
-    for (size_t i = 0; i < vecSize; ++i, ++iter) {
-        *iter = pyData[i];
-    }
-
-    PyMem_FREE(pyData);
-    self->modCount++;
 
     Py_RETURN_NONE;
 }
 
-static Py_ssize_t ObjectLinkedList_len(PyObject *pySelf) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static Py_ssize_t IntLinkedList_len(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     return static_cast<Py_ssize_t>(self->list.size());
 }
 
 
-static PyObject *ObjectLinkedList_iter(PyObject *pySelf) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_iter(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
-    auto iter = ObjectLinkedListIter_create(self);
+    auto iter = IntLinkedListIter_create(self);
     if (iter == nullptr) return PyErr_NoMemory();
     return reinterpret_cast<PyObject *>(iter);
 }
 
-static PyObject *ObjectLinkedList_getitem(PyObject *pySelf, Py_ssize_t pyIndex) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_getitem(PyObject *pySelf, Py_ssize_t pyIndex) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     auto size = static_cast<Py_ssize_t>(self->list.size());
 
@@ -406,7 +455,7 @@ static PyObject *ObjectLinkedList_getitem(PyObject *pySelf, Py_ssize_t pyIndex) 
     }
 
     try {
-        PyObject *item = *at(self->list, static_cast<size_t>(pyIndex));
+        PyObject *item = PyLong_FromLong(*at(self->list, static_cast<size_t>(pyIndex)));
         Py_INCREF(item);
         return item;
     } catch (const std::exception &e) {
@@ -415,16 +464,16 @@ static PyObject *ObjectLinkedList_getitem(PyObject *pySelf, Py_ssize_t pyIndex) 
     }
 }
 
-static PyObject *ObjectLinkedList_getitem_slice(PyObject *pySelf, PyObject *slice) {
+static PyObject *IntLinkedList_getitem_slice(PyObject *pySelf, PyObject *slice) {
     if (PyIndex_Check(slice)) {
         Py_ssize_t pyIndex = PyNumber_AsSsize_t(slice, PyExc_IndexError);
         if (pyIndex == -1 && PyErr_Occurred()) {
             return nullptr;
         }
-        return ObjectLinkedList_getitem(pySelf, pyIndex);
+        return IntLinkedList_getitem(pySelf, pyIndex);
     }
 
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     Py_ssize_t start, stop, step, sliceLength;
     if (PySlice_Unpack(slice, &start, &stop, &step) < 0) {
@@ -440,7 +489,7 @@ static PyObject *ObjectLinkedList_getitem_slice(PyObject *pySelf, PyObject *slic
 
     for (Py_ssize_t i = 0; i < sliceLength; i++) {
         Py_ssize_t index = start + i * step;
-        PyObject *item = *at(self->list, static_cast<size_t>(index));
+        PyObject *item = PyLong_FromLong(*at(self->list, static_cast<size_t>(index)));
         Py_INCREF(item);
         if (item == nullptr) {
             SAFE_DECREF(result);
@@ -451,8 +500,8 @@ static PyObject *ObjectLinkedList_getitem_slice(PyObject *pySelf, PyObject *slic
     return result;
 }
 
-static int ObjectLinkedList_setitem(PyObject *pySelf, Py_ssize_t pyIndex, PyObject *pyValue) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static int IntLinkedList_setitem(PyObject *pySelf, Py_ssize_t pyIndex, PyObject *pyValue) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     auto size = static_cast<Py_ssize_t>(self->list.size());
 
@@ -467,7 +516,6 @@ static int ObjectLinkedList_setitem(PyObject *pySelf, Py_ssize_t pyIndex, PyObje
     try {
         if (pyValue == nullptr) {
             auto iter = at(self->list, static_cast<size_t>(pyIndex));
-            SAFE_DECREF(*iter);
             self->list.erase(iter);
         } else {
             PyObject *value = pyValue;
@@ -475,8 +523,7 @@ static int ObjectLinkedList_setitem(PyObject *pySelf, Py_ssize_t pyIndex, PyObje
                 return -1;
             }
 
-            *at(self->list, static_cast<size_t>(pyIndex)) = value;
-            Py_INCREF(value);
+            *at(self->list, static_cast<size_t>(pyIndex)) = PyLong_AsLong(value);
         }
     } catch (const std::exception &e) {
         PyErr_SetString(PyExc_RuntimeError, e.what());
@@ -486,16 +533,16 @@ static int ObjectLinkedList_setitem(PyObject *pySelf, Py_ssize_t pyIndex, PyObje
 }
 
 
-static int ObjectLinkedList_setitem_slice(PyObject *pySelf, PyObject *slice, PyObject *value) {
+static int IntLinkedList_setitem_slice(PyObject *pySelf, PyObject *slice, PyObject *value) {
     if (PyIndex_Check(slice)) {
         Py_ssize_t index = PyNumber_AsSsize_t(slice, PyExc_IndexError);
         if (index == -1 && PyErr_Occurred()) {
             return -1;
         }
-        return ObjectLinkedList_setitem(pySelf, index, value);
+        return IntLinkedList_setitem(pySelf, index, value);
     }
 
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     Py_ssize_t start, stop, step, sliceLength;
     if (PySlice_Unpack(slice, &start, &stop, &step) < 0) {
@@ -521,7 +568,6 @@ static int ObjectLinkedList_setitem_slice(PyObject *pySelf, PyObject *slice, PyO
 
             if (value == nullptr) {
                 auto iter = at(self->list, static_cast<size_t>(index));
-                SAFE_DECREF(*iter);
                 self->list.erase(iter);
             } else {
                 item = PySequence_GetItem(value, i);
@@ -529,7 +575,7 @@ static int ObjectLinkedList_setitem_slice(PyObject *pySelf, PyObject *slice, PyO
                     return -1;
                 }
 
-                *at(self->list, static_cast<size_t>(index)) = item;
+                *at(self->list, static_cast<size_t>(index)) = PyLong_AsLong(item);
                 if (PyErr_Occurred()) {
                     SAFE_DECREF(item);
                     return -1;
@@ -544,20 +590,17 @@ static int ObjectLinkedList_setitem_slice(PyObject *pySelf, PyObject *slice, PyO
     return 0;
 }
 
-static PyObject *ObjectLinkedList_add(PyObject *pySelf, PyObject *pyValue) {
-    if (Py_TYPE(pyValue) == &ObjectLinkedListType) {
-        // fast add -> ObjectLinkedList
-        auto *value = reinterpret_cast<ObjectLinkedList *>(pyValue);
+static PyObject *IntLinkedList_add(PyObject *pySelf, PyObject *pyValue) {
+    if (Py_TYPE(pyValue) == &IntLinkedListType) {
+        // fast add -> IntLinkedList
+        auto *value = reinterpret_cast<IntLinkedList *>(pyValue);
 
-        auto *result = Py_CreateObj<ObjectLinkedList>(ObjectLinkedListType, pySelf);
+        auto *result = Py_CreateObj<IntLinkedList>(IntLinkedListType, pySelf);
         if (result == nullptr) {
             return PyErr_NoMemory();
         }
 
         try {
-            for (const auto &item: value->list) {
-                Py_INCREF(item);
-            }
             result->list.insert(result->list.end(), value->list.begin(), value->list.end());
             return reinterpret_cast<PyObject *>(result);
         } catch (const std::exception &e) {
@@ -568,7 +611,7 @@ static PyObject *ObjectLinkedList_add(PyObject *pySelf, PyObject *pyValue) {
     }
 
     // add -> list[int]
-    PyObject *selfIntList = ObjectLinkedList_to_list(pySelf);
+    PyObject *selfIntList = IntLinkedList_to_list(pySelf);
     if (selfIntList == nullptr) {
         return nullptr;
     }
@@ -583,15 +626,12 @@ static PyObject *ObjectLinkedList_add(PyObject *pySelf, PyObject *pyValue) {
     return result;
 }
 
-static PyObject *ObjectLinkedList_iadd(PyObject *pySelf, PyObject *iterable) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_iadd(PyObject *pySelf, PyObject *iterable) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     // fast extend
-    if (Py_TYPE(iterable) == &ObjectLinkedListType) {
-        auto *iter = reinterpret_cast<ObjectLinkedList *>(iterable);
-        for (const auto &item: iter->list) {
-            Py_INCREF(item);
-        }
+    if (Py_TYPE(iterable) == &IntLinkedListType) {
+        auto *iter = reinterpret_cast<IntLinkedList *>(iterable);
         self->list.insert(self->list.end(), iter->list.begin(), iter->list.end());
         Py_RETURN_NONE;
     }
@@ -605,14 +645,14 @@ static PyObject *ObjectLinkedList_iadd(PyObject *pySelf, PyObject *iterable) {
     // do extend
     PyObject *item;
     while ((item = PyIter_Next(iter)) != nullptr) {
-        PyObject *value = item;
-
         if (PyErr_Occurred()) {
             SAFE_DECREF(iter);
+            SAFE_DECREF(item);
             return nullptr;
         }
 
-        self->list.push_back(value);
+        self->list.push_back(PyLong_AsLong(item));
+        SAFE_DECREF(item);
     }
 
     if (PyErr_Occurred()) {
@@ -626,14 +666,14 @@ static PyObject *ObjectLinkedList_iadd(PyObject *pySelf, PyObject *iterable) {
 }
 
 
-static PyObject *ObjectLinkedList_mul(PyObject *pySelf, Py_ssize_t n) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_mul(PyObject *pySelf, Py_ssize_t n) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     if (n < 0) {
         n = 0;
     }
 
-    auto *result = Py_CreateObj<ObjectLinkedList>(ObjectLinkedListType);
+    auto *result = Py_CreateObj<IntLinkedList>(IntLinkedListType);
     if (result == nullptr) {
         return PyErr_NoMemory();
     }
@@ -644,10 +684,7 @@ static PyObject *ObjectLinkedList_mul(PyObject *pySelf, Py_ssize_t n) {
 
     try {
         for (Py_ssize_t i = 0; i < n; ++i) {
-            for (const auto obj: self->list) {
-                result->list.push_back(obj);
-                Py_INCREF(obj);
-            }
+            result->list.insert(result->list.end(), self->list.begin(), self->list.end());
         }
 
         return reinterpret_cast<PyObject *>(result);
@@ -658,22 +695,22 @@ static PyObject *ObjectLinkedList_mul(PyObject *pySelf, Py_ssize_t n) {
     }
 }
 
-static PyObject *ObjectLinkedList_rmul(PyObject *pySelf, PyObject *pyValue) {
+static PyObject *IntLinkedList_rmul(PyObject *pySelf, PyObject *pyValue) {
     if (PyLong_Check(pyValue)) {
         Py_ssize_t n = PyLong_AsSsize_t(pyValue);
         if (PyErr_Occurred()) {
             return nullptr;
         }
 
-        return ObjectLinkedList_mul(pySelf, n);
+        return IntLinkedList_mul(pySelf, n);
     }
 
     PyErr_SetString(PyExc_TypeError, "Expected an integer on the left-hand side of *");
     return nullptr;
 }
 
-static PyObject *ObjectLinkedList_imul(PyObject *pySelf, Py_ssize_t n) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_imul(PyObject *pySelf, Py_ssize_t n) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     if (n < 0) {
         n = 0;
@@ -683,13 +720,10 @@ static PyObject *ObjectLinkedList_imul(PyObject *pySelf, Py_ssize_t n) {
         if (n == 0) {
             self->list.clear();
         } else {
-            const auto size = self->list.size();
+            const auto begin = self->list.begin();
+            const auto end = self->list.end();
             for (Py_ssize_t i = 1; i < n; ++i) {
-                auto iter = self->list.begin();
-                for (size_t j = 0; j < size; ++j, ++iter) {
-                    self->list.push_back(*iter);
-                    Py_INCREF(*iter);
-                }
+                self->list.insert(self->list.end(), begin, end);
             }
         }
 
@@ -701,14 +735,17 @@ static PyObject *ObjectLinkedList_imul(PyObject *pySelf, Py_ssize_t n) {
     }
 }
 
-static int ObjectLinkedList_contains(PyObject *pySelf, PyObject *key) {
+static int IntLinkedList_contains(PyObject *pySelf, PyObject *key) {
     if (!PyLong_Check(key)) {
         return 0;
     }
 
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
-    PyObject *value = key;
+    int value = PyLong_AsLong(key);
+    if (PyErr_Occurred()) {
+        return -1;
+    }
 
     try {
         if (std::find(self->list.begin(), self->list.end(), value) != self->list.end()) {
@@ -722,16 +759,16 @@ static int ObjectLinkedList_contains(PyObject *pySelf, PyObject *key) {
     }
 }
 
-static PyObject *ObjectLinkedList_reversed(PyObject *pySelf) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_reversed(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
-    auto iter = ObjectLinkedListIter_create(self, true);
+    auto iter = IntLinkedListIter_create(self, true);
     if (iter == nullptr) return PyErr_NoMemory();
     return reinterpret_cast<PyObject *>(iter);
 }
 
-static PyObject *ObjectLinkedList_reverse(PyObject *pySelf) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_reverse(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     Py_BEGIN_ALLOW_THREADS
         std::reverse(self->list.begin(), self->list.end());
@@ -739,18 +776,15 @@ static PyObject *ObjectLinkedList_reverse(PyObject *pySelf) {
     Py_RETURN_NONE;
 }
 
-static PyObject *ObjectLinkedList_clear(PyObject *pySelf) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static PyObject *IntLinkedList_clear(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
-    for (auto &item: self->list) {
-        SAFE_DECREF(item);
-    }
     self->list.clear();
     Py_RETURN_NONE;
 }
 
-static __forceinline PyObject *ObjectLinkedList_eq(PyObject *pySelf, PyObject *pyValue) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static __forceinline PyObject *IntLinkedList_eq(PyObject *pySelf, PyObject *pyValue) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     if (!PySequence_Check(pyValue))
         Py_RETURN_FALSE;
@@ -765,58 +799,34 @@ static __forceinline PyObject *ObjectLinkedList_eq(PyObject *pySelf, PyObject *p
         if (item == nullptr)
             return nullptr;
 
-        PyObject *self_value = *iter;
-        PyObject *other_value = item;
-
-        // compare
-        int cmpResult = PyObject_RichCompareBool(self_value, other_value, Py_EQ);
-        SAFE_DECREF(item);
-        if (cmpResult < 0) {
-            return nullptr;
-        }
-
-        if (cmpResult == 0) {
+        int self_value = *iter;
+        int other_value = PyLong_AsLong(item);
+        if (PyErr_Occurred()) {  // can't be covert to int
+            SAFE_DECREF(item);
             Py_RETURN_FALSE;
         }
+
+        SAFE_DECREF(item);
+        if (self_value != other_value)
+            Py_RETURN_FALSE;
     }
 
     Py_RETURN_TRUE;
 }
 
-static __forceinline PyObject *ObjectLinkedList_ne(PyObject *pySelf, PyObject *pyValue) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
-
-    if (!PySequence_Check(pyValue))
+static __forceinline PyObject *IntLinkedList_ne(PyObject *pySelf, PyObject *pyValue) {
+    PyObject *isEq = IntLinkedList_eq(pySelf, pyValue);
+    if (PyObject_IsTrue(isEq)) {
+        SAFE_DECREF(isEq);
+        Py_RETURN_FALSE;
+    } else {
+        SAFE_DECREF(isEq);
         Py_RETURN_TRUE;
-
-    // compare
-    Py_ssize_t seq_size = PySequence_Size(pyValue);
-    if (seq_size != static_cast<Py_ssize_t>(self->list.size()))
-        Py_RETURN_TRUE;
-
-    auto iter = self->list.begin();
-    for (Py_ssize_t i = 0; i < seq_size; i++, iter++) {
-        PyObject *item = PySequence_GetItem(pyValue, i);
-        if (item == nullptr) return nullptr;
-        PyObject *self_value = *iter;
-        PyObject *other_value = item;
-
-        int cmpResult = PyObject_RichCompareBool(self_value, other_value, Py_NE);
-        SAFE_DECREF(item);
-        if (cmpResult < 0) {
-            return nullptr;
-        }
-
-        if (cmpResult != 0) {
-            Py_RETURN_TRUE;
-        }
     }
-
-    Py_RETURN_FALSE;
 }
 
-static __forceinline PyObject *ObjectLinkedList_lt(PyObject *pySelf, PyObject *pyValue) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static __forceinline PyObject *IntLinkedList_lt(PyObject *pySelf, PyObject *pyValue) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     if (!PySequence_Check(pyValue)) {
         Py_RETURN_FALSE;
@@ -838,20 +848,17 @@ static __forceinline PyObject *ObjectLinkedList_lt(PyObject *pySelf, PyObject *p
             return nullptr;
         }
 
-        // compare
-        int cmpResult = PyObject_RichCompareBool(*iter, item, Py_LT);
+        int self_value = *iter;
+        int other_value = PyLong_AsLong(item);
         SAFE_DECREF(item);
-        if (cmpResult < 0) {
-            return nullptr;
-        }
-        Py_RETURN_BOOL(cmpResult == 1)  // self->list[i] < item
+        if (self_value != other_value) Py_RETURN_BOOL(self_value < other_value)
     }
 
     Py_RETURN_FALSE;
 }
 
-static __forceinline PyObject *ObjectLinkedList_le(PyObject *pySelf, PyObject *pyValue) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static __forceinline PyObject *IntLinkedList_le(PyObject *pySelf, PyObject *pyValue) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     if (!PySequence_Check(pyValue)) {
         Py_RETURN_FALSE;
@@ -873,20 +880,17 @@ static __forceinline PyObject *ObjectLinkedList_le(PyObject *pySelf, PyObject *p
             return nullptr;
         }
 
-        // compare
-        int cmpResult = PyObject_RichCompareBool(*iter, item, Py_LE);
+        int self_value = *iter;
+        int other_value = PyLong_AsLong(item);
         SAFE_DECREF(item);
-        if (cmpResult < 0) {
-            return nullptr;
-        }
-        Py_RETURN_BOOL(cmpResult == 1)  // self->list[i] <= item
+        if (self_value != other_value) Py_RETURN_BOOL(self_value <= other_value)
     }
 
     Py_RETURN_FALSE;
 }
 
-static __forceinline PyObject *ObjectLinkedList_gt(PyObject *pySelf, PyObject *pyValue) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static __forceinline PyObject *IntLinkedList_gt(PyObject *pySelf, PyObject *pyValue) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     if (!PySequence_Check(pyValue)) {
         Py_RETURN_FALSE;
@@ -908,20 +912,17 @@ static __forceinline PyObject *ObjectLinkedList_gt(PyObject *pySelf, PyObject *p
             return nullptr;
         }
 
-        // compare
-        int cmpResult = PyObject_RichCompareBool(*iter, item, Py_GT);
+        int self_value = *iter;
+        int other_value = PyLong_AsLong(item);
         SAFE_DECREF(item);
-        if (cmpResult < 0) {
-            return nullptr;
-        }
-        Py_RETURN_BOOL(cmpResult == 1)  // self->list[i] > item
+        if (self_value != other_value) Py_RETURN_BOOL(self_value > other_value)
     }
 
     Py_RETURN_FALSE;
 }
 
-static __forceinline PyObject *ObjectLinkedList_ge(PyObject *pySelf, PyObject *pyValue) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static __forceinline PyObject *IntLinkedList_ge(PyObject *pySelf, PyObject *pyValue) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
     if (!PySequence_Check(pyValue)) {
         Py_RETURN_FALSE;
@@ -943,32 +944,29 @@ static __forceinline PyObject *ObjectLinkedList_ge(PyObject *pySelf, PyObject *p
             return nullptr;
         }
 
-        // compare
-        int cmpResult = PyObject_RichCompareBool(*iter, item, Py_GE);
+        int self_value = *iter;
+        int other_value = PyLong_AsLong(item);
         SAFE_DECREF(item);
-        if (cmpResult < 0) {
-            return nullptr;
-        }
-        Py_RETURN_BOOL(cmpResult == 1)  // self->list[i] >= item
+        if (self_value != other_value) Py_RETURN_BOOL(self_value >= other_value)
     }
 
     Py_RETURN_FALSE;
 }
 
-static PyObject *ObjectLinkedList_compare(PyObject *pySelf, PyObject *pyValue, int op) {
+static PyObject *IntLinkedList_compare(PyObject *pySelf, PyObject *pyValue, int op) {
     switch (op) {
         case Py_EQ:  // ==
-            return ObjectLinkedList_eq(pySelf, pyValue);
+            return IntLinkedList_eq(pySelf, pyValue);
         case Py_NE:  // !=
-            return ObjectLinkedList_ne(pySelf, pyValue);
+            return IntLinkedList_ne(pySelf, pyValue);
         case Py_LT:  // <
-            return ObjectLinkedList_lt(pySelf, pyValue);
+            return IntLinkedList_lt(pySelf, pyValue);
         case Py_LE:  // <=
-            return ObjectLinkedList_le(pySelf, pyValue);
+            return IntLinkedList_le(pySelf, pyValue);
         case Py_GT:  // >
-            return ObjectLinkedList_gt(pySelf, pyValue);
+            return IntLinkedList_gt(pySelf, pyValue);
         case Py_GE:  // >=
-            return ObjectLinkedList_ge(pySelf, pyValue);
+            return IntLinkedList_ge(pySelf, pyValue);
         default:
             PyErr_SetString(PyExc_AssertionError, "Invalid comparison operation.");
             return nullptr;
@@ -976,129 +974,128 @@ static PyObject *ObjectLinkedList_compare(PyObject *pySelf, PyObject *pyValue, i
 }
 
 #ifdef IS_PYTHON_39_OR_LATER
-static PyObject *ObjectLinkedList_class_getitem(PyObject *cls, PyObject *item) {
+static PyObject *IntLinkedList_class_getitem(PyObject *cls, PyObject *item) {
     return Py_GenericAlias(cls, item);
 }
 #endif
 
-static __forceinline PyObject *ObjectLinkedList_repr(PyObject *pySelf) {
-    auto *self = reinterpret_cast<ObjectLinkedList *>(pySelf);
+static __forceinline PyObject *IntLinkedList_repr(PyObject *pySelf) {
+    auto *self = reinterpret_cast<IntLinkedList *>(pySelf);
 
-    const auto &vec = self->list;
+    auto &vec = self->list;
 
     if (vec.empty()) {
         return PyUnicode_FromString("[]");
     }
 
-    PyObject *reprList = PyUnicode_FromString("[");
-    if (reprList == nullptr) {
-        return nullptr;
+    size_t size = vec.size();
+    auto str = std::string("[");
+    str.reserve(size * 4);
+
+    char buffer[32];
+
+    const size_t lastIdx = size - 1;
+    auto iter = vec.begin();
+    for (size_t i = 0; i < lastIdx; ++i, ++iter) {
+        // to string
+        int len = snprintf(buffer, sizeof(buffer), "%d", *iter);
+        str.append(buffer, len);
+        str += ", ";
     }
 
-    // generate string
-    auto iter = self->list.begin();
-    for (size_t i = 0; i < vec.size() - 1; ++i, ++iter) {
-        PyObject *itemRepr = PyObject_Repr(*iter);
-        if (itemRepr == nullptr) {
-            SAFE_DECREF(reprList);
-            return nullptr;
-        }
+    int len = snprintf(buffer, sizeof(buffer), "%d", *at(vec, lastIdx));
+    str.append(buffer, len);
 
-        PyUnicode_AppendAndDel(&reprList, itemRepr);
-        PyUnicode_AppendAndDel(&reprList, PyUnicode_FromString(", "));
-    }
+    str += "]";
 
-    PyObject *itemRepr = PyObject_Repr(vec.back());
-    PyUnicode_AppendAndDel(&reprList, itemRepr);
-    PyUnicode_AppendAndDel(&reprList, PyUnicode_FromString("]"));
-
-    return reprList;
+    return PyUnicode_FromString(str.c_str());
 }
 
-static PyObject *ObjectLinkedList_str(PyObject *pySelf) {
-    return ObjectLinkedList_repr(pySelf);
+static PyObject *IntLinkedList_str(PyObject *pySelf) {
+    return IntLinkedList_repr(pySelf);
 }
 
-static PyMethodDef ObjectLinkedList_methods[] = {
-        {"to_list", (PyCFunction) ObjectLinkedList_to_list, METH_NOARGS},
-        {"copy", (PyCFunction) ObjectLinkedList_copy, METH_NOARGS},
-        {"append", (PyCFunction) ObjectLinkedList_append, METH_O},
-        {"extend", (PyCFunction) ObjectLinkedList_extend, METH_FASTCALL},
-        {"pop", (PyCFunction) ObjectLinkedList_pop, METH_FASTCALL},
-        {"index", (PyCFunction) ObjectLinkedList_index, METH_VARARGS},
-        {"count", (PyCFunction) ObjectLinkedList_count, METH_O},
-        {"insert", (PyCFunction) ObjectLinkedList_insert, METH_VARARGS},
-        {"remove", (PyCFunction) ObjectLinkedList_remove, METH_O},
-        {"sort", (PyCFunction) ObjectLinkedList_sort, METH_VARARGS | METH_KEYWORDS},
-        {"reverse", (PyCFunction) ObjectLinkedList_reverse, METH_NOARGS},
-        {"clear", (PyCFunction) ObjectLinkedList_clear, METH_NOARGS},
-        {"__rmul__", (PyCFunction) ObjectLinkedList_rmul, METH_O},
-        {"__reversed__", (PyCFunction) ObjectLinkedList_reversed, METH_NOARGS},
+static PyMethodDef IntLinkedList_methods[] = {
+        {"from_range", (PyCFunction) IntLinkedList_from_range, METH_VARARGS | METH_STATIC},
+        {"to_list", (PyCFunction) IntLinkedList_to_list, METH_NOARGS},
+        {"copy", (PyCFunction) IntLinkedList_copy, METH_NOARGS},
+        {"append", (PyCFunction) IntLinkedList_append, METH_O},
+        {"extend", (PyCFunction) IntLinkedList_extend, METH_FASTCALL},
+        {"pop", (PyCFunction) IntLinkedList_pop, METH_FASTCALL},
+        {"index", (PyCFunction) IntLinkedList_index, METH_VARARGS},
+        {"count", (PyCFunction) IntLinkedList_count, METH_O},
+        {"insert", (PyCFunction) IntLinkedList_insert, METH_VARARGS},
+        {"remove", (PyCFunction) IntLinkedList_remove, METH_O},
+        {"sort", (PyCFunction) IntLinkedList_sort, METH_VARARGS | METH_KEYWORDS},
+        {"reverse", (PyCFunction) IntLinkedList_reverse, METH_NOARGS},
+        {"clear", (PyCFunction) IntLinkedList_clear, METH_NOARGS},
+        {"__rmul__", (PyCFunction) IntLinkedList_rmul, METH_O},
+        {"__reversed__", (PyCFunction) IntLinkedList_reversed, METH_NOARGS},
 #ifdef IS_PYTHON_39_OR_LATER
-        {"__class_getitem__", (PyCFunction) ObjectLinkedList_class_getitem, METH_O | METH_CLASS},
+        {"__class_getitem__", (PyCFunction) IntLinkedList_class_getitem, METH_O | METH_CLASS},
 #endif
         {nullptr}
 };
 
-static struct PyModuleDef ObjectLinkedList_module = {
+static struct PyModuleDef IntLinkedList_module = {
         PyModuleDef_HEAD_INIT,
-        "__pyfastutil.ObjectLinkedList",
-        "An ObjectLinkedList_module that creates an ObjectLinkedList",
+        "__pyfastutil.IntLinkedList",
+        "An IntLinkedList_module that creates an IntLinkedList",
         -1,
         nullptr, nullptr, nullptr, nullptr, nullptr
 };
 
-static PySequenceMethods ObjectLinkedList_asSequence = {
-        ObjectLinkedList_len,
-        ObjectLinkedList_add,
-        ObjectLinkedList_mul,
-        ObjectLinkedList_getitem,
+static PySequenceMethods IntLinkedList_asSequence = {
+        IntLinkedList_len,
+        IntLinkedList_add,
+        IntLinkedList_mul,
+        IntLinkedList_getitem,
         nullptr,
-        ObjectLinkedList_setitem,
+        IntLinkedList_setitem,
         nullptr,
-        ObjectLinkedList_contains,
-        ObjectLinkedList_iadd,
-        ObjectLinkedList_imul
+        IntLinkedList_contains,
+        IntLinkedList_iadd,
+        IntLinkedList_imul
 };
 
-static PyMappingMethods ObjectLinkedList_asMapping = {
-        ObjectLinkedList_len,
-        ObjectLinkedList_getitem_slice,
-        ObjectLinkedList_setitem_slice
+static PyMappingMethods IntLinkedList_asMapping = {
+        IntLinkedList_len,
+        IntLinkedList_getitem_slice,
+        IntLinkedList_setitem_slice
 };
 
-void initializeObjectLinkedListType(PyTypeObject &type) {
-    type.tp_name = "ObjectLinkedList";
-    type.tp_basicsize = sizeof(ObjectLinkedList);
+void initializeIntLinkedListType(PyTypeObject &type) {
+    type.tp_name = "IntLinkedList";
+    type.tp_basicsize = sizeof(IntLinkedList);
     type.tp_itemsize = 0;
     type.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
-    type.tp_as_sequence = &ObjectLinkedList_asSequence;
-    type.tp_as_mapping = &ObjectLinkedList_asMapping;
-    type.tp_iter = ObjectLinkedList_iter;
-    type.tp_methods = ObjectLinkedList_methods;
-    type.tp_init = (initproc) ObjectLinkedList_init;
+    type.tp_as_sequence = &IntLinkedList_asSequence;
+    type.tp_as_mapping = &IntLinkedList_asMapping;
+    type.tp_iter = IntLinkedList_iter;
+    type.tp_methods = IntLinkedList_methods;
+    type.tp_init = (initproc) IntLinkedList_init;
     type.tp_new = PyType_GenericNew;
-    type.tp_dealloc = (destructor) ObjectLinkedList_dealloc;
+    type.tp_dealloc = (destructor) IntLinkedList_dealloc;
     type.tp_alloc = PyType_GenericAlloc;
     type.tp_free = PyObject_Del;
     type.tp_hash = PyObject_HashNotImplemented;
-    type.tp_richcompare = ObjectLinkedList_compare;
-    type.tp_repr = ObjectLinkedList_repr;
-    type.tp_str = ObjectLinkedList_str;
+    type.tp_richcompare = IntLinkedList_compare;
+    type.tp_repr = IntLinkedList_repr;
+    type.tp_str = IntLinkedList_str;
 }
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
-PyMODINIT_FUNC PyInit_ObjectLinkedList() {
-    initializeObjectLinkedListType(ObjectLinkedListType);
+PyMODINIT_FUNC PyInit_IntLinkedList() {
+    initializeIntLinkedListType(IntLinkedListType);
 
-    PyObject *object = PyModule_Create(&ObjectLinkedList_module);
+    PyObject *object = PyModule_Create(&IntLinkedList_module);
     if (object == nullptr)
         return nullptr;
 
-    Py_INCREF(&ObjectLinkedListType);
-    if (PyModule_AddObject(object, "ObjectLinkedList", (PyObject *) &ObjectLinkedListType) < 0) {
-        Py_DECREF(&ObjectLinkedListType);
+    Py_INCREF(&IntLinkedListType);
+    if (PyModule_AddObject(object, "IntLinkedList", (PyObject *) &IntLinkedListType) < 0) {
+        Py_DECREF(&IntLinkedListType);
         Py_DECREF(object);
         return nullptr;
     }
