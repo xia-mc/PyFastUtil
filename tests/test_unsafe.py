@@ -61,6 +61,12 @@ class TestUnsafe(unittest.TestCase):
             unsafe.free(src_ptr)
             unsafe.free(dest_ptr)
 
+    def test_memset(self):
+        with Unsafe() as unsafe:
+            ptr = unsafe.malloc(10)
+            unsafe.memset(ptr, 1, 10)
+            self.assertEqual(unsafe.get(ptr, 10), b'\x01' * 10)
+
     def test_get_address_and_as_object(self):
         with Unsafe() as unsafe:
             obj = [1, 2, 3]

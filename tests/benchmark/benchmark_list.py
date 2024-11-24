@@ -3,13 +3,13 @@ import timeit
 import random
 
 from pyfastutil.ints import IntArrayList, BigIntArrayList, IntLinkedList
-from typing import Callable
+from typing import Callable, Optional
 
 SIZE = int(1e4)
 REPEAT = 3
 
 pyFastUtilListObj: type[list]
-sortKey: Callable[[...], str] | None = None
+sortKey: Optional[Callable[[...], str]] = None
 
 unsortList: list
 pythonList: list
