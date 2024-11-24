@@ -126,9 +126,23 @@ Avg speed of PyFastUtil compared to Python list: 2578.368 %
 
 ## 安装
 
-目前，**PyFastUtil** 还未发布到 PyPI。您需要**克隆仓库**并从源代码进行构建。
+目前，**PyFastUtil** 还未正式发布到 PyPI。您可以选择从 **Test PyPI** 安装测试版本，或者克隆仓库并从源代码进行构建。
 
-### 从源代码构建
+### 选项 1：从 Test PyPI 安装
+
+您可以从 **Test PyPI** 安装最新的预发布版本：
+
+```bash
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pyfastutil
+```
+
+> **注意**: Test PyPI 是一个用于测试的独立软件包仓库，其上的包可能不如正式发布的版本稳定。
+
+---
+
+### 选项 2：从源代码构建
+
+如果您希望从源代码构建项目，请按照以下步骤操作：
 
 1. 克隆仓库：
     ```bash
@@ -146,7 +160,7 @@ Avg speed of PyFastUtil compared to Python list: 2578.368 %
       ./build.sh
       ```
 
-> **注意**: 项目功能齐全并经过广泛测试后，将发布到 PyPI。
+> **注意**: 项目功能齐全并经过广泛测试后，将正式发布到 PyPI。
 
 ## 许可证
 

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PyFastUtil"
-version = "0.0.9"
+version = "0.0.10"
 authors = [
     { name = "xia__mc", email = "xiayichun0512@gmail.com" },
 ]

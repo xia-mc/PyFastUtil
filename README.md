@@ -126,9 +126,23 @@ Avg speed of PyFastUtil compared to Python list: 2578.368 %
 
 ## Installation
 
-Currently, **PyFastUtil** is not available on PyPI. You will need to **clone the repository** and build it from the source code.
+Currently, **PyFastUtil** is not officially available on PyPI. However, you can install it from **Test PyPI** or build it from the source code.
 
-### Build from source
+### Option 1: Install from Test PyPI
+
+You can install the latest pre-release version of **PyFastUtil** from Test PyPI:
+
+```bash
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pyfastutil
+```
+
+> **Note**: Test PyPI is a separate package repository used for testing purposes. Packages hosted there may not be as stable as those on the official PyPI.
+
+---
+
+### Option 2: Build from source
+
+If you'd prefer to build the project from the source code, follow these steps:
 
 1. Clone the repository:
     ```bash
@@ -146,7 +160,7 @@ Currently, **PyFastUtil** is not available on PyPI. You will need to **clone the
       ./build.sh
       ```
 
-> **Note**: Future releases will be available on PyPI once the project is feature-complete and well-tested.
+> **Note**: Future releases will be available on the official PyPI repository once the project is feature-complete and well-tested.
 
 ## License
 
