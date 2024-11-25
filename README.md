@@ -184,6 +184,8 @@ This project includes code from the following amazing open-source projects:
 
 - [CPython](https://github.com/python/cpython): The official Python interpreter, licensed under the [Python Software Foundation License](https://docs.python.org/3/license.html).
 - [cpp-TimSort](https://github.com/timsort/cpp-TimSort): A C++ implementation of the TimSort algorithm, licensed under the [MIT License](https://github.com/timsort/cpp-TimSort/blob/master/LICENSE).
+- [ankerl::unordered_dense](https://github.com/martinus/unordered_dense): A fast and memory-efficient hash map implementation for modern C++, licensed under the [MIT License](https://github.com/martinus/unordered_dense/blob/main/LICENSE).
+- [C++ Standard Library (STL)](https://en.cppreference.com/w/cpp): The C++ Standard Library, which provides essential data structures, algorithms, and utilities, licensed under the [ISO C++ Standard](https://isocpp.org/).
 
 Special thanks to the contributors of these open-source projects!
 

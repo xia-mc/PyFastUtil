@@ -7,12 +7,12 @@
 #include <algorithm>
 #include <stdexcept>
 #include "utils/PythonUtils.h"
-#include "utils/TimSort.h"
+#include "utils/include/TimSort.h"
 #include "utils/simd/BitonicSort.h"
 #include "utils/simd/Utils.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "ints/IntLinkedListIter.h"
-#include "utils/CPythonSort.h"
+#include "utils/include/CPythonSort.h"
 #include "utils/Utils.h"
 
 extern "C" {
@@ -39,6 +39,27 @@ static int IntLinkedList_init(IntLinkedList *self, PyObject *args, PyObject *kwa
             if (Py_TYPE(pyIterable) == &IntLinkedListType) {  // IntLinkedList is a final class
                 auto *iter = reinterpret_cast<IntLinkedList *>(pyIterable);
                 self->list = iter->list;
+                return 0;
+            }
+
+            if (PyList_Check(pyIterable) || PyTuple_Check(pyIterable)) {  // fast operation
+                auto fastKeys = PySequence_Fast(pyIterable, "Shouldn't be happen (IntLinkedList).");
+                if (fastKeys == nullptr) {
+                    return -1;
+                }
+
+                const auto size = PySequence_Fast_GET_SIZE(fastKeys);
+                auto items = PySequence_Fast_ITEMS(fastKeys);
+                for (Py_ssize_t i = 0; i < size; ++i) {
+                    int value = PyLong_AsLong(items[i]);
+                    if (PyErr_Occurred()) {
+                        SAFE_DECREF(fastKeys);
+                        PyErr_SetString(PyExc_RuntimeError, "Failed to convert item to C int during iteration.");
+                        return -1;
+                    }
+                    self->list.push_back(value);
+                }
+                SAFE_DECREF(fastKeys);
                 return 0;
             }
 

@@ -184,6 +184,8 @@ pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://
 
 - [CPython](https://github.com/python/cpython): Python 官方解释器的实现，遵循 [Python Software Foundation License](https://docs.python.org/3/license.html)。
 - [cpp-TimSort](https://github.com/timsort/cpp-TimSort): C++ 实现的 TimSort 算法，遵循 [MIT License](https://github.com/timsort/cpp-TimSort/blob/master/LICENSE)。
+- [ankerl::unordered_dense](https://github.com/martinus/unordered_dense): 一个现代 C++ 的高性能、低内存占用的哈希表实现，遵循 [MIT License](https://github.com/martinus/unordered_dense/blob/main/LICENSE)。
+- [C++ 标准库 (STL)](https://en.cppreference.com/w/cpp): 提供了基础数据结构、算法和工具的 C++ 标准库，遵循 [ISO C++ 标准](https://isocpp.org/)。
 
 特别感谢这些开源项目的贡献者们！
 

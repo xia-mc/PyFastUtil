@@ -8,26 +8,47 @@ from typing import Callable, Optional
 SIZE = int(1e4)
 REPEAT = 3
 
-pyFastUtilListObj: type[list]
+pyFastUtilListObj: type[IntArrayList] = IntArrayList
 sortKey: Optional[Callable[[...], str]] = None
 
-unsortList: list
+testData: list
 pythonList: list
-pyFastUtilList: list
+# noinspection PyUnboundLocalVariable
+pyFastUtilList: pyFastUtilListObj
 
 
 # Setup functions to reset the lists
 def setup_python():
     global pythonList
-    pythonList = list(unsortList)
+    pythonList = list(testData)
 
 
 def setup_pyfastutil():
     global pyFastUtilList
-    pyFastUtilList = pyFastUtilListObj(unsortList)
+    pyFastUtilList = pyFastUtilListObj(testData)
 
 
 # Benchmark functions
+def python_copy():
+    global pythonList
+    pythonList.copy()
+
+
+def pyfastutil_copy():
+    global pyFastUtilList
+    pyFastUtilList.copy()
+
+
+def python_to_python():
+    global pythonList
+    list(pythonList)
+
+
+def pyfastutil_to_python():
+    global pyFastUtilList
+    pyFastUtilList.to_list()
+
+
 def python_sort():
     global pythonList
     pythonList.sort(key=sortKey)
@@ -76,25 +97,25 @@ def pyfastutil_pop():
 
 def python_remove():
     global pythonList
-    for i in unsortList:
+    for i in testData:
         pythonList.remove(i)
 
 
 def pyfastutil_remove():
     global pyFastUtilList
-    for i in unsortList:
+    for i in testData:
         pyFastUtilList.remove(i)
 
 
 def python_index():
     global pythonList
-    for i in unsortList:
+    for i in testData:
         pythonList.index(i)
 
 
 def pyfastutil_index():
     global pyFastUtilList
-    for i in unsortList:
+    for i in testData:
         pyFastUtilList.index(i)
 
 
@@ -102,13 +123,13 @@ def pyfastutil_index():
 def python_contains():
     global pythonList
     for i in range(SIZE):
-        pythonList.__contains__(random.choice([random.randint(0, SIZE), random.choice(unsortList)]))
+        pythonList.__contains__(random.choice([random.randint(0, SIZE), random.choice(testData)]))
 
 
 def pyfastutil_contains():
     global pyFastUtilList
     for i in range(SIZE):
-        pyFastUtilList.__contains__(random.choice([random.randint(0, SIZE), random.choice(unsortList)]))
+        pyFastUtilList.__contains__(random.choice([random.randint(0, SIZE), random.choice(testData)]))
 
 
 def python_extend():
@@ -124,7 +145,7 @@ def pyfastutil_extend():
 # Main benchmarking function
 def main(obj: type[list]):
     global pyFastUtilListObj
-    global unsortList
+    global testData
     global sortKey
 
     pyFastUtilListObj = obj
@@ -132,13 +153,13 @@ def main(obj: type[list]):
     if obj is IntArrayList or obj is IntLinkedList:
         INT_MAX = (2 ** (ctypes.sizeof(ctypes.c_int) * 8 - 1)) - 1
         INT_MIN = -INT_MAX - 1
-        unsortList = [random.randint(INT_MIN, INT_MAX) for _ in range(SIZE)]
+        testData = [random.randint(INT_MIN, INT_MAX) for _ in range(SIZE)]
     elif obj is BigIntArrayList:
         LONG_LONG_MAX = (2 ** (ctypes.sizeof(ctypes.c_longlong) * 8 - 1)) - 1
         LONG_LONG_MIN = -LONG_LONG_MAX - 1
-        unsortList = [random.randint(LONG_LONG_MIN, LONG_LONG_MAX) for _ in range(SIZE)]
+        testData = [random.randint(LONG_LONG_MIN, LONG_LONG_MAX) for _ in range(SIZE)]
     else:
-        unsortList = [random.choice([str, int, float, bytes])(random.randint(0, SIZE)) for _ in range(SIZE)]
+        testData = [random.choice([str, int, float, bytes])(random.randint(0, 100000)) for _ in range(SIZE)]
         sortKey = str
 
     print(f"---Python list & {pyFastUtilListObj.__name__} Benchmark---")
@@ -150,6 +171,9 @@ def main(obj: type[list]):
 
     # List of benchmark operations
     benchmarks = [
+        ("init", setup_python, setup_pyfastutil),
+        ("copy", python_copy, pyfastutil_copy),
+        ("to_python", python_to_python, pyfastutil_to_python),
         ("sort", python_sort, pyfastutil_sort),
         ("append", python_append, pyfastutil_append),
         ("insert", python_insert, pyfastutil_insert),

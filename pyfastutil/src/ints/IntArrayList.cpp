@@ -7,12 +7,12 @@
 #include <algorithm>
 #include <stdexcept>
 #include "utils/PythonUtils.h"
-#include "utils/TimSort.h"
+#include "utils/include/TimSort.h"
 #include "utils/simd/BitonicSort.h"
 #include "utils/simd/Utils.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "ints/IntArrayListIter.h"
-#include "utils/CPythonSort.h"
+#include "utils/include/CPythonSort.h"
 
 extern "C" {
 
@@ -57,6 +57,27 @@ static int IntArrayList_init(IntArrayList *self, PyObject *args, PyObject *kwarg
             if (Py_TYPE(pyIterable) == &IntArrayListType) {  // IntArrayList is a final class
                 auto *iter = reinterpret_cast<IntArrayList *>(pyIterable);
                 self->vector = iter->vector;
+                return 0;
+            }
+
+            if (PyList_Check(pyIterable) || PyTuple_Check(pyIterable)) {  // fast operation
+                auto fastKeys = PySequence_Fast(pyIterable, "Shouldn't be happen (IntArrayList).");
+                if (fastKeys == nullptr) {
+                    return -1;
+                }
+
+                const auto size = PySequence_Fast_GET_SIZE(fastKeys);
+                auto items = PySequence_Fast_ITEMS(fastKeys);
+                for (Py_ssize_t i = 0; i < size; ++i) {
+                    int value = PyLong_AsLong(items[i]);
+                    if (PyErr_Occurred()) {
+                        SAFE_DECREF(fastKeys);
+                        PyErr_SetString(PyExc_RuntimeError, "Failed to convert item to C int during iteration.");
+                        return -1;
+                    }
+                    self->vector.push_back(value);
+                }
+                SAFE_DECREF(fastKeys);
                 return 0;
             }
 

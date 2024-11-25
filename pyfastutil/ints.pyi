@@ -517,3 +517,7 @@ class IntLinkedListIter(Iterator[int]):
             StopIteration: If there are no more elements to iterate over.
         """
         pass
+
+@final
+class IntIntHashMap(dict[int, int]):
+    pass

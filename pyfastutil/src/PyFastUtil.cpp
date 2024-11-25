@@ -8,12 +8,13 @@
 #include "ints/IntArrayListIter.h"
 #include "ints/BigIntArrayList.h"
 #include "ints/BigIntArrayListIter.h"
+#include "ints/IntLinkedList.h"
+#include "ints/IntLinkedListIter.h"
+#include "ints/IntIntHashMap.h"
 #include "objects/ObjectArrayList.h"
 #include "objects/ObjectArrayListIter.h"
 #include "objects/ObjectLinkedList.h"
 #include "objects/ObjectLinkedListIter.h"
-#include "ints/IntLinkedList.h"
-#include "ints/IntLinkedListIter.h"
 #include "unsafe/Unsafe.h"
 
 static struct PyModuleDef pyfastutilModule = {
@@ -38,12 +39,14 @@ PyMODINIT_FUNC PyInit___pyfastutil() {
     PyModule_AddObject(parent, "IntArrayListIter", PyInit_IntArrayListIter());
     PyModule_AddObject(parent, "BigIntArrayList", PyInit_BigIntArrayList());
     PyModule_AddObject(parent, "BigIntArrayListIter", PyInit_BigIntArrayListIter());
+    PyModule_AddObject(parent, "IntLinkedList", PyInit_IntLinkedList());
+    PyModule_AddObject(parent, "IntLinkedListIter", PyInit_IntLinkedListIter());
+    PyModule_AddObject(parent, "IntIntHashMap", PyInit_IntIntHashMap());
+
     PyModule_AddObject(parent, "ObjectArrayList", PyInit_ObjectArrayList());
     PyModule_AddObject(parent, "ObjectArrayListIter", PyInit_ObjectArrayListIter());
     PyModule_AddObject(parent, "ObjectLinkedList", PyInit_ObjectLinkedList());
     PyModule_AddObject(parent, "ObjectLinkedListIter", PyInit_ObjectLinkedListIter());
-    PyModule_AddObject(parent, "IntLinkedList", PyInit_IntLinkedList());
-    PyModule_AddObject(parent, "IntLinkedListIter", PyInit_IntLinkedListIter());
 
     PyModule_AddObject(parent, "Unsafe", PyInit_Unsafe());
 

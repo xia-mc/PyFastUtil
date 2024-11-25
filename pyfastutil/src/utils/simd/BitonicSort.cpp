@@ -15,7 +15,7 @@
 
 #include <utils/PythonPCH.h>
 #include "SIMD.h"
-#include "utils/TimSort.h"
+#include "utils/include/TimSort.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "utils/memory/PreFetch.h"
 

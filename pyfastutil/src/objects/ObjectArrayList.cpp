@@ -7,12 +7,12 @@
 #include <algorithm>
 #include <stdexcept>
 #include "utils/PythonUtils.h"
-#include "utils/TimSort.h"
+#include "utils/include/TimSort.h"
 #include "utils/simd/BitonicSort.h"
 #include "utils/simd/Utils.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "objects/ObjectArrayListIter.h"
-#include "utils/CPythonSort.h"
+#include "utils/include/CPythonSort.h"
 
 extern "C" {
 static PyTypeObject ObjectArrayListType = {
@@ -56,6 +56,25 @@ static int ObjectArrayList_init(ObjectArrayList *self, PyObject *args, PyObject 
             if (Py_TYPE(pyIterable) == &ObjectArrayListType) {  // ObjectArrayList is a final class
                 auto *iter = reinterpret_cast<ObjectArrayList *>(pyIterable);
                 self->vector = iter->vector;
+                return 0;
+            }
+
+            if (PyList_Check(pyIterable) || PyTuple_Check(pyIterable)) {  // fast operation
+                auto fastIter = PySequence_Fast(pyIterable, "Shouldn't be happen (ObjectArrayList).");
+                if (fastIter == nullptr) {
+                    return -1;
+                }
+
+                const auto size = PySequence_Fast_GET_SIZE(fastIter);
+                auto items = PySequence_Fast_ITEMS(fastIter);
+
+                for (Py_ssize_t i = 0; i < size; ++i) {
+                    Py_INCREF(items[i]);
+                }
+
+                self->vector.insert(self->vector.end(), items, items + size);  // even faster than memcpy!!
+
+                SAFE_DECREF(fastIter);
                 return 0;
             }
 
@@ -868,7 +887,7 @@ static __forceinline PyObject *ObjectArrayList_lt(PyObject *pySelf, PyObject *py
         Py_RETURN_BOOL(self->vector.size() < static_cast<size_t>(seqSize))
     }
 
-    for (Py_ssize_t i = 0; i < seqSize; i++) {
+    for (Py_ssize_t i = 0; i < seqSize; ++i) {
         PyObject *item = PySequence_GetItem(pyValue, i);
         if (item == nullptr) {
             return nullptr;
@@ -902,7 +921,7 @@ static __forceinline PyObject *ObjectArrayList_le(PyObject *pySelf, PyObject *py
         Py_RETURN_BOOL(self->vector.size() < static_cast<size_t>(seqSize))
     }
 
-    for (Py_ssize_t i = 0; i < seqSize; i++) {
+    for (Py_ssize_t i = 0; i < seqSize; ++i) {
         PyObject *item = PySequence_GetItem(pyValue, i);
         if (item == nullptr) {
             return nullptr;
@@ -936,7 +955,7 @@ static __forceinline PyObject *ObjectArrayList_gt(PyObject *pySelf, PyObject *py
         Py_RETURN_BOOL(self->vector.size() < static_cast<size_t>(seqSize))
     }
 
-    for (Py_ssize_t i = 0; i < seqSize; i++) {
+    for (Py_ssize_t i = 0; i < seqSize; ++i) {
         PyObject *item = PySequence_GetItem(pyValue, i);
         if (item == nullptr) {
             return nullptr;
@@ -970,7 +989,7 @@ static __forceinline PyObject *ObjectArrayList_ge(PyObject *pySelf, PyObject *py
         Py_RETURN_BOOL(self->vector.size() < static_cast<size_t>(seqSize))
     }
 
-    for (Py_ssize_t i = 0; i < seqSize; i++) {
+    for (Py_ssize_t i = 0; i < seqSize; ++i) {
         PyObject *item = PySequence_GetItem(pyValue, i);
         if (item == nullptr) {
             return nullptr;

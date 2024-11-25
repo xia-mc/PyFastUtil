@@ -22,13 +22,17 @@
 
 namespace simd {
     // Prefetch 4 cache lines ahead
-    constexpr size_t AVX512_PREFETCH_INT = AVX512_INTS * 4;
-    constexpr size_t AVX2_PREFETCH_INT = AVX2_INTS * 4;
-    constexpr size_t SSE41_PREFETCH_INT = SSE41_INTS * 4;
+    static constexpr size_t AVX512_PREFETCH_INT = AVX512_INTS * 4;
+    static constexpr size_t AVX2_PREFETCH_INT = AVX2_INTS * 4;
+    static constexpr size_t SSE41_PREFETCH_INT = SSE41_INTS * 4;
 
-    constexpr size_t AVX512_PREFETCH_LONG_LONG = AVX512_LONG_LONGS * 4;
-    constexpr size_t AVX2_PREFETCH_LONG_LONG = AVX2_LONG_LONGS * 4;
-    constexpr size_t SSE41_PREFETCH_LONG_LONG = SSE41_LONG_LONGS * 4;
+    static constexpr size_t AVX512_PREFETCH_LONG_LONG = AVX512_LONG_LONGS * 4;
+    static constexpr size_t AVX2_PREFETCH_LONG_LONG = AVX2_LONG_LONGS * 4;
+    static constexpr size_t SSE41_PREFETCH_LONG_LONG = SSE41_LONG_LONGS * 4;
+
+    static constexpr size_t AVX512_PREFETCH_PY_OBJECT = AVX512_PY_OBJECTS * 4;
+    static constexpr size_t AVX2_PREFETCH_PY_OBJECT = AVX2_PY_OBJECTS * 4;
+    static constexpr size_t SSE41_PREFETCH_PY_OBJECT = SSE41_PY_OBJECTS * 4;
 
     /**
      * Optimized memory copy with SIMD and prefetching.

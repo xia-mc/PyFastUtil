@@ -7,12 +7,12 @@
 #include <algorithm>
 #include <stdexcept>
 #include "utils/PythonUtils.h"
-#include "utils/TimSort.h"
+#include "utils/include/TimSort.h"
 #include "utils/simd/BitonicSort.h"
 #include "utils/simd/Utils.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "objects/ObjectLinkedListIter.h"
-#include "utils/CPythonSort.h"
+#include "utils/include/CPythonSort.h"
 #include "utils/Utils.h"
 
 extern "C" {
@@ -39,6 +39,23 @@ static int ObjectLinkedList_init(ObjectLinkedList *self, PyObject *args, PyObjec
             if (Py_TYPE(pyIterable) == &ObjectLinkedListType) {  // ObjectLinkedList is a final class
                 auto *iter = reinterpret_cast<ObjectLinkedList *>(pyIterable);
                 self->list = iter->list;
+                return 0;
+            }
+
+            if (PyList_Check(pyIterable) || PyTuple_Check(pyIterable)) {  // fast operation
+                auto fastKeys = PySequence_Fast(pyIterable, "Shouldn't be happen (ObjectLinkedList).");
+                if (fastKeys == nullptr) {
+                    return -1;
+                }
+
+                const auto size = PySequence_Fast_GET_SIZE(fastKeys);
+                auto items = PySequence_Fast_ITEMS(fastKeys);
+                for (Py_ssize_t i = 0; i < size; ++i) {
+                    PyObject *value = items[i];
+                    Py_INCREF(value);
+                    self->list.push_back(value);
+                }
+                SAFE_DECREF(fastKeys);
                 return 0;
             }
 

@@ -11,8 +11,7 @@
 
 template<typename T>
 static __forceinline void SAFE_DECREF(T *&object) {
-    if (object == nullptr)
-        return;
+    assert(object != nullptr);
     Py_DECREF(object);
     object = nullptr;
 }
