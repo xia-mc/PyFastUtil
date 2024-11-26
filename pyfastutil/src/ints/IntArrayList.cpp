@@ -904,7 +904,7 @@ static __forceinline PyObject *IntArrayList_eq(PyObject *pySelf, PyObject *pyVal
         if (item == nullptr) return nullptr;
         int self_value = self->vector[i];
         int other_value = PyLong_AsLong(item);
-        if (PyErr_Occurred()) {  // can't be covert to int
+        if (PyErr_Occurred()) {  // can't be convert to int
             SAFE_DECREF(item);
             Py_RETURN_FALSE;
         }

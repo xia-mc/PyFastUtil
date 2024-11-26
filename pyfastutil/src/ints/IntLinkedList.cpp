@@ -822,7 +822,7 @@ static __forceinline PyObject *IntLinkedList_eq(PyObject *pySelf, PyObject *pyVa
 
         int self_value = *iter;
         int other_value = PyLong_AsLong(item);
-        if (PyErr_Occurred()) {  // can't be covert to int
+        if (PyErr_Occurred()) {  // can't be convert to int
             SAFE_DECREF(item);
             Py_RETURN_FALSE;
         }

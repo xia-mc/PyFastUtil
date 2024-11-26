@@ -145,21 +145,17 @@ static PyObject *ObjectArrayList_to_list(PyObject *pySelf) {
     auto *self = reinterpret_cast<ObjectArrayList *>(pySelf);
 
     const auto size = static_cast<Py_ssize_t>(self->vector.size());
-    PyObject *result = PyList_New(size);
+    auto *result = reinterpret_cast<PyListObject *>(PyList_New(size));
     if (result == nullptr) return PyErr_NoMemory();
 
-    for (Py_ssize_t i = 0; i < size; ++i) {
-        PyObject *item = self->vector[i];
-        if (item == nullptr) {
-            SAFE_DECREF(result);
-            return nullptr;
-        }
-
-        PyList_SET_ITEM(result, i, item);
+    for (const auto &item: self->vector) {
         Py_INCREF(item);
     }
 
-    return result;
+    result->allocated = size;
+    memcpy(result->ob_item, self->vector.data(), size * sizeof(PyObject *));
+
+    return reinterpret_cast<PyObject*>(result);
 }
 
 static PyObject *ObjectArrayList_copy(PyObject *pySelf) {
@@ -389,9 +385,10 @@ static PyObject *ObjectArrayList_remove(PyObject *pySelf, PyObject *object) {
     }
 
     try {
-        auto it = std::find(self->vector.begin(), self->vector.end(), value);
+        const auto end = self->vector.end();
+        const auto it = std::find(self->vector.begin(), end, value);
 
-        if (it != self->vector.end()) {
+        if (it != end) {
             self->vector.erase(it);
             SAFE_DECREF(value);
         } else {
@@ -452,14 +449,9 @@ static PyObject *ObjectArrayList_getitem(PyObject *pySelf, Py_ssize_t pyIndex) {
         return nullptr;
     }
 
-    try {
-        PyObject *item = self->vector[static_cast<size_t>(pyIndex)];
-        Py_INCREF(item);
-        return item;
-    } catch (const std::exception &e) {
-        PyErr_SetString(PyExc_RuntimeError, e.what());
-        return nullptr;
-    }
+    PyObject *item = *(self->vector.data() + pyIndex);
+    Py_INCREF(item);
+    return item;
 }
 
 static PyObject *ObjectArrayList_getitem_slice(PyObject *pySelf, PyObject *slice) {
@@ -487,12 +479,8 @@ static PyObject *ObjectArrayList_getitem_slice(PyObject *pySelf, PyObject *slice
 
     for (Py_ssize_t i = 0; i < sliceLength; i++) {
         Py_ssize_t index = start + i * step;
-        PyObject *item = self->vector[static_cast<size_t>(index)];
+        PyObject *item = *(self->vector.data() + index);
         Py_INCREF(item);
-        if (item == nullptr) {
-            SAFE_DECREF(result);
-            return nullptr;
-        }
         PyList_SET_ITEM(result, i, item);
     }
     return result;

@@ -904,7 +904,7 @@ static __forceinline PyObject *BigIntArrayList_eq(PyObject *pySelf, PyObject *py
         if (item == nullptr) return nullptr;
         long long self_value = self->vector[i];
         long long other_value = PyLong_AsLongLong(item);
-        if (PyErr_Occurred()) {  // can't be covert to int
+        if (PyErr_Occurred()) {  // can't be convert to int
             SAFE_DECREF(item);
             Py_RETURN_FALSE;
         }

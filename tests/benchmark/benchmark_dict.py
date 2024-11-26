@@ -42,6 +42,7 @@ def main(obj: type[dict]):
     global testData
 
     pyFastUtilMapObj = obj
+    print("Preparing data...")
 
     if obj is IntIntHashMap:
         INT_MAX = (2 ** (ctypes.sizeof(ctypes.c_int) * 8 - 1)) - 1

@@ -12,6 +12,10 @@ static PyTypeObject IntIntHashMapType = {
         PyVarObject_HEAD_INIT(&PyType_Type, 0)
 };
 
+static __forceinline int convert(PyObject *&obj) {  // maybe I will take it to IntArrayList or something else
+    return PyLong_Check(obj) ? PyFast_AsInt(obj) : PyLong_AsLong(obj);
+}
+
 static int IntIntHashMap_init(IntIntHashMap *self, PyObject *args, PyObject *kwargs) {
     new(&self->map) ankerl::unordered_dense::map<int, int>();
 
@@ -59,21 +63,25 @@ static int IntIntHashMap_init(IntIntHashMap *self, PyObject *args, PyObject *kwa
     }
 
     // init map
-    try {
+    static const auto processExtraKwargs = [&self, &extraKwargs]() -> int {
         if (extraKwargs != nullptr) {
-            // it's a python dict
             PyObject *key, *value;
             Py_ssize_t pos = 0;
 
-            while (PyDict_Next(pyDict, &pos, &key, &value)) {
-                self->map[PyLong_AsLong(key)] = PyLong_AsLong(value);
-                if (PyErr_Occurred()) return -1;
+            while (PyDict_Next(extraKwargs, &pos, &key, &value)) {
+                self->map.emplace(convert(key), convert(value));
             }
+            if (PyErr_Occurred()) return -1;
         }
+        return 0;
+    };
 
+    try {
         if (map != nullptr) {
             self->map = map->map;
-            return 0;
+            return processExtraKwargs();
+        } else if (processExtraKwargs() == -1) {
+            return -1;
         }
 
         if (pyDict != nullptr) {
@@ -81,7 +89,7 @@ static int IntIntHashMap_init(IntIntHashMap *self, PyObject *args, PyObject *kwa
             Py_ssize_t pos = 0;
 
             while (PyDict_Next(pyDict, &pos, &key, &value)) {
-                self->map[PyLong_AsLong(key)] = PyLong_AsLong(value);
+                self->map.emplace(convert(key), convert(value));
             }
             if (PyErr_Occurred()) return -1;
             return 0;
@@ -111,7 +119,7 @@ static int IntIntHashMap_init(IntIntHashMap *self, PyObject *args, PyObject *kwa
                         return -1;
                     }
 
-                    self->map[PyLong_AsLong(key)] = PyLong_AsLong(value);
+                    self->map.emplace(convert(key), convert(value));
                     SAFE_DECREF(value);
                 }
                 SAFE_DECREF(fastKeys);
@@ -121,7 +129,7 @@ static int IntIntHashMap_init(IntIntHashMap *self, PyObject *args, PyObject *kwa
                     auto index = PyLong_FromSsize_t(i);
                     auto key = PyObject_GetItem(keys, index);
                     auto value = PyObject_GetItem(pyMapping, key);
-                    self->map[PyLong_AsLong(key)] = PyLong_AsLong(value);
+                    self->map.emplace(convert(key), convert(value));
                     SAFE_DECREF(key);
                     SAFE_DECREF(value);
                     SAFE_DECREF(index);
@@ -148,14 +156,17 @@ static int IntIntHashMap_init(IntIntHashMap *self, PyObject *args, PyObject *kwa
                             return -1;
                         }
 
-                        self->map[PyLong_AsLong(PyList_GET_ITEM(entry, 0))] = PyLong_AsLong(PyList_GET_ITEM(entry, 1));
+                        self->map.emplace(
+                                convert(PyTuple_GET_ITEM(entry, 0)),
+                                convert(PyTuple_GET_ITEM(entry, 1)));
                     } else if (PyTuple_Check(entry)) {
                         if (PyTuple_GET_SIZE(entry) != 2) {
                             PyErr_SetString(PyExc_ValueError, "expected entry size == 2.");
                             return -1;
                         }
-
-                        self->map[PyLong_AsLong(PyTuple_GET_ITEM(entry, 0))] = PyLong_AsLong(PyTuple_GET_ITEM(entry, 1));
+                        self->map.emplace(
+                                convert(PyTuple_GET_ITEM(entry, 0)),
+                                convert(PyTuple_GET_ITEM(entry, 1)));
                     } else {
                         auto entryIter = PyObject_GetIter(entry);
 
@@ -166,7 +177,7 @@ static int IntIntHashMap_init(IntIntHashMap *self, PyObject *args, PyObject *kwa
                             return -1;
                         }
 
-                        self->map[PyLong_AsLong(key)] = PyLong_AsLong(value);
+                        self->map.emplace(convert(key), convert(value));
                         SAFE_DECREF(entryIter);
                         SAFE_DECREF(key);
                         SAFE_DECREF(value);
@@ -200,7 +211,9 @@ static int IntIntHashMap_init(IntIntHashMap *self, PyObject *args, PyObject *kwa
                             return -1;
                         }
 
-                        self->map[PyLong_AsLong(PyTuple_GET_ITEM(entry, 0))] = PyLong_AsLong(PyTuple_GET_ITEM(entry, 1));
+                        self->map.emplace(
+                                convert(PyTuple_GET_ITEM(entry, 0)),
+                                convert(PyTuple_GET_ITEM(entry, 1)));
                     } else {
                         auto entryIter = PyObject_GetIter(entry);
 
@@ -211,7 +224,7 @@ static int IntIntHashMap_init(IntIntHashMap *self, PyObject *args, PyObject *kwa
                             return -1;
                         }
 
-                        self->map[PyLong_AsLong(key)] = PyLong_AsLong(value);
+                        self->map.emplace(convert(key), convert(value));
                         SAFE_DECREF(entryIter);
                         SAFE_DECREF(key);
                         SAFE_DECREF(value);

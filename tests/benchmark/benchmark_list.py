@@ -2,8 +2,10 @@ import ctypes
 import timeit
 import random
 
-from pyfastutil.ints import IntArrayList, BigIntArrayList, IntLinkedList
+from pyfastutil.ints import *
+from pyfastutil.objects import *
 from typing import Callable, Optional
+
 
 SIZE = int(1e4)
 REPEAT = 3
@@ -12,6 +14,9 @@ pyFastUtilListObj: type[IntArrayList] = IntArrayList
 sortKey: Optional[Callable[[...], str]] = None
 
 testData: list
+randomData: list
+randomIndices: list[int]
+
 pythonList: list
 # noinspection PyUnboundLocalVariable
 pyFastUtilList: pyFastUtilListObj
@@ -49,6 +54,30 @@ def pyfastutil_to_python():
     pyFastUtilList.to_list()
 
 
+def python_sequential_access():
+    global pythonList
+    for i in range(0, SIZE, -1):
+        _ = pythonList[i]
+
+
+def pyfastutil_sequential_access():
+    global pyFastUtilList
+    for i in range(0, SIZE, -1):
+        _ = pyFastUtilList[i]
+
+
+def python_random_access():
+    global pythonList
+    for i in randomIndices:
+        _ = pythonList[i]
+
+
+def pyfastutil_random_access():
+    global pyFastUtilList
+    for i in randomIndices:
+        _ = pyFastUtilList[i]
+
+
 def python_sort():
     global pythonList
     pythonList.sort(key=sortKey)
@@ -73,13 +102,13 @@ def pyfastutil_append():
 
 def python_insert():
     global pythonList
-    for i in range(SIZE):
+    for i in range(10000):
         pythonList.insert(0, i)
 
 
 def pyfastutil_insert():
     global pyFastUtilList
-    for i in range(SIZE):
+    for i in range(10000):
         pyFastUtilList.insert(0, i)
 
 
@@ -122,14 +151,14 @@ def pyfastutil_index():
 # This version of contains mixes present and absent elements
 def python_contains():
     global pythonList
-    for i in range(SIZE):
-        pythonList.__contains__(random.choice([random.randint(0, SIZE), random.choice(testData)]))
+    for i in randomData:
+        pythonList.__contains__(i)
 
 
 def pyfastutil_contains():
     global pyFastUtilList
-    for i in range(SIZE):
-        pyFastUtilList.__contains__(random.choice([random.randint(0, SIZE), random.choice(testData)]))
+    for i in randomData:
+        pyFastUtilList.__contains__(i)
 
 
 def python_extend():
@@ -146,9 +175,12 @@ def pyfastutil_extend():
 def main(obj: type[list]):
     global pyFastUtilListObj
     global testData
+    global randomData
+    global randomIndices
     global sortKey
 
     pyFastUtilListObj = obj
+    print("Preparing data...")
 
     if obj is IntArrayList or obj is IntLinkedList:
         INT_MAX = (2 ** (ctypes.sizeof(ctypes.c_int) * 8 - 1)) - 1
@@ -162,6 +194,9 @@ def main(obj: type[list]):
         testData = [random.choice([str, int, float, bytes])(random.randint(0, 100000)) for _ in range(SIZE)]
         sortKey = str
 
+    randomData = random.choices(testData + list(range(-SIZE, 0)), k=int(SIZE / 2))
+    randomIndices = [random.randint(0, SIZE - 1) for _ in range(SIZE)]
+
     print(f"---Python list & {pyFastUtilListObj.__name__} Benchmark---")
     print(f"Batch size: {SIZE}")
     print(f"Repeat: {REPEAT}\n")
@@ -174,6 +209,8 @@ def main(obj: type[list]):
         ("init", setup_python, setup_pyfastutil),
         ("copy", python_copy, pyfastutil_copy),
         ("to_python", python_to_python, pyfastutil_to_python),
+        ("sequential_access", python_sequential_access, pyfastutil_sequential_access),
+        ("random_access", python_random_access, pyfastutil_random_access),
         ("sort", python_sort, pyfastutil_sort),
         ("append", python_append, pyfastutil_append),
         ("insert", python_insert, pyfastutil_insert),
@@ -201,4 +238,4 @@ def main(obj: type[list]):
 
 
 if __name__ == '__main__':
-    main(IntArrayList)
+    main(ObjectArrayList)
