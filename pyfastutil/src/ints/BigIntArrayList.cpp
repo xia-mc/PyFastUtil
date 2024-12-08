@@ -9,7 +9,7 @@
 #include "utils/PythonUtils.h"
 #include "utils/include/TimSort.h"
 #include "utils/simd/BitonicSort.h"
-#include "utils/simd/Utils.h"
+#include "utils/simd/SIMDUtils.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "ints/BigIntArrayListIter.h"
 #include "utils/include/CPythonSort.h"
@@ -460,18 +460,10 @@ static PyObject *BigIntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject
     // do sort
     try {
         if (keyFunc == Py_None) {
-            if (self->vector.size() >= 32) {
-                // simd sort with auto-fallback
-                Py_BEGIN_ALLOW_THREADS
-                    simd::simdsort(self->vector, reverse);
-                Py_END_ALLOW_THREADS
-            } else {
-                if (reverse) {
-                    std::sort(self->vector.begin(), self->vector.end(), std::greater<>());
-                } else {
-                    std::sort(self->vector.begin(), self->vector.end());
-                }
-            }
+            // simd sort with auto-fallback
+            Py_BEGIN_ALLOW_THREADS
+                simd::simdsort(self->vector, reverse);
+            Py_END_ALLOW_THREADS
         } else {
             // sort with key function, costs extra memory
             const auto vecSize = self->vector.size();
@@ -489,7 +481,7 @@ static PyObject *BigIntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject
             CPython_sort(pyData, static_cast<Py_ssize_t>(vecSize), keyFunc, reverseInt);
 
             for (size_t i = 0; i < vecSize; ++i) {
-                vecData[i] = PyFast_AsLongLong(pyData[i]);
+                vecData[i] = PyLong_AsLongLong(pyData[i]);
                 Py_DECREF(pyData[i]);
             }
 
@@ -865,7 +857,7 @@ static PyObject *BigIntArrayList_reverse(PyObject *pySelf) {
     auto *self = reinterpret_cast<BigIntArrayList *>(pySelf);
 
     Py_BEGIN_ALLOW_THREADS
-        simd::simdReverseAligned(self->vector.data(), self->vector.size());
+        simd::simdReverse(self->vector.data(), self->vector.size());
     Py_END_ALLOW_THREADS
     Py_RETURN_NONE;
 }

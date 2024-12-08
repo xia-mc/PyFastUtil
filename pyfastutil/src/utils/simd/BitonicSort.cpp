@@ -9,12 +9,12 @@
 #if !defined(__arm__) && !defined(__arm64__)
 
 #include <immintrin.h>
-#include "utils/simd/Utils.h"
+#include "utils/simd/SIMDUtils.h"
 
 #endif
 
 #include <utils/PythonPCH.h>
-#include "SIMD.h"
+#include "SIMDHelper.h"
 #include "utils/include/TimSort.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "utils/memory/PreFetch.h"
@@ -450,7 +450,7 @@ namespace simd {
      * MAKE SURE VECTOR IS ALIGNED with 64 bytes!
      * @param vector vector to sort
      */
-    void simdsort(std::vector<int, AlignedAllocator<int, 64>> &vector, const bool &reverse) {
+    void simdsort(std::vector<int, AlignedAllocator<int, 64>> &vector, bool reverse) {
         const auto size = vector.size();
         if (size <= 1) return;
 
@@ -563,7 +563,7 @@ namespace simd {
      * MAKE SURE VECTOR IS ALIGNED with 64 bytes!
      * @param vector vector to sort
      */
-    void simdsort(std::vector<long long, AlignedAllocator<long long, 64>> &vector, const bool &reverse) {
+    void simdsort(std::vector<long long, AlignedAllocator<long long, 64>> &vector, bool reverse) {
         const auto size = vector.size();
         if (size <= 1) return;
 

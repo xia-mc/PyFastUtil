@@ -171,6 +171,16 @@ def pyfastutil_extend():
     pyFastUtilList.extend(range(SIZE))
 
 
+def python_reverse():
+    global pythonList
+    pythonList.reverse()
+
+
+def pyfastutil_reverse():
+    global pyFastUtilList
+    pyFastUtilList.reverse()
+
+
 # Main benchmarking function
 def main(obj: type[list]):
     global pyFastUtilListObj
@@ -218,7 +228,8 @@ def main(obj: type[list]):
         ("remove", python_remove, pyfastutil_remove),
         ("contains", python_contains, pyfastutil_contains),
         ("index", python_index, pyfastutil_index),
-        ("extend", python_extend, pyfastutil_extend)
+        ("extend", python_extend, pyfastutil_extend),
+        ("reverse", python_reverse, pyfastutil_reverse)
     ]
 
     for name, python_func, pyfastutil_func in benchmarks:

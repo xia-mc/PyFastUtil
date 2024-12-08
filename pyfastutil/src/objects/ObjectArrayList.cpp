@@ -9,7 +9,7 @@
 #include "utils/PythonUtils.h"
 #include "utils/include/TimSort.h"
 #include "utils/simd/BitonicSort.h"
-#include "utils/simd/Utils.h"
+#include "utils/simd/SIMDUtils.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "objects/ObjectArrayListIter.h"
 #include "utils/include/CPythonSort.h"
@@ -780,7 +780,7 @@ static PyObject *ObjectArrayList_reverse(PyObject *pySelf) {
     auto *self = reinterpret_cast<ObjectArrayList *>(pySelf);
 
     Py_BEGIN_ALLOW_THREADS
-        std::reverse(self->vector.begin(), self->vector.end());
+        simd::simdReverse(self->vector.data(), self->vector.size());
     Py_END_ALLOW_THREADS
     Py_RETURN_NONE;
 }

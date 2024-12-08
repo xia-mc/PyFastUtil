@@ -19,7 +19,7 @@
 
 ## 简介
 
-**PyFastUtil** 是一个为 Python 提供的高性能工具库，灵感来源于 Java 中的 [FastUtil](https://fastutil.di.unimi.it/) 库。然而，**PyFastUtil 并不是任何现有库的 Python 绑定**，而是一个**从零开始重新实现**的库，旨在为 Python 带来与 Java FastUtil 相同的效率和功能。
+**PyFastUtil** 是一个为 Python 提供的高性能工具库，灵感来源于 Java 中的 [FastUtil](https://fastutil.di.unimi.it/) 库。然而，**PyFastUtil 并不是 FastUtil 的 Python 绑定**，而是一个**从零开始重新实现**的库，旨在为 Python 带来与 Java FastUtil 相同的效率和功能。
 
 > **注意**: PyFastUtil 仍处于**早期开发阶段**。代码库正在积极开发中，尚未准备好用于生产环境。
 > 我们正在努力使其功能齐全并经过广泛测试，之后会发布到 PyPI。
@@ -183,9 +183,10 @@ pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://
 本项目部分代码基于以下优秀的开源项目：
 
 - [CPython](https://github.com/python/cpython): Python 官方解释器的实现，遵循 [Python Software Foundation License](https://docs.python.org/3/license.html)。
+- [C++ 标准库 (STL)](https://en.cppreference.com/w/cpp): 提供了基础数据结构、算法和工具的 C++ 标准库，遵循 [ISO C++ 标准](https://isocpp.org/)。
 - [cpp-TimSort](https://github.com/timsort/cpp-TimSort): C++ 实现的 TimSort 算法，遵循 [MIT License](https://github.com/timsort/cpp-TimSort/blob/master/LICENSE)。
 - [ankerl::unordered_dense](https://github.com/martinus/unordered_dense): 一个现代 C++ 的高性能、低内存占用的哈希表实现，遵循 [MIT License](https://github.com/martinus/unordered_dense/blob/main/LICENSE)。
-- [C++ 标准库 (STL)](https://en.cppreference.com/w/cpp): 提供了基础数据结构、算法和工具的 C++ 标准库，遵循 [ISO C++ 标准](https://isocpp.org/)。
+- [qReverse](https://github.com/Wunkolo/qreverse)：一个高性能、架构优化的数组反转算法，基于 [MIT 许可证](https://github.com/martinus/unordered_dense/blob/main/LICENSE) 发布。
 
 特别感谢这些开源项目的贡献者们！
 

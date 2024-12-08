@@ -9,7 +9,7 @@
 #include "utils/PythonUtils.h"
 #include "utils/include/TimSort.h"
 #include "utils/simd/BitonicSort.h"
-#include "utils/simd/Utils.h"
+#include "utils/simd/SIMDUtils.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "objects/ObjectLinkedListIter.h"
 #include "utils/include/CPythonSort.h"

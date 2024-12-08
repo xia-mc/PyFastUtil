@@ -9,7 +9,7 @@
 #include "utils/PythonUtils.h"
 #include "utils/include/TimSort.h"
 #include "utils/simd/BitonicSort.h"
-#include "utils/simd/Utils.h"
+#include "utils/simd/SIMDUtils.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "ints/IntLinkedListIter.h"
 #include "utils/include/CPythonSort.h"
@@ -146,7 +146,7 @@ static PyObject *IntLinkedList_to_list(PyObject *pySelf) {
 
     auto iter = self->list.begin();
     for (Py_ssize_t i = 0; i < size; ++i, ++iter) {
-        PyObject *item = PyLong_FromLong(*iter);
+        PyObject *item = PyFast_FromInt(*iter);
 
         PyList_SET_ITEM(result, i, item);
         Py_INCREF(item);
@@ -272,13 +272,13 @@ static PyObject *IntLinkedList_pop(PyObject *pySelf, PyObject *const *args, cons
         const auto popped = self->list.back();
         self->list.pop_back();
         self->modCount++;
-        return PyLong_FromLong(popped);
+        return PyFast_FromInt(popped);
     }
 
     auto popped = at(self->list, index);
     self->list.erase(popped);
     self->modCount++;
-    return PyLong_FromLong(*popped);
+    return PyFast_FromInt(*popped);
 }
 
 static PyObject *IntLinkedList_index(PyObject *pySelf, PyObject *args) {
@@ -426,7 +426,7 @@ static PyObject *IntLinkedList_sort(PyObject *pySelf, PyObject *args, PyObject *
 
         auto iter = self->list.begin();
         for (size_t i = 0; i < vecSize; ++i, ++iter) {
-            pyData[i] = PyLong_FromLong(*iter);
+            pyData[i] = PyFast_FromInt(*iter);
         }
 
         CPython_sort(pyData,
@@ -476,7 +476,7 @@ static PyObject *IntLinkedList_getitem(PyObject *pySelf, Py_ssize_t pyIndex) {
     }
 
     try {
-        PyObject *item = PyLong_FromLong(*at(self->list, static_cast<size_t>(pyIndex)));
+        PyObject *item = PyFast_FromInt(*at(self->list, static_cast<size_t>(pyIndex)));
         Py_INCREF(item);
         return item;
     } catch (const std::exception &e) {
@@ -510,7 +510,7 @@ static PyObject *IntLinkedList_getitem_slice(PyObject *pySelf, PyObject *slice) 
 
     for (Py_ssize_t i = 0; i < sliceLength; i++) {
         Py_ssize_t index = start + i * step;
-        PyObject *item = PyLong_FromLong(*at(self->list, static_cast<size_t>(index)));
+        PyObject *item = PyFast_FromInt(*at(self->list, static_cast<size_t>(index)));
         Py_INCREF(item);
         if (item == nullptr) {
             SAFE_DECREF(result);

@@ -16,6 +16,7 @@
 #include "objects/ObjectLinkedList.h"
 #include "objects/ObjectLinkedListIter.h"
 #include "unsafe/Unsafe.h"
+#include "unsafe/SIMD.h"
 
 static struct PyModuleDef pyfastutilModule = {
         PyModuleDef_HEAD_INIT,
@@ -49,6 +50,7 @@ PyMODINIT_FUNC PyInit___pyfastutil() {
     PyModule_AddObject(parent, "ObjectLinkedListIter", PyInit_ObjectLinkedListIter());
 
     PyModule_AddObject(parent, "Unsafe", PyInit_Unsafe());
+    PyModule_AddObject(parent, "SIMD", PyInit_SIMD());
 
     return parent;
 }

@@ -68,9 +68,15 @@ static inline bool PyParse_EvalRange(PyObject *&args, Py_ssize_t &start, Py_ssiz
 #define Py_RETURN_BOOL(b) { if (b) Py_RETURN_TRUE; else Py_RETURN_FALSE; }
 
 #ifdef IS_PYTHON_312_OR_LATER
-#define PyLong_DIGITS(obj) (obj->long_value.ob_digit)
+#define PyLong_DIGITS(obj) ((obj)->long_value.ob_digit)
 #else
-#define PyLong_DIGITS(obj) (obj->ob_digit)
+#define PyLong_DIGITS(obj) ((obj)->ob_digit)
+#endif
+
+#ifdef IS_PYTHON_312_OR_LATER
+#define PyLong_TAGS(obj) ((obj)->long_value.lv_tag)
+#else
+#define PyLong_TAGS(obj) ((obj)->lv_tag)
 #endif
 
 static __forceinline int PyFast_AsInt(PyObject *obj) noexcept {
@@ -85,22 +91,12 @@ static __forceinline int PyFast_AsInt(PyObject *obj) noexcept {
     return size < 0 ? -result : result;
 }
 
-static __forceinline long long PyFast_AsLongLong(PyObject *obj) noexcept {
-    const auto *longObj = (PyLongObject *) obj;
-
-    const Py_ssize_t size = Py_SIZE(longObj);
-    if (size == 0) {
-        return 0;
-    }
-
-    const auto absSize = Py_ABS(size);
-
-    unsigned long long value = 0;
-    for (Py_ssize_t i = 0; i < absSize; i++) {
-        value += (unsigned long long) PyLong_DIGITS(longObj)[i] << (i * PyLong_SHIFT);
-    }
-
-    return size < 0 ? -(long long) value : (long long) value;
+static __forceinline PyObject *PyFast_FromInt(const int value) noexcept {
+#ifdef IS_PYTHON_312_OR_LATER
+    return (PyObject *) _PyLong_FromDigits(value < 0, 1, (digit *) (&value));
+#else
+    return PyLong_FromLong(value);
+#endif
 }
 
 #endif //PYFASTUTIL_PYTHONUTILS_H

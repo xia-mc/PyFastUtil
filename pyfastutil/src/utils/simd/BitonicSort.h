@@ -13,9 +13,9 @@ namespace simd {
 
     void init();
 
-    void simdsort(std::vector<int, AlignedAllocator<int, 64>> &vector, const bool &reverse = false);
+    void simdsort(std::vector<int, AlignedAllocator<int, 64>> &vector, bool reverse);
 
-    void simdsort(std::vector<long long, AlignedAllocator<long long, 64>> &vector, const bool &reverse = false);
+    void simdsort(std::vector<long long, AlignedAllocator<long long, 64>> &vector, bool reverse);
 }
 
 

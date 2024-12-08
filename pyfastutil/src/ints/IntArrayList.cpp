@@ -9,7 +9,7 @@
 #include "utils/PythonUtils.h"
 #include "utils/include/TimSort.h"
 #include "utils/simd/BitonicSort.h"
-#include "utils/simd/Utils.h"
+#include "utils/simd/SIMDUtils.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "ints/IntArrayListIter.h"
 #include "utils/include/CPythonSort.h"
@@ -189,7 +189,7 @@ static PyObject *IntArrayList_to_list(PyObject *pySelf) {
     if (result == nullptr) return PyErr_NoMemory();
 
     for (Py_ssize_t i = 0; i < size; ++i) {
-        PyObject *item = PyLong_FromLong(self->vector[i]);
+        PyObject *item = PyFast_FromInt(self->vector[i]);
         if (item == nullptr) {
             SAFE_DECREF(result);
             return nullptr;
@@ -301,34 +301,37 @@ static PyObject *IntArrayList_pop(PyObject *pySelf, PyObject *const *args, const
     const auto vecSize = static_cast<Py_ssize_t>(self->vector.size());
     Py_ssize_t index = vecSize - 1;
 
-    if (nargs == 1) {
-        index = PyLong_AsSsize_t(args[0]);
-        if (index == -1 && PyErr_Occurred()) {
+    int popped;
+    switch (nargs) {
+        case 0:
+            popped = self->vector.back();
+            self->vector.pop_back();
+
+            return PyFast_FromInt(popped);
+        case 1:
+            index = PyLong_AsSsize_t(args[0]);
+            if (index == -1 && PyErr_Occurred()) {
+                return nullptr;
+            }
+
+            if (index < 0) {
+                index += vecSize;
+            }
+
+            if (index < 0 || index >= vecSize) {
+                PyErr_SetString(PyExc_IndexError, "index out of range");
+                return nullptr;
+            }
+
+            popped = self->vector[static_cast<size_t>(index)];
+            self->vector.erase(self->vector.begin() + index);
+
+            return PyFast_FromInt(popped);
+        default:
+            PyErr_SetString(PyExc_TypeError, "pop() takes at most 1 argument");
             return nullptr;
-        }
-
-        if (index < 0) {
-            index += vecSize;
-        }
-
-        if (index < 0 || index >= vecSize) {
-            PyErr_SetString(PyExc_IndexError, "index out of range");
-            return nullptr;
-        }
-    } else if (nargs > 1) {
-        PyErr_SetString(PyExc_TypeError, "pop() takes at most 1 argument");
-        return nullptr;
-    } else {
-        const auto popped = self->vector[static_cast<size_t>(index)];
-        self->vector.pop_back();
-
-        return PyLong_FromLong(popped);
     }
-
-    const auto popped = self->vector[static_cast<size_t>(index)];
-    self->vector.erase(self->vector.begin() + index);
-
-    return PyLong_FromLong(popped);
+    Py_UNREACHABLE();
 }
 
 static PyObject *IntArrayList_index(PyObject *pySelf, PyObject *args) {
@@ -460,18 +463,10 @@ static PyObject *IntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *k
     // do sort
     try {
         if (keyFunc == nullptr || keyFunc == Py_None) {
-            if (self->vector.size() >= 32) {
-                // simd sort with auto-fallback
-                Py_BEGIN_ALLOW_THREADS
-                    simd::simdsort(self->vector, reverse);
-                Py_END_ALLOW_THREADS
-            } else {
-                if (reverse) {
-                    std::sort(self->vector.begin(), self->vector.end(), std::greater<>());
-                } else {
-                    std::sort(self->vector.begin(), self->vector.end());
-                }
-            }
+            // simd sort with auto-fallback
+            Py_BEGIN_ALLOW_THREADS
+                simd::simdsort(self->vector, reverse);
+            Py_END_ALLOW_THREADS
         } else {
             // sort with key function, costs extra memory
             const auto vecSize = self->vector.size();
@@ -483,7 +478,7 @@ static PyObject *IntArrayList_sort(PyObject *pySelf, PyObject *args, PyObject *k
             }
 
             for (size_t i = 0; i < vecSize; ++i) {
-                pyData[i] = PyLong_FromLong(vecData[i]);
+                pyData[i] = PyFast_FromInt(vecData[i]);
             }
 
             CPython_sort(pyData, static_cast<Py_ssize_t>(vecSize), keyFunc, reverseInt);
@@ -532,12 +527,7 @@ static PyObject *IntArrayList_getitem(PyObject *pySelf, Py_ssize_t pyIndex) {
         return nullptr;
     }
 
-    try {
-        return PyLong_FromLong(self->vector[static_cast<size_t>(pyIndex)]);
-    } catch (const std::exception &e) {
-        PyErr_SetString(PyExc_RuntimeError, e.what());
-        return nullptr;
-    }
+    return PyFast_FromInt(self->vector[static_cast<size_t>(pyIndex)]);
 }
 
 static PyObject *IntArrayList_getitem_slice(PyObject *pySelf, PyObject *slice) {
@@ -565,7 +555,7 @@ static PyObject *IntArrayList_getitem_slice(PyObject *pySelf, PyObject *slice) {
 
     for (Py_ssize_t i = 0; i < sliceLength; i++) {
         Py_ssize_t index = start + i * step;
-        PyObject *item = PyLong_FromLong(self->vector[static_cast<size_t>(index)]);
+        PyObject *item = PyFast_FromInt(self->vector[static_cast<size_t>(index)]);
         if (item == nullptr) {
             SAFE_DECREF(result);
             return nullptr;
@@ -865,7 +855,7 @@ static PyObject *IntArrayList_reverse(PyObject *pySelf) {
     auto *self = reinterpret_cast<IntArrayList *>(pySelf);
 
     Py_BEGIN_ALLOW_THREADS
-        simd::simdReverseAligned(self->vector.data(), self->vector.size());
+        simd::simdReverse(self->vector.data(), self->vector.size());
     Py_END_ALLOW_THREADS
     Py_RETURN_NONE;
 }
@@ -904,7 +894,7 @@ static __forceinline PyObject *IntArrayList_eq(PyObject *pySelf, PyObject *pyVal
         if (item == nullptr) return nullptr;
         int self_value = self->vector[i];
         int other_value = PyLong_AsLong(item);
-        if (PyErr_Occurred()) {  // can't be convert to int
+        if (PyErr_Occurred()) {  // can't be converted to int
             SAFE_DECREF(item);
             Py_RETURN_FALSE;
         }

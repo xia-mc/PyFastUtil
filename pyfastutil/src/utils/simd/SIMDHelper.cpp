@@ -2,7 +2,7 @@
 // Created by xia__mc on 2024/11/11.
 //
 
-#include "SIMD.h"
+#include "SIMDHelper.h"
 
 // Helper function to check OS support for AVX (via XGETBV)
 bool osSupportsAVX();
@@ -15,6 +15,12 @@ bool isAVX512Supported();
 
 // Function to check if SSE4.1 is supported
 bool isSSE41Supported();
+
+// Function to check if SSSE3 is supported
+bool isSSSE3Supported();
+
+// Function to check if Neon is supported
+bool isArmNeonSupported();
 
 #if defined(__x86_64__) || defined(_M_X64) || defined(__i386__) || defined(_M_IX86)
 
@@ -90,6 +96,22 @@ bool isSSE41Supported() {
     bool sse41Supported = (cpuInfo[2] & (1 << 19)) != 0;
 
     return sse41Supported;
+}
+
+bool isSSSE3Supported() {
+    int cpuInfo[4] = {0};
+
+    // Get CPU feature info using __cpuid
+    __cpuid(cpuInfo, 1);
+
+    // Check ECX bit 9 (SSSE3 support)
+    bool ssse3Supported = (cpuInfo[2] & (1 << 9)) != 0;
+
+    return ssse3Supported;
+}
+
+bool isArmNeonSupported() {
+    return false;
 }
 
 #elif defined(__GNUC__) || defined(__clang__)
@@ -189,8 +211,23 @@ bool isSSE41Supported() {
     return false;  // failed to get cpu info
 }
 
+bool isSSSE3Supported() {
+    unsigned int eax, ebx, ecx, edx;
+
+    if (__get_cpuid(1, &eax, &ebx, &ecx, &edx)) {
+        bool ssse3Supported = (ecx & (1 << 9)) != 0;
+        return ssse3Supported;
+    }
+
+    return false;  // Failed to get CPU info
+}
+
+bool isArmNeonSupported() {
+    return false;
+}
+
 #else
-// For unknown compiler, AVX support is unknown, default is unsupported.
+// For unknown compiler, SIMD support is unknown, default is unsupported.
 bool osSupportsAVX() {
     return false;
 }
@@ -204,13 +241,25 @@ bool isAVX512Supported() {
 }
 
 bool isSSE41Supported() {
+    return false;
+}
+
+bool isSSSE3Supported() {
+    return false;
+}
+
+bool isArmNeonSupported() {
     return false;
 }
 
 #endif
 
 #else
-// For non-x86 architectures, AVX is not supported
+
+#include <fstream>
+#include <string>
+
+// For non-x86 architectures, AVX/SSE is not supported
 bool osSupportsAVX() {
     return false;
 }
@@ -225,6 +274,27 @@ bool isAVX512Supported() {
 
 bool isSSE41Supported() {
     return false;
+}
+
+bool isSSSE3Supported() {
+    return false;
+}
+
+bool isArmNeonSupported() {
+    std::ifstream cpuinfo("/proc/cpuinfo");
+    if (!cpuinfo.is_open()) {
+        return false;  // Failed to open /proc/cpuinfo
+    }
+
+    std::string line;
+    while (std::getline(cpuinfo, line)) {
+        // Look for the "Features" line and check if it contains "neon"
+        if (line.find("Features") != std::string::npos && line.find("neon") != std::string::npos) {
+            return true;  // NEON is supported
+        }
+    }
+
+    return false;  // NEON is not found in the features
 }
 
 #endif
@@ -234,4 +304,6 @@ namespace simd {
     const bool IS_AVX2_SUPPORTED = isAVX2Supported();
     const bool IS_AVX512_SUPPORTED = isAVX512Supported();
     const bool IS_SSE41_SUPPORTED = isSSE41Supported();
+    const bool IS_SSSE3_SUPPORTED = isSSSE3Supported();
+    const bool IS_ARM_NEON_SUPPORTED = isArmNeonSupported();
 }

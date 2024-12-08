@@ -65,7 +65,7 @@ static PyObject *IntLinkedListIter_next(PyObject *pySelf) {
             // last iteration
             int element = *(--self->container->list.end());
             self->index = SIZE_MAX;
-            return PyLong_FromLong(element);
+            return PyFast_FromInt(element);
         }
         if (self->index == SIZE_MAX) {
             // already finish iteration
@@ -77,7 +77,7 @@ static PyObject *IntLinkedListIter_next(PyObject *pySelf) {
         int element = *self->cacheIter;
         self->index--;
         self->cacheIter--;
-        return PyLong_FromLong(element);
+        return PyFast_FromInt(element);
     } else {
         if (self->index >= self->container->list.size()) {
             PyErr_SetNone(PyExc_StopIteration);
@@ -88,7 +88,7 @@ static PyObject *IntLinkedListIter_next(PyObject *pySelf) {
         int element = *self->cacheIter;
         self->index++;
         self->cacheIter++;
-        return PyLong_FromLong(element);
+        return PyFast_FromInt(element);
     }
 }
 

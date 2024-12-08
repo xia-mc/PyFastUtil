@@ -19,7 +19,7 @@ English | [简体中文](./README_CN.md)
 
 ## Introduction
 
-**PyFastUtil** is a high-performance utility library for Python, inspired by the popular [FastUtil](https://fastutil.di.unimi.it/) library in Java. However, **PyFastUtil is not a Python binding of any existing library**, but a **complete re-implementation** from scratch, designed to bring the same efficiency and functionality to Python.
+**PyFastUtil** is a high-performance utility library for Python, inspired by the popular [FastUtil](https://fastutil.di.unimi.it/) library in Java. However, **PyFastUtil is not a Python binding of FastUtil library**, but a **complete re-implementation** from scratch, designed to bring the same efficiency and functionality to Python.
 
 > **Note**: PyFastUtil is still in its **early development phase**. The codebase is under active development and is not yet ready for production use. 
 > We are working hard to make it feature-complete and thoroughly tested before releasing it on PyPI.
@@ -183,9 +183,10 @@ Contributions are welcome! Feel free to submit issues or pull requests. Please n
 This project includes code from the following amazing open-source projects:
 
 - [CPython](https://github.com/python/cpython): The official Python interpreter, licensed under the [Python Software Foundation License](https://docs.python.org/3/license.html).
+- [C++ Standard Library (STL)](https://en.cppreference.com/w/cpp): The C++ Standard Library, which provides essential data structures, algorithms, and utilities, licensed under the [ISO C++ Standard](https://isocpp.org/).
 - [cpp-TimSort](https://github.com/timsort/cpp-TimSort): A C++ implementation of the TimSort algorithm, licensed under the [MIT License](https://github.com/timsort/cpp-TimSort/blob/master/LICENSE).
 - [ankerl::unordered_dense](https://github.com/martinus/unordered_dense): A fast and memory-efficient hash map implementation for modern C++, licensed under the [MIT License](https://github.com/martinus/unordered_dense/blob/main/LICENSE).
-- [C++ Standard Library (STL)](https://en.cppreference.com/w/cpp): The C++ Standard Library, which provides essential data structures, algorithms, and utilities, licensed under the [ISO C++ Standard](https://isocpp.org/).
+- [qReverse](https://github.com/Wunkolo/qreverse): A high-performance, architecture-optimized array reversal algorithm, distributed under the [MIT License](https://github.com/martinus/unordered_dense/blob/main/LICENSE).
 
 Special thanks to the contributors of these open-source projects!
 
