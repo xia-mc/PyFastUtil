@@ -319,7 +319,10 @@ PyMODINIT_FUNC PyInit_SIMDLowAVX512() {
 """
 
 PYI_TEMPLATE = """
-from typing import NoReturn
+from typing import TypeVar, NoReturn
+
+Ptr = TypeVar("Ptr", bound=int)
+NULL: Ptr
 
 RaisesNotImplementedError = TypeVar("RaisesNotImplementedError", bound=NoReturn)
 \"\"\"

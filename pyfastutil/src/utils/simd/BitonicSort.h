@@ -11,7 +11,7 @@
 
 namespace simd {
 
-    void init();
+    void initBitonicSort();
 
     void simdsort(std::vector<int, AlignedAllocator<int, 64>> &vector, bool reverse);
 

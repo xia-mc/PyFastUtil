@@ -41,7 +41,7 @@ namespace simd {
     static AVX512_MARKS *avx512Marks = nullptr;
 #endif
 
-    void init() {
+    void initBitonicSort() {
 #if !defined(__arm__) && !defined(__arm64__)
         if (IS_AVX2_SUPPORTED && avx2Marks == nullptr) {
             avx2Marks = new AVX2_MARKS();

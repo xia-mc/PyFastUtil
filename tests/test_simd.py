@@ -2,7 +2,7 @@ import unittest
 import ctypes
 from typing import Callable, Iterable
 
-from pyfastutil.unsafe import SIMD, Unsafe, Ptr, NULL
+from pyfastutil.unsafe import SIMD, Unsafe, Ptr
 
 FUNCTIONS = [
     ("Int", ctypes.c_int),

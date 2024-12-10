@@ -184,7 +184,7 @@ static PyObject *SIMD_setAVX512Vector16([[maybe_unused]] PyObject *pySelf,
 }
 
 static PyObject *SIMD_setAVX512Vector8([[maybe_unused]] PyObject *pySelf,
-                                        PyObject *const *args, Py_ssize_t nargs) noexcept {
+                                       PyObject *const *args, Py_ssize_t nargs) noexcept {
 #if !defined(__arm__) && !defined(__arm64__)
     if (nargs != 65) {
         PyErr_SetString(PyExc_TypeError, "Function takes exactly 65 arguments (__ptr, ...)");
@@ -260,7 +260,7 @@ static PyObject *SIMD_setAVX2Vector16([[maybe_unused]] PyObject *pySelf,
 }
 
 static PyObject *SIMD_setAVX2Vector8([[maybe_unused]] PyObject *pySelf,
-                                      PyObject *const *args, Py_ssize_t nargs) noexcept {
+                                     PyObject *const *args, Py_ssize_t nargs) noexcept {
 #if !defined(__arm__) && !defined(__arm64__)
     if (nargs != 33) {
         PyErr_SetString(PyExc_TypeError, "Function takes exactly 33 arguments (__ptr, ...)");

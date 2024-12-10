@@ -4,6 +4,7 @@
 
 #include "PyFastUtil.h"
 #include "utils/simd/BitonicSort.h"
+#include "utils/ExceptionHandler.h"
 #include "ints/IntArrayList.h"
 #include "ints/IntArrayListIter.h"
 #include "ints/BigIntArrayList.h"
@@ -17,6 +18,8 @@
 #include "objects/ObjectLinkedListIter.h"
 #include "unsafe/Unsafe.h"
 #include "unsafe/SIMD.h"
+#include "unsafe/SIMDLowAVX512.h"
+#include "unsafe/ASM.h"
 
 static struct PyModuleDef pyfastutilModule = {
         PyModuleDef_HEAD_INIT,
@@ -30,7 +33,8 @@ static struct PyModuleDef pyfastutilModule = {
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
 PyMODINIT_FUNC PyInit___pyfastutil() {
-    simd::init();
+    initExceptionHandler();
+    simd::initBitonicSort();
 
     PyObject *parent = PyModule_Create(&pyfastutilModule);
     if (parent == nullptr)
@@ -51,6 +55,8 @@ PyMODINIT_FUNC PyInit___pyfastutil() {
 
     PyModule_AddObject(parent, "Unsafe", PyInit_Unsafe());
     PyModule_AddObject(parent, "SIMD", PyInit_SIMD());
+    PyModule_AddObject(parent, "SIMDLowAVX512", PyInit_SIMDLowAVX512());
+    PyModule_AddObject(parent, "ASM", PyInit_ASM());
 
     return parent;
 }

@@ -26,6 +26,10 @@
 #include "stdbool.h"
 #endif
 
+#if defined(_WIN32) || defined(_WIN64) || defined(WIN32) || defined(WIN64) || defined(WINNT)
+#define WINDOWS
+#endif
+
 #if PY_VERSION_HEX >= 0x030D0000  // 3.13
 #define IS_PYTHON_313_OR_LATER
 #endif

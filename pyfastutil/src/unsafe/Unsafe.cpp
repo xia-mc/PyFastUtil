@@ -285,9 +285,9 @@ static PyMethodDef Unsafe_methods[] = {
         {"incref",         (PyCFunction) Unsafe_incref,        METH_O,        nullptr},
         {"decref",         (PyCFunction) Unsafe_decref,        METH_O,        nullptr},
         {"refcnt",         (PyCFunction) Unsafe_refcnt,        METH_O,        nullptr},
-        {"fputs",           (PyCFunction) Unsafe_fputs,          METH_O,        nullptr},
+        {"fputs",          (PyCFunction) Unsafe_fputs,         METH_O,        nullptr},
         {"fflush",         (PyCFunction) Unsafe_fflush,        METH_NOARGS,   nullptr},
-        {"fgets",           (PyCFunction) Unsafe_fgets,          METH_O,        nullptr},
+        {"fgets",          (PyCFunction) Unsafe_fgets,         METH_O,        nullptr},
         {nullptr,          nullptr, 0,                                        nullptr}
 };
 

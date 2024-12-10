@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.26)
 project(PyFastUtil CXX C)
 
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 20)
 
 #add_custom_target(Build DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/timestamp DEPENDS ${SOURCE_FILES} DEPENDS pyfastutil)
 #add_custom_command(
