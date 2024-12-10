@@ -1,14 +1,13 @@
 
 from typing import NoReturn
 
-class RaisesNotImplementedError(NoReturn):
-    """
-    A marker type to indicate that a function raises a NotImplementedError.
+RaisesNotImplementedError = TypeVar("RaisesNotImplementedError", bound=NoReturn)
+"""
+A marker type to indicate that a function raises a NotImplementedError.
 
-    This type is used to explicitly document functions that are not currently 
-    supported in PyFastUtil and will raise a NotImplementedError when called.
-    """
-    pass
+This type is used to explicitly document functions that are not currently
+supported in PyFastUtil and will raise a NotImplementedError when called.
+"""
 
 class SIMDLowAVX512:
     """
@@ -30,10 +29,10 @@ class SIMDLowAVX512:
 
         ```python
         with Unsafe() as unsafe, SIMDLowAVX512() as simd:
-            vec512i: Ptr = unsafe.alignedAlloc(64, 64)
+            vec512i: Ptr = unsafe.aligned_malloc(64, 64)
             simd._mm512_set_epi64(vec512i, 1, 2, 3, 4, 5, 6, 7, 8)
             // do some operations ...
-            unsafe.alignedFree(vec512i)
+            unsafe.aligned_free(vec512i)
             vec512i = NULL
         ```
 

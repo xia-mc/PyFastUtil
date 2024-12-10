@@ -1,8 +1,8 @@
 import unittest
 import ctypes
-from typing import Callable
+from typing import Callable, Iterable
 
-from pyfastutil.unsafe import SIMD, Unsafe, Ptr
+from pyfastutil.unsafe import SIMD, Unsafe, Ptr, NULL
 
 FUNCTIONS = [
     ("Int", ctypes.c_int),
@@ -58,6 +58,73 @@ class TestSIMD(unittest.TestCase):
         with SIMD() as simd:
             self.assertTrue(isinstance(simd.isArmNeonSupported(), bool))
 
+    @staticmethod
+    def byteSum(data: Iterable[bytes]) -> bytes:
+        result = b""
+        for byte in data:
+            result += byte
+        return result
+
+    def test_setAVX512Vector32(self):
+        with Unsafe() as unsafe, SIMD() as simd:
+            if not simd.isAVX512Supported():
+                self.skipTest("AVX512 is unsupported.")
+            vec512i = unsafe.aligned_malloc(64, 64)
+            simd.setAVX512Vector32(vec512i, *range(16))
+            self.assertEqual(unsafe.get(vec512i, 64), self.byteSum(bytes(ctypes.c_int(i)) for i in reversed(range(16))))
+            unsafe.aligned_free(vec512i)
+            del vec512i
+
+    def test_setAVX512Vector16(self):
+        with Unsafe() as unsafe, SIMD() as simd:
+            if not simd.isAVX512Supported():
+                self.skipTest("AVX512 is unsupported.")
+            vec512i = unsafe.aligned_malloc(64, 64)
+            simd.setAVX512Vector16(vec512i, *range(32))
+            self.assertEqual(unsafe.get(vec512i, 64), self.byteSum(bytes(ctypes.c_short(i)) for i in reversed(range(32))))
+            unsafe.aligned_free(vec512i)
+            del vec512i
+
+    def test_setAVX512Vector8(self):
+        with Unsafe() as unsafe, SIMD() as simd:
+            if not simd.isAVX512Supported():
+                self.skipTest("AVX512 is unsupported.")
+            vec512i = unsafe.aligned_malloc(64, 64)
+            simd.setAVX512Vector8(vec512i, *range(64))
+            self.assertEqual(unsafe.get(vec512i, 64), self.byteSum(bytes(ctypes.c_char(i)) for i in reversed(range(64))))
+            unsafe.aligned_free(vec512i)
+            del vec512i
+
+    def test_setAVX2Vector32(self):
+        with Unsafe() as unsafe, SIMD() as simd:
+            if not simd.isAVX2Supported():
+                self.skipTest("AVX2 is unsupported.")
+            vec256i = unsafe.aligned_malloc(32, 32)
+            simd.setAVX2Vector32(vec256i, *range(8))
+            self.assertEqual(unsafe.get(vec256i, 32), self.byteSum(bytes(ctypes.c_int(i)) for i in reversed(range(8))))
+            unsafe.aligned_free(vec256i)
+            del vec256i
+
+    def test_setAVX2Vector16(self):
+        with Unsafe() as unsafe, SIMD() as simd:
+            if not simd.isAVX2Supported():
+                self.skipTest("AVX2 is unsupported.")
+            vec256i = unsafe.aligned_malloc(32, 32)
+            simd.setAVX2Vector16(vec256i, *range(16))
+            self.assertEqual(unsafe.get(vec256i, 32), self.byteSum(bytes(ctypes.c_short(i)) for i in reversed(range(16))))
+            unsafe.aligned_free(vec256i)
+            del vec256i
+
+    def test_setAVX2Vector8(self):
+        with Unsafe() as unsafe, SIMD() as simd:
+            if not simd.isAVX2Supported():
+                self.skipTest("AVX2 is unsupported.")
+            vec256i = unsafe.aligned_malloc(32, 32)
+            simd.setAVX2Vector8(vec256i, *range(32))
+            self.assertEqual(unsafe.get(vec256i, 32), self.byteSum(bytes(ctypes.c_char(i)) for i in reversed(range(32))))
+            unsafe.aligned_free(vec256i)
+            del vec256i
+
 
 def initTestCases():
     COUNT = 16
@@ -83,11 +150,15 @@ def initTestCases():
 
                 unsafe.free(srcPtr)
                 unsafe.free(dstPtr)
+                del srcPtr, dstPtr
 
         def testMemcpyAligned(self_: unittest.TestCase):
             with Unsafe() as unsafe, SIMD() as simd:
-                srcPtr = unsafe.malloc(fieldSize)
-                dstPtr = unsafe.malloc(fieldSize)
+                srcPtr = unsafe.aligned_malloc(fieldSize, 64)
+                dstPtr = unsafe.aligned_malloc(fieldSize, 64)
+                self_.assertEqual(srcPtr % 64, 0)
+                self_.assertEqual(dstPtr % 64, 0)
+
                 data = bytes(ctype(VALUE)) * COUNT
 
                 unsafe.set(srcPtr, data)
@@ -98,8 +169,9 @@ def initTestCases():
 
                 self_.assertEqual(unsafe.get(dstPtr, fieldSize), data)
 
-                unsafe.free(srcPtr)
-                unsafe.free(dstPtr)
+                unsafe.aligned_free(srcPtr)
+                unsafe.aligned_free(dstPtr)
+                del srcPtr, dstPtr
 
         setattr(TestSIMD, f"test_memCpy{name}", testMemcpy)
         setattr(TestSIMD, f"test_memCpy{name}Aligned", testMemcpyAligned)

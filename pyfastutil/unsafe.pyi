@@ -337,6 +337,12 @@ class SIMD:
         """
         pass
 
+    def setAVX512Vector32(self, __ptr: Ptr, __A: int, __B: int, __C: int, __D: int, __E: int, __F: int, __G: int, __H: int, __I: int, __J: int, __K: int, __L: int, __M: int, __N: int, __O: int, __P: int) -> None: ...
+    def setAVX512Vector16(self, __ptr: Ptr, __q31: int, __q30: int, __q29: int, __q28: int, __q27: int, __q26: int, __q25: int, __q24: int, __q23: int, __q22: int, __q21: int, __q20: int, __q19: int, __q18: int, __q17: int, __q16: int, __q15: int, __q14: int, __q13: int, __q12: int, __q11: int, __q10: int, __q09: int, __q08: int, __q07: int, __q06: int, __q05: int, __q04: int, __q03: int, __q02: int, __q01: int, __q00: int) -> None: ...
+    def setAVX512Vector8(self, __ptr: Ptr, __q63: int, __q62: int, __q61: int, __q60: int, __q59: int, __q58: int, __q57: int, __q56: int, __q55: int, __q54: int, __q53: int, __q52: int, __q51: int, __q50: int, __q49: int, __q48: int, __q47: int, __q46: int, __q45: int, __q44: int, __q43: int, __q42: int, __q41: int, __q40: int, __q39: int, __q38: int, __q37: int, __q36: int, __q35: int, __q34: int, __q33: int, __q32: int, __q31: int, __q30: int, __q29: int, __q28: int, __q27: int, __q26: int, __q25: int, __q24: int, __q23: int, __q22: int, __q21: int, __q20: int, __q19: int, __q18: int, __q17: int, __q16: int, __q15: int, __q14: int, __q13: int, __q12: int, __q11: int, __q10: int, __q09: int, __q08: int, __q07: int, __q06: int, __q05: int, __q04: int, __q03: int, __q02: int, __q01: int, __q00: int) -> None: ...
+    def setAVX2Vector32(self, __ptr: Ptr, __A: int, __B: int, __C: int, __D: int, __E: int, __F: int, __G: int, __H: int) -> None: ...
+    def setAVX2Vector16(self, __ptr: Ptr, __q15: int, __q14: int, __q13: int, __q12: int, __q11: int, __q10: int, __q09: int, __q08: int, __q07: int, __q06: int, __q05: int, __q04: int, __q03: int, __q02: int, __q01: int, __q00: int) -> None: ...
+    def setAVX2Vector8(self, __ptr: Ptr, __q31: int, __q30: int, __q29: int, __q28: int, __q27: int, __q26: int, __q25: int, __q24: int, __q23: int, __q22: int, __q21: int, __q20: int, __q19: int, __q18: int, __q17: int, __q16: int, __q15: int, __q14: int, __q13: int, __q12: int, __q11: int, __q10: int, __q09: int, __q08: int, __q07: int, __q06: int, __q05: int, __q04: int, __q03: int, __q02: int, __q01: int, __q00: int) -> None: ...
     def memcpyInt(self, __addressFrom: Ptr, __addressTo: Ptr, __count: int) -> None: ...
     def memcpyIntAligned(self, __addressFrom: Ptr, __addressTo: Ptr, __count: int) -> None: ...
     def reverseInt(self, __address: Ptr, __count: int) -> None: ...
@@ -426,14 +432,13 @@ class SIMD:
     def reversePyObjectPtr(self, __address: Ptr, __count: int) -> None: ...
 
 
-class RaisesNotImplementedError(NoReturn):
-    """
-    A marker type to indicate that a function raises a NotImplementedError.
+RaisesNotImplementedError = TypeVar("RaisesNotImplementedError", bound=NoReturn)
+"""
+A marker type to indicate that a function raises a NotImplementedError.
 
-    This type is used to explicitly document functions that are not currently
-    supported in PyFastUtil and will raise a NotImplementedError when called.
-    """
-    pass
+This type is used to explicitly document functions that are not currently
+supported in PyFastUtil and will raise a NotImplementedError when called.
+"""
 
 class SIMDLowAVX512:
     """
@@ -455,10 +460,10 @@ class SIMDLowAVX512:
 
         ```python
         with Unsafe() as unsafe, SIMDLowAVX512() as simd:
-            vec512i: Ptr = unsafe.alignedAlloc(64, 64)
+            vec512i: Ptr = unsafe.aligned_malloc(64, 64)
             simd._mm512_set_epi64(vec512i, 1, 2, 3, 4, 5, 6, 7, 8)
             // do some operations ...
-            unsafe.alignedFree(vec512i)
+            unsafe.aligned_free(vec512i)
             vec512i = NULL
         ```
 
