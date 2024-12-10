@@ -91,7 +91,7 @@ void segfault_handler(int sig, siginfo_t* info, void* context) {
     raise(sig);
 }
 
-static void initExceptionHandler() {
+void initExceptionHandler() {
     struct sigaction sa;
 
     sa.sa_sigaction = segfault_handler;
