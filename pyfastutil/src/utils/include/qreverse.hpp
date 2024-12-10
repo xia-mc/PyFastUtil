@@ -682,6 +682,7 @@ if (simd::IS_ARM_NEON_SUPPORTED) {
         // 4 elements at a time
         i += 4;
     }
+}
 #endif
     // Naive swaps
     for (; i < Count / 2; ++i) {
@@ -796,29 +797,30 @@ inline void qReverse<8>(void *Array, std::size_t Count) {
 #endif
 #ifdef __ARM_NEON
     // NEON
-if (simd::IS_ARM_NEON_SUPPORTED) {
-    for( std::size_t j = i / 2; j < ((Count / 2) / 2); ++j )
-    {
-        // Load 2 elements at once into one 2-byte register
-        uint64x2_t Lower = vld1q_u64( &Array64[i] );
-        uint64x2_t Upper = vld1q_u64( &Array64[Count - i - 2] );
+    if (simd::IS_ARM_NEON_SUPPORTED) {
+        for( std::size_t j = i / 2; j < ((Count / 2) / 2); ++j )
+        {
+            // Load 2 elements at once into one 2-byte register
+            uint64x2_t Lower = vld1q_u64( &Array64[i] );
+            uint64x2_t Upper = vld1q_u64( &Array64[Count - i - 2] );
 
-        // Reverse the 64-bit lanes
-        Lower = vextq_u64( Lower, Lower, 1 );
-        Upper = vextq_u64( Upper, Upper, 1 );
+            // Reverse the 64-bit lanes
+            Lower = vextq_u64( Lower, Lower, 1 );
+            Upper = vextq_u64( Upper, Upper, 1 );
 
-        // Place them at their swapped position
-        vst1q_u64(
-            &Array64[i],
-            Upper
-        );
-        vst1q_u64(
-            &Array64[Count - i - 2],
-            Lower
-        );
+            // Place them at their swapped position
+            vst1q_u64(
+                &Array64[i],
+                Upper
+            );
+            vst1q_u64(
+                &Array64[Count - i - 2],
+                Lower
+            );
 
-        // 2 elements at a time
-        i += 2;
+            // 2 elements at a time
+            i += 2;
+        }
     }
 #endif
 

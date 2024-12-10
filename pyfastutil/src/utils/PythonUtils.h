@@ -82,7 +82,8 @@ static __forceinline bool PyParse_EvalRange(PyObject *&args, Py_ssize_t &start, 
 static __forceinline int PyFast_AsInt(PyObject *obj) noexcept {
 #ifdef IS_PYTHON_313_OR_LATER
     return PyLong_AsInt(obj);
-#elifdef IS_PYTHON_312_OR_LATER
+#else
+#ifdef IS_PYTHON_312_OR_LATER
     return _PyLong_AsInt(obj);
 #else
     const Py_ssize_t size = Py_SIZE(obj);
@@ -93,6 +94,7 @@ static __forceinline int PyFast_AsInt(PyObject *obj) noexcept {
     } else {
         return (int) *PyLong_DIGITS((PyLongObject *) obj);
     }
+#endif
 #endif
 }
 
