@@ -26,6 +26,10 @@
 #include "stdbool.h"
 #endif
 
+#if PY_VERSION_HEX >= 0x030D0000  // 3.13
+#define IS_PYTHON_313_OR_LATER
+#endif
+
 #if PY_VERSION_HEX >= 0x030C0000  // 3.12
 #define IS_PYTHON_312_OR_LATER
 #endif

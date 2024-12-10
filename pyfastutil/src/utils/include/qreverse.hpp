@@ -538,6 +538,7 @@ inline void qReverse<2>(void *Array, std::size_t Count) {
             // 8 elements at a time
             i += 8;
         }
+    }
 #endif
 
     // Naive swaps
