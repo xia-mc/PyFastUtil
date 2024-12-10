@@ -15,4 +15,4 @@ typedef struct SIMD {
 
 PyMODINIT_FUNC PyInit_SIMD();
 
-#endif //PYFASTUTIL_SIMDHELPER_H
+#endif //PYFASTUTIL_SIMD_H

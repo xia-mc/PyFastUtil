@@ -36,7 +36,7 @@ static __forceinline T *Py_CreateObjNoInit(PyTypeObject &typeObj) noexcept {
  * If not successful, function will raise python exception.
  * @return if successful
  */
-static inline bool PyParse_EvalRange(PyObject *&args, Py_ssize_t &start, Py_ssize_t &stop, Py_ssize_t &step) noexcept {
+static __forceinline bool PyParse_EvalRange(PyObject *&args, Py_ssize_t &start, Py_ssize_t &stop, Py_ssize_t &step) noexcept {
     Py_ssize_t arg1 = PY_SSIZE_T_MAX;
     Py_ssize_t arg2 = PY_SSIZE_T_MAX;
     Py_ssize_t arg3 = PY_SSIZE_T_MAX;
@@ -80,15 +80,40 @@ static inline bool PyParse_EvalRange(PyObject *&args, Py_ssize_t &start, Py_ssiz
 #endif
 
 static __forceinline int PyFast_AsInt(PyObject *obj) noexcept {
-    const auto *longObj = (PyLongObject *) obj;
-
-    const Py_ssize_t size = Py_SIZE(longObj);
+#ifdef IS_PYTHON_312_OR_LATER
+    return _PyLong_AsInt(obj);
+#else
+    const Py_ssize_t size = Py_SIZE(obj);
     if (size == 0) {
         return 0;
+    } else if (size < 0) {
+        return -(int) *PyLong_DIGITS((PyLongObject *) obj);
+    } else {
+        return (int) *PyLong_DIGITS((PyLongObject *) obj);
     }
+#endif
+}
 
-    const int result = (int) PyLong_DIGITS(longObj)[0];
-    return size < 0 ? -result : result;
+static __forceinline short PyFast_AsShort(PyObject *obj) noexcept {
+    const Py_ssize_t size = Py_SIZE(obj);
+    if (size == 0) {
+        return 0;
+    } else if (size < 0) {
+        return (short) (-(int) *PyLong_DIGITS((PyLongObject *) obj));
+    } else {
+        return (short) *PyLong_DIGITS((PyLongObject *) obj);
+    }
+}
+
+static __forceinline char PyFast_AsChar(PyObject *obj) noexcept {
+    const Py_ssize_t size = Py_SIZE(obj);
+    if (size == 0) {
+        return 0;
+    } else if (size < 0) {
+        return (char) (-(int) *PyLong_DIGITS((PyLongObject *) obj));
+    } else {
+        return (char) *PyLong_DIGITS((PyLongObject *) obj);
+    }
 }
 
 static __forceinline PyObject *PyFast_FromInt(const int value) noexcept {

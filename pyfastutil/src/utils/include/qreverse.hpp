@@ -178,6 +178,8 @@ template<>
 inline void qReverse<1>(void *Array, std::size_t Count) {
     auto *Array8 = reinterpret_cast<std::uint8_t *>(Array);
     std::size_t i = 0;
+
+#if !defined(__arm__) && !defined(__arm64__)
     // AVX-512BW/F
     if (simd::IS_AVX512_SUPPORTED) {
         for (std::size_t j = i / 64; j < ((Count / 2) / 64); ++j) {
@@ -292,8 +294,10 @@ inline void qReverse<1>(void *Array, std::size_t Count) {
             i += 16;
         }
     }
+
+#endif
     // NEON
-#ifdef uint8x16_t
+#ifdef __ARM_NEON
     if (simd::IS_ARM_NEON_SUPPORTED) {
         for( std::size_t j = i / 16; j < ((Count / 2) / 16); ++j ) {
             // Load 16 elements at once into one 16-byte register
@@ -393,6 +397,8 @@ template<>
 inline void qReverse<2>(void *Array, std::size_t Count) {
     auto *Array16 = reinterpret_cast<std::uint16_t *>(Array);
     std::size_t i = 0;
+
+#if !defined(__arm__) && !defined(__arm64__)
     // AVX-512BW/F
     if (simd::IS_AVX512_SUPPORTED) {
         for (std::size_t j = i / 32; j < ((Count / 2) / 32); ++j) {
@@ -499,9 +505,11 @@ inline void qReverse<2>(void *Array, std::size_t Count) {
             i += 8;
         }
     }
+
+#endif
     // NEON
 
-#ifdef uint8x16_t
+#ifdef __ARM_NEON
     if (simd::IS_ARM_NEON_SUPPORTED) {
         for( std::size_t j = i / 8; j < ((Count / 2) / 8); ++j )
         {
@@ -548,6 +556,7 @@ inline void qReverse<4>(void *Array, std::size_t Count) {
     auto *Array32 = reinterpret_cast<std::uint32_t *>(Array);
     std::size_t i = 0;
 
+#if !defined(__arm__) && !defined(__arm64__)
     // AVX-512BW/F
     if (simd::IS_AVX512_SUPPORTED) {
         for (std::size_t j = i / 16; j < ((Count / 2) / 16); ++j) {
@@ -640,7 +649,9 @@ inline void qReverse<4>(void *Array, std::size_t Count) {
             i += 4;
         }
     }
-#ifdef uint8x16_t
+
+#endif
+#ifdef __ARM_NEON
     // NEON
 if (simd::IS_ARM_NEON_SUPPORTED) {
     for( std::size_t j = i / 4; j < ((Count / 2) / 4); ++j )
@@ -687,6 +698,7 @@ inline void qReverse<8>(void *Array, std::size_t Count) {
     auto *Array64 = reinterpret_cast<std::uint64_t *>(Array);
     std::size_t i = 0;
 
+#if !defined(__arm__) && !defined(__arm64__)
     // AVX-512BW/F
     if (simd::IS_AVX512_SUPPORTED) {
         for (std::size_t j = i / 8; j < ((Count / 2) / 8); ++j) {
@@ -780,7 +792,8 @@ inline void qReverse<8>(void *Array, std::size_t Count) {
         }
     }
 
-#ifdef uint8x16_t
+#endif
+#ifdef __ARM_NEON
     // NEON
 if (simd::IS_ARM_NEON_SUPPORTED) {
     for( std::size_t j = i / 2; j < ((Count / 2) / 2); ++j )
@@ -827,6 +840,7 @@ inline void qReverse<16>(void *Array, std::size_t Count) {
     auto *Array128 = reinterpret_cast<uint128_t *>(Array);
     std::size_t i = 0;
 
+#if !defined(__arm__) && !defined(__arm64__)
     // AVX-512BW/F
     if (simd::IS_AVX512_SUPPORTED) {
         for (std::size_t j = i / 4; j < ((Count / 2) / 4); ++j) {
@@ -888,6 +902,7 @@ inline void qReverse<16>(void *Array, std::size_t Count) {
             i += 2;
         }
     }
+#endif
 
     // Naive swaps
     for (; i < Count / 2; ++i) {

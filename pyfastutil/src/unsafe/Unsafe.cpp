@@ -157,11 +157,11 @@ static PyObject *Unsafe_set([[maybe_unused]] PyObject *self, PyObject *args) {
 }
 
 static PyObject *Unsafe_getAddress([[maybe_unused]] PyObject *self, PyObject *pyObject) {
-    return PyLong_FromUnsignedLongLong(reinterpret_cast<uintptr_t>(pyObject));
+    return PyLong_FromVoidPtr(pyObject);
 }
 
 static PyObject *Unsafe_as_object([[maybe_unused]] PyObject *self, PyObject *pyAddress) {
-    return reinterpret_cast<PyObject *>(PyLong_AsUnsignedLongLong(pyAddress));
+    return reinterpret_cast<PyObject *>(PyLong_AsVoidPtr(pyAddress));
 }
 
 static PyObject *Unsafe_memcpy([[maybe_unused]] PyObject *self, PyObject *const *args, Py_ssize_t nargs) {
@@ -172,8 +172,8 @@ static PyObject *Unsafe_memcpy([[maybe_unused]] PyObject *self, PyObject *const 
     }
 
     // Extract arguments
-    uintptr_t addressFrom = PyLong_AsUnsignedLongLong(args[0]);
-    uintptr_t addressTo = PyLong_AsUnsignedLongLong(args[1]);
+    void *addressFrom = PyLong_AsVoidPtr(args[0]);
+    void *addressTo = PyLong_AsVoidPtr(args[1]);
     size_t size = PyLong_AsSize_t(args[2]);
 
     // Check for conversion errors
@@ -182,7 +182,7 @@ static PyObject *Unsafe_memcpy([[maybe_unused]] PyObject *self, PyObject *const 
     }
 
     // Perform the memory copy
-    memcpy(reinterpret_cast<void *>(addressTo), reinterpret_cast<void *>(addressFrom), size);
+    memcpy(addressTo, addressFrom, size);
 
     Py_RETURN_NONE;
 }
@@ -195,7 +195,7 @@ static PyObject *Unsafe_memset([[maybe_unused]] PyObject *self, PyObject *const 
     }
 
     // Extract arguments
-    uintptr_t address = PyLong_AsUnsignedLongLong(args[0]);
+    void *address = PyLong_AsVoidPtr(args[0]);
     int val = PyLong_AsLong(args[1]);
     size_t size = PyLong_AsSize_t(args[2]);
 
@@ -204,7 +204,7 @@ static PyObject *Unsafe_memset([[maybe_unused]] PyObject *self, PyObject *const 
         return nullptr;
     }
 
-    memset(reinterpret_cast<void *>(address), val, size);
+    memset(address, val, size);
 
     Py_RETURN_NONE;
 }

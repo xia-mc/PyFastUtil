@@ -1,10 +1,12 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <inspection_tool class="LongLine" enabled="true" level="WEAK WARNING" enabled_by_default="true" editorAttributes="INFO_ATTRIBUTES" />
     <inspection_tool class="OCUnusedIncludeDirective" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="strategy" value="RemoveCompletelyUnused" />
       <option name="showInHeaders" value="true" />
     </inspection_tool>
+    <inspection_tool class="PyAugmentAssignmentInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="PyCompatibilityInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ourVersions">
         <value>
@@ -15,6 +17,13 @@
             <item index="3" class="java.lang.String" itemvalue="3.10" />
           </list>
         </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E501" />
+        </list>
       </option>
     </inspection_tool>
     <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">

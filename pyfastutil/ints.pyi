@@ -1,7 +1,6 @@
-from typing import overload, Iterable, SupportsIndex, final, Iterator
+from typing import overload, Iterable, SupportsIndex, Iterator
 
 
-@final
 class IntArrayList(list[int]):
     """
     A specialized version of Python's list for integers, optimized for performance by using a C implementation.
@@ -153,7 +152,6 @@ class IntArrayList(list[int]):
         pass
 
 
-@final
 class IntArrayListIter(Iterator[int]):
     """
     Iterator for IntArrayList.
@@ -196,7 +194,6 @@ class IntArrayListIter(Iterator[int]):
         pass
 
 
-@final
 class BigIntArrayList(list[int]):
     """
     A specialized version of Python's list for integers, optimized for performance by using a C implementation.
@@ -348,7 +345,6 @@ class BigIntArrayList(list[int]):
         pass
 
 
-@final
 class BigIntArrayListIter(Iterator[int]):
     """
     Iterator for BigIntArrayList.
@@ -390,7 +386,6 @@ class BigIntArrayListIter(Iterator[int]):
         """
         pass
 
-@final
 class IntLinkedList(list[int]):
     """
     A specialized linked list for integers, optimized for efficient insertion and deletion.
@@ -475,7 +470,6 @@ class IntLinkedList(list[int]):
         """
         pass
 
-@final
 class IntLinkedListIter(Iterator[int]):
     """
     Iterator for `IntLinkedList`.
@@ -518,6 +512,5 @@ class IntLinkedListIter(Iterator[int]):
         """
         pass
 
-@final
 class IntIntHashMap(dict[int, int]):
     pass

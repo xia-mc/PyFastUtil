@@ -1,8 +1,9 @@
-from typing import overload, Iterable, final, Iterator, Self
+from typing import overload, Iterable, Iterator, Generic, TypeVar
+
+_T = TypeVar("_T")
 
 
-@final
-class ObjectArrayList(list):
+class ObjectArrayList(list[_T], Generic[_T]):
     """
     A specialized version of Python's `list` that can store any type of object, optimized for performance by using a C implementation.
 
@@ -45,7 +46,7 @@ class ObjectArrayList(list):
         pass
 
     @overload
-    def __init__(self, iterable: Iterable[object], exceptSize: int) -> None:
+    def __init__(self, iterable: Iterable[_T], exceptSize: int) -> None:
         """
         Initializes an `ObjectArrayList` from an iterable of objects with a preallocated size.
 
@@ -63,7 +64,7 @@ class ObjectArrayList(list):
         pass
 
     @overload
-    def __init__(self, iterable: Iterable[object]) -> None:
+    def __init__(self, iterable: Iterable[_T]) -> None:
         """
         Initializes an `ObjectArrayList` from an iterable of objects.
 
@@ -94,7 +95,7 @@ class ObjectArrayList(list):
         """
         pass
 
-    def to_list(self) -> list:
+    def to_list(self) -> list[_T]:
         """
         Converts the `ObjectArrayList` to a standard Python list.
 
@@ -113,8 +114,7 @@ class ObjectArrayList(list):
         pass
 
 
-@final
-class ObjectArrayListIter(Iterator):
+class ObjectArrayListIter(Iterator[_T]):
     """
     Iterator for `ObjectArrayList`.
 
@@ -140,7 +140,7 @@ class ObjectArrayListIter(Iterator):
         TypeError: If attempted to be instantiated directly.
     """
 
-    def __next__(self) -> object:
+    def __next__(self) -> _T:
         """
         Return the next element in the iteration.
 
@@ -156,8 +156,7 @@ class ObjectArrayListIter(Iterator):
         pass
 
 
-@final
-class ObjectLinkedList(list):
+class ObjectLinkedList(list, Generic[_T]):
     """
     A specialized linked list that stores Python objects, optimized for efficient insertion and deletion.
 
@@ -186,7 +185,7 @@ class ObjectLinkedList(list):
     """
     pass
 
-    def to_list(self) -> list:
+    def to_list(self) -> list[_T]:
         """
         Converts the `ObjectLinkedList` to a standard Python list.
 
@@ -205,8 +204,7 @@ class ObjectLinkedList(list):
         pass
 
 
-@final
-class ObjectLinkedListIter(Iterator):
+class ObjectLinkedListIter(Iterator[_T]):
     """
     Iterator for `ObjectLinkedList`.
 
@@ -233,7 +231,7 @@ class ObjectLinkedListIter(Iterator):
         TypeError: If attempted to be instantiated directly.
     """
 
-    def __next__(self) -> object:
+    def __next__(self) -> _T:
         """
         Return the next element in the iteration.
 
@@ -241,7 +239,7 @@ class ObjectLinkedListIter(Iterator):
         If all elements have been iterated over, it raises a `StopIteration` exception.
 
         Returns:
-            object: The next object in the `ObjectLinkedList`.
+            _T: The next object in the `ObjectLinkedList`.
 
         Raises:
             StopIteration: If there are no more elements to iterate over.
