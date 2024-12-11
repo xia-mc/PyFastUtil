@@ -6,6 +6,7 @@ from keystone import Ks, KS_ARCH_X86, KS_MODE_64
 from pyfastutil.unsafe import ASM
 
 
+@unittest.skipUnless(platform.system() == "Windows", "ASM only support Windows now.")
 class TestASM(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -98,5 +99,4 @@ class TestASM(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    if platform.system() == "Windows":
-        unittest.main()
+    unittest.main()

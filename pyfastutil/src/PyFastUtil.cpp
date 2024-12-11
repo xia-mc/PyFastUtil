@@ -4,7 +4,6 @@
 
 #include "PyFastUtil.h"
 #include "utils/simd/BitonicSort.h"
-#include "utils/ExceptionHandler.h"
 #include "ints/IntArrayList.h"
 #include "ints/IntArrayListIter.h"
 #include "ints/BigIntArrayList.h"
@@ -33,7 +32,6 @@ static struct PyModuleDef pyfastutilModule = {
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
 PyMODINIT_FUNC PyInit___pyfastutil() {
-    initExceptionHandler();
     simd::initBitonicSort();
 
     PyObject *parent = PyModule_Create(&pyfastutilModule);
