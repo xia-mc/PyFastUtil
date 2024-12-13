@@ -199,8 +199,6 @@ If you'd like to build the project from source, follow these steps:
       ./build.sh
       ```
 
-> **Note**: The project will be officially released on PyPI once all features are complete and thoroughly tested.
-
 ## License
 
 This project is licensed under the **Apache License 2.0**. For more details, see the [LICENSE](LICENSE) file.

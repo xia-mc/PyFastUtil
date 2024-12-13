@@ -53,6 +53,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install flake8 pytest pytest-cov
           python -m pip install -r requirements.txt
+          python -m pip install build twine
 
       - name: Build
         shell: bash
@@ -93,6 +94,9 @@ jobs:
 
       - name: Upload to PyPI
         shell: bash
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             ./upload.cmd

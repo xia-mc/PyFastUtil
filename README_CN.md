@@ -199,8 +199,6 @@ pip install PyFastUtil
       ./build.sh
       ```
 
-> **注意**: 项目功能齐全并经过广泛测试后，将正式发布到 PyPI。
-
 ## 许可证
 
 本项目使用 **Apache License 2.0** 进行开源。有关详细信息，请参阅 [LICENSE](LICENSE) 文件。
