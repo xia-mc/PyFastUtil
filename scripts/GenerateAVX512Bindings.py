@@ -604,15 +604,17 @@ def getCallCode(func: SIMDFunc, constantRequire: list[tuple[int, int, int]]) -> 
     """func, constant require args (argId, immediateMin, immediateMax)"""
     args = ""
     argId = 0
+    realArgId = 0
     if func.returnType != "void":
         argId += 1
 
     for i in range(len(func.argTypes)):
         if i == len(func.argTypes) - 1:
-            args += f"arg{argId}"
+            args += f"({func.argTypes[realArgId]}) arg{argId}"
         else:
-            args += f"arg{argId}, "
+            args += f"({func.argTypes[realArgId]}) arg{argId}, "
         argId += 1
+        realArgId += 1
 
     code: str
     if func.returnType != "void":

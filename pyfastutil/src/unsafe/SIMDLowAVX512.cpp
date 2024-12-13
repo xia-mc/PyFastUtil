@@ -28,7 +28,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask2int_impl([[maybe_unused
     __mmask16 arg1 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask2int(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask2int((__mmask16) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -54,7 +54,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set_epi64_impl([[maybe_unuse
     long long arg8 = (long long) PyLong_AsLongLong(*(((PyObject **) args) + 8));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set_epi64(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set_epi64((long long) arg1, (long long) arg2, (long long) arg3, (long long) arg4, (long long) arg5, (long long) arg6, (long long) arg7, (long long) arg8);
 
     Py_RETURN_NONE;
 #else
@@ -88,7 +88,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set_epi32_impl([[maybe_unuse
     int arg16 = (int) PyFast_AsInt(*(((PyObject **) args) + 16));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set_epi32(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set_epi32((int) arg1, (int) arg2, (int) arg3, (int) arg4, (int) arg5, (int) arg6, (int) arg7, (int) arg8, (int) arg9, (int) arg10, (int) arg11, (int) arg12, (int) arg13, (int) arg14, (int) arg15, (int) arg16);
 
     Py_RETURN_NONE;
 #else
@@ -138,7 +138,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set_epi16_impl([[maybe_unuse
     short arg32 = (short) PyFast_AsShort(*(((PyObject **) args) + 32));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set_epi16(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24, arg25, arg26, arg27, arg28, arg29, arg30, arg31, arg32);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set_epi16((short) arg1, (short) arg2, (short) arg3, (short) arg4, (short) arg5, (short) arg6, (short) arg7, (short) arg8, (short) arg9, (short) arg10, (short) arg11, (short) arg12, (short) arg13, (short) arg14, (short) arg15, (short) arg16, (short) arg17, (short) arg18, (short) arg19, (short) arg20, (short) arg21, (short) arg22, (short) arg23, (short) arg24, (short) arg25, (short) arg26, (short) arg27, (short) arg28, (short) arg29, (short) arg30, (short) arg31, (short) arg32);
 
     Py_RETURN_NONE;
 #else
@@ -220,7 +220,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set_epi8_impl([[maybe_unused
     char arg64 = (char) PyFast_AsChar(*(((PyObject **) args) + 64));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set_epi8(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24, arg25, arg26, arg27, arg28, arg29, arg30, arg31, arg32, arg33, arg34, arg35, arg36, arg37, arg38, arg39, arg40, arg41, arg42, arg43, arg44, arg45, arg46, arg47, arg48, arg49, arg50, arg51, arg52, arg53, arg54, arg55, arg56, arg57, arg58, arg59, arg60, arg61, arg62, arg63, arg64);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set_epi8((char) arg1, (char) arg2, (char) arg3, (char) arg4, (char) arg5, (char) arg6, (char) arg7, (char) arg8, (char) arg9, (char) arg10, (char) arg11, (char) arg12, (char) arg13, (char) arg14, (char) arg15, (char) arg16, (char) arg17, (char) arg18, (char) arg19, (char) arg20, (char) arg21, (char) arg22, (char) arg23, (char) arg24, (char) arg25, (char) arg26, (char) arg27, (char) arg28, (char) arg29, (char) arg30, (char) arg31, (char) arg32, (char) arg33, (char) arg34, (char) arg35, (char) arg36, (char) arg37, (char) arg38, (char) arg39, (char) arg40, (char) arg41, (char) arg42, (char) arg43, (char) arg44, (char) arg45, (char) arg46, (char) arg47, (char) arg48, (char) arg49, (char) arg50, (char) arg51, (char) arg52, (char) arg53, (char) arg54, (char) arg55, (char) arg56, (char) arg57, (char) arg58, (char) arg59, (char) arg60, (char) arg61, (char) arg62, (char) arg63, (char) arg64);
 
     Py_RETURN_NONE;
 #else
@@ -246,7 +246,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set_pd_impl([[maybe_unused]]
     double arg8 = (double) PyFloat_AS_DOUBLE(*(((PyObject **) args) + 8));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_set_pd(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_set_pd((double) arg1, (double) arg2, (double) arg3, (double) arg4, (double) arg5, (double) arg6, (double) arg7, (double) arg8);
 
     Py_RETURN_NONE;
 #else
@@ -280,7 +280,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set_ps_impl([[maybe_unused]]
     float arg16 = (float) (float) PyFloat_AS_DOUBLE(*(((PyObject **) args) + 16));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_set_ps(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_set_ps((float) arg1, (float) arg2, (float) arg3, (float) arg4, (float) arg5, (float) arg6, (float) arg7, (float) arg8, (float) arg9, (float) arg10, (float) arg11, (float) arg12, (float) arg13, (float) arg14, (float) arg15, (float) arg16);
 
     Py_RETURN_NONE;
 #else
@@ -353,7 +353,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set1_epi8_impl([[maybe_unuse
     char arg1 = (char) PyFast_AsChar(*(((PyObject **) args) + 1));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set1_epi8(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set1_epi8((char) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -372,7 +372,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set1_epi16_impl([[maybe_unus
     short arg1 = (short) PyFast_AsShort(*(((PyObject **) args) + 1));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set1_epi16(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set1_epi16((short) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -391,7 +391,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set1_pd_impl([[maybe_unused]
     double arg1 = (double) PyFloat_AS_DOUBLE(*(((PyObject **) args) + 1));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_set1_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_set1_pd((double) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -410,7 +410,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set1_ps_impl([[maybe_unused]
     float arg1 = (float) (float) PyFloat_AS_DOUBLE(*(((PyObject **) args) + 1));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_set1_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_set1_ps((float) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -442,7 +442,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set4_epi64_impl([[maybe_unus
     long long arg4 = (long long) PyLong_AsLongLong(*(((PyObject **) args) + 4));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set4_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set4_epi64((long long) arg1, (long long) arg2, (long long) arg3, (long long) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -464,7 +464,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set4_pd_impl([[maybe_unused]
     double arg4 = (double) PyFloat_AS_DOUBLE(*(((PyObject **) args) + 4));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_set4_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_set4_pd((double) arg1, (double) arg2, (double) arg3, (double) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -486,7 +486,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set4_ps_impl([[maybe_unused]
     float arg4 = (float) (float) PyFloat_AS_DOUBLE(*(((PyObject **) args) + 4));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_set4_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_set4_ps((float) arg1, (float) arg2, (float) arg3, (float) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -597,7 +597,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_mov_pd_impl([[maybe_unu
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mov_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mov_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -617,7 +617,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_mov_pd_impl([[maybe_un
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mov_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mov_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -638,7 +638,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_mov_ps_impl([[maybe_unu
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mov_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mov_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -658,7 +658,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_mov_ps_impl([[maybe_un
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mov_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mov_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -677,7 +677,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_load_pd_impl([[maybe_unused]
     void const * arg1 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_load_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_load_pd((void const *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -698,7 +698,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_load_pd_impl([[maybe_un
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_load_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_load_pd((__m512d) arg1, (__mmask8) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -718,7 +718,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_load_pd_impl([[maybe_u
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_load_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_load_pd((__mmask8) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -738,7 +738,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_store_pd_impl([[maybe_unused
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_store_pd(arg0, arg1);
+    _mm512_store_pd((void *) arg0, (__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -759,7 +759,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_store_pd_impl([[maybe_u
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_store_pd(arg0, arg1, arg2);
+    _mm512_mask_store_pd((void *) arg0, (__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -778,7 +778,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_load_ps_impl([[maybe_unused]
     void const * arg1 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_load_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_load_ps((void const *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -799,7 +799,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_load_ps_impl([[maybe_un
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_load_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_load_ps((__m512) arg1, (__mmask16) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -819,7 +819,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_load_ps_impl([[maybe_u
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_load_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_load_ps((__mmask16) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -839,7 +839,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_store_ps_impl([[maybe_unused
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_store_ps(arg0, arg1);
+    _mm512_store_ps((void *) arg0, (__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -860,7 +860,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_store_ps_impl([[maybe_u
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_store_ps(arg0, arg1, arg2);
+    _mm512_mask_store_ps((void *) arg0, (__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -881,7 +881,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_mov_epi64_impl([[maybe_
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mov_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mov_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -901,7 +901,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_mov_epi64_impl([[maybe
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mov_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mov_epi64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -920,7 +920,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_load_epi64_impl([[maybe_unus
     void const * arg1 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_load_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_load_epi64((void const *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -941,7 +941,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_load_epi64_impl([[maybe
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_load_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_load_epi64((__m512i) arg1, (__mmask8) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -961,7 +961,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_load_epi64_impl([[mayb
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_load_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_load_epi64((__mmask8) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -981,7 +981,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_store_epi64_impl([[maybe_unu
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_store_epi64(arg0, arg1);
+    _mm512_store_epi64((void *) arg0, (__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -1002,7 +1002,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_store_epi64_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_store_epi64(arg0, arg1, arg2);
+    _mm512_mask_store_epi64((void *) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1023,7 +1023,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_mov_epi32_impl([[maybe_
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mov_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mov_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1043,7 +1043,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_mov_epi32_impl([[maybe
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mov_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mov_epi32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1062,7 +1062,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_load_si512_impl([[maybe_unus
     void const * arg1 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_load_si512(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_load_si512((void const *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -1081,7 +1081,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_load_epi32_impl([[maybe_unus
     void const * arg1 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_load_epi32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_load_epi32((void const *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -1102,7 +1102,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_load_epi32_impl([[maybe
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_load_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_load_epi32((__m512i) arg1, (__mmask16) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1122,7 +1122,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_load_epi32_impl([[mayb
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_load_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_load_epi32((__mmask16) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1142,7 +1142,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_store_si512_impl([[maybe_unu
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_store_si512(arg0, arg1);
+    _mm512_store_si512((void *) arg0, (__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -1162,7 +1162,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_store_epi32_impl([[maybe_unu
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_store_epi32(arg0, arg1);
+    _mm512_store_epi32((void *) arg0, (__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -1183,7 +1183,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_store_epi32_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_store_epi32(arg0, arg1, arg2);
+    _mm512_mask_store_epi32((void *) arg0, (__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1203,7 +1203,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mullo_epi32_impl([[maybe_unu
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mullo_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mullo_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1224,7 +1224,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_mullo_epi32_impl([[may
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mullo_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mullo_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1246,7 +1246,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_mullo_epi32_impl([[mayb
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mullo_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mullo_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1266,7 +1266,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mullox_epi64_impl([[maybe_un
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mullox_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mullox_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1288,7 +1288,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_mullox_epi64_impl([[may
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mullox_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mullox_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1308,7 +1308,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sllv_epi32_impl([[maybe_unus
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sllv_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sllv_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1330,7 +1330,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sllv_epi32_impl([[maybe
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sllv_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sllv_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1351,7 +1351,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sllv_epi32_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sllv_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sllv_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1371,7 +1371,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_srav_epi32_impl([[maybe_unus
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srav_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srav_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1393,7 +1393,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_srav_epi32_impl([[maybe
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srav_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srav_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1414,7 +1414,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_srav_epi32_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srav_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srav_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1434,7 +1434,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_srlv_epi32_impl([[maybe_unus
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srlv_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srlv_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1456,7 +1456,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_srlv_epi32_impl([[maybe
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srlv_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srlv_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1477,7 +1477,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_srlv_epi32_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srlv_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srlv_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1497,7 +1497,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_add_epi64_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_add_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_add_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1519,7 +1519,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_add_epi64_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_add_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_add_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1540,7 +1540,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_add_epi64_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_add_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_add_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1560,7 +1560,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sub_epi64_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sub_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sub_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1582,7 +1582,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sub_epi64_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sub_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sub_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1603,7 +1603,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sub_epi64_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sub_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sub_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1623,7 +1623,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sllv_epi64_impl([[maybe_unus
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sllv_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sllv_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1645,7 +1645,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sllv_epi64_impl([[maybe
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sllv_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sllv_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1666,7 +1666,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sllv_epi64_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sllv_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sllv_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1686,7 +1686,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_srav_epi64_impl([[maybe_unus
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srav_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srav_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1708,7 +1708,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_srav_epi64_impl([[maybe
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srav_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srav_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1729,7 +1729,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_srav_epi64_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srav_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srav_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1749,7 +1749,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_srlv_epi64_impl([[maybe_unus
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srlv_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srlv_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1771,7 +1771,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_srlv_epi64_impl([[maybe
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srlv_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srlv_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1792,7 +1792,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_srlv_epi64_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srlv_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srlv_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1812,7 +1812,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_add_epi32_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_add_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_add_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1834,7 +1834,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_add_epi32_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_add_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_add_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1855,7 +1855,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_add_epi32_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_add_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_add_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1875,7 +1875,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mul_epi32_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mul_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mul_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1897,7 +1897,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_mul_epi32_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mul_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mul_epi32((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1918,7 +1918,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_mul_epi32_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mul_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mul_epi32((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -1938,7 +1938,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sub_epi32_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sub_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sub_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -1960,7 +1960,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sub_epi32_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sub_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sub_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -1981,7 +1981,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sub_epi32_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sub_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sub_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2001,7 +2001,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mul_epu32_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mul_epu32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mul_epu32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2023,7 +2023,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_mul_epu32_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mul_epu32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mul_epu32((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2044,7 +2044,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_mul_epu32_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mul_epu32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mul_epu32((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2064,7 +2064,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_slli_epi64_impl([[maybe_unus
     unsigned int arg2 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 2));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_slli_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_slli_epi64((__m512i) arg1, (unsigned int) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2086,7 +2086,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_slli_epi64_impl([[maybe
     unsigned int arg4 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 4));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_slli_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_slli_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (unsigned int) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2107,7 +2107,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_slli_epi64_impl([[mayb
     unsigned int arg3 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 3));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_slli_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_slli_epi64((__mmask8) arg1, (__m512i) arg2, (unsigned int) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2127,7 +2127,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sll_epi64_impl([[maybe_unuse
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sll_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sll_epi64((__m512i) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2149,7 +2149,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sll_epi64_impl([[maybe_
     __m128i arg4 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sll_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sll_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m128i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2170,7 +2170,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sll_epi64_impl([[maybe
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sll_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sll_epi64((__mmask8) arg1, (__m512i) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2190,7 +2190,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_srli_epi64_impl([[maybe_unus
     unsigned int arg2 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 2));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srli_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srli_epi64((__m512i) arg1, (unsigned int) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2212,7 +2212,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_srli_epi64_impl([[maybe
     unsigned int arg4 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 4));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srli_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srli_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (unsigned int) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2233,7 +2233,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_srli_epi64_impl([[mayb
     unsigned int arg3 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 3));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srli_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srli_epi64((__mmask8) arg1, (__m512i) arg2, (unsigned int) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2253,7 +2253,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_srl_epi64_impl([[maybe_unuse
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srl_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srl_epi64((__m512i) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2275,7 +2275,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_srl_epi64_impl([[maybe_
     __m128i arg4 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srl_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srl_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m128i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2296,7 +2296,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_srl_epi64_impl([[maybe
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srl_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srl_epi64((__mmask8) arg1, (__m512i) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2316,7 +2316,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_srai_epi64_impl([[maybe_unus
     unsigned int arg2 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 2));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srai_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srai_epi64((__m512i) arg1, (unsigned int) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2338,7 +2338,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_srai_epi64_impl([[maybe
     unsigned int arg4 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 4));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srai_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srai_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (unsigned int) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2359,7 +2359,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_srai_epi64_impl([[mayb
     unsigned int arg3 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 3));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srai_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srai_epi64((__mmask8) arg1, (__m512i) arg2, (unsigned int) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2379,7 +2379,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sra_epi64_impl([[maybe_unuse
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sra_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sra_epi64((__m512i) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2401,7 +2401,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sra_epi64_impl([[maybe_
     __m128i arg4 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sra_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sra_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m128i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2422,7 +2422,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sra_epi64_impl([[maybe
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sra_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sra_epi64((__mmask8) arg1, (__m512i) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2442,7 +2442,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_slli_epi32_impl([[maybe_unus
     unsigned int arg2 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 2));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_slli_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_slli_epi32((__m512i) arg1, (unsigned int) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2464,7 +2464,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_slli_epi32_impl([[maybe
     unsigned int arg4 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 4));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_slli_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_slli_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (unsigned int) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2485,7 +2485,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_slli_epi32_impl([[mayb
     unsigned int arg3 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 3));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_slli_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_slli_epi32((__mmask16) arg1, (__m512i) arg2, (unsigned int) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2505,7 +2505,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sll_epi32_impl([[maybe_unuse
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sll_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sll_epi32((__m512i) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2527,7 +2527,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sll_epi32_impl([[maybe_
     __m128i arg4 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sll_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sll_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m128i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2548,7 +2548,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sll_epi32_impl([[maybe
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sll_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sll_epi32((__mmask16) arg1, (__m512i) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2568,7 +2568,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_srli_epi32_impl([[maybe_unus
     unsigned int arg2 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 2));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srli_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srli_epi32((__m512i) arg1, (unsigned int) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2590,7 +2590,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_srli_epi32_impl([[maybe
     unsigned int arg4 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 4));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srli_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srli_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (unsigned int) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2611,7 +2611,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_srli_epi32_impl([[mayb
     unsigned int arg3 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 3));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srli_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srli_epi32((__mmask16) arg1, (__m512i) arg2, (unsigned int) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2631,7 +2631,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_srl_epi32_impl([[maybe_unuse
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srl_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srl_epi32((__m512i) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2653,7 +2653,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_srl_epi32_impl([[maybe_
     __m128i arg4 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srl_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srl_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m128i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2674,7 +2674,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_srl_epi32_impl([[maybe
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srl_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srl_epi32((__mmask16) arg1, (__m512i) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2694,7 +2694,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_srai_epi32_impl([[maybe_unus
     unsigned int arg2 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 2));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srai_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_srai_epi32((__m512i) arg1, (unsigned int) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2716,7 +2716,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_srai_epi32_impl([[maybe
     unsigned int arg4 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 4));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srai_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_srai_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (unsigned int) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2737,7 +2737,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_srai_epi32_impl([[mayb
     unsigned int arg3 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 3));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srai_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_srai_epi32((__mmask16) arg1, (__m512i) arg2, (unsigned int) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2757,7 +2757,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sra_epi32_impl([[maybe_unuse
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sra_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_sra_epi32((__m512i) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -2779,7 +2779,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sra_epi32_impl([[maybe_
     __m128i arg4 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sra_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sra_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m128i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -2800,7 +2800,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sra_epi32_impl([[maybe
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sra_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sra_epi32((__mmask16) arg1, (__m512i) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -2999,7 +2999,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_rcp14_pd_impl([[maybe_unused
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_rcp14_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_rcp14_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3020,7 +3020,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_rcp14_pd_impl([[maybe_u
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rcp14_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rcp14_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3040,7 +3040,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_rcp14_pd_impl([[maybe_
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rcp14_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rcp14_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3059,7 +3059,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_rcp14_ps_impl([[maybe_unused
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_rcp14_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_rcp14_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3080,7 +3080,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_rcp14_ps_impl([[maybe_u
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rcp14_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rcp14_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3100,7 +3100,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_rcp14_ps_impl([[maybe_
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rcp14_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rcp14_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3120,7 +3120,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_rcp14_sd_impl([[maybe_unused]] 
     __m128d arg2 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_rcp14_sd(arg1, arg2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_rcp14_sd((__m128d) arg1, (__m128d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3142,7 +3142,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_rcp14_sd_impl([[maybe_unus
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_rcp14_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_rcp14_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -3163,7 +3163,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_rcp14_sd_impl([[maybe_unu
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_rcp14_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_rcp14_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3183,7 +3183,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_rcp14_ss_impl([[maybe_unused]] 
     __m128 arg2 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_rcp14_ss(arg1, arg2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_rcp14_ss((__m128) arg1, (__m128) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3205,7 +3205,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_rcp14_ss_impl([[maybe_unus
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_rcp14_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_rcp14_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -3226,7 +3226,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_rcp14_ss_impl([[maybe_unu
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_rcp14_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_rcp14_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3245,7 +3245,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_rsqrt14_pd_impl([[maybe_unus
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_rsqrt14_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_rsqrt14_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3266,7 +3266,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_rsqrt14_pd_impl([[maybe
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rsqrt14_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rsqrt14_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3286,7 +3286,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_rsqrt14_pd_impl([[mayb
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rsqrt14_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rsqrt14_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3305,7 +3305,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_rsqrt14_ps_impl([[maybe_unus
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_rsqrt14_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_rsqrt14_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3326,7 +3326,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_rsqrt14_ps_impl([[maybe
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rsqrt14_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rsqrt14_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3346,7 +3346,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_rsqrt14_ps_impl([[mayb
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rsqrt14_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rsqrt14_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3366,7 +3366,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_rsqrt14_sd_impl([[maybe_unused]
     __m128d arg2 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_rsqrt14_sd(arg1, arg2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_rsqrt14_sd((__m128d) arg1, (__m128d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3388,7 +3388,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_rsqrt14_sd_impl([[maybe_un
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_rsqrt14_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_rsqrt14_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -3409,7 +3409,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_rsqrt14_sd_impl([[maybe_u
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_rsqrt14_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_rsqrt14_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3429,7 +3429,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_rsqrt14_ss_impl([[maybe_unused]
     __m128 arg2 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_rsqrt14_ss(arg1, arg2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_rsqrt14_ss((__m128) arg1, (__m128) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3451,7 +3451,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_rsqrt14_ss_impl([[maybe_un
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_rsqrt14_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_rsqrt14_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -3472,7 +3472,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_rsqrt14_ss_impl([[maybe_u
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_rsqrt14_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_rsqrt14_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3611,7 +3611,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi8_epi32_impl([[maybe_u
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi8_epi32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi8_epi32((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3632,7 +3632,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi8_epi32_impl([[ma
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi8_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi8_epi32((__m512i) arg1, (__mmask16) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3652,7 +3652,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi8_epi32_impl([[m
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi8_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi8_epi32((__mmask16) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3671,7 +3671,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi8_epi64_impl([[maybe_u
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi8_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi8_epi64((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3692,7 +3692,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi8_epi64_impl([[ma
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi8_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi8_epi64((__m512i) arg1, (__mmask8) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3712,7 +3712,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi8_epi64_impl([[m
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi8_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi8_epi64((__mmask8) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3731,7 +3731,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi16_epi32_impl([[maybe_
     __m256i arg1 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi16_epi32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi16_epi32((__m256i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3752,7 +3752,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi16_epi32_impl([[m
     __m256i arg3 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi16_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi16_epi32((__m512i) arg1, (__mmask16) arg2, (__m256i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3772,7 +3772,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi16_epi32_impl([[
     __m256i arg2 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi16_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi16_epi32((__mmask16) arg1, (__m256i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3791,7 +3791,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi16_epi64_impl([[maybe_
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi16_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi16_epi64((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3812,7 +3812,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi16_epi64_impl([[m
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi16_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi16_epi64((__m512i) arg1, (__mmask8) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3832,7 +3832,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi16_epi64_impl([[
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi16_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi16_epi64((__mmask8) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3851,7 +3851,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi32_epi64_impl([[maybe_
     __m256i arg1 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi32_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi32_epi64((__m256i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3872,7 +3872,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi32_epi64_impl([[m
     __m256i arg3 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi32_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi32_epi64((__m512i) arg1, (__mmask8) arg2, (__m256i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3892,7 +3892,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi32_epi64_impl([[
     __m256i arg2 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi32_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi32_epi64((__mmask8) arg1, (__m256i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3911,7 +3911,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepu8_epi32_impl([[maybe_u
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu8_epi32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu8_epi32((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3932,7 +3932,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepu8_epi32_impl([[ma
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu8_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu8_epi32((__m512i) arg1, (__mmask16) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -3952,7 +3952,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepu8_epi32_impl([[m
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu8_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu8_epi32((__mmask16) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -3971,7 +3971,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepu8_epi64_impl([[maybe_u
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu8_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu8_epi64((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -3992,7 +3992,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepu8_epi64_impl([[ma
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu8_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu8_epi64((__m512i) arg1, (__mmask8) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -4012,7 +4012,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepu8_epi64_impl([[m
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu8_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu8_epi64((__mmask8) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -4031,7 +4031,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepu16_epi32_impl([[maybe_
     __m256i arg1 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu16_epi32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu16_epi32((__m256i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -4052,7 +4052,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepu16_epi32_impl([[m
     __m256i arg3 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu16_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu16_epi32((__m512i) arg1, (__mmask16) arg2, (__m256i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -4072,7 +4072,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepu16_epi32_impl([[
     __m256i arg2 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu16_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu16_epi32((__mmask16) arg1, (__m256i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -4091,7 +4091,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepu16_epi64_impl([[maybe_
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu16_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu16_epi64((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -4112,7 +4112,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepu16_epi64_impl([[m
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu16_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu16_epi64((__m512i) arg1, (__mmask8) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -4132,7 +4132,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepu16_epi64_impl([[
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu16_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu16_epi64((__mmask8) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -4151,7 +4151,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepu32_epi64_impl([[maybe_
     __m256i arg1 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu32_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu32_epi64((__m256i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -4172,7 +4172,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepu32_epi64_impl([[m
     __m256i arg3 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu32_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu32_epi64((__m512i) arg1, (__mmask8) arg2, (__m256i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -4192,7 +4192,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepu32_epi64_impl([[
     __m256i arg2 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu32_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu32_epi64((__mmask8) arg1, (__m256i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -4215,19 +4215,19 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_add_round_pd_impl([[maybe_un
 
 switch (arg3) {
 case 0:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_round_pd(arg1, arg2, 0);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_round_pd((__m512d) arg1, (__m512d) arg2, (const int) 0);
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_round_pd(arg1, arg2, 1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_round_pd((__m512d) arg1, (__m512d) arg2, (const int) 1);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_round_pd(arg1, arg2, 2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_round_pd((__m512d) arg1, (__m512d) arg2, (const int) 2);
 break;
 case 3:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_round_pd(arg1, arg2, 3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_round_pd((__m512d) arg1, (__m512d) arg2, (const int) 3);
 break;
 case 4:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_round_pd(arg1, arg2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_round_pd((__m512d) arg1, (__m512d) arg2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -4335,19 +4335,19 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sub_round_ps_impl([[maybe_un
 
 switch (arg3) {
 case 0:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_round_ps(arg1, arg2, 0);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_round_ps((__m512) arg1, (__m512) arg2, (const int) 0);
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_round_ps(arg1, arg2, 1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_round_ps((__m512) arg1, (__m512) arg2, (const int) 1);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_round_ps(arg1, arg2, 2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_round_ps((__m512) arg1, (__m512) arg2, (const int) 2);
 break;
 case 3:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_round_ps(arg1, arg2, 3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_round_ps((__m512) arg1, (__m512) arg2, (const int) 3);
 break;
 case 4:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_round_ps(arg1, arg2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_round_ps((__m512) arg1, (__m512) arg2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -4425,19 +4425,19 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mul_round_ps_impl([[maybe_un
 
 switch (arg3) {
 case 0:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_round_ps(arg1, arg2, 0);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_round_ps((__m512) arg1, (__m512) arg2, (const int) 0);
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_round_ps(arg1, arg2, 1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_round_ps((__m512) arg1, (__m512) arg2, (const int) 1);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_round_ps(arg1, arg2, 2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_round_ps((__m512) arg1, (__m512) arg2, (const int) 2);
 break;
 case 3:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_round_ps(arg1, arg2, 3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_round_ps((__m512) arg1, (__m512) arg2, (const int) 3);
 break;
 case 4:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_round_ps(arg1, arg2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_round_ps((__m512) arg1, (__m512) arg2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -4485,19 +4485,19 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_div_round_pd_impl([[maybe_un
 
 switch (arg3) {
 case 0:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_round_pd(arg1, arg2, 0);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_round_pd((__m512d) arg1, (__m512d) arg2, (const int) 0);
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_round_pd(arg1, arg2, 1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_round_pd((__m512d) arg1, (__m512d) arg2, (const int) 1);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_round_pd(arg1, arg2, 2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_round_pd((__m512d) arg1, (__m512d) arg2, (const int) 2);
 break;
 case 3:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_round_pd(arg1, arg2, 3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_round_pd((__m512d) arg1, (__m512d) arg2, (const int) 3);
 break;
 case 4:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_round_pd(arg1, arg2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_round_pd((__m512d) arg1, (__m512d) arg2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -5411,7 +5411,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_abs_epi64_impl([[maybe_unuse
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_abs_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_abs_epi64((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -5432,7 +5432,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_abs_epi64_impl([[maybe_
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_abs_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_abs_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -5452,7 +5452,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_abs_epi64_impl([[maybe
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_abs_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_abs_epi64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -5471,7 +5471,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_abs_epi32_impl([[maybe_unuse
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_abs_epi32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_abs_epi32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -5492,7 +5492,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_abs_epi32_impl([[maybe_
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_abs_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_abs_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -5512,7 +5512,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_abs_epi32_impl([[maybe
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_abs_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_abs_epi32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -5531,7 +5531,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_broadcastss_ps_impl([[maybe_
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_broadcastss_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_broadcastss_ps((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -5552,7 +5552,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_broadcastss_ps_impl([[m
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcastss_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcastss_ps((__m512) arg1, (__mmask16) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -5572,7 +5572,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_broadcastss_ps_impl([[
     __m128 arg2 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcastss_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcastss_ps((__mmask16) arg1, (__m128) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -5591,7 +5591,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_broadcastsd_pd_impl([[maybe_
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_broadcastsd_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_broadcastsd_pd((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -5612,7 +5612,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_broadcastsd_pd_impl([[m
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcastsd_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcastsd_pd((__m512d) arg1, (__mmask8) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -5632,7 +5632,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_broadcastsd_pd_impl([[
     __m128d arg2 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcastsd_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcastsd_pd((__mmask8) arg1, (__m128d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -5651,7 +5651,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_broadcastd_epi32_impl([[mayb
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_broadcastd_epi32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_broadcastd_epi32((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -5672,7 +5672,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_broadcastd_epi32_impl([
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcastd_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcastd_epi32((__m512i) arg1, (__mmask16) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -5692,7 +5692,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_broadcastd_epi32_impl(
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcastd_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcastd_epi32((__mmask16) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -5741,7 +5741,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_broadcastq_epi64_impl([[mayb
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_broadcastq_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_broadcastq_epi64((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -5762,7 +5762,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_broadcastq_epi64_impl([
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcastq_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcastq_epi64((__m512i) arg1, (__mmask8) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -5782,7 +5782,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_broadcastq_epi64_impl(
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcastq_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcastq_epi64((__mmask8) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -5801,7 +5801,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_set1_epi64_impl([[maybe_unus
     long long arg1 = (long long) PyLong_AsLongLong(*(((PyObject **) args) + 1));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set1_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_set1_epi64((long long) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -5822,7 +5822,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_set1_epi64_impl([[maybe
     long long arg3 = (long long) PyLong_AsLongLong(*(((PyObject **) args) + 3));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_set1_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_set1_epi64((__m512i) arg1, (__mmask8) arg2, (long long) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -5842,7 +5842,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_set1_epi64_impl([[mayb
     long long arg2 = (long long) PyLong_AsLongLong(*(((PyObject **) args) + 2));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_set1_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_set1_epi64((__mmask8) arg1, (long long) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -5861,7 +5861,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_broadcast_f32x4_impl([[maybe
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_broadcast_f32x4(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_broadcast_f32x4((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -5882,7 +5882,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_broadcast_f32x4_impl([[
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcast_f32x4(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcast_f32x4((__m512) arg1, (__mmask16) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -5902,7 +5902,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_broadcast_f32x4_impl([
     __m128 arg2 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcast_f32x4(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcast_f32x4((__mmask16) arg1, (__m128) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -5921,7 +5921,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_broadcast_i32x4_impl([[maybe
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_broadcast_i32x4(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_broadcast_i32x4((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -5942,7 +5942,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_broadcast_i32x4_impl([[
     __m128i arg3 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcast_i32x4(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcast_i32x4((__m512i) arg1, (__mmask16) arg2, (__m128i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -5962,7 +5962,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_broadcast_i32x4_impl([
     __m128i arg2 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcast_i32x4(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcast_i32x4((__mmask16) arg1, (__m128i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -5981,7 +5981,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_broadcast_f64x4_impl([[maybe
     __m256d arg1 = (__m256d) *((__m256d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_broadcast_f64x4(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_broadcast_f64x4((__m256d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -6002,7 +6002,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_broadcast_f64x4_impl([[
     __m256d arg3 = (__m256d) *((__m256d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcast_f64x4(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcast_f64x4((__m512d) arg1, (__mmask8) arg2, (__m256d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -6022,7 +6022,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_broadcast_f64x4_impl([
     __m256d arg2 = (__m256d) *((__m256d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcast_f64x4(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcast_f64x4((__mmask8) arg1, (__m256d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -6041,7 +6041,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_broadcast_i64x4_impl([[maybe
     __m256i arg1 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_broadcast_i64x4(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_broadcast_i64x4((__m256i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -6062,7 +6062,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_broadcast_i64x4_impl([[
     __m256i arg3 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcast_i64x4(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_broadcast_i64x4((__m512i) arg1, (__mmask8) arg2, (__m256i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -6082,7 +6082,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_broadcast_i64x4_impl([
     __m256i arg2 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcast_i64x4(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_broadcast_i64x4((__mmask8) arg1, (__m256i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -6104,772 +6104,772 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_shuffle_epi32_impl([[maybe_u
 
 switch (arg2) {
 case 0:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 0);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 0);
 break;
 case 1:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 1);
 break;
 case 2:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 2);
 break;
 case 3:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 3);
 break;
 case 4:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 4);
 break;
 case 5:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 5);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 5);
 break;
 case 6:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 6);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 6);
 break;
 case 7:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 7);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 7);
 break;
 case 8:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 8);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 8);
 break;
 case 9:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 9);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 9);
 break;
 case 10:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 10);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 10);
 break;
 case 11:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 11);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 11);
 break;
 case 12:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 12);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 12);
 break;
 case 13:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 13);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 13);
 break;
 case 14:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 14);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 14);
 break;
 case 15:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 15);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 15);
 break;
 case 16:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 16);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 16);
 break;
 case 17:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 17);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 17);
 break;
 case 18:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 18);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 18);
 break;
 case 19:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 19);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 19);
 break;
 case 20:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 20);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 20);
 break;
 case 21:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 21);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 21);
 break;
 case 22:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 22);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 22);
 break;
 case 23:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 23);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 23);
 break;
 case 24:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 24);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 24);
 break;
 case 25:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 25);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 25);
 break;
 case 26:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 26);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 26);
 break;
 case 27:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 27);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 27);
 break;
 case 28:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 28);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 28);
 break;
 case 29:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 29);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 29);
 break;
 case 30:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 30);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 30);
 break;
 case 31:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 31);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 31);
 break;
 case 32:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 32);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 32);
 break;
 case 33:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 33);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 33);
 break;
 case 34:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 34);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 34);
 break;
 case 35:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 35);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 35);
 break;
 case 36:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 36);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 36);
 break;
 case 37:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 37);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 37);
 break;
 case 38:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 38);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 38);
 break;
 case 39:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 39);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 39);
 break;
 case 40:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 40);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 40);
 break;
 case 41:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 41);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 41);
 break;
 case 42:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 42);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 42);
 break;
 case 43:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 43);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 43);
 break;
 case 44:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 44);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 44);
 break;
 case 45:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 45);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 45);
 break;
 case 46:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 46);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 46);
 break;
 case 47:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 47);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 47);
 break;
 case 48:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 48);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 48);
 break;
 case 49:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 49);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 49);
 break;
 case 50:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 50);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 50);
 break;
 case 51:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 51);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 51);
 break;
 case 52:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 52);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 52);
 break;
 case 53:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 53);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 53);
 break;
 case 54:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 54);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 54);
 break;
 case 55:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 55);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 55);
 break;
 case 56:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 56);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 56);
 break;
 case 57:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 57);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 57);
 break;
 case 58:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 58);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 58);
 break;
 case 59:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 59);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 59);
 break;
 case 60:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 60);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 60);
 break;
 case 61:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 61);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 61);
 break;
 case 62:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 62);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 62);
 break;
 case 63:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 63);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 63);
 break;
 case 64:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 64);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 64);
 break;
 case 65:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 65);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 65);
 break;
 case 66:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 66);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 66);
 break;
 case 67:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 67);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 67);
 break;
 case 68:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 68);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 68);
 break;
 case 69:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 69);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 69);
 break;
 case 70:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 70);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 70);
 break;
 case 71:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 71);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 71);
 break;
 case 72:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 72);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 72);
 break;
 case 73:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 73);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 73);
 break;
 case 74:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 74);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 74);
 break;
 case 75:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 75);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 75);
 break;
 case 76:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 76);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 76);
 break;
 case 77:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 77);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 77);
 break;
 case 78:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 78);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 78);
 break;
 case 79:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 79);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 79);
 break;
 case 80:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 80);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 80);
 break;
 case 81:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 81);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 81);
 break;
 case 82:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 82);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 82);
 break;
 case 83:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 83);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 83);
 break;
 case 84:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 84);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 84);
 break;
 case 85:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 85);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 85);
 break;
 case 86:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 86);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 86);
 break;
 case 87:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 87);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 87);
 break;
 case 88:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 88);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 88);
 break;
 case 89:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 89);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 89);
 break;
 case 90:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 90);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 90);
 break;
 case 91:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 91);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 91);
 break;
 case 92:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 92);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 92);
 break;
 case 93:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 93);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 93);
 break;
 case 94:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 94);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 94);
 break;
 case 95:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 95);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 95);
 break;
 case 96:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 96);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 96);
 break;
 case 97:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 97);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 97);
 break;
 case 98:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 98);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 98);
 break;
 case 99:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 99);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 99);
 break;
 case 100:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 100);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 100);
 break;
 case 101:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 101);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 101);
 break;
 case 102:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 102);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 102);
 break;
 case 103:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 103);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 103);
 break;
 case 104:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 104);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 104);
 break;
 case 105:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 105);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 105);
 break;
 case 106:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 106);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 106);
 break;
 case 107:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 107);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 107);
 break;
 case 108:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 108);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 108);
 break;
 case 109:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 109);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 109);
 break;
 case 110:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 110);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 110);
 break;
 case 111:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 111);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 111);
 break;
 case 112:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 112);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 112);
 break;
 case 113:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 113);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 113);
 break;
 case 114:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 114);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 114);
 break;
 case 115:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 115);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 115);
 break;
 case 116:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 116);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 116);
 break;
 case 117:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 117);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 117);
 break;
 case 118:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 118);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 118);
 break;
 case 119:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 119);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 119);
 break;
 case 120:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 120);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 120);
 break;
 case 121:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 121);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 121);
 break;
 case 122:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 122);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 122);
 break;
 case 123:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 123);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 123);
 break;
 case 124:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 124);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 124);
 break;
 case 125:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 125);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 125);
 break;
 case 126:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 126);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 126);
 break;
 case 127:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 127);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 127);
 break;
 case 128:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 128);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 128);
 break;
 case 129:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 129);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 129);
 break;
 case 130:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 130);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 130);
 break;
 case 131:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 131);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 131);
 break;
 case 132:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 132);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 132);
 break;
 case 133:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 133);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 133);
 break;
 case 134:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 134);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 134);
 break;
 case 135:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 135);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 135);
 break;
 case 136:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 136);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 136);
 break;
 case 137:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 137);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 137);
 break;
 case 138:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 138);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 138);
 break;
 case 139:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 139);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 139);
 break;
 case 140:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 140);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 140);
 break;
 case 141:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 141);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 141);
 break;
 case 142:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 142);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 142);
 break;
 case 143:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 143);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 143);
 break;
 case 144:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 144);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 144);
 break;
 case 145:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 145);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 145);
 break;
 case 146:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 146);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 146);
 break;
 case 147:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 147);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 147);
 break;
 case 148:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 148);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 148);
 break;
 case 149:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 149);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 149);
 break;
 case 150:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 150);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 150);
 break;
 case 151:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 151);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 151);
 break;
 case 152:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 152);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 152);
 break;
 case 153:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 153);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 153);
 break;
 case 154:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 154);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 154);
 break;
 case 155:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 155);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 155);
 break;
 case 156:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 156);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 156);
 break;
 case 157:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 157);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 157);
 break;
 case 158:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 158);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 158);
 break;
 case 159:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 159);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 159);
 break;
 case 160:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 160);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 160);
 break;
 case 161:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 161);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 161);
 break;
 case 162:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 162);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 162);
 break;
 case 163:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 163);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 163);
 break;
 case 164:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 164);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 164);
 break;
 case 165:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 165);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 165);
 break;
 case 166:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 166);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 166);
 break;
 case 167:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 167);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 167);
 break;
 case 168:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 168);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 168);
 break;
 case 169:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 169);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 169);
 break;
 case 170:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 170);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 170);
 break;
 case 171:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 171);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 171);
 break;
 case 172:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 172);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 172);
 break;
 case 173:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 173);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 173);
 break;
 case 174:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 174);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 174);
 break;
 case 175:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 175);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 175);
 break;
 case 176:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 176);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 176);
 break;
 case 177:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 177);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 177);
 break;
 case 178:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 178);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 178);
 break;
 case 179:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 179);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 179);
 break;
 case 180:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 180);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 180);
 break;
 case 181:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 181);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 181);
 break;
 case 182:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 182);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 182);
 break;
 case 183:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 183);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 183);
 break;
 case 184:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 184);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 184);
 break;
 case 185:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 185);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 185);
 break;
 case 186:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 186);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 186);
 break;
 case 187:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 187);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 187);
 break;
 case 188:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 188);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 188);
 break;
 case 189:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 189);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 189);
 break;
 case 190:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 190);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 190);
 break;
 case 191:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 191);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 191);
 break;
 case 192:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 192);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 192);
 break;
 case 193:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 193);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 193);
 break;
 case 194:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 194);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 194);
 break;
 case 195:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 195);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 195);
 break;
 case 196:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 196);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 196);
 break;
 case 197:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 197);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 197);
 break;
 case 198:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 198);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 198);
 break;
 case 199:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 199);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 199);
 break;
 case 200:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 200);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 200);
 break;
 case 201:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 201);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 201);
 break;
 case 202:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 202);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 202);
 break;
 case 203:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 203);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 203);
 break;
 case 204:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 204);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 204);
 break;
 case 205:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 205);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 205);
 break;
 case 206:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 206);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 206);
 break;
 case 207:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 207);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 207);
 break;
 case 208:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 208);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 208);
 break;
 case 209:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 209);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 209);
 break;
 case 210:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 210);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 210);
 break;
 case 211:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 211);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 211);
 break;
 case 212:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 212);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 212);
 break;
 case 213:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 213);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 213);
 break;
 case 214:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 214);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 214);
 break;
 case 215:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 215);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 215);
 break;
 case 216:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 216);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 216);
 break;
 case 217:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 217);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 217);
 break;
 case 218:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 218);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 218);
 break;
 case 219:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 219);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 219);
 break;
 case 220:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 220);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 220);
 break;
 case 221:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 221);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 221);
 break;
 case 222:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 222);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 222);
 break;
 case 223:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 223);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 223);
 break;
 case 224:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 224);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 224);
 break;
 case 225:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 225);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 225);
 break;
 case 226:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 226);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 226);
 break;
 case 227:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 227);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 227);
 break;
 case 228:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 228);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 228);
 break;
 case 229:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 229);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 229);
 break;
 case 230:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 230);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 230);
 break;
 case 231:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 231);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 231);
 break;
 case 232:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 232);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 232);
 break;
 case 233:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 233);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 233);
 break;
 case 234:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 234);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 234);
 break;
 case 235:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 235);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 235);
 break;
 case 236:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 236);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 236);
 break;
 case 237:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 237);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 237);
 break;
 case 238:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 238);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 238);
 break;
 case 239:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 239);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 239);
 break;
 case 240:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 240);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 240);
 break;
 case 241:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 241);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 241);
 break;
 case 242:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 242);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 242);
 break;
 case 243:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 243);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 243);
 break;
 case 244:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 244);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 244);
 break;
 case 245:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 245);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 245);
 break;
 case 246:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 246);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 246);
 break;
 case 247:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 247);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 247);
 break;
 case 248:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 248);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 248);
 break;
 case 249:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 249);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 249);
 break;
 case 250:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 250);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 250);
 break;
 case 251:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 251);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 251);
 break;
 case 252:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 252);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 252);
 break;
 case 253:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 253);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 253);
 break;
 case 254:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 254);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 254);
 break;
 case 255:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32(arg1, 255);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_shuffle_epi32((__m512i) arg1, (_MM_PERM_ENUM) 255);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -6898,772 +6898,772 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_shuffle_epi32_impl([[ma
 
 switch (arg4) {
 case 0:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 0);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 0);
 break;
 case 1:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 1);
 break;
 case 2:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 2);
 break;
 case 3:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 3);
 break;
 case 4:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 4);
 break;
 case 5:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 5);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 5);
 break;
 case 6:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 6);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 6);
 break;
 case 7:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 7);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 7);
 break;
 case 8:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 8);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 8);
 break;
 case 9:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 9);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 9);
 break;
 case 10:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 10);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 10);
 break;
 case 11:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 11);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 11);
 break;
 case 12:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 12);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 12);
 break;
 case 13:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 13);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 13);
 break;
 case 14:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 14);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 14);
 break;
 case 15:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 15);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 15);
 break;
 case 16:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 16);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 16);
 break;
 case 17:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 17);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 17);
 break;
 case 18:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 18);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 18);
 break;
 case 19:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 19);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 19);
 break;
 case 20:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 20);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 20);
 break;
 case 21:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 21);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 21);
 break;
 case 22:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 22);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 22);
 break;
 case 23:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 23);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 23);
 break;
 case 24:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 24);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 24);
 break;
 case 25:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 25);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 25);
 break;
 case 26:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 26);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 26);
 break;
 case 27:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 27);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 27);
 break;
 case 28:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 28);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 28);
 break;
 case 29:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 29);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 29);
 break;
 case 30:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 30);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 30);
 break;
 case 31:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 31);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 31);
 break;
 case 32:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 32);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 32);
 break;
 case 33:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 33);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 33);
 break;
 case 34:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 34);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 34);
 break;
 case 35:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 35);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 35);
 break;
 case 36:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 36);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 36);
 break;
 case 37:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 37);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 37);
 break;
 case 38:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 38);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 38);
 break;
 case 39:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 39);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 39);
 break;
 case 40:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 40);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 40);
 break;
 case 41:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 41);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 41);
 break;
 case 42:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 42);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 42);
 break;
 case 43:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 43);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 43);
 break;
 case 44:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 44);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 44);
 break;
 case 45:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 45);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 45);
 break;
 case 46:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 46);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 46);
 break;
 case 47:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 47);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 47);
 break;
 case 48:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 48);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 48);
 break;
 case 49:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 49);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 49);
 break;
 case 50:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 50);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 50);
 break;
 case 51:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 51);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 51);
 break;
 case 52:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 52);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 52);
 break;
 case 53:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 53);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 53);
 break;
 case 54:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 54);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 54);
 break;
 case 55:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 55);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 55);
 break;
 case 56:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 56);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 56);
 break;
 case 57:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 57);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 57);
 break;
 case 58:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 58);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 58);
 break;
 case 59:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 59);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 59);
 break;
 case 60:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 60);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 60);
 break;
 case 61:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 61);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 61);
 break;
 case 62:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 62);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 62);
 break;
 case 63:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 63);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 63);
 break;
 case 64:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 64);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 64);
 break;
 case 65:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 65);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 65);
 break;
 case 66:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 66);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 66);
 break;
 case 67:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 67);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 67);
 break;
 case 68:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 68);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 68);
 break;
 case 69:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 69);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 69);
 break;
 case 70:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 70);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 70);
 break;
 case 71:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 71);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 71);
 break;
 case 72:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 72);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 72);
 break;
 case 73:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 73);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 73);
 break;
 case 74:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 74);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 74);
 break;
 case 75:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 75);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 75);
 break;
 case 76:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 76);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 76);
 break;
 case 77:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 77);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 77);
 break;
 case 78:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 78);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 78);
 break;
 case 79:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 79);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 79);
 break;
 case 80:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 80);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 80);
 break;
 case 81:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 81);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 81);
 break;
 case 82:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 82);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 82);
 break;
 case 83:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 83);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 83);
 break;
 case 84:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 84);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 84);
 break;
 case 85:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 85);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 85);
 break;
 case 86:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 86);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 86);
 break;
 case 87:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 87);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 87);
 break;
 case 88:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 88);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 88);
 break;
 case 89:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 89);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 89);
 break;
 case 90:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 90);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 90);
 break;
 case 91:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 91);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 91);
 break;
 case 92:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 92);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 92);
 break;
 case 93:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 93);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 93);
 break;
 case 94:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 94);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 94);
 break;
 case 95:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 95);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 95);
 break;
 case 96:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 96);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 96);
 break;
 case 97:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 97);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 97);
 break;
 case 98:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 98);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 98);
 break;
 case 99:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 99);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 99);
 break;
 case 100:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 100);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 100);
 break;
 case 101:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 101);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 101);
 break;
 case 102:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 102);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 102);
 break;
 case 103:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 103);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 103);
 break;
 case 104:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 104);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 104);
 break;
 case 105:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 105);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 105);
 break;
 case 106:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 106);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 106);
 break;
 case 107:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 107);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 107);
 break;
 case 108:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 108);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 108);
 break;
 case 109:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 109);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 109);
 break;
 case 110:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 110);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 110);
 break;
 case 111:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 111);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 111);
 break;
 case 112:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 112);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 112);
 break;
 case 113:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 113);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 113);
 break;
 case 114:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 114);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 114);
 break;
 case 115:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 115);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 115);
 break;
 case 116:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 116);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 116);
 break;
 case 117:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 117);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 117);
 break;
 case 118:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 118);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 118);
 break;
 case 119:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 119);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 119);
 break;
 case 120:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 120);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 120);
 break;
 case 121:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 121);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 121);
 break;
 case 122:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 122);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 122);
 break;
 case 123:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 123);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 123);
 break;
 case 124:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 124);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 124);
 break;
 case 125:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 125);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 125);
 break;
 case 126:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 126);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 126);
 break;
 case 127:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 127);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 127);
 break;
 case 128:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 128);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 128);
 break;
 case 129:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 129);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 129);
 break;
 case 130:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 130);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 130);
 break;
 case 131:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 131);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 131);
 break;
 case 132:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 132);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 132);
 break;
 case 133:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 133);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 133);
 break;
 case 134:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 134);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 134);
 break;
 case 135:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 135);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 135);
 break;
 case 136:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 136);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 136);
 break;
 case 137:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 137);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 137);
 break;
 case 138:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 138);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 138);
 break;
 case 139:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 139);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 139);
 break;
 case 140:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 140);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 140);
 break;
 case 141:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 141);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 141);
 break;
 case 142:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 142);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 142);
 break;
 case 143:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 143);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 143);
 break;
 case 144:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 144);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 144);
 break;
 case 145:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 145);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 145);
 break;
 case 146:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 146);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 146);
 break;
 case 147:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 147);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 147);
 break;
 case 148:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 148);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 148);
 break;
 case 149:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 149);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 149);
 break;
 case 150:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 150);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 150);
 break;
 case 151:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 151);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 151);
 break;
 case 152:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 152);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 152);
 break;
 case 153:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 153);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 153);
 break;
 case 154:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 154);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 154);
 break;
 case 155:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 155);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 155);
 break;
 case 156:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 156);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 156);
 break;
 case 157:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 157);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 157);
 break;
 case 158:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 158);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 158);
 break;
 case 159:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 159);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 159);
 break;
 case 160:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 160);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 160);
 break;
 case 161:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 161);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 161);
 break;
 case 162:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 162);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 162);
 break;
 case 163:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 163);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 163);
 break;
 case 164:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 164);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 164);
 break;
 case 165:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 165);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 165);
 break;
 case 166:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 166);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 166);
 break;
 case 167:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 167);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 167);
 break;
 case 168:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 168);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 168);
 break;
 case 169:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 169);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 169);
 break;
 case 170:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 170);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 170);
 break;
 case 171:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 171);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 171);
 break;
 case 172:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 172);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 172);
 break;
 case 173:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 173);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 173);
 break;
 case 174:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 174);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 174);
 break;
 case 175:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 175);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 175);
 break;
 case 176:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 176);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 176);
 break;
 case 177:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 177);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 177);
 break;
 case 178:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 178);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 178);
 break;
 case 179:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 179);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 179);
 break;
 case 180:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 180);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 180);
 break;
 case 181:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 181);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 181);
 break;
 case 182:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 182);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 182);
 break;
 case 183:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 183);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 183);
 break;
 case 184:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 184);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 184);
 break;
 case 185:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 185);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 185);
 break;
 case 186:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 186);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 186);
 break;
 case 187:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 187);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 187);
 break;
 case 188:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 188);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 188);
 break;
 case 189:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 189);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 189);
 break;
 case 190:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 190);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 190);
 break;
 case 191:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 191);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 191);
 break;
 case 192:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 192);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 192);
 break;
 case 193:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 193);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 193);
 break;
 case 194:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 194);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 194);
 break;
 case 195:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 195);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 195);
 break;
 case 196:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 196);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 196);
 break;
 case 197:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 197);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 197);
 break;
 case 198:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 198);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 198);
 break;
 case 199:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 199);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 199);
 break;
 case 200:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 200);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 200);
 break;
 case 201:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 201);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 201);
 break;
 case 202:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 202);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 202);
 break;
 case 203:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 203);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 203);
 break;
 case 204:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 204);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 204);
 break;
 case 205:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 205);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 205);
 break;
 case 206:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 206);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 206);
 break;
 case 207:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 207);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 207);
 break;
 case 208:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 208);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 208);
 break;
 case 209:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 209);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 209);
 break;
 case 210:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 210);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 210);
 break;
 case 211:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 211);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 211);
 break;
 case 212:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 212);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 212);
 break;
 case 213:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 213);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 213);
 break;
 case 214:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 214);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 214);
 break;
 case 215:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 215);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 215);
 break;
 case 216:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 216);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 216);
 break;
 case 217:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 217);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 217);
 break;
 case 218:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 218);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 218);
 break;
 case 219:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 219);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 219);
 break;
 case 220:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 220);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 220);
 break;
 case 221:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 221);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 221);
 break;
 case 222:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 222);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 222);
 break;
 case 223:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 223);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 223);
 break;
 case 224:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 224);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 224);
 break;
 case 225:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 225);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 225);
 break;
 case 226:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 226);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 226);
 break;
 case 227:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 227);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 227);
 break;
 case 228:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 228);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 228);
 break;
 case 229:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 229);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 229);
 break;
 case 230:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 230);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 230);
 break;
 case 231:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 231);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 231);
 break;
 case 232:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 232);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 232);
 break;
 case 233:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 233);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 233);
 break;
 case 234:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 234);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 234);
 break;
 case 235:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 235);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 235);
 break;
 case 236:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 236);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 236);
 break;
 case 237:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 237);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 237);
 break;
 case 238:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 238);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 238);
 break;
 case 239:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 239);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 239);
 break;
 case 240:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 240);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 240);
 break;
 case 241:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 241);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 241);
 break;
 case 242:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 242);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 242);
 break;
 case 243:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 243);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 243);
 break;
 case 244:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 244);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 244);
 break;
 case 245:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 245);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 245);
 break;
 case 246:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 246);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 246);
 break;
 case 247:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 247);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 247);
 break;
 case 248:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 248);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 248);
 break;
 case 249:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 249);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 249);
 break;
 case 250:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 250);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 250);
 break;
 case 251:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 251);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 251);
 break;
 case 252:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 252);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 252);
 break;
 case 253:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 253);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 253);
 break;
 case 254:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 254);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 254);
 break;
 case 255:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32(arg1, arg2, arg3, 255);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_shuffle_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (_MM_PERM_ENUM) 255);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -7691,772 +7691,772 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_shuffle_epi32_impl([[m
 
 switch (arg3) {
 case 0:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 0);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 0);
 break;
 case 1:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 1);
 break;
 case 2:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 2);
 break;
 case 3:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 3);
 break;
 case 4:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 4);
 break;
 case 5:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 5);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 5);
 break;
 case 6:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 6);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 6);
 break;
 case 7:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 7);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 7);
 break;
 case 8:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 8);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 8);
 break;
 case 9:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 9);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 9);
 break;
 case 10:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 10);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 10);
 break;
 case 11:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 11);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 11);
 break;
 case 12:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 12);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 12);
 break;
 case 13:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 13);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 13);
 break;
 case 14:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 14);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 14);
 break;
 case 15:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 15);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 15);
 break;
 case 16:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 16);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 16);
 break;
 case 17:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 17);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 17);
 break;
 case 18:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 18);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 18);
 break;
 case 19:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 19);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 19);
 break;
 case 20:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 20);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 20);
 break;
 case 21:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 21);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 21);
 break;
 case 22:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 22);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 22);
 break;
 case 23:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 23);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 23);
 break;
 case 24:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 24);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 24);
 break;
 case 25:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 25);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 25);
 break;
 case 26:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 26);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 26);
 break;
 case 27:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 27);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 27);
 break;
 case 28:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 28);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 28);
 break;
 case 29:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 29);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 29);
 break;
 case 30:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 30);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 30);
 break;
 case 31:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 31);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 31);
 break;
 case 32:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 32);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 32);
 break;
 case 33:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 33);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 33);
 break;
 case 34:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 34);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 34);
 break;
 case 35:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 35);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 35);
 break;
 case 36:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 36);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 36);
 break;
 case 37:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 37);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 37);
 break;
 case 38:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 38);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 38);
 break;
 case 39:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 39);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 39);
 break;
 case 40:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 40);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 40);
 break;
 case 41:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 41);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 41);
 break;
 case 42:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 42);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 42);
 break;
 case 43:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 43);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 43);
 break;
 case 44:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 44);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 44);
 break;
 case 45:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 45);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 45);
 break;
 case 46:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 46);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 46);
 break;
 case 47:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 47);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 47);
 break;
 case 48:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 48);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 48);
 break;
 case 49:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 49);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 49);
 break;
 case 50:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 50);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 50);
 break;
 case 51:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 51);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 51);
 break;
 case 52:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 52);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 52);
 break;
 case 53:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 53);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 53);
 break;
 case 54:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 54);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 54);
 break;
 case 55:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 55);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 55);
 break;
 case 56:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 56);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 56);
 break;
 case 57:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 57);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 57);
 break;
 case 58:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 58);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 58);
 break;
 case 59:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 59);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 59);
 break;
 case 60:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 60);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 60);
 break;
 case 61:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 61);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 61);
 break;
 case 62:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 62);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 62);
 break;
 case 63:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 63);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 63);
 break;
 case 64:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 64);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 64);
 break;
 case 65:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 65);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 65);
 break;
 case 66:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 66);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 66);
 break;
 case 67:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 67);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 67);
 break;
 case 68:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 68);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 68);
 break;
 case 69:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 69);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 69);
 break;
 case 70:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 70);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 70);
 break;
 case 71:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 71);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 71);
 break;
 case 72:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 72);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 72);
 break;
 case 73:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 73);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 73);
 break;
 case 74:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 74);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 74);
 break;
 case 75:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 75);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 75);
 break;
 case 76:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 76);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 76);
 break;
 case 77:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 77);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 77);
 break;
 case 78:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 78);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 78);
 break;
 case 79:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 79);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 79);
 break;
 case 80:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 80);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 80);
 break;
 case 81:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 81);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 81);
 break;
 case 82:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 82);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 82);
 break;
 case 83:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 83);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 83);
 break;
 case 84:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 84);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 84);
 break;
 case 85:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 85);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 85);
 break;
 case 86:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 86);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 86);
 break;
 case 87:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 87);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 87);
 break;
 case 88:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 88);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 88);
 break;
 case 89:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 89);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 89);
 break;
 case 90:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 90);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 90);
 break;
 case 91:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 91);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 91);
 break;
 case 92:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 92);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 92);
 break;
 case 93:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 93);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 93);
 break;
 case 94:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 94);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 94);
 break;
 case 95:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 95);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 95);
 break;
 case 96:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 96);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 96);
 break;
 case 97:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 97);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 97);
 break;
 case 98:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 98);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 98);
 break;
 case 99:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 99);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 99);
 break;
 case 100:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 100);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 100);
 break;
 case 101:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 101);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 101);
 break;
 case 102:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 102);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 102);
 break;
 case 103:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 103);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 103);
 break;
 case 104:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 104);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 104);
 break;
 case 105:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 105);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 105);
 break;
 case 106:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 106);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 106);
 break;
 case 107:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 107);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 107);
 break;
 case 108:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 108);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 108);
 break;
 case 109:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 109);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 109);
 break;
 case 110:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 110);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 110);
 break;
 case 111:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 111);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 111);
 break;
 case 112:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 112);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 112);
 break;
 case 113:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 113);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 113);
 break;
 case 114:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 114);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 114);
 break;
 case 115:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 115);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 115);
 break;
 case 116:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 116);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 116);
 break;
 case 117:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 117);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 117);
 break;
 case 118:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 118);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 118);
 break;
 case 119:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 119);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 119);
 break;
 case 120:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 120);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 120);
 break;
 case 121:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 121);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 121);
 break;
 case 122:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 122);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 122);
 break;
 case 123:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 123);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 123);
 break;
 case 124:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 124);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 124);
 break;
 case 125:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 125);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 125);
 break;
 case 126:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 126);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 126);
 break;
 case 127:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 127);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 127);
 break;
 case 128:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 128);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 128);
 break;
 case 129:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 129);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 129);
 break;
 case 130:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 130);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 130);
 break;
 case 131:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 131);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 131);
 break;
 case 132:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 132);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 132);
 break;
 case 133:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 133);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 133);
 break;
 case 134:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 134);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 134);
 break;
 case 135:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 135);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 135);
 break;
 case 136:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 136);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 136);
 break;
 case 137:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 137);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 137);
 break;
 case 138:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 138);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 138);
 break;
 case 139:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 139);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 139);
 break;
 case 140:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 140);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 140);
 break;
 case 141:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 141);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 141);
 break;
 case 142:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 142);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 142);
 break;
 case 143:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 143);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 143);
 break;
 case 144:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 144);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 144);
 break;
 case 145:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 145);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 145);
 break;
 case 146:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 146);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 146);
 break;
 case 147:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 147);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 147);
 break;
 case 148:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 148);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 148);
 break;
 case 149:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 149);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 149);
 break;
 case 150:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 150);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 150);
 break;
 case 151:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 151);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 151);
 break;
 case 152:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 152);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 152);
 break;
 case 153:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 153);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 153);
 break;
 case 154:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 154);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 154);
 break;
 case 155:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 155);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 155);
 break;
 case 156:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 156);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 156);
 break;
 case 157:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 157);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 157);
 break;
 case 158:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 158);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 158);
 break;
 case 159:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 159);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 159);
 break;
 case 160:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 160);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 160);
 break;
 case 161:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 161);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 161);
 break;
 case 162:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 162);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 162);
 break;
 case 163:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 163);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 163);
 break;
 case 164:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 164);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 164);
 break;
 case 165:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 165);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 165);
 break;
 case 166:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 166);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 166);
 break;
 case 167:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 167);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 167);
 break;
 case 168:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 168);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 168);
 break;
 case 169:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 169);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 169);
 break;
 case 170:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 170);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 170);
 break;
 case 171:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 171);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 171);
 break;
 case 172:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 172);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 172);
 break;
 case 173:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 173);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 173);
 break;
 case 174:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 174);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 174);
 break;
 case 175:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 175);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 175);
 break;
 case 176:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 176);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 176);
 break;
 case 177:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 177);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 177);
 break;
 case 178:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 178);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 178);
 break;
 case 179:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 179);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 179);
 break;
 case 180:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 180);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 180);
 break;
 case 181:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 181);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 181);
 break;
 case 182:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 182);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 182);
 break;
 case 183:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 183);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 183);
 break;
 case 184:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 184);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 184);
 break;
 case 185:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 185);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 185);
 break;
 case 186:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 186);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 186);
 break;
 case 187:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 187);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 187);
 break;
 case 188:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 188);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 188);
 break;
 case 189:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 189);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 189);
 break;
 case 190:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 190);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 190);
 break;
 case 191:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 191);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 191);
 break;
 case 192:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 192);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 192);
 break;
 case 193:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 193);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 193);
 break;
 case 194:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 194);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 194);
 break;
 case 195:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 195);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 195);
 break;
 case 196:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 196);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 196);
 break;
 case 197:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 197);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 197);
 break;
 case 198:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 198);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 198);
 break;
 case 199:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 199);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 199);
 break;
 case 200:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 200);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 200);
 break;
 case 201:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 201);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 201);
 break;
 case 202:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 202);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 202);
 break;
 case 203:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 203);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 203);
 break;
 case 204:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 204);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 204);
 break;
 case 205:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 205);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 205);
 break;
 case 206:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 206);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 206);
 break;
 case 207:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 207);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 207);
 break;
 case 208:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 208);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 208);
 break;
 case 209:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 209);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 209);
 break;
 case 210:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 210);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 210);
 break;
 case 211:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 211);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 211);
 break;
 case 212:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 212);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 212);
 break;
 case 213:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 213);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 213);
 break;
 case 214:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 214);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 214);
 break;
 case 215:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 215);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 215);
 break;
 case 216:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 216);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 216);
 break;
 case 217:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 217);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 217);
 break;
 case 218:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 218);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 218);
 break;
 case 219:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 219);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 219);
 break;
 case 220:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 220);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 220);
 break;
 case 221:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 221);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 221);
 break;
 case 222:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 222);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 222);
 break;
 case 223:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 223);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 223);
 break;
 case 224:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 224);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 224);
 break;
 case 225:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 225);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 225);
 break;
 case 226:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 226);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 226);
 break;
 case 227:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 227);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 227);
 break;
 case 228:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 228);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 228);
 break;
 case 229:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 229);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 229);
 break;
 case 230:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 230);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 230);
 break;
 case 231:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 231);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 231);
 break;
 case 232:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 232);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 232);
 break;
 case 233:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 233);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 233);
 break;
 case 234:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 234);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 234);
 break;
 case 235:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 235);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 235);
 break;
 case 236:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 236);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 236);
 break;
 case 237:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 237);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 237);
 break;
 case 238:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 238);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 238);
 break;
 case 239:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 239);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 239);
 break;
 case 240:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 240);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 240);
 break;
 case 241:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 241);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 241);
 break;
 case 242:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 242);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 242);
 break;
 case 243:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 243);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 243);
 break;
 case 244:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 244);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 244);
 break;
 case 245:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 245);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 245);
 break;
 case 246:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 246);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 246);
 break;
 case 247:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 247);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 247);
 break;
 case 248:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 248);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 248);
 break;
 case 249:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 249);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 249);
 break;
 case 250:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 250);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 250);
 break;
 case 251:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 251);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 251);
 break;
 case 252:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 252);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 252);
 break;
 case 253:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 253);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 253);
 break;
 case 254:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 254);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 254);
 break;
 case 255:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32(arg1, arg2, 255);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_epi32((__mmask16) arg1, (__m512i) arg2, (_MM_PERM_ENUM) 255);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -8601,7 +8601,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_rolv_epi32_impl([[maybe_unus
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_rolv_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_rolv_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -8623,7 +8623,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_rolv_epi32_impl([[maybe
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rolv_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rolv_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -8644,7 +8644,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_rolv_epi32_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rolv_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rolv_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -8664,7 +8664,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_rorv_epi32_impl([[maybe_unus
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_rorv_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_rorv_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -8686,7 +8686,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_rorv_epi32_impl([[maybe
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rorv_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rorv_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -8707,7 +8707,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_rorv_epi32_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rorv_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rorv_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -8727,7 +8727,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_rolv_epi64_impl([[maybe_unus
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_rolv_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_rolv_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -8749,7 +8749,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_rolv_epi64_impl([[maybe
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rolv_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rolv_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -8770,7 +8770,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_rolv_epi64_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rolv_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rolv_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -8790,7 +8790,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_rorv_epi64_impl([[maybe_unus
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_rorv_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_rorv_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -8812,7 +8812,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_rorv_epi64_impl([[maybe
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rorv_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_rorv_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -8833,7 +8833,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_rorv_epi64_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rorv_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_rorv_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9093,7 +9093,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtu32_sd_impl([[maybe_unused]]
     unsigned arg2 = (unsigned) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 2));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_cvtu32_sd(arg1, arg2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_cvtu32_sd((__m128d) arg1, (unsigned) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9202,7 +9202,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi32_epi8_impl([[maybe_u
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi32_epi8(arg1);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi32_epi8((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -9223,7 +9223,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi32_storeu_epi8_im
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtepi32_storeu_epi8(arg0, arg1, arg2);
+    _mm512_mask_cvtepi32_storeu_epi8((void *) arg0, (__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9244,7 +9244,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi32_epi8_impl([[ma
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi32_epi8(arg1, arg2, arg3);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi32_epi8((__m128i) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9264,7 +9264,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi32_epi8_impl([[m
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi32_epi8(arg1, arg2);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi32_epi8((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9283,7 +9283,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtsepi32_epi8_impl([[maybe_
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsepi32_epi8(arg1);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsepi32_epi8((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -9304,7 +9304,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtsepi32_storeu_epi8_i
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtsepi32_storeu_epi8(arg0, arg1, arg2);
+    _mm512_mask_cvtsepi32_storeu_epi8((void *) arg0, (__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9325,7 +9325,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtsepi32_epi8_impl([[m
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtsepi32_epi8(arg1, arg2, arg3);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtsepi32_epi8((__m128i) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9345,7 +9345,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtsepi32_epi8_impl([[
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtsepi32_epi8(arg1, arg2);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtsepi32_epi8((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9364,7 +9364,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtusepi32_epi8_impl([[maybe
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtusepi32_epi8(arg1);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtusepi32_epi8((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -9385,7 +9385,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtusepi32_storeu_epi8_
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtusepi32_storeu_epi8(arg0, arg1, arg2);
+    _mm512_mask_cvtusepi32_storeu_epi8((void *) arg0, (__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9406,7 +9406,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtusepi32_epi8_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtusepi32_epi8(arg1, arg2, arg3);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtusepi32_epi8((__m128i) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9426,7 +9426,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtusepi32_epi8_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtusepi32_epi8(arg1, arg2);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtusepi32_epi8((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9445,7 +9445,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi32_epi16_impl([[maybe_
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi32_epi16(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi32_epi16((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -9466,7 +9466,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi32_storeu_epi16_i
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtepi32_storeu_epi16(arg0, arg1, arg2);
+    _mm512_mask_cvtepi32_storeu_epi16((void *) arg0, (__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9487,7 +9487,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi32_epi16_impl([[m
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi32_epi16(arg1, arg2, arg3);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi32_epi16((__m256i) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9507,7 +9507,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi32_epi16_impl([[
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi32_epi16(arg1, arg2);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi32_epi16((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9526,7 +9526,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtsepi32_epi16_impl([[maybe
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsepi32_epi16(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsepi32_epi16((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -9547,7 +9547,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtsepi32_storeu_epi16_
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtsepi32_storeu_epi16(arg0, arg1, arg2);
+    _mm512_mask_cvtsepi32_storeu_epi16((void *) arg0, (__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9568,7 +9568,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtsepi32_epi16_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtsepi32_epi16(arg1, arg2, arg3);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtsepi32_epi16((__m256i) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9588,7 +9588,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtsepi32_epi16_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtsepi32_epi16(arg1, arg2);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtsepi32_epi16((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9607,7 +9607,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtusepi32_epi16_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtusepi32_epi16(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtusepi32_epi16((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -9628,7 +9628,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtusepi32_storeu_epi16
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtusepi32_storeu_epi16(arg0, arg1, arg2);
+    _mm512_mask_cvtusepi32_storeu_epi16((void *) arg0, (__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9649,7 +9649,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtusepi32_epi16_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtusepi32_epi16(arg1, arg2, arg3);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtusepi32_epi16((__m256i) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9669,7 +9669,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtusepi32_epi16_impl(
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtusepi32_epi16(arg1, arg2);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtusepi32_epi16((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9688,7 +9688,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi64_epi32_impl([[maybe_
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi64_epi32(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi64_epi32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -9709,7 +9709,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi64_storeu_epi32_i
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtepi64_storeu_epi32(arg0, arg1, arg2);
+    _mm512_mask_cvtepi64_storeu_epi32((void*) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9730,7 +9730,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi64_epi32_impl([[m
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi64_epi32(arg1, arg2, arg3);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi64_epi32((__m256i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9750,7 +9750,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi64_epi32_impl([[
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi64_epi32(arg1, arg2);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi64_epi32((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9769,7 +9769,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtsepi64_epi32_impl([[maybe
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsepi64_epi32(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsepi64_epi32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -9790,7 +9790,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtsepi64_storeu_epi32_
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtsepi64_storeu_epi32(arg0, arg1, arg2);
+    _mm512_mask_cvtsepi64_storeu_epi32((void *) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9811,7 +9811,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtsepi64_epi32_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtsepi64_epi32(arg1, arg2, arg3);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtsepi64_epi32((__m256i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9831,7 +9831,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtsepi64_epi32_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtsepi64_epi32(arg1, arg2);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtsepi64_epi32((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9850,7 +9850,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtusepi64_epi32_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtusepi64_epi32(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtusepi64_epi32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -9871,7 +9871,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtusepi64_storeu_epi32
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtusepi64_storeu_epi32(arg0, arg1, arg2);
+    _mm512_mask_cvtusepi64_storeu_epi32((void*) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9892,7 +9892,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtusepi64_epi32_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtusepi64_epi32(arg1, arg2, arg3);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtusepi64_epi32((__m256i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9912,7 +9912,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtusepi64_epi32_impl(
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtusepi64_epi32(arg1, arg2);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtusepi64_epi32((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9931,7 +9931,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi64_epi16_impl([[maybe_
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi64_epi16(arg1);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi64_epi16((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -9952,7 +9952,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi64_storeu_epi16_i
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtepi64_storeu_epi16(arg0, arg1, arg2);
+    _mm512_mask_cvtepi64_storeu_epi16((void *) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -9973,7 +9973,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi64_epi16_impl([[m
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi64_epi16(arg1, arg2, arg3);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi64_epi16((__m128i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -9993,7 +9993,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi64_epi16_impl([[
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi64_epi16(arg1, arg2);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi64_epi16((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10012,7 +10012,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtsepi64_epi16_impl([[maybe
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsepi64_epi16(arg1);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsepi64_epi16((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10033,7 +10033,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtsepi64_storeu_epi16_
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtsepi64_storeu_epi16(arg0, arg1, arg2);
+    _mm512_mask_cvtsepi64_storeu_epi16((void *) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10054,7 +10054,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtsepi64_epi16_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtsepi64_epi16(arg1, arg2, arg3);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtsepi64_epi16((__m128i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -10074,7 +10074,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtsepi64_epi16_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtsepi64_epi16(arg1, arg2);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtsepi64_epi16((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10093,7 +10093,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtusepi64_epi16_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtusepi64_epi16(arg1);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtusepi64_epi16((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10114,7 +10114,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtusepi64_storeu_epi16
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtusepi64_storeu_epi16(arg0, arg1, arg2);
+    _mm512_mask_cvtusepi64_storeu_epi16((void *) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10135,7 +10135,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtusepi64_epi16_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtusepi64_epi16(arg1, arg2, arg3);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtusepi64_epi16((__m128i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -10155,7 +10155,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtusepi64_epi16_impl(
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtusepi64_epi16(arg1, arg2);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtusepi64_epi16((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10174,7 +10174,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi64_epi8_impl([[maybe_u
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi64_epi8(arg1);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi64_epi8((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10195,7 +10195,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi64_storeu_epi8_im
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtepi64_storeu_epi8(arg0, arg1, arg2);
+    _mm512_mask_cvtepi64_storeu_epi8((void *) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10216,7 +10216,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi64_epi8_impl([[ma
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi64_epi8(arg1, arg2, arg3);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi64_epi8((__m128i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -10236,7 +10236,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi64_epi8_impl([[m
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi64_epi8(arg1, arg2);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi64_epi8((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10255,7 +10255,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtsepi64_epi8_impl([[maybe_
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsepi64_epi8(arg1);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsepi64_epi8((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10276,7 +10276,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtsepi64_storeu_epi8_i
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtsepi64_storeu_epi8(arg0, arg1, arg2);
+    _mm512_mask_cvtsepi64_storeu_epi8((void *) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10297,7 +10297,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtsepi64_epi8_impl([[m
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtsepi64_epi8(arg1, arg2, arg3);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtsepi64_epi8((__m128i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -10317,7 +10317,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtsepi64_epi8_impl([[
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtsepi64_epi8(arg1, arg2);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtsepi64_epi8((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10336,7 +10336,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtusepi64_epi8_impl([[maybe
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtusepi64_epi8(arg1);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtusepi64_epi8((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10357,7 +10357,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtusepi64_storeu_epi8_
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_cvtusepi64_storeu_epi8(arg0, arg1, arg2);
+    _mm512_mask_cvtusepi64_storeu_epi8((void *) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10378,7 +10378,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtusepi64_epi8_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtusepi64_epi8(arg1, arg2, arg3);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtusepi64_epi8((__m128i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -10398,7 +10398,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtusepi64_epi8_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtusepi64_epi8(arg1, arg2);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtusepi64_epi8((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10417,7 +10417,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi32_pd_impl([[maybe_unu
     __m256i arg1 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi32_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi32_pd((__m256i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10438,7 +10438,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi32_pd_impl([[mayb
     __m256i arg3 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi32_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi32_pd((__m512d) arg1, (__mmask8) arg2, (__m256i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -10458,7 +10458,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi32_pd_impl([[may
     __m256i arg2 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi32_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi32_pd((__mmask8) arg1, (__m256i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10477,7 +10477,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepu32_pd_impl([[maybe_unu
     __m256i arg1 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu32_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu32_pd((__m256i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10498,7 +10498,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepu32_pd_impl([[mayb
     __m256i arg3 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu32_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu32_pd((__m512d) arg1, (__mmask8) arg2, (__m256i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -10518,7 +10518,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepu32_pd_impl([[may
     __m256i arg2 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu32_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu32_pd((__mmask8) arg1, (__m256i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10797,7 +10797,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_loadu_pd_impl([[maybe_unused
     void const * arg1 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_loadu_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_loadu_pd((void const *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10818,7 +10818,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_loadu_pd_impl([[maybe_u
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_loadu_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_loadu_pd((__m512d) arg1, (__mmask8) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -10838,7 +10838,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_loadu_pd_impl([[maybe_
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_loadu_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_loadu_pd((__mmask8) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10858,7 +10858,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_storeu_pd_impl([[maybe_unuse
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_storeu_pd(arg0, arg1);
+    _mm512_storeu_pd((void *) arg0, (__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10879,7 +10879,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_storeu_pd_impl([[maybe_
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_storeu_pd(arg0, arg1, arg2);
+    _mm512_mask_storeu_pd((void *) arg0, (__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10898,7 +10898,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_loadu_ps_impl([[maybe_unused
     void const * arg1 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_loadu_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_loadu_ps((void const *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10919,7 +10919,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_loadu_ps_impl([[maybe_u
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_loadu_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_loadu_ps((__m512) arg1, (__mmask16) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -10939,7 +10939,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_loadu_ps_impl([[maybe_
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_loadu_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_loadu_ps((__mmask16) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -10959,7 +10959,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_storeu_ps_impl([[maybe_unuse
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_storeu_ps(arg0, arg1);
+    _mm512_storeu_ps((void *) arg0, (__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -10980,7 +10980,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_storeu_ps_impl([[maybe_
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_storeu_ps(arg0, arg1, arg2);
+    _mm512_mask_storeu_ps((void *) arg0, (__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11001,7 +11001,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_load_ss_impl([[maybe_unuse
     const float * arg3 = (const float *) *((const float **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_load_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_load_ss((__m128) arg1, (__mmask8) arg2, (const float *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11021,7 +11021,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_load_ss_impl([[maybe_unus
     const float * arg2 = (const float *) *((const float **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_load_ss(arg1, arg2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_load_ss((__mmask8) arg1, (const float *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11042,7 +11042,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_load_sd_impl([[maybe_unuse
     const double * arg3 = (const double *) *((const double **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_load_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_load_sd((__m128d) arg1, (__mmask8) arg2, (const double *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11062,7 +11062,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_load_sd_impl([[maybe_unus
     const double * arg2 = (const double *) *((const double **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_load_sd(arg1, arg2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_load_sd((__mmask8) arg1, (const double *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11084,7 +11084,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_move_ss_impl([[maybe_unuse
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_move_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_move_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11105,7 +11105,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_move_ss_impl([[maybe_unus
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_move_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_move_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11127,7 +11127,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_move_sd_impl([[maybe_unuse
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_move_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_move_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11148,7 +11148,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_move_sd_impl([[maybe_unus
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_move_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_move_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11169,7 +11169,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_store_ss_impl([[maybe_unus
     __m128 arg2 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm_mask_store_ss(arg0, arg1, arg2);
+    _mm_mask_store_ss((float *) arg0, (__mmask8) arg1, (__m128) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11190,7 +11190,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_store_sd_impl([[maybe_unus
     __m128d arg2 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm_mask_store_sd(arg0, arg1, arg2);
+    _mm_mask_store_sd((double *) arg0, (__mmask8) arg1, (__m128d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11209,7 +11209,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_loadu_epi64_impl([[maybe_unu
     void const * arg1 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_loadu_epi64(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_loadu_epi64((void const *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -11230,7 +11230,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_loadu_epi64_impl([[mayb
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_loadu_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_loadu_epi64((__m512i) arg1, (__mmask8) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11250,7 +11250,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_loadu_epi64_impl([[may
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_loadu_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_loadu_epi64((__mmask8) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11270,7 +11270,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_storeu_epi64_impl([[maybe_un
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_storeu_epi64(arg0, arg1);
+    _mm512_storeu_epi64((void *) arg0, (__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -11291,7 +11291,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_storeu_epi64_impl([[may
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_storeu_epi64(arg0, arg1, arg2);
+    _mm512_mask_storeu_epi64((void *) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11310,7 +11310,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_loadu_si512_impl([[maybe_unu
     void const * arg1 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_loadu_si512(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_loadu_si512((void const *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -11329,7 +11329,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_loadu_epi32_impl([[maybe_unu
     void const * arg1 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_loadu_epi32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_loadu_epi32((void const *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -11350,7 +11350,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_loadu_epi32_impl([[mayb
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_loadu_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_loadu_epi32((__m512i) arg1, (__mmask16) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11370,7 +11370,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_loadu_epi32_impl([[may
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_loadu_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_loadu_epi32((__mmask16) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11390,7 +11390,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_storeu_si512_impl([[maybe_un
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_storeu_si512(arg0, arg1);
+    _mm512_storeu_si512((void *) arg0, (__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -11410,7 +11410,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_storeu_epi32_impl([[maybe_un
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_storeu_epi32(arg0, arg1);
+    _mm512_storeu_epi32((void *) arg0, (__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -11431,7 +11431,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_storeu_epi32_impl([[may
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_storeu_epi32(arg0, arg1, arg2);
+    _mm512_mask_storeu_epi32((void *) arg0, (__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11451,7 +11451,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_permutevar_pd_impl([[maybe_u
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_permutevar_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_permutevar_pd((__m512d) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11473,7 +11473,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_permutevar_pd_impl([[ma
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutevar_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutevar_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11494,7 +11494,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_permutevar_pd_impl([[m
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutevar_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutevar_pd((__mmask8) arg1, (__m512d) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11514,7 +11514,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_permutevar_ps_impl([[maybe_u
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_permutevar_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_permutevar_ps((__m512) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -11536,7 +11536,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_permutevar_ps_impl([[ma
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutevar_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutevar_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11557,7 +11557,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_permutevar_ps_impl([[m
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutevar_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutevar_ps((__mmask16) arg1, (__m512) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11578,7 +11578,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_permutex2var_epi64_impl([[ma
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_permutex2var_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_permutex2var_epi64((__m512i) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11600,7 +11600,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_permutex2var_epi64_impl
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutex2var_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutex2var_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11622,7 +11622,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask2_permutex2var_epi64_imp
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask2_permutex2var_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask2_permutex2var_epi64((__m512i) arg1, (__m512i) arg2, (__mmask8) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11644,7 +11644,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_permutex2var_epi64_imp
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutex2var_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutex2var_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11665,7 +11665,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_permutex2var_epi32_impl([[ma
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_permutex2var_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_permutex2var_epi32((__m512i) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11687,7 +11687,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_permutex2var_epi32_impl
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutex2var_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutex2var_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11709,7 +11709,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask2_permutex2var_epi32_imp
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask2_permutex2var_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask2_permutex2var_epi32((__m512i) arg1, (__m512i) arg2, (__mmask16) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11731,7 +11731,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_permutex2var_epi32_imp
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutex2var_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutex2var_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11752,7 +11752,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_permutex2var_pd_impl([[maybe
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_permutex2var_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_permutex2var_pd((__m512d) arg1, (__m512i) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11774,7 +11774,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_permutex2var_pd_impl([[
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutex2var_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutex2var_pd((__m512d) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11796,7 +11796,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask2_permutex2var_pd_impl([
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask2_permutex2var_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask2_permutex2var_pd((__m512d) arg1, (__m512i) arg2, (__mmask8) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11818,7 +11818,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_permutex2var_pd_impl([
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutex2var_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutex2var_pd((__mmask8) arg1, (__m512d) arg2, (__m512i) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11839,7 +11839,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_permutex2var_ps_impl([[maybe
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_permutex2var_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_permutex2var_ps((__m512) arg1, (__m512i) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -11861,7 +11861,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_permutex2var_ps_impl([[
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutex2var_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutex2var_ps((__m512) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11883,7 +11883,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask2_permutex2var_ps_impl([
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask2_permutex2var_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask2_permutex2var_ps((__m512) arg1, (__m512i) arg2, (__mmask16) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -11905,7 +11905,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_permutex2var_ps_impl([
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutex2var_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutex2var_ps((__mmask16) arg1, (__m512) arg2, (__m512i) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -12046,7 +12046,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_permutexvar_epi64_impl
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutexvar_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutexvar_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -12066,7 +12066,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_permutexvar_epi64_impl([[may
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_permutexvar_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_permutexvar_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -12088,7 +12088,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_permutexvar_epi64_impl(
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutexvar_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutexvar_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -12109,7 +12109,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_permutexvar_epi32_impl
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutexvar_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutexvar_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -12129,7 +12129,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_permutexvar_epi32_impl([[may
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_permutexvar_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_permutexvar_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -12151,7 +12151,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_permutexvar_epi32_impl(
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutexvar_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutexvar_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -12171,7 +12171,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_permutexvar_pd_impl([[maybe_
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_permutexvar_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_permutexvar_pd((__m512i) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -12193,7 +12193,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_permutexvar_pd_impl([[m
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutexvar_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutexvar_pd((__m512d) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -12214,7 +12214,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_permutexvar_pd_impl([[
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutexvar_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutexvar_pd((__mmask8) arg1, (__m512i) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -12234,7 +12234,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_permutexvar_ps_impl([[maybe_
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_permutexvar_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_permutexvar_ps((__m512i) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -12256,7 +12256,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_permutexvar_ps_impl([[m
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutexvar_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_permutexvar_ps((__m512) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -12277,7 +12277,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_permutexvar_ps_impl([[
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutexvar_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_permutexvar_ps((__mmask16) arg1, (__m512i) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -12321,772 +12321,772 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_shuffle_ps_impl([[mayb
 
 switch (arg4) {
 case 0:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 0);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 0);
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 1);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 2);
 break;
 case 3:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 3);
 break;
 case 4:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 4);
 break;
 case 5:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 5);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 5);
 break;
 case 6:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 6);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 6);
 break;
 case 7:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 7);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 7);
 break;
 case 8:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 8);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 8);
 break;
 case 9:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 9);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 9);
 break;
 case 10:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 10);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 10);
 break;
 case 11:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 11);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 11);
 break;
 case 12:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 12);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 12);
 break;
 case 13:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 13);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 13);
 break;
 case 14:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 14);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 14);
 break;
 case 15:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 15);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 15);
 break;
 case 16:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 16);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 16);
 break;
 case 17:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 17);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 17);
 break;
 case 18:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 18);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 18);
 break;
 case 19:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 19);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 19);
 break;
 case 20:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 20);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 20);
 break;
 case 21:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 21);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 21);
 break;
 case 22:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 22);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 22);
 break;
 case 23:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 23);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 23);
 break;
 case 24:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 24);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 24);
 break;
 case 25:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 25);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 25);
 break;
 case 26:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 26);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 26);
 break;
 case 27:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 27);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 27);
 break;
 case 28:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 28);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 28);
 break;
 case 29:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 29);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 29);
 break;
 case 30:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 30);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 30);
 break;
 case 31:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 31);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 31);
 break;
 case 32:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 32);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 32);
 break;
 case 33:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 33);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 33);
 break;
 case 34:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 34);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 34);
 break;
 case 35:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 35);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 35);
 break;
 case 36:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 36);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 36);
 break;
 case 37:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 37);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 37);
 break;
 case 38:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 38);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 38);
 break;
 case 39:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 39);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 39);
 break;
 case 40:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 40);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 40);
 break;
 case 41:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 41);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 41);
 break;
 case 42:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 42);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 42);
 break;
 case 43:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 43);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 43);
 break;
 case 44:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 44);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 44);
 break;
 case 45:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 45);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 45);
 break;
 case 46:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 46);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 46);
 break;
 case 47:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 47);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 47);
 break;
 case 48:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 48);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 48);
 break;
 case 49:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 49);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 49);
 break;
 case 50:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 50);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 50);
 break;
 case 51:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 51);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 51);
 break;
 case 52:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 52);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 52);
 break;
 case 53:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 53);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 53);
 break;
 case 54:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 54);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 54);
 break;
 case 55:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 55);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 55);
 break;
 case 56:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 56);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 56);
 break;
 case 57:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 57);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 57);
 break;
 case 58:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 58);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 58);
 break;
 case 59:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 59);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 59);
 break;
 case 60:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 60);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 60);
 break;
 case 61:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 61);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 61);
 break;
 case 62:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 62);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 62);
 break;
 case 63:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 63);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 63);
 break;
 case 64:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 64);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 64);
 break;
 case 65:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 65);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 65);
 break;
 case 66:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 66);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 66);
 break;
 case 67:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 67);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 67);
 break;
 case 68:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 68);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 68);
 break;
 case 69:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 69);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 69);
 break;
 case 70:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 70);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 70);
 break;
 case 71:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 71);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 71);
 break;
 case 72:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 72);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 72);
 break;
 case 73:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 73);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 73);
 break;
 case 74:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 74);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 74);
 break;
 case 75:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 75);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 75);
 break;
 case 76:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 76);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 76);
 break;
 case 77:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 77);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 77);
 break;
 case 78:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 78);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 78);
 break;
 case 79:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 79);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 79);
 break;
 case 80:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 80);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 80);
 break;
 case 81:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 81);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 81);
 break;
 case 82:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 82);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 82);
 break;
 case 83:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 83);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 83);
 break;
 case 84:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 84);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 84);
 break;
 case 85:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 85);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 85);
 break;
 case 86:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 86);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 86);
 break;
 case 87:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 87);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 87);
 break;
 case 88:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 88);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 88);
 break;
 case 89:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 89);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 89);
 break;
 case 90:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 90);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 90);
 break;
 case 91:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 91);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 91);
 break;
 case 92:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 92);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 92);
 break;
 case 93:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 93);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 93);
 break;
 case 94:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 94);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 94);
 break;
 case 95:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 95);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 95);
 break;
 case 96:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 96);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 96);
 break;
 case 97:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 97);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 97);
 break;
 case 98:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 98);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 98);
 break;
 case 99:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 99);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 99);
 break;
 case 100:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 100);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 100);
 break;
 case 101:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 101);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 101);
 break;
 case 102:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 102);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 102);
 break;
 case 103:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 103);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 103);
 break;
 case 104:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 104);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 104);
 break;
 case 105:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 105);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 105);
 break;
 case 106:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 106);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 106);
 break;
 case 107:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 107);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 107);
 break;
 case 108:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 108);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 108);
 break;
 case 109:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 109);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 109);
 break;
 case 110:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 110);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 110);
 break;
 case 111:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 111);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 111);
 break;
 case 112:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 112);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 112);
 break;
 case 113:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 113);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 113);
 break;
 case 114:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 114);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 114);
 break;
 case 115:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 115);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 115);
 break;
 case 116:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 116);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 116);
 break;
 case 117:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 117);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 117);
 break;
 case 118:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 118);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 118);
 break;
 case 119:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 119);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 119);
 break;
 case 120:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 120);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 120);
 break;
 case 121:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 121);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 121);
 break;
 case 122:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 122);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 122);
 break;
 case 123:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 123);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 123);
 break;
 case 124:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 124);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 124);
 break;
 case 125:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 125);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 125);
 break;
 case 126:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 126);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 126);
 break;
 case 127:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 127);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 127);
 break;
 case 128:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 128);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 128);
 break;
 case 129:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 129);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 129);
 break;
 case 130:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 130);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 130);
 break;
 case 131:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 131);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 131);
 break;
 case 132:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 132);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 132);
 break;
 case 133:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 133);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 133);
 break;
 case 134:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 134);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 134);
 break;
 case 135:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 135);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 135);
 break;
 case 136:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 136);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 136);
 break;
 case 137:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 137);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 137);
 break;
 case 138:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 138);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 138);
 break;
 case 139:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 139);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 139);
 break;
 case 140:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 140);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 140);
 break;
 case 141:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 141);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 141);
 break;
 case 142:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 142);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 142);
 break;
 case 143:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 143);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 143);
 break;
 case 144:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 144);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 144);
 break;
 case 145:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 145);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 145);
 break;
 case 146:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 146);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 146);
 break;
 case 147:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 147);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 147);
 break;
 case 148:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 148);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 148);
 break;
 case 149:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 149);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 149);
 break;
 case 150:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 150);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 150);
 break;
 case 151:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 151);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 151);
 break;
 case 152:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 152);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 152);
 break;
 case 153:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 153);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 153);
 break;
 case 154:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 154);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 154);
 break;
 case 155:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 155);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 155);
 break;
 case 156:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 156);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 156);
 break;
 case 157:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 157);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 157);
 break;
 case 158:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 158);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 158);
 break;
 case 159:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 159);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 159);
 break;
 case 160:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 160);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 160);
 break;
 case 161:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 161);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 161);
 break;
 case 162:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 162);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 162);
 break;
 case 163:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 163);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 163);
 break;
 case 164:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 164);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 164);
 break;
 case 165:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 165);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 165);
 break;
 case 166:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 166);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 166);
 break;
 case 167:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 167);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 167);
 break;
 case 168:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 168);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 168);
 break;
 case 169:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 169);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 169);
 break;
 case 170:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 170);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 170);
 break;
 case 171:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 171);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 171);
 break;
 case 172:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 172);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 172);
 break;
 case 173:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 173);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 173);
 break;
 case 174:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 174);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 174);
 break;
 case 175:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 175);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 175);
 break;
 case 176:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 176);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 176);
 break;
 case 177:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 177);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 177);
 break;
 case 178:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 178);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 178);
 break;
 case 179:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 179);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 179);
 break;
 case 180:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 180);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 180);
 break;
 case 181:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 181);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 181);
 break;
 case 182:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 182);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 182);
 break;
 case 183:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 183);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 183);
 break;
 case 184:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 184);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 184);
 break;
 case 185:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 185);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 185);
 break;
 case 186:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 186);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 186);
 break;
 case 187:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 187);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 187);
 break;
 case 188:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 188);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 188);
 break;
 case 189:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 189);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 189);
 break;
 case 190:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 190);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 190);
 break;
 case 191:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 191);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 191);
 break;
 case 192:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 192);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 192);
 break;
 case 193:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 193);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 193);
 break;
 case 194:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 194);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 194);
 break;
 case 195:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 195);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 195);
 break;
 case 196:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 196);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 196);
 break;
 case 197:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 197);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 197);
 break;
 case 198:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 198);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 198);
 break;
 case 199:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 199);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 199);
 break;
 case 200:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 200);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 200);
 break;
 case 201:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 201);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 201);
 break;
 case 202:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 202);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 202);
 break;
 case 203:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 203);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 203);
 break;
 case 204:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 204);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 204);
 break;
 case 205:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 205);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 205);
 break;
 case 206:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 206);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 206);
 break;
 case 207:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 207);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 207);
 break;
 case 208:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 208);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 208);
 break;
 case 209:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 209);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 209);
 break;
 case 210:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 210);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 210);
 break;
 case 211:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 211);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 211);
 break;
 case 212:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 212);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 212);
 break;
 case 213:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 213);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 213);
 break;
 case 214:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 214);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 214);
 break;
 case 215:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 215);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 215);
 break;
 case 216:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 216);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 216);
 break;
 case 217:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 217);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 217);
 break;
 case 218:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 218);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 218);
 break;
 case 219:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 219);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 219);
 break;
 case 220:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 220);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 220);
 break;
 case 221:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 221);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 221);
 break;
 case 222:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 222);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 222);
 break;
 case 223:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 223);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 223);
 break;
 case 224:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 224);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 224);
 break;
 case 225:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 225);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 225);
 break;
 case 226:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 226);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 226);
 break;
 case 227:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 227);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 227);
 break;
 case 228:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 228);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 228);
 break;
 case 229:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 229);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 229);
 break;
 case 230:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 230);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 230);
 break;
 case 231:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 231);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 231);
 break;
 case 232:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 232);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 232);
 break;
 case 233:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 233);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 233);
 break;
 case 234:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 234);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 234);
 break;
 case 235:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 235);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 235);
 break;
 case 236:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 236);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 236);
 break;
 case 237:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 237);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 237);
 break;
 case 238:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 238);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 238);
 break;
 case 239:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 239);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 239);
 break;
 case 240:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 240);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 240);
 break;
 case 241:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 241);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 241);
 break;
 case 242:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 242);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 242);
 break;
 case 243:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 243);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 243);
 break;
 case 244:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 244);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 244);
 break;
 case 245:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 245);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 245);
 break;
 case 246:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 246);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 246);
 break;
 case 247:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 247);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 247);
 break;
 case 248:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 248);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 248);
 break;
 case 249:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 249);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 249);
 break;
 case 250:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 250);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 250);
 break;
 case 251:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 251);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 251);
 break;
 case 252:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 252);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 252);
 break;
 case 253:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 253);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 253);
 break;
 case 254:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 254);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 254);
 break;
 case 255:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps(arg1, arg2, arg3, 255);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_shuffle_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (const int) 255);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -13260,7 +13260,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_movehdup_ps_impl([[maybe_unu
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_movehdup_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_movehdup_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -13281,7 +13281,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_movehdup_ps_impl([[mayb
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_movehdup_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_movehdup_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -13301,7 +13301,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_movehdup_ps_impl([[may
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_movehdup_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_movehdup_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -13320,7 +13320,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_moveldup_ps_impl([[maybe_unu
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_moveldup_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_moveldup_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -13341,7 +13341,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_moveldup_ps_impl([[mayb
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_moveldup_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_moveldup_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -13361,7 +13361,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_moveldup_ps_impl([[may
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_moveldup_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_moveldup_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -13381,7 +13381,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_or_si512_impl([[maybe_unused
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_or_si512(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_or_si512((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -13401,7 +13401,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_or_epi32_impl([[maybe_unused
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_or_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_or_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -13423,7 +13423,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_or_epi32_impl([[maybe_u
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_or_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_or_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -13444,7 +13444,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_or_epi32_impl([[maybe_
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_or_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_or_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -13464,7 +13464,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_or_epi64_impl([[maybe_unused
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_or_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_or_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -13486,7 +13486,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_or_epi64_impl([[maybe_u
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_or_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_or_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -13507,7 +13507,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_or_epi64_impl([[maybe_
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_or_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_or_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -13527,7 +13527,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_xor_si512_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_xor_si512(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_xor_si512((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -13547,7 +13547,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_xor_epi32_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_xor_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_xor_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -13569,7 +13569,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_xor_epi32_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_xor_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_xor_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -13590,7 +13590,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_xor_epi32_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_xor_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_xor_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -13610,7 +13610,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_xor_epi64_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_xor_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_xor_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -13632,7 +13632,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_xor_epi64_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_xor_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_xor_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -13653,7 +13653,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_xor_epi64_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_xor_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_xor_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -13705,100 +13705,100 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_ror_epi32_impl([[maybe_unuse
 
 switch (arg2) {
 case 0:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 0);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 0);
 break;
 case 1:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 1);
 break;
 case 2:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 2);
 break;
 case 3:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 3);
 break;
 case 4:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 4);
 break;
 case 5:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 5);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 5);
 break;
 case 6:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 6);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 6);
 break;
 case 7:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 7);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 7);
 break;
 case 8:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 8);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 8);
 break;
 case 9:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 9);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 9);
 break;
 case 10:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 10);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 10);
 break;
 case 11:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 11);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 11);
 break;
 case 12:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 12);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 12);
 break;
 case 13:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 13);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 13);
 break;
 case 14:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 14);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 14);
 break;
 case 15:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 15);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 15);
 break;
 case 16:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 16);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 16);
 break;
 case 17:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 17);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 17);
 break;
 case 18:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 18);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 18);
 break;
 case 19:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 19);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 19);
 break;
 case 20:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 20);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 20);
 break;
 case 21:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 21);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 21);
 break;
 case 22:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 22);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 22);
 break;
 case 23:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 23);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 23);
 break;
 case 24:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 24);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 24);
 break;
 case 25:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 25);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 25);
 break;
 case 26:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 26);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 26);
 break;
 case 27:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 27);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 27);
 break;
 case 28:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 28);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 28);
 break;
 case 29:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 29);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 29);
 break;
 case 30:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 30);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 30);
 break;
 case 31:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32(arg1, 31);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_ror_epi32((__m512i) arg1, (int) 31);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -13836,100 +13836,100 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_ror_epi32_impl([[maybe
 
 switch (arg3) {
 case 0:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 0);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 0);
 break;
 case 1:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 1);
 break;
 case 2:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 2);
 break;
 case 3:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 3);
 break;
 case 4:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 4);
 break;
 case 5:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 5);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 5);
 break;
 case 6:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 6);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 6);
 break;
 case 7:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 7);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 7);
 break;
 case 8:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 8);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 8);
 break;
 case 9:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 9);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 9);
 break;
 case 10:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 10);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 10);
 break;
 case 11:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 11);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 11);
 break;
 case 12:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 12);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 12);
 break;
 case 13:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 13);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 13);
 break;
 case 14:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 14);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 14);
 break;
 case 15:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 15);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 15);
 break;
 case 16:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 16);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 16);
 break;
 case 17:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 17);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 17);
 break;
 case 18:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 18);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 18);
 break;
 case 19:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 19);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 19);
 break;
 case 20:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 20);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 20);
 break;
 case 21:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 21);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 21);
 break;
 case 22:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 22);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 22);
 break;
 case 23:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 23);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 23);
 break;
 case 24:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 24);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 24);
 break;
 case 25:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 25);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 25);
 break;
 case 26:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 26);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 26);
 break;
 case 27:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 27);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 27);
 break;
 case 28:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 28);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 28);
 break;
 case 29:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 29);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 29);
 break;
 case 30:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 30);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 30);
 break;
 case 31:
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32(arg1, arg2, 31);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_ror_epi32((__mmask16) arg1, (__m512i) arg2, (int) 31);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -14014,7 +14014,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_and_si512_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_and_si512(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_and_si512((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14034,7 +14034,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_and_epi32_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_and_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_and_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14056,7 +14056,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_and_epi32_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_and_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_and_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -14077,7 +14077,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_and_epi32_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_and_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_and_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14097,7 +14097,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_and_epi64_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_and_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_and_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14119,7 +14119,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_and_epi64_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_and_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_and_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -14140,7 +14140,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_and_epi64_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_and_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_and_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14160,7 +14160,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_andnot_si512_impl([[maybe_un
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_andnot_si512(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_andnot_si512((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14180,7 +14180,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_andnot_epi32_impl([[maybe_un
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_andnot_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_andnot_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14202,7 +14202,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_andnot_epi32_impl([[may
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_andnot_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_andnot_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -14223,7 +14223,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_andnot_epi32_impl([[ma
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_andnot_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_andnot_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14243,7 +14243,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_andnot_epi64_impl([[maybe_un
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_andnot_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_andnot_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14265,7 +14265,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_andnot_epi64_impl([[may
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_andnot_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_andnot_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -14286,7 +14286,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_andnot_epi64_impl([[ma
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_andnot_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_andnot_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14306,7 +14306,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_test_epi32_mask_impl([[maybe
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_test_epi32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_test_epi32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14327,7 +14327,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_test_epi32_mask_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_test_epi32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_test_epi32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14347,7 +14347,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_test_epi64_mask_impl([[maybe
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_test_epi64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_test_epi64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14368,7 +14368,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_test_epi64_mask_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_test_epi64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_test_epi64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14388,7 +14388,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_testn_epi32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_testn_epi32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_testn_epi32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14409,7 +14409,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_testn_epi32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_testn_epi32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_testn_epi32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14429,7 +14429,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_testn_epi64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_testn_epi64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_testn_epi64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14450,7 +14450,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_testn_epi64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_testn_epi64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_testn_epi64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14469,7 +14469,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_abs_ps_impl([[maybe_unused]]
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_abs_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_abs_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -14490,7 +14490,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_abs_ps_impl([[maybe_unu
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_abs_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_abs_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14509,7 +14509,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_abs_pd_impl([[maybe_unused]]
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_abs_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_abs_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -14530,7 +14530,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_abs_pd_impl([[maybe_unu
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_abs_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_abs_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14550,7 +14550,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_unpackhi_epi32_impl([[maybe_
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_unpackhi_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_unpackhi_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14572,7 +14572,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_unpackhi_epi32_impl([[m
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpackhi_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpackhi_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -14593,7 +14593,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_unpackhi_epi32_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpackhi_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpackhi_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14613,7 +14613,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_unpackhi_epi64_impl([[maybe_
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_unpackhi_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_unpackhi_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14635,7 +14635,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_unpackhi_epi64_impl([[m
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpackhi_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpackhi_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -14656,7 +14656,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_unpackhi_epi64_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpackhi_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpackhi_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14676,7 +14676,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_unpacklo_epi32_impl([[maybe_
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_unpacklo_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_unpacklo_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14698,7 +14698,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_unpacklo_epi32_impl([[m
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpacklo_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpacklo_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -14719,7 +14719,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_unpacklo_epi32_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpacklo_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpacklo_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -14739,7 +14739,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_unpacklo_epi64_impl([[maybe_
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_unpacklo_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_unpacklo_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -14761,7 +14761,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_unpacklo_epi64_impl([[m
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpacklo_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpacklo_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -14782,7 +14782,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_unpacklo_epi64_impl([[
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpacklo_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpacklo_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -15041,7 +15041,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_movedup_pd_impl([[maybe_unus
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_movedup_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_movedup_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -15062,7 +15062,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_movedup_pd_impl([[maybe
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_movedup_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_movedup_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -15082,7 +15082,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_movedup_pd_impl([[mayb
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_movedup_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_movedup_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -15102,7 +15102,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_unpacklo_pd_impl([[maybe_unu
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_unpacklo_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_unpacklo_pd((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -15124,7 +15124,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_unpacklo_pd_impl([[mayb
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpacklo_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpacklo_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -15145,7 +15145,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_unpacklo_pd_impl([[may
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpacklo_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpacklo_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -15165,7 +15165,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_unpackhi_pd_impl([[maybe_unu
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_unpackhi_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_unpackhi_pd((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -15187,7 +15187,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_unpackhi_pd_impl([[mayb
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpackhi_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpackhi_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -15208,7 +15208,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_unpackhi_pd_impl([[may
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpackhi_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpackhi_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -15228,7 +15228,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_unpackhi_ps_impl([[maybe_unu
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_unpackhi_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_unpackhi_ps((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -15250,7 +15250,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_unpackhi_ps_impl([[mayb
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpackhi_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpackhi_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -15271,7 +15271,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_unpackhi_ps_impl([[may
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpackhi_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpackhi_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -15501,7 +15501,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_stream_si512_impl([[maybe_un
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_stream_si512(arg0, arg1);
+    _mm512_stream_si512((__m512i *) arg0, (__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -15521,7 +15521,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_stream_ps_impl([[maybe_unuse
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_stream_ps(arg0, arg1);
+    _mm512_stream_ps((float *) arg0, (__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -15541,7 +15541,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_stream_pd_impl([[maybe_unuse
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _mm512_stream_pd(arg0, arg1);
+    _mm512_stream_pd((double *) arg0, (__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -15560,7 +15560,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_stream_load_si512_impl([[may
     void * arg1 = (void *) *((void **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_stream_load_si512(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_stream_load_si512((void *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -15583,19 +15583,19 @@ static __forceinline PyObject *SIMDLowAVX512__mm_getexp_round_ss_impl([[maybe_un
 
 switch (arg3) {
 case 0:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_ss(arg1, arg2, 0);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_ss((__m128) arg1, (__m128) arg2, (const int) 0);
 break;
 case 1:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_ss(arg1, arg2, 1);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_ss((__m128) arg1, (__m128) arg2, (const int) 1);
 break;
 case 2:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_ss(arg1, arg2, 2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_ss((__m128) arg1, (__m128) arg2, (const int) 2);
 break;
 case 3:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_ss(arg1, arg2, 3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_ss((__m128) arg1, (__m128) arg2, (const int) 3);
 break;
 case 4:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_ss(arg1, arg2, 4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_ss((__m128) arg1, (__m128) arg2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -15625,19 +15625,19 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_getexp_round_ss_impl([[may
 
 switch (arg5) {
 case 0:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_ss(arg1, arg2, arg3, arg4, 0);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4, (const int) 0);
 break;
 case 1:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_ss(arg1, arg2, arg3, arg4, 1);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4, (const int) 1);
 break;
 case 2:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_ss(arg1, arg2, arg3, arg4, 2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4, (const int) 2);
 break;
 case 3:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_ss(arg1, arg2, arg3, arg4, 3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4, (const int) 3);
 break;
 case 4:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_ss(arg1, arg2, arg3, arg4, 4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -15666,19 +15666,19 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_getexp_round_ss_impl([[ma
 
 switch (arg4) {
 case 0:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_ss(arg1, arg2, arg3, 0);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3, (const int) 0);
 break;
 case 1:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_ss(arg1, arg2, arg3, 1);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3, (const int) 1);
 break;
 case 2:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_ss(arg1, arg2, arg3, 2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3, (const int) 2);
 break;
 case 3:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_ss(arg1, arg2, arg3, 3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3, (const int) 3);
 break;
 case 4:
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_ss(arg1, arg2, arg3, 4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -15706,19 +15706,19 @@ static __forceinline PyObject *SIMDLowAVX512__mm_getexp_round_sd_impl([[maybe_un
 
 switch (arg3) {
 case 0:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_sd(arg1, arg2, 0);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_sd((__m128d) arg1, (__m128d) arg2, (const int) 0);
 break;
 case 1:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_sd(arg1, arg2, 1);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_sd((__m128d) arg1, (__m128d) arg2, (const int) 1);
 break;
 case 2:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_sd(arg1, arg2, 2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_sd((__m128d) arg1, (__m128d) arg2, (const int) 2);
 break;
 case 3:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_sd(arg1, arg2, 3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_sd((__m128d) arg1, (__m128d) arg2, (const int) 3);
 break;
 case 4:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_sd(arg1, arg2, 4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_round_sd((__m128d) arg1, (__m128d) arg2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -15748,19 +15748,19 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_getexp_round_sd_impl([[may
 
 switch (arg5) {
 case 0:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_sd(arg1, arg2, arg3, arg4, 0);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4, (const int) 0);
 break;
 case 1:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_sd(arg1, arg2, arg3, arg4, 1);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4, (const int) 1);
 break;
 case 2:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_sd(arg1, arg2, arg3, arg4, 2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4, (const int) 2);
 break;
 case 3:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_sd(arg1, arg2, arg3, arg4, 3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4, (const int) 3);
 break;
 case 4:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_sd(arg1, arg2, arg3, arg4, 4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_round_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -15789,19 +15789,19 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_getexp_round_sd_impl([[ma
 
 switch (arg4) {
 case 0:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_sd(arg1, arg2, arg3, 0);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3, (const int) 0);
 break;
 case 1:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_sd(arg1, arg2, arg3, 1);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3, (const int) 1);
 break;
 case 2:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_sd(arg1, arg2, arg3, 2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3, (const int) 2);
 break;
 case 3:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_sd(arg1, arg2, arg3, 3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3, (const int) 3);
 break;
 case 4:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_sd(arg1, arg2, arg3, 4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_round_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -15828,16 +15828,16 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_getexp_round_ps_impl([[maybe
 
 switch (arg2) {
 case 0:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_ps(arg1, 0);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_ps((__m512) arg1, (const int) 0);
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_ps(arg1, 1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_ps((__m512) arg1, (const int) 1);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_ps(arg1, 2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_ps((__m512) arg1, (const int) 2);
 break;
 case 3:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_ps(arg1, 3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_ps((__m512) arg1, (const int) 3);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -15884,16 +15884,16 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_getexp_round_pd_impl([[maybe
 
 switch (arg2) {
 case 0:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_pd(arg1, 0);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_pd((__m512d) arg1, (const int) 0);
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_pd(arg1, 1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_pd((__m512d) arg1, (const int) 1);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_pd(arg1, 2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_pd((__m512d) arg1, (const int) 2);
 break;
 case 3:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_pd(arg1, 3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_round_pd((__m512d) arg1, (const int) 3);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -15981,19 +15981,19 @@ switch (arg3) {
 case 0:
 switch (arg4) {
 case 0:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd(arg1, 0, 0, 0);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd((__m512d) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 0);
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd(arg1, 0, 0, 1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd((__m512d) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 1);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd(arg1, 0, 0, 2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd((__m512d) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 2);
 break;
 case 3:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd(arg1, 0, 0, 3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd((__m512d) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 3);
 break;
 case 4:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd(arg1, 0, 0, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd((__m512d) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16001,10 +16001,10 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd(arg1, 0, 1, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd((__m512d) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 1, (const int) 4);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd(arg1, 0, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd((__m512d) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16012,13 +16012,13 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd(arg1, 1, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd((__m512d) arg1, (_MM_MANTISSA_NORM_ENUM) 1, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd(arg1, 2, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd((__m512d) arg1, (_MM_MANTISSA_NORM_ENUM) 2, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 3:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd(arg1, 3, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_pd((__m512d) arg1, (_MM_MANTISSA_NORM_ENUM) 3, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16088,19 +16088,19 @@ switch (arg5) {
 case 0:
 switch (arg6) {
 case 0:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd(arg1, arg2, arg3, 0, 0, 0);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 0);
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd(arg1, arg2, arg3, 0, 0, 1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 1);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd(arg1, arg2, arg3, 0, 0, 2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 2);
 break;
 case 3:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd(arg1, arg2, arg3, 0, 0, 3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 3);
 break;
 case 4:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd(arg1, arg2, arg3, 0, 0, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16108,10 +16108,10 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd(arg1, arg2, arg3, 0, 1, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 1, (const int) 4);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd(arg1, arg2, arg3, 0, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16119,13 +16119,13 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd(arg1, arg2, arg3, 1, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (_MM_MANTISSA_NORM_ENUM) 1, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd(arg1, arg2, arg3, 2, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (_MM_MANTISSA_NORM_ENUM) 2, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 3:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd(arg1, arg2, arg3, 3, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (_MM_MANTISSA_NORM_ENUM) 3, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16194,19 +16194,19 @@ switch (arg4) {
 case 0:
 switch (arg5) {
 case 0:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd(arg1, arg2, 0, 0, 0);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd((__mmask8) arg1, (__m512d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 0);
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd(arg1, arg2, 0, 0, 1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd((__mmask8) arg1, (__m512d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 1);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd(arg1, arg2, 0, 0, 2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd((__mmask8) arg1, (__m512d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 2);
 break;
 case 3:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd(arg1, arg2, 0, 0, 3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd((__mmask8) arg1, (__m512d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 3);
 break;
 case 4:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd(arg1, arg2, 0, 0, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd((__mmask8) arg1, (__m512d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16214,10 +16214,10 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd(arg1, arg2, 0, 1, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd((__mmask8) arg1, (__m512d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 1, (const int) 4);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd(arg1, arg2, 0, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd((__mmask8) arg1, (__m512d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16225,13 +16225,13 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd(arg1, arg2, 1, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd((__mmask8) arg1, (__m512d) arg2, (_MM_MANTISSA_NORM_ENUM) 1, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 2:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd(arg1, arg2, 2, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd((__mmask8) arg1, (__m512d) arg2, (_MM_MANTISSA_NORM_ENUM) 2, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 3:
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd(arg1, arg2, 3, 2, 4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_pd((__mmask8) arg1, (__m512d) arg2, (_MM_MANTISSA_NORM_ENUM) 3, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16299,19 +16299,19 @@ switch (arg3) {
 case 0:
 switch (arg4) {
 case 0:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps(arg1, 0, 0, 0);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps((__m512) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 0);
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps(arg1, 0, 0, 1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps((__m512) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 1);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps(arg1, 0, 0, 2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps((__m512) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 2);
 break;
 case 3:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps(arg1, 0, 0, 3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps((__m512) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 3);
 break;
 case 4:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps(arg1, 0, 0, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps((__m512) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16319,10 +16319,10 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps(arg1, 0, 1, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps((__m512) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 1, (const int) 4);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps(arg1, 0, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps((__m512) arg1, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16330,13 +16330,13 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps(arg1, 1, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps((__m512) arg1, (_MM_MANTISSA_NORM_ENUM) 1, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps(arg1, 2, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps((__m512) arg1, (_MM_MANTISSA_NORM_ENUM) 2, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 3:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps(arg1, 3, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getmant_round_ps((__m512) arg1, (_MM_MANTISSA_NORM_ENUM) 3, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16406,19 +16406,19 @@ switch (arg5) {
 case 0:
 switch (arg6) {
 case 0:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps(arg1, arg2, arg3, 0, 0, 0);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 0);
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps(arg1, arg2, arg3, 0, 0, 1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 1);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps(arg1, arg2, arg3, 0, 0, 2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 2);
 break;
 case 3:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps(arg1, arg2, arg3, 0, 0, 3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 3);
 break;
 case 4:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps(arg1, arg2, arg3, 0, 0, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16426,10 +16426,10 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps(arg1, arg2, arg3, 0, 1, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 1, (const int) 4);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps(arg1, arg2, arg3, 0, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16437,13 +16437,13 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps(arg1, arg2, arg3, 1, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (_MM_MANTISSA_NORM_ENUM) 1, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps(arg1, arg2, arg3, 2, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (_MM_MANTISSA_NORM_ENUM) 2, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 3:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps(arg1, arg2, arg3, 3, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getmant_round_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (_MM_MANTISSA_NORM_ENUM) 3, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16512,19 +16512,19 @@ switch (arg4) {
 case 0:
 switch (arg5) {
 case 0:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps(arg1, arg2, 0, 0, 0);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps((__mmask16) arg1, (__m512) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 0);
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps(arg1, arg2, 0, 0, 1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps((__mmask16) arg1, (__m512) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 1);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps(arg1, arg2, 0, 0, 2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps((__mmask16) arg1, (__m512) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 2);
 break;
 case 3:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps(arg1, arg2, 0, 0, 3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps((__mmask16) arg1, (__m512) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 3);
 break;
 case 4:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps(arg1, arg2, 0, 0, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps((__mmask16) arg1, (__m512) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16532,10 +16532,10 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps(arg1, arg2, 0, 1, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps((__mmask16) arg1, (__m512) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 1, (const int) 4);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps(arg1, arg2, 0, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps((__mmask16) arg1, (__m512) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16543,13 +16543,13 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps(arg1, arg2, 1, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps((__mmask16) arg1, (__m512) arg2, (_MM_MANTISSA_NORM_ENUM) 1, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 2:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps(arg1, arg2, 2, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps((__mmask16) arg1, (__m512) arg2, (_MM_MANTISSA_NORM_ENUM) 2, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 3:
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps(arg1, arg2, 3, 2, 4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getmant_round_ps((__mmask16) arg1, (__m512) arg2, (_MM_MANTISSA_NORM_ENUM) 3, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16618,19 +16618,19 @@ switch (arg4) {
 case 0:
 switch (arg5) {
 case 0:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd(arg1, arg2, 0, 0, 0);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd((__m128d) arg1, (__m128d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 0);
 break;
 case 1:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd(arg1, arg2, 0, 0, 1);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd((__m128d) arg1, (__m128d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 1);
 break;
 case 2:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd(arg1, arg2, 0, 0, 2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd((__m128d) arg1, (__m128d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 2);
 break;
 case 3:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd(arg1, arg2, 0, 0, 3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd((__m128d) arg1, (__m128d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 3);
 break;
 case 4:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd(arg1, arg2, 0, 0, 4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd((__m128d) arg1, (__m128d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 0, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16638,10 +16638,10 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd(arg1, arg2, 0, 1, 4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd((__m128d) arg1, (__m128d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 1, (const int) 4);
 break;
 case 2:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd(arg1, arg2, 0, 2, 4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd((__m128d) arg1, (__m128d) arg2, (_MM_MANTISSA_NORM_ENUM) 0, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16649,13 +16649,13 @@ return nullptr;
 }
 break;
 case 1:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd(arg1, arg2, 1, 2, 4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd((__m128d) arg1, (__m128d) arg2, (_MM_MANTISSA_NORM_ENUM) 1, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 2:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd(arg1, arg2, 2, 2, 4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd((__m128d) arg1, (__m128d) arg2, (_MM_MANTISSA_NORM_ENUM) 2, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 case 3:
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd(arg1, arg2, 3, 2, 4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getmant_round_sd((__m128d) arg1, (__m128d) arg2, (_MM_MANTISSA_NORM_ENUM) 3, (_MM_MANTISSA_SIGN_ENUM) 2, (const int) 4);
 break;
 default:
 PyErr_SetString(PyExc_ValueError, "Invalid argument (out of range)");
@@ -16849,7 +16849,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_floor_ps_impl([[maybe_unused
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_floor_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_floor_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -16868,7 +16868,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_floor_pd_impl([[maybe_unused
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_floor_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_floor_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -16887,7 +16887,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_ceil_ps_impl([[maybe_unused]
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_ceil_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_ceil_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -16906,7 +16906,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_ceil_pd_impl([[maybe_unused]
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_ceil_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_ceil_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -16927,7 +16927,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_floor_ps_impl([[maybe_u
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_floor_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_floor_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -16948,7 +16948,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_floor_pd_impl([[maybe_u
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_floor_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_floor_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -16969,7 +16969,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_ceil_ps_impl([[maybe_un
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_ceil_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_ceil_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -16990,7 +16990,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_ceil_pd_impl([[maybe_un
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_ceil_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_ceil_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17070,7 +17070,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpeq_epi32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_epi32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_epi32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17091,7 +17091,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpeq_epi32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_epi32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_epi32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17112,7 +17112,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpeq_epi64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_epi64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_epi64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17132,7 +17132,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpeq_epi64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_epi64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_epi64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17152,7 +17152,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpgt_epi32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpgt_epi32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpgt_epi32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17173,7 +17173,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpgt_epi32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpgt_epi32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpgt_epi32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17194,7 +17194,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpgt_epi64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpgt_epi64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpgt_epi64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17214,7 +17214,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpgt_epi64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpgt_epi64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpgt_epi64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17234,7 +17234,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpge_epi32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpge_epi32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpge_epi32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17255,7 +17255,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpge_epi32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpge_epi32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpge_epi32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17276,7 +17276,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpge_epu32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpge_epu32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpge_epu32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17296,7 +17296,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpge_epu32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpge_epu32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpge_epu32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17317,7 +17317,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpge_epi64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpge_epi64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpge_epi64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17337,7 +17337,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpge_epi64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpge_epi64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpge_epi64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17358,7 +17358,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpge_epu64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpge_epu64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpge_epu64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17378,7 +17378,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpge_epu64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpge_epu64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpge_epu64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17399,7 +17399,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmple_epi32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_epi32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_epi32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17419,7 +17419,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmple_epi32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_epi32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_epi32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17440,7 +17440,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmple_epu32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_epu32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_epu32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17460,7 +17460,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmple_epu32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_epu32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_epu32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17481,7 +17481,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmple_epi64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_epi64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_epi64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17501,7 +17501,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmple_epi64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_epi64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_epi64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17522,7 +17522,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmple_epu64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_epu64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_epu64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17542,7 +17542,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmple_epu64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_epu64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_epu64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17563,7 +17563,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmplt_epi32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_epi32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_epi32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17583,7 +17583,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmplt_epi32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_epi32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_epi32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17604,7 +17604,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmplt_epu32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_epu32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_epu32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17624,7 +17624,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmplt_epu32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_epu32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_epu32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17645,7 +17645,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmplt_epi64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_epi64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_epi64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17665,7 +17665,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmplt_epi64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_epi64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_epi64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17686,7 +17686,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmplt_epu64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_epu64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_epu64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17706,7 +17706,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmplt_epu64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_epu64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_epu64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17726,7 +17726,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpneq_epi32_mask_impl([[may
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_epi32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_epi32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17747,7 +17747,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpneq_epi32_mask_impl(
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_epi32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_epi32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17768,7 +17768,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpneq_epu32_mask_impl(
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_epu32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_epu32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17788,7 +17788,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpneq_epu32_mask_impl([[may
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_epu32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_epu32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17809,7 +17809,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpneq_epi64_mask_impl(
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_epi64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_epi64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17829,7 +17829,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpneq_epi64_mask_impl([[may
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_epi64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_epi64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -17850,7 +17850,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpneq_epu64_mask_impl(
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_epu64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_epu64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -17870,7 +17870,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpneq_epu64_mask_impl([[may
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_epu64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_epu64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18391,7 +18391,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_compress_pd_impl([[mayb
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_compress_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_compress_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18411,7 +18411,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_compress_pd_impl([[may
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_compress_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_compress_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18432,7 +18432,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_compressstoreu_pd_impl(
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_compressstoreu_pd(arg0, arg1, arg2);
+    _mm512_mask_compressstoreu_pd((void *) arg0, (__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18453,7 +18453,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_compress_ps_impl([[mayb
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_compress_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_compress_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18473,7 +18473,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_compress_ps_impl([[may
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_compress_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_compress_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18494,7 +18494,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_compressstoreu_ps_impl(
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_compressstoreu_ps(arg0, arg1, arg2);
+    _mm512_mask_compressstoreu_ps((void *) arg0, (__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18515,7 +18515,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_compress_epi64_impl([[m
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_compress_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_compress_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18535,7 +18535,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_compress_epi64_impl([[
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_compress_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_compress_epi64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18556,7 +18556,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_compressstoreu_epi64_im
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_compressstoreu_epi64(arg0, arg1, arg2);
+    _mm512_mask_compressstoreu_epi64((void *) arg0, (__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18577,7 +18577,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_compress_epi32_impl([[m
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_compress_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_compress_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18597,7 +18597,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_compress_epi32_impl([[
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_compress_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_compress_epi32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18618,7 +18618,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_compressstoreu_epi32_im
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    _mm512_mask_compressstoreu_epi32(arg0, arg1, arg2);
+    _mm512_mask_compressstoreu_epi32((void *) arg0, (__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18639,7 +18639,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_expand_pd_impl([[maybe_
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expand_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expand_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18659,7 +18659,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_expand_pd_impl([[maybe
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expand_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expand_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18680,7 +18680,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_expandloadu_pd_impl([[m
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expandloadu_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expandloadu_pd((__m512d) arg1, (__mmask8) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18700,7 +18700,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_expandloadu_pd_impl([[
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expandloadu_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expandloadu_pd((__mmask8) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18721,7 +18721,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_expand_ps_impl([[maybe_
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expand_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expand_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18741,7 +18741,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_expand_ps_impl([[maybe
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expand_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expand_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18762,7 +18762,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_expandloadu_ps_impl([[m
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expandloadu_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expandloadu_ps((__m512) arg1, (__mmask16) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18782,7 +18782,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_expandloadu_ps_impl([[
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expandloadu_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expandloadu_ps((__mmask16) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18803,7 +18803,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_expand_epi64_impl([[may
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expand_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expand_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18823,7 +18823,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_expand_epi64_impl([[ma
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expand_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expand_epi64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18844,7 +18844,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_expandloadu_epi64_impl(
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expandloadu_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expandloadu_epi64((__m512i) arg1, (__mmask8) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18864,7 +18864,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_expandloadu_epi64_impl
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expandloadu_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expandloadu_epi64((__mmask8) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18885,7 +18885,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_expand_epi32_impl([[may
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expand_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expand_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18905,7 +18905,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_expand_epi32_impl([[ma
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expand_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expand_epi32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18926,7 +18926,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_expandloadu_epi32_impl(
     void const * arg3 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expandloadu_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_expandloadu_epi32((__m512i) arg1, (__mmask16) arg2, (void const *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18946,7 +18946,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_expandloadu_epi32_impl
     void const * arg2 = (void const *) *((void const **) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expandloadu_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_expandloadu_epi32((__mmask16) arg1, (void const *) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -18967,7 +18967,7 @@ static __forceinline PyObject *SIMDLowAVX512__kortest_mask16_u8_impl([[maybe_unu
     unsigned char * arg3 = (unsigned char *) *((unsigned char **) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((unsigned char *) PyLong_AsVoidPtr(*args)) = _kortest_mask16_u8(arg1, arg2, arg3);
+    *((unsigned char *) PyLong_AsVoidPtr(*args)) = _kortest_mask16_u8((__mmask16) arg1, (__mmask16) arg2, (unsigned char *) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -18987,7 +18987,7 @@ static __forceinline PyObject *SIMDLowAVX512__kortestz_mask16_u8_impl([[maybe_un
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((unsigned char *) PyLong_AsVoidPtr(*args)) = _kortestz_mask16_u8(arg1, arg2);
+    *((unsigned char *) PyLong_AsVoidPtr(*args)) = _kortestz_mask16_u8((__mmask16) arg1, (__mmask16) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19007,7 +19007,7 @@ static __forceinline PyObject *SIMDLowAVX512__kortestc_mask16_u8_impl([[maybe_un
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((unsigned char *) PyLong_AsVoidPtr(*args)) = _kortestc_mask16_u8(arg1, arg2);
+    *((unsigned char *) PyLong_AsVoidPtr(*args)) = _kortestc_mask16_u8((__mmask16) arg1, (__mmask16) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19026,7 +19026,7 @@ static __forceinline PyObject *SIMDLowAVX512__cvtmask16_u32_impl([[maybe_unused]
     __mmask16 arg1 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned int *) PyLong_AsVoidPtr(*args)) = _cvtmask16_u32(arg1);
+    *((unsigned int *) PyLong_AsVoidPtr(*args)) = _cvtmask16_u32((__mmask16) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -19045,7 +19045,7 @@ static __forceinline PyObject *SIMDLowAVX512__cvtu32_mask16_impl([[maybe_unused]
     unsigned int arg1 = (unsigned int) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 1));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _cvtu32_mask16(arg1);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _cvtu32_mask16((unsigned int) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -19064,7 +19064,7 @@ static __forceinline PyObject *SIMDLowAVX512__load_mask16_impl([[maybe_unused]] 
     __mmask16 * arg1 = (__mmask16 *) *((__mmask16 **) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _load_mask16(arg1);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _load_mask16((__mmask16 *) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -19084,7 +19084,7 @@ static __forceinline PyObject *SIMDLowAVX512__store_mask16_impl([[maybe_unused]]
     __mmask16 arg1 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    _store_mask16(arg0, arg1);
+    _store_mask16((__mmask16 *) arg0, (__mmask16) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -19104,7 +19104,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_kand_impl([[maybe_unused]] P
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kand(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kand((__mmask16) arg1, (__mmask16) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19124,7 +19124,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_kandn_impl([[maybe_unused]] 
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kandn(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kandn((__mmask16) arg1, (__mmask16) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19144,7 +19144,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_kor_impl([[maybe_unused]] Py
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kor(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kor((__mmask16) arg1, (__mmask16) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19164,7 +19164,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_kortestz_impl([[maybe_unused
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_kortestz(arg1, arg2);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_kortestz((__mmask16) arg1, (__mmask16) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19184,7 +19184,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_kortestc_impl([[maybe_unused
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_kortestc(arg1, arg2);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_kortestc((__mmask16) arg1, (__mmask16) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19204,7 +19204,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_kxnor_impl([[maybe_unused]] 
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kxnor(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kxnor((__mmask16) arg1, (__mmask16) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19224,7 +19224,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_kxor_impl([[maybe_unused]] P
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kxor(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kxor((__mmask16) arg1, (__mmask16) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19243,7 +19243,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_knot_impl([[maybe_unused]] P
     __mmask16 arg1 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_knot(arg1);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_knot((__mmask16) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -19263,7 +19263,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_kunpackb_impl([[maybe_unused
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kunpackb(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kunpackb((__mmask16) arg1, (__mmask16) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19323,7 +19323,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_max_epi64_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_max_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_max_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19344,7 +19344,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_max_epi64_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -19366,7 +19366,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_max_epi64_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -19386,7 +19386,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_min_epi64_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_min_epi64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_min_epi64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19408,7 +19408,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_min_epi64_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_epi64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_epi64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -19429,7 +19429,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_min_epi64_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -19449,7 +19449,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_max_epu64_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_max_epu64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_max_epu64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19470,7 +19470,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_max_epu64_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_epu64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_epu64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -19492,7 +19492,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_max_epu64_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_epu64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_epu64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -19512,7 +19512,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_min_epu64_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_min_epu64(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_min_epu64((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19534,7 +19534,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_min_epu64_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_epu64(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_epu64((__m512i) arg1, (__mmask8) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -19555,7 +19555,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_min_epu64_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_epu64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_epu64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -19575,7 +19575,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_max_epi32_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_max_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_max_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19596,7 +19596,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_max_epi32_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -19618,7 +19618,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_max_epi32_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -19638,7 +19638,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_min_epi32_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_min_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_min_epi32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19659,7 +19659,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_min_epi32_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -19681,7 +19681,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_min_epi32_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_epi32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_epi32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -19701,7 +19701,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_max_epu32_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_max_epu32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_max_epu32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19722,7 +19722,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_max_epu32_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_epu32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_epu32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -19744,7 +19744,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_max_epu32_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_epu32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_epu32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -19764,7 +19764,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_min_epu32_impl([[maybe_unuse
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_min_epu32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_min_epu32((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19785,7 +19785,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_min_epu32_impl([[maybe
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_epu32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_epu32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -19807,7 +19807,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_min_epu32_impl([[maybe_
     __m512i arg4 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_epu32(arg1, arg2, arg3, arg4);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_epu32((__m512i) arg1, (__mmask16) arg2, (__m512i) arg3, (__m512i) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -19827,7 +19827,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_unpacklo_ps_impl([[maybe_unu
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_unpacklo_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_unpacklo_ps((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -19849,7 +19849,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_unpacklo_ps_impl([[mayb
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpacklo_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_unpacklo_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -19870,7 +19870,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_unpacklo_ps_impl([[may
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpacklo_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_unpacklo_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -20011,7 +20011,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_blend_pd_impl([[maybe_u
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_blend_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_blend_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -20032,7 +20032,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_blend_ps_impl([[maybe_u
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_blend_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_blend_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -20053,7 +20053,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_blend_epi64_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_blend_epi64(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_blend_epi64((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -20074,7 +20074,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_blend_epi32_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_blend_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_blend_epi32((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -20176,7 +20176,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_fmadd_sd_impl([[maybe_unus
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_fmadd_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_fmadd_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20198,7 +20198,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_fmadd_ss_impl([[maybe_unus
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_fmadd_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_fmadd_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20220,7 +20220,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask3_fmadd_sd_impl([[maybe_unu
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fmadd_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fmadd_sd((__m128d) arg1, (__m128d) arg2, (__m128d) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20242,7 +20242,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask3_fmadd_ss_impl([[maybe_unu
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fmadd_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fmadd_ss((__m128) arg1, (__m128) arg2, (__m128) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20264,7 +20264,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_fmadd_sd_impl([[maybe_unu
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fmadd_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fmadd_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20286,7 +20286,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_fmadd_ss_impl([[maybe_unu
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fmadd_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fmadd_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20308,7 +20308,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_fmsub_sd_impl([[maybe_unus
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_fmsub_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_fmsub_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20330,7 +20330,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_fmsub_ss_impl([[maybe_unus
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_fmsub_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_fmsub_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20352,7 +20352,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask3_fmsub_sd_impl([[maybe_unu
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fmsub_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fmsub_sd((__m128d) arg1, (__m128d) arg2, (__m128d) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20374,7 +20374,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask3_fmsub_ss_impl([[maybe_unu
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fmsub_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fmsub_ss((__m128) arg1, (__m128) arg2, (__m128) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20396,7 +20396,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_fmsub_sd_impl([[maybe_unu
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fmsub_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fmsub_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20418,7 +20418,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_fmsub_ss_impl([[maybe_unu
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fmsub_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fmsub_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20440,7 +20440,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_fnmadd_sd_impl([[maybe_unu
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_fnmadd_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_fnmadd_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20462,7 +20462,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_fnmadd_ss_impl([[maybe_unu
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_fnmadd_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_fnmadd_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20484,7 +20484,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask3_fnmadd_sd_impl([[maybe_un
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fnmadd_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fnmadd_sd((__m128d) arg1, (__m128d) arg2, (__m128d) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20506,7 +20506,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask3_fnmadd_ss_impl([[maybe_un
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fnmadd_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fnmadd_ss((__m128) arg1, (__m128) arg2, (__m128) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20528,7 +20528,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_fnmadd_sd_impl([[maybe_un
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fnmadd_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fnmadd_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20550,7 +20550,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_fnmadd_ss_impl([[maybe_un
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fnmadd_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fnmadd_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20572,7 +20572,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_fnmsub_sd_impl([[maybe_unu
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_fnmsub_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_fnmsub_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20594,7 +20594,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_fnmsub_ss_impl([[maybe_unu
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_fnmsub_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_fnmsub_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20616,7 +20616,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask3_fnmsub_sd_impl([[maybe_un
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fnmsub_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fnmsub_sd((__m128d) arg1, (__m128d) arg2, (__m128d) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20638,7 +20638,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask3_fnmsub_ss_impl([[maybe_un
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fnmsub_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask3_fnmsub_ss((__m128) arg1, (__m128) arg2, (__m128) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20660,7 +20660,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_fnmsub_sd_impl([[maybe_un
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fnmsub_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fnmsub_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20682,7 +20682,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_fnmsub_ss_impl([[maybe_un
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fnmsub_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_fnmsub_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -20961,7 +20961,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sqrt_pd_impl([[maybe_unused]
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_sqrt_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_sqrt_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -20982,7 +20982,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sqrt_pd_impl([[maybe_un
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sqrt_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sqrt_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21002,7 +21002,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sqrt_pd_impl([[maybe_u
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sqrt_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sqrt_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21021,7 +21021,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sqrt_ps_impl([[maybe_unused]
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sqrt_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sqrt_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -21042,7 +21042,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sqrt_ps_impl([[maybe_un
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sqrt_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sqrt_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21062,7 +21062,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sqrt_ps_impl([[maybe_u
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sqrt_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sqrt_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21082,7 +21082,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_add_pd_impl([[maybe_unused]]
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_add_pd((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21104,7 +21104,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_add_pd_impl([[maybe_unu
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_add_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_add_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21125,7 +21125,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_add_pd_impl([[maybe_un
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_add_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_add_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21145,7 +21145,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_add_ps_impl([[maybe_unused]]
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_add_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_add_ps((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21167,7 +21167,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_add_ps_impl([[maybe_unu
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_add_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_add_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21188,7 +21188,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_add_ps_impl([[maybe_un
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_add_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_add_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21210,7 +21210,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_add_sd_impl([[maybe_unused
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_add_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_add_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21231,7 +21231,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_add_sd_impl([[maybe_unuse
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_add_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_add_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21253,7 +21253,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_add_ss_impl([[maybe_unused
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_add_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_add_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21274,7 +21274,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_add_ss_impl([[maybe_unuse
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_add_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_add_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21294,7 +21294,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sub_pd_impl([[maybe_unused]]
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_sub_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_sub_pd((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21316,7 +21316,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sub_pd_impl([[maybe_unu
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sub_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sub_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21337,7 +21337,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sub_pd_impl([[maybe_un
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sub_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sub_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21357,7 +21357,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sub_ps_impl([[maybe_unused]]
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_sub_ps((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21379,7 +21379,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_sub_ps_impl([[maybe_unu
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sub_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_sub_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21400,7 +21400,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_sub_ps_impl([[maybe_un
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sub_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_sub_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21422,7 +21422,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_sub_sd_impl([[maybe_unused
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_sub_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_sub_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21443,7 +21443,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_sub_sd_impl([[maybe_unuse
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_sub_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_sub_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21465,7 +21465,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_sub_ss_impl([[maybe_unused
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_sub_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_sub_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21486,7 +21486,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_sub_ss_impl([[maybe_unuse
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_sub_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_sub_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21506,7 +21506,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mul_pd_impl([[maybe_unused]]
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mul_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mul_pd((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21528,7 +21528,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_mul_pd_impl([[maybe_unu
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mul_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mul_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21549,7 +21549,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_mul_pd_impl([[maybe_un
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mul_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mul_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21569,7 +21569,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mul_ps_impl([[maybe_unused]]
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mul_ps((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21591,7 +21591,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_mul_ps_impl([[maybe_unu
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mul_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_mul_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21612,7 +21612,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_mul_ps_impl([[maybe_un
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mul_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_mul_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21634,7 +21634,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_mul_sd_impl([[maybe_unused
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_mul_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_mul_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21655,7 +21655,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_mul_sd_impl([[maybe_unuse
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_mul_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_mul_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21677,7 +21677,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_mul_ss_impl([[maybe_unused
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_mul_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_mul_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21698,7 +21698,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_mul_ss_impl([[maybe_unuse
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_mul_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_mul_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21718,7 +21718,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_div_pd_impl([[maybe_unused]]
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_div_pd((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21740,7 +21740,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_div_pd_impl([[maybe_unu
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_div_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_div_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21761,7 +21761,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_div_pd_impl([[maybe_un
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_div_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_div_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21781,7 +21781,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_div_ps_impl([[maybe_unused]]
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_div_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_div_ps((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21803,7 +21803,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_div_ps_impl([[maybe_unu
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_div_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_div_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21824,7 +21824,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_div_ps_impl([[maybe_un
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_div_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_div_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21846,7 +21846,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_div_sd_impl([[maybe_unused
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_div_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_div_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21867,7 +21867,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_div_sd_impl([[maybe_unuse
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_div_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_div_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21889,7 +21889,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_div_ss_impl([[maybe_unused
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_div_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_div_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21910,7 +21910,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_div_ss_impl([[maybe_unuse
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_div_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_div_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21930,7 +21930,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_max_pd_impl([[maybe_unused]]
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_max_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_max_pd((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -21952,7 +21952,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_max_pd_impl([[maybe_unu
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -21973,7 +21973,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_max_pd_impl([[maybe_un
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -21993,7 +21993,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_max_ps_impl([[maybe_unused]]
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_max_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_max_ps((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -22015,7 +22015,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_max_ps_impl([[maybe_unu
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_max_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22036,7 +22036,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_max_ps_impl([[maybe_un
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_max_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22058,7 +22058,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_max_sd_impl([[maybe_unused
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_max_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_max_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22079,7 +22079,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_max_sd_impl([[maybe_unuse
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_max_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_max_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22101,7 +22101,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_max_ss_impl([[maybe_unused
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_max_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_max_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22122,7 +22122,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_max_ss_impl([[maybe_unuse
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_max_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_max_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22142,7 +22142,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_min_pd_impl([[maybe_unused]]
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_min_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_min_pd((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -22164,7 +22164,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_min_pd_impl([[maybe_unu
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22185,7 +22185,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_min_pd_impl([[maybe_un
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22205,7 +22205,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_min_ps_impl([[maybe_unused]]
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_min_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_min_ps((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -22227,7 +22227,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_min_ps_impl([[maybe_unu
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_min_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22248,7 +22248,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_min_ps_impl([[maybe_un
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_min_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22270,7 +22270,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_min_sd_impl([[maybe_unused
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_min_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_min_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22291,7 +22291,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_min_sd_impl([[maybe_unuse
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_min_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_min_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22313,7 +22313,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_min_ss_impl([[maybe_unused
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_min_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_min_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22334,7 +22334,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_min_ss_impl([[maybe_unuse
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_min_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_min_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22354,7 +22354,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_scalef_pd_impl([[maybe_unuse
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_scalef_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_scalef_pd((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -22376,7 +22376,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_scalef_pd_impl([[maybe_
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_scalef_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_scalef_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22397,7 +22397,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_scalef_pd_impl([[maybe
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_scalef_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_scalef_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22417,7 +22417,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_scalef_ps_impl([[maybe_unuse
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_scalef_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_scalef_ps((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -22439,7 +22439,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_scalef_ps_impl([[maybe_
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_scalef_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_scalef_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22460,7 +22460,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_scalef_ps_impl([[maybe
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_scalef_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_scalef_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22480,7 +22480,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_scalef_sd_impl([[maybe_unused]]
     __m128d arg2 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_scalef_sd(arg1, arg2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_scalef_sd((__m128d) arg1, (__m128d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -22500,7 +22500,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_scalef_ss_impl([[maybe_unused]]
     __m128 arg2 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_scalef_ss(arg1, arg2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_scalef_ss((__m128) arg1, (__m128) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -22521,7 +22521,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fmadd_pd_impl([[maybe_unused
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fmadd_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fmadd_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22543,7 +22543,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fmadd_pd_impl([[maybe_u
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmadd_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmadd_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22565,7 +22565,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fmadd_pd_impl([[maybe_
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmadd_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmadd_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22587,7 +22587,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fmadd_pd_impl([[maybe_
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmadd_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmadd_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22608,7 +22608,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fmadd_ps_impl([[maybe_unused
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fmadd_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fmadd_ps((__m512) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22630,7 +22630,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fmadd_ps_impl([[maybe_u
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmadd_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmadd_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22652,7 +22652,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fmadd_ps_impl([[maybe_
     __mmask16 arg4 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmadd_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmadd_ps((__m512) arg1, (__m512) arg2, (__m512) arg3, (__mmask16) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22674,7 +22674,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fmadd_ps_impl([[maybe_
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmadd_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmadd_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22695,7 +22695,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fmsub_pd_impl([[maybe_unused
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fmsub_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fmsub_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22717,7 +22717,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fmsub_pd_impl([[maybe_u
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmsub_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmsub_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22739,7 +22739,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fmsub_pd_impl([[maybe_
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmsub_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmsub_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22761,7 +22761,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fmsub_pd_impl([[maybe_
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmsub_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmsub_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22782,7 +22782,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fmsub_ps_impl([[maybe_unused
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fmsub_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fmsub_ps((__m512) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22804,7 +22804,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fmsub_ps_impl([[maybe_u
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmsub_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmsub_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22826,7 +22826,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fmsub_ps_impl([[maybe_
     __mmask16 arg4 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmsub_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmsub_ps((__m512) arg1, (__m512) arg2, (__m512) arg3, (__mmask16) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22848,7 +22848,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fmsub_ps_impl([[maybe_
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmsub_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmsub_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22869,7 +22869,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fmaddsub_pd_impl([[maybe_unu
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fmaddsub_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fmaddsub_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22891,7 +22891,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fmaddsub_pd_impl([[mayb
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmaddsub_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmaddsub_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22913,7 +22913,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fmaddsub_pd_impl([[may
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmaddsub_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmaddsub_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22935,7 +22935,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fmaddsub_pd_impl([[may
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmaddsub_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmaddsub_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -22956,7 +22956,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fmaddsub_ps_impl([[maybe_unu
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fmaddsub_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fmaddsub_ps((__m512) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -22978,7 +22978,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fmaddsub_ps_impl([[mayb
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmaddsub_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmaddsub_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23000,7 +23000,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fmaddsub_ps_impl([[may
     __mmask16 arg4 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmaddsub_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmaddsub_ps((__m512) arg1, (__m512) arg2, (__m512) arg3, (__mmask16) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23022,7 +23022,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fmaddsub_ps_impl([[may
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmaddsub_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmaddsub_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23043,7 +23043,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fmsubadd_pd_impl([[maybe_unu
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fmsubadd_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fmsubadd_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23065,7 +23065,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fmsubadd_pd_impl([[mayb
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmsubadd_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmsubadd_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23087,7 +23087,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fmsubadd_pd_impl([[may
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmsubadd_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmsubadd_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23109,7 +23109,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fmsubadd_pd_impl([[may
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmsubadd_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmsubadd_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23130,7 +23130,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fmsubadd_ps_impl([[maybe_unu
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fmsubadd_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fmsubadd_ps((__m512) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23152,7 +23152,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fmsubadd_ps_impl([[mayb
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmsubadd_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fmsubadd_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23174,7 +23174,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fmsubadd_ps_impl([[may
     __mmask16 arg4 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmsubadd_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fmsubadd_ps((__m512) arg1, (__m512) arg2, (__m512) arg3, (__mmask16) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23196,7 +23196,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fmsubadd_ps_impl([[may
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmsubadd_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fmsubadd_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23217,7 +23217,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fnmadd_pd_impl([[maybe_unuse
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fnmadd_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fnmadd_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23239,7 +23239,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fnmadd_pd_impl([[maybe_
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fnmadd_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fnmadd_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23261,7 +23261,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fnmadd_pd_impl([[maybe
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fnmadd_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fnmadd_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23283,7 +23283,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fnmadd_pd_impl([[maybe
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fnmadd_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fnmadd_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23304,7 +23304,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fnmadd_ps_impl([[maybe_unuse
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fnmadd_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fnmadd_ps((__m512) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23326,7 +23326,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fnmadd_ps_impl([[maybe_
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fnmadd_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fnmadd_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23348,7 +23348,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fnmadd_ps_impl([[maybe
     __mmask16 arg4 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fnmadd_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fnmadd_ps((__m512) arg1, (__m512) arg2, (__m512) arg3, (__mmask16) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23370,7 +23370,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fnmadd_ps_impl([[maybe
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fnmadd_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fnmadd_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23391,7 +23391,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fnmsub_pd_impl([[maybe_unuse
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fnmsub_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_fnmsub_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23413,7 +23413,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fnmsub_pd_impl([[maybe_
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fnmsub_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fnmsub_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23435,7 +23435,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fnmsub_pd_impl([[maybe
     __mmask8 arg4 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fnmsub_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fnmsub_pd((__m512d) arg1, (__m512d) arg2, (__m512d) arg3, (__mmask8) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23457,7 +23457,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fnmsub_pd_impl([[maybe
     __m512d arg4 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fnmsub_pd(arg1, arg2, arg3, arg4);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fnmsub_pd((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3, (__m512d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23478,7 +23478,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_fnmsub_ps_impl([[maybe_unuse
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fnmsub_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_fnmsub_ps((__m512) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23500,7 +23500,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_fnmsub_ps_impl([[maybe_
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fnmsub_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_fnmsub_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23522,7 +23522,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask3_fnmsub_ps_impl([[maybe
     __mmask16 arg4 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fnmsub_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask3_fnmsub_ps((__m512) arg1, (__m512) arg2, (__m512) arg3, (__mmask16) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23544,7 +23544,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_fnmsub_ps_impl([[maybe
     __m512 arg4 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fnmsub_ps(arg1, arg2, arg3, arg4);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_fnmsub_ps((__mmask16) arg1, (__m512) arg2, (__m512) arg3, (__m512) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -23563,7 +23563,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvttpd_epi32_impl([[maybe_un
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvttpd_epi32(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvttpd_epi32((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -23584,7 +23584,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvttpd_epi32_impl([[may
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvttpd_epi32(arg1, arg2, arg3);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvttpd_epi32((__m256i) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23604,7 +23604,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvttpd_epi32_impl([[ma
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvttpd_epi32(arg1, arg2);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvttpd_epi32((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -23623,7 +23623,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvttpd_epu32_impl([[maybe_un
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvttpd_epu32(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvttpd_epu32((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -23644,7 +23644,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvttpd_epu32_impl([[may
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvttpd_epu32(arg1, arg2, arg3);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvttpd_epu32((__m256i) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23664,7 +23664,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvttpd_epu32_impl([[ma
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvttpd_epu32(arg1, arg2);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvttpd_epu32((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -23683,7 +23683,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtpd_epi32_impl([[maybe_unu
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtpd_epi32(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtpd_epi32((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -23704,7 +23704,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtpd_epi32_impl([[mayb
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtpd_epi32(arg1, arg2, arg3);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtpd_epi32((__m256i) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23724,7 +23724,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtpd_epi32_impl([[may
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtpd_epi32(arg1, arg2);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtpd_epi32((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -23743,7 +23743,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtpd_epu32_impl([[maybe_unu
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtpd_epu32(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtpd_epu32((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -23764,7 +23764,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtpd_epu32_impl([[mayb
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtpd_epu32(arg1, arg2, arg3);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtpd_epu32((__m256i) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23784,7 +23784,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtpd_epu32_impl([[may
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtpd_epu32(arg1, arg2);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtpd_epu32((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -23803,7 +23803,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvttps_epi32_impl([[maybe_un
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvttps_epi32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvttps_epi32((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -23824,7 +23824,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvttps_epi32_impl([[may
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvttps_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvttps_epi32((__m512i) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23844,7 +23844,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvttps_epi32_impl([[ma
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvttps_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvttps_epi32((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -23863,7 +23863,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvttps_epu32_impl([[maybe_un
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvttps_epu32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvttps_epu32((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -23884,7 +23884,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvttps_epu32_impl([[may
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvttps_epu32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvttps_epu32((__m512i) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23904,7 +23904,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvttps_epu32_impl([[ma
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvttps_epu32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvttps_epu32((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -23923,7 +23923,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtps_epi32_impl([[maybe_unu
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtps_epi32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtps_epi32((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -23944,7 +23944,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtps_epi32_impl([[mayb
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtps_epi32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtps_epi32((__m512i) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -23964,7 +23964,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtps_epi32_impl([[may
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtps_epi32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtps_epi32((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -23983,7 +23983,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtps_epu32_impl([[maybe_unu
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtps_epu32(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_cvtps_epu32((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24004,7 +24004,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtps_epu32_impl([[mayb
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtps_epu32(arg1, arg2, arg3);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtps_epu32((__m512i) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -24024,7 +24024,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtps_epu32_impl([[may
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtps_epu32(arg1, arg2);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtps_epu32((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24043,7 +24043,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtsd_f64_impl([[maybe_unuse
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsd_f64(arg1);
+    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsd_f64((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24062,7 +24062,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtss_f32_impl([[maybe_unuse
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_cvtss_f32(arg1);
+    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_cvtss_f32((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24082,7 +24082,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtu64_ss_impl([[maybe_unused]]
     unsigned long long arg2 = (unsigned long long) PyLong_AsUnsignedLongLong(*(((PyObject **) args) + 2));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_cvtu64_ss(arg1, arg2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_cvtu64_ss((__m128) arg1, (unsigned long long) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24102,7 +24102,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtu64_sd_impl([[maybe_unused]]
     unsigned long long arg2 = (unsigned long long) PyLong_AsUnsignedLongLong(*(((PyObject **) args) + 2));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_cvtu64_sd(arg1, arg2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_cvtu64_sd((__m128d) arg1, (unsigned long long) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24122,7 +24122,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtu32_ss_impl([[maybe_unused]]
     unsigned arg2 = (unsigned) (unsigned int) PyLong_AsUnsignedLong(*(((PyObject **) args) + 2));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_cvtu32_ss(arg1, arg2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_cvtu32_ss((__m128) arg1, (unsigned) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24141,7 +24141,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepi32_ps_impl([[maybe_unu
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi32_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepi32_ps((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24162,7 +24162,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepi32_ps_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi32_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepi32_ps((__m512) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -24182,7 +24182,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepi32_ps_impl([[may
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi32_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepi32_ps((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24201,7 +24201,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtepu32_ps_impl([[maybe_unu
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu32_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_cvtepu32_ps((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24222,7 +24222,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtepu32_ps_impl([[mayb
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu32_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtepu32_ps((__m512) arg1, (__mmask16) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -24242,7 +24242,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtepu32_ps_impl([[may
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu32_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtepu32_ps((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24381,7 +24381,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtss_u64_impl([[maybe_unused]]
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm_cvtss_u64(arg1);
+    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm_cvtss_u64((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24400,7 +24400,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvttss_u64_impl([[maybe_unused]
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm_cvttss_u64(arg1);
+    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm_cvttss_u64((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24419,7 +24419,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvttss_i64_impl([[maybe_unused]
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm_cvttss_i64(arg1);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm_cvttss_i64((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24438,7 +24438,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtsi512_si32_impl([[maybe_u
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsi512_si32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_cvtsi512_si32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24457,7 +24457,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtss_u32_impl([[maybe_unused]]
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned *) PyLong_AsVoidPtr(*args)) = _mm_cvtss_u32(arg1);
+    *((unsigned *) PyLong_AsVoidPtr(*args)) = _mm_cvtss_u32((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24476,7 +24476,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvttss_u32_impl([[maybe_unused]
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned *) PyLong_AsVoidPtr(*args)) = _mm_cvttss_u32(arg1);
+    *((unsigned *) PyLong_AsVoidPtr(*args)) = _mm_cvttss_u32((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24495,7 +24495,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvttss_i32_impl([[maybe_unused]
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm_cvttss_i32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm_cvttss_i32((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24514,7 +24514,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtsd_i32_impl([[maybe_unused]]
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm_cvtsd_i32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm_cvtsd_i32((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24533,7 +24533,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtss_i32_impl([[maybe_unused]]
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm_cvtss_i32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm_cvtss_i32((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24572,7 +24572,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtsd_u64_impl([[maybe_unused]]
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm_cvtsd_u64(arg1);
+    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm_cvtsd_u64((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24591,7 +24591,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvttsd_u64_impl([[maybe_unused]
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm_cvttsd_u64(arg1);
+    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm_cvttsd_u64((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24610,7 +24610,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvttsd_i64_impl([[maybe_unused]
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm_cvttsd_i64(arg1);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm_cvttsd_i64((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24629,7 +24629,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtsd_i64_impl([[maybe_unused]]
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm_cvtsd_i64(arg1);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm_cvtsd_i64((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24648,7 +24648,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtss_i64_impl([[maybe_unused]]
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm_cvtss_i64(arg1);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm_cvtss_i64((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24668,7 +24668,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvti64_sd_impl([[maybe_unused]]
     long long arg2 = (long long) PyLong_AsLongLong(*(((PyObject **) args) + 2));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_cvti64_sd(arg1, arg2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_cvti64_sd((__m128d) arg1, (long long) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24688,7 +24688,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvti64_ss_impl([[maybe_unused]]
     long long arg2 = (long long) PyLong_AsLongLong(*(((PyObject **) args) + 2));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_cvti64_ss(arg1, arg2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_cvti64_ss((__m128) arg1, (long long) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24707,7 +24707,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvtsd_u32_impl([[maybe_unused]]
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned *) PyLong_AsVoidPtr(*args)) = _mm_cvtsd_u32(arg1);
+    *((unsigned *) PyLong_AsVoidPtr(*args)) = _mm_cvtsd_u32((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24726,7 +24726,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvttsd_u32_impl([[maybe_unused]
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned *) PyLong_AsVoidPtr(*args)) = _mm_cvttsd_u32(arg1);
+    *((unsigned *) PyLong_AsVoidPtr(*args)) = _mm_cvttsd_u32((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24745,7 +24745,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_cvttsd_i32_impl([[maybe_unused]
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm_cvttsd_i32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm_cvttsd_i32((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24764,7 +24764,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtps_pd_impl([[maybe_unused
     __m256 arg1 = (__m256) *((__m256*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_cvtps_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_cvtps_pd((__m256) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24785,7 +24785,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtps_pd_impl([[maybe_u
     __m256 arg3 = (__m256) *((__m256*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtps_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtps_pd((__m512d) arg1, (__mmask8) arg2, (__m256) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -24805,7 +24805,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtps_pd_impl([[maybe_
     __m256 arg2 = (__m256) *((__m256*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtps_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtps_pd((__mmask8) arg1, (__m256) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24824,7 +24824,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtph_ps_impl([[maybe_unused
     __m256i arg1 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_cvtph_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_cvtph_ps((__m256i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24845,7 +24845,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtph_ps_impl([[maybe_u
     __m256i arg3 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtph_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtph_ps((__m512) arg1, (__mmask16) arg2, (__m256i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -24865,7 +24865,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtph_ps_impl([[maybe_
     __m256i arg2 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtph_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtph_ps((__mmask16) arg1, (__m256i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24884,7 +24884,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cvtpd_ps_impl([[maybe_unused
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256 *) PyLong_AsVoidPtr(*args)) = _mm512_cvtpd_ps(arg1);
+    *((__m256 *) PyLong_AsVoidPtr(*args)) = _mm512_cvtpd_ps((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24905,7 +24905,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cvtpd_ps_impl([[maybe_u
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m256 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtpd_ps(arg1, arg2, arg3);
+    *((__m256 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cvtpd_ps((__m256) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -24925,7 +24925,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_cvtpd_ps_impl([[maybe_
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m256 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtpd_ps(arg1, arg2);
+    *((__m256 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_cvtpd_ps((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -24944,7 +24944,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_getexp_ps_impl([[maybe_unuse
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -24965,7 +24965,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_getexp_ps_impl([[maybe_
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getexp_ps(arg1, arg2, arg3);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getexp_ps((__m512) arg1, (__mmask16) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -24985,7 +24985,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_getexp_ps_impl([[maybe
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getexp_ps(arg1, arg2);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getexp_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25004,7 +25004,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_getexp_pd_impl([[maybe_unuse
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_getexp_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -25025,7 +25025,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_getexp_pd_impl([[maybe_
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getexp_pd(arg1, arg2, arg3);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_mask_getexp_pd((__m512d) arg1, (__mmask8) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25045,7 +25045,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_getexp_pd_impl([[maybe
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getexp_pd(arg1, arg2);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_maskz_getexp_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25065,7 +25065,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_getexp_ss_impl([[maybe_unused]]
     __m128 arg2 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_ss(arg1, arg2);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_getexp_ss((__m128) arg1, (__m128) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25087,7 +25087,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_getexp_ss_impl([[maybe_unu
     __m128 arg4 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_ss(arg1, arg2, arg3, arg4);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_ss((__m128) arg1, (__mmask8) arg2, (__m128) arg3, (__m128) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -25108,7 +25108,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_getexp_ss_impl([[maybe_un
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_ss(arg1, arg2, arg3);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_ss((__mmask8) arg1, (__m128) arg2, (__m128) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25128,7 +25128,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_getexp_sd_impl([[maybe_unused]]
     __m128d arg2 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_sd(arg1, arg2);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_getexp_sd((__m128d) arg1, (__m128d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25150,7 +25150,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_getexp_sd_impl([[maybe_unu
     __m128d arg4 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 4)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_sd(arg1, arg2, arg3, arg4);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_mask_getexp_sd((__m128d) arg1, (__mmask8) arg2, (__m128d) arg3, (__m128d) arg4);
 
     Py_RETURN_NONE;
 #else
@@ -25171,7 +25171,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_getexp_sd_impl([[maybe_un
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_sd(arg1, arg2, arg3);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm_maskz_getexp_sd((__mmask8) arg1, (__m128d) arg2, (__m128d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25511,7 +25511,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpeq_pd_mask_impl([[maybe_u
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_pd_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_pd_mask((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25532,7 +25532,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpeq_pd_mask_impl([[ma
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_pd_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_pd_mask((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25552,7 +25552,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmplt_pd_mask_impl([[maybe_u
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_pd_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_pd_mask((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25573,7 +25573,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmplt_pd_mask_impl([[ma
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_pd_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_pd_mask((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25593,7 +25593,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmple_pd_mask_impl([[maybe_u
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_pd_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_pd_mask((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25614,7 +25614,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmple_pd_mask_impl([[ma
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_pd_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_pd_mask((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25634,7 +25634,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpunord_pd_mask_impl([[mayb
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpunord_pd_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpunord_pd_mask((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25655,7 +25655,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpunord_pd_mask_impl([
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpunord_pd_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpunord_pd_mask((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25675,7 +25675,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpneq_pd_mask_impl([[maybe_
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_pd_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_pd_mask((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25696,7 +25696,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpneq_pd_mask_impl([[m
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_pd_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_pd_mask((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25716,7 +25716,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpnlt_pd_mask_impl([[maybe_
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpnlt_pd_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpnlt_pd_mask((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25737,7 +25737,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpnlt_pd_mask_impl([[m
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpnlt_pd_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpnlt_pd_mask((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25757,7 +25757,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpnle_pd_mask_impl([[maybe_
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpnle_pd_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpnle_pd_mask((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25778,7 +25778,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpnle_pd_mask_impl([[m
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpnle_pd_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpnle_pd_mask((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25798,7 +25798,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpord_pd_mask_impl([[maybe_
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpord_pd_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpord_pd_mask((__m512d) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25819,7 +25819,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpord_pd_mask_impl([[m
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpord_pd_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpord_pd_mask((__mmask8) arg1, (__m512d) arg2, (__m512d) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25839,7 +25839,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpeq_ps_mask_impl([[maybe_u
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_ps_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_ps_mask((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25860,7 +25860,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpeq_ps_mask_impl([[ma
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_ps_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_ps_mask((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25880,7 +25880,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmplt_ps_mask_impl([[maybe_u
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_ps_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmplt_ps_mask((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25901,7 +25901,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmplt_ps_mask_impl([[ma
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_ps_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmplt_ps_mask((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25921,7 +25921,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmple_ps_mask_impl([[maybe_u
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_ps_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmple_ps_mask((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25942,7 +25942,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmple_ps_mask_impl([[ma
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_ps_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmple_ps_mask((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -25962,7 +25962,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpunord_ps_mask_impl([[mayb
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpunord_ps_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpunord_ps_mask((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -25983,7 +25983,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpunord_ps_mask_impl([
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpunord_ps_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpunord_ps_mask((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -26003,7 +26003,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpneq_ps_mask_impl([[maybe_
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_ps_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpneq_ps_mask((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26024,7 +26024,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpneq_ps_mask_impl([[m
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_ps_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpneq_ps_mask((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -26044,7 +26044,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpnlt_ps_mask_impl([[maybe_
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpnlt_ps_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpnlt_ps_mask((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26065,7 +26065,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpnlt_ps_mask_impl([[m
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpnlt_ps_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpnlt_ps_mask((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -26085,7 +26085,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpnle_ps_mask_impl([[maybe_
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpnle_ps_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpnle_ps_mask((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26106,7 +26106,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpnle_ps_mask_impl([[m
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpnle_ps_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpnle_ps_mask((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -26126,7 +26126,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpord_ps_mask_impl([[maybe_
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpord_ps_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpord_ps_mask((__m512) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26147,7 +26147,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpord_ps_mask_impl([[m
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpord_ps_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpord_ps_mask((__mmask16) arg1, (__m512) arg2, (__m512) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -26166,7 +26166,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_kmov_impl([[maybe_unused]] P
     __mmask16 arg1 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kmov(arg1);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_kmov((__mmask16) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26185,7 +26185,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castpd_ps_impl([[maybe_unuse
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_castpd_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_castpd_ps((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26204,7 +26204,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castpd_si512_impl([[maybe_un
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_castpd_si512(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_castpd_si512((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26223,7 +26223,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castps_pd_impl([[maybe_unuse
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_castps_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_castps_pd((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26242,7 +26242,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castps_si512_impl([[maybe_un
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_castps_si512(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_castps_si512((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26261,7 +26261,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castsi512_ps_impl([[maybe_un
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_castsi512_ps(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_castsi512_ps((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26280,7 +26280,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castsi512_pd_impl([[maybe_un
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_castsi512_pd(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_castsi512_pd((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26299,7 +26299,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castpd512_pd128_impl([[maybe
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm512_castpd512_pd128(arg1);
+    *((__m128d *) PyLong_AsVoidPtr(*args)) = _mm512_castpd512_pd128((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26318,7 +26318,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castps512_ps128_impl([[maybe
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm512_castps512_ps128(arg1);
+    *((__m128 *) PyLong_AsVoidPtr(*args)) = _mm512_castps512_ps128((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26337,7 +26337,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castsi512_si128_impl([[maybe
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_castsi512_si128(arg1);
+    *((__m128i *) PyLong_AsVoidPtr(*args)) = _mm512_castsi512_si128((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26356,7 +26356,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castpd512_pd256_impl([[maybe
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256d *) PyLong_AsVoidPtr(*args)) = _mm512_castpd512_pd256(arg1);
+    *((__m256d *) PyLong_AsVoidPtr(*args)) = _mm512_castpd512_pd256((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26375,7 +26375,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castps512_ps256_impl([[maybe
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256 *) PyLong_AsVoidPtr(*args)) = _mm512_castps512_ps256(arg1);
+    *((__m256 *) PyLong_AsVoidPtr(*args)) = _mm512_castps512_ps256((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26394,7 +26394,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castsi512_si256_impl([[maybe
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_castsi512_si256(arg1);
+    *((__m256i *) PyLong_AsVoidPtr(*args)) = _mm512_castsi512_si256((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26413,7 +26413,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castpd128_pd512_impl([[maybe
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_castpd128_pd512(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_castpd128_pd512((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26432,7 +26432,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castps128_ps512_impl([[maybe
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_castps128_ps512(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_castps128_ps512((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26451,7 +26451,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castsi128_si512_impl([[maybe
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_castsi128_si512(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_castsi128_si512((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26470,7 +26470,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castpd256_pd512_impl([[maybe
     __m256d arg1 = (__m256d) *((__m256d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_castpd256_pd512(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_castpd256_pd512((__m256d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26489,7 +26489,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castps256_ps512_impl([[maybe
     __m256 arg1 = (__m256) *((__m256*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_castps256_ps512(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_castps256_ps512((__m256) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26508,7 +26508,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_castsi256_si512_impl([[maybe
     __m256i arg1 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_castsi256_si512(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_castsi256_si512((__m256i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26527,7 +26527,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_zextpd128_pd512_impl([[maybe
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_zextpd128_pd512(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_zextpd128_pd512((__m128d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26546,7 +26546,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_zextps128_ps512_impl([[maybe
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_zextps128_ps512(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_zextps128_ps512((__m128) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26565,7 +26565,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_zextsi128_si512_impl([[maybe
     __m128i arg1 = (__m128i) *((__m128i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_zextsi128_si512(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_zextsi128_si512((__m128i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26584,7 +26584,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_zextpd256_pd512_impl([[maybe
     __m256d arg1 = (__m256d) *((__m256d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_zextpd256_pd512(arg1);
+    *((__m512d *) PyLong_AsVoidPtr(*args)) = _mm512_zextpd256_pd512((__m256d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26603,7 +26603,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_zextps256_ps512_impl([[maybe
     __m256 arg1 = (__m256) *((__m256*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_zextps256_ps512(arg1);
+    *((__m512 *) PyLong_AsVoidPtr(*args)) = _mm512_zextps256_ps512((__m256) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26622,7 +26622,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_zextsi256_si512_impl([[maybe
     __m256i arg1 = (__m256i) *((__m256i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_zextsi256_si512(arg1);
+    *((__m512i *) PyLong_AsVoidPtr(*args)) = _mm512_zextsi256_si512((__m256i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26642,7 +26642,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpeq_epu32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_epu32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_epu32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26663,7 +26663,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpeq_epu32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_epu32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_epu32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -26684,7 +26684,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpeq_epu64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_epu64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpeq_epu64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -26704,7 +26704,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpeq_epu64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_epu64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpeq_epu64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26724,7 +26724,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpgt_epu32_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpgt_epu32_mask(arg1, arg2);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpgt_epu32_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26745,7 +26745,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpgt_epu32_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpgt_epu32_mask(arg1, arg2, arg3);
+    *((__mmask16 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpgt_epu32_mask((__mmask16) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -26766,7 +26766,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_cmpgt_epu64_mask_impl([
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpgt_epu64_mask(arg1, arg2, arg3);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_mask_cmpgt_epu64_mask((__mmask8) arg1, (__m512i) arg2, (__m512i) arg3);
 
     Py_RETURN_NONE;
 #else
@@ -26786,7 +26786,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_cmpgt_epu64_mask_impl([[mayb
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpgt_epu64_mask(arg1, arg2);
+    *((__mmask8 *) PyLong_AsVoidPtr(*args)) = _mm512_cmpgt_epu64_mask((__m512i) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26805,7 +26805,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_add_epi32_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_add_epi32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_add_epi32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26824,7 +26824,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_mul_epi32_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_mul_epi32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_mul_epi32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26843,7 +26843,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_and_epi32_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_and_epi32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_and_epi32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26862,7 +26862,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_or_epi32_impl([[maybe
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_or_epi32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_or_epi32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26882,7 +26882,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_add_epi32_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_add_epi32(arg1, arg2);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_add_epi32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26902,7 +26902,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_mul_epi32_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_mul_epi32(arg1, arg2);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_mul_epi32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26922,7 +26922,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_and_epi32_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_and_epi32(arg1, arg2);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_and_epi32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26942,7 +26942,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_or_epi32_impl([[
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_or_epi32(arg1, arg2);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_or_epi32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -26961,7 +26961,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_min_epi32_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_epi32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_epi32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26980,7 +26980,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_max_epi32_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_epi32(arg1);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_epi32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -26999,7 +26999,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_min_epu32_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_epu32(arg1);
+    *((unsigned int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_epu32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27018,7 +27018,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_max_epu32_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_epu32(arg1);
+    *((unsigned int *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_epu32((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27038,7 +27038,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_min_epi32_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_epi32(arg1, arg2);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_epi32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27058,7 +27058,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_max_epi32_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_max_epi32(arg1, arg2);
+    *((int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_max_epi32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27078,7 +27078,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_min_epu32_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((unsigned int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_epu32(arg1, arg2);
+    *((unsigned int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_epu32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27098,7 +27098,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_max_epu32_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((unsigned int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_max_epu32(arg1, arg2);
+    *((unsigned int *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_max_epu32((__mmask16) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27117,7 +27117,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_add_ps_impl([[maybe_u
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_add_ps(arg1);
+    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_add_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27136,7 +27136,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_mul_ps_impl([[maybe_u
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_mul_ps(arg1);
+    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_mul_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27156,7 +27156,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_add_ps_impl([[ma
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_add_ps(arg1, arg2);
+    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_add_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27176,7 +27176,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_mul_ps_impl([[ma
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_mul_ps(arg1, arg2);
+    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_mul_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27195,7 +27195,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_min_ps_impl([[maybe_u
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_ps(arg1);
+    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27214,7 +27214,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_max_ps_impl([[maybe_u
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_ps(arg1);
+    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_ps((__m512) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27234,7 +27234,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_min_ps_impl([[ma
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_ps(arg1, arg2);
+    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27254,7 +27254,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_max_ps_impl([[ma
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_max_ps(arg1, arg2);
+    *((float *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_max_ps((__mmask16) arg1, (__m512) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27273,7 +27273,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_add_epi64_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_add_epi64(arg1);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_add_epi64((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27292,7 +27292,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_mul_epi64_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_mul_epi64(arg1);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_mul_epi64((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27311,7 +27311,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_and_epi64_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_and_epi64(arg1);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_and_epi64((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27330,7 +27330,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_or_epi64_impl([[maybe
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_or_epi64(arg1);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_or_epi64((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27350,7 +27350,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_add_epi64_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_add_epi64(arg1, arg2);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_add_epi64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27370,7 +27370,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_mul_epi64_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_mul_epi64(arg1, arg2);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_mul_epi64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27390,7 +27390,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_and_epi64_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_and_epi64(arg1, arg2);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_and_epi64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27410,7 +27410,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_or_epi64_impl([[
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_or_epi64(arg1, arg2);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_or_epi64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27429,7 +27429,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_min_epi64_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_epi64(arg1);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_epi64((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27448,7 +27448,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_max_epi64_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_epi64(arg1);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_epi64((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27468,7 +27468,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_min_epi64_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_epi64(arg1, arg2);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_epi64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27488,7 +27488,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_max_epi64_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_max_epi64(arg1, arg2);
+    *((long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_max_epi64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27507,7 +27507,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_min_epu64_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_epu64(arg1);
+    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_epu64((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27526,7 +27526,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_max_epu64_impl([[mayb
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_epu64(arg1);
+    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_epu64((__m512i) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27546,7 +27546,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_min_epu64_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_epu64(arg1, arg2);
+    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_epu64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27566,7 +27566,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_max_epu64_impl([
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_max_epu64(arg1, arg2);
+    *((unsigned long long *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_max_epu64((__mmask8) arg1, (__m512i) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27585,7 +27585,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_add_pd_impl([[maybe_u
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_add_pd(arg1);
+    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_add_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27604,7 +27604,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_mul_pd_impl([[maybe_u
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_mul_pd(arg1);
+    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_mul_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27624,7 +27624,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_add_pd_impl([[ma
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_add_pd(arg1, arg2);
+    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_add_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27644,7 +27644,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_mul_pd_impl([[ma
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_mul_pd(arg1, arg2);
+    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_mul_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
@@ -27663,7 +27663,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_min_pd_impl([[maybe_u
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_pd(arg1);
+    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_min_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27682,7 +27682,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_reduce_max_pd_impl([[maybe_u
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
 
-    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_pd(arg1);
+    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_reduce_max_pd((__m512d) arg1);
 
     Py_RETURN_NONE;
 #else
@@ -27702,7 +27702,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_reduce_min_pd_impl([[ma
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
 
-    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_pd(arg1, arg2);
+    *((double *) PyLong_AsVoidPtr(*args)) = _mm512_mask_reduce_min_pd((__mmask8) arg1, (__m512d) arg2);
 
     Py_RETURN_NONE;
 #else
