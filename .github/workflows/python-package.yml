@@ -54,6 +54,9 @@ jobs:
           python -m pip install -r requirements.txt
       - name: Build
         shell: bash
+        env:
+          CC: clang
+          CXX: clang++
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             ./build.cmd
