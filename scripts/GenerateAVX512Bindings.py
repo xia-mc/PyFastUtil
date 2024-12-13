@@ -631,6 +631,7 @@ def getCallCode(func: SIMDFunc, constantRequire: list[tuple[int, int, int]]) -> 
     else:
         code = f"    {func.name}({args});"
 
+    isOuter = True
     if len(constantRequire) > 0:
         if len(constantRequire) > 4:
             raise NotImplementedError(len(constantRequire))
@@ -638,21 +639,40 @@ def getCallCode(func: SIMDFunc, constantRequire: list[tuple[int, int, int]]) -> 
         for i, (argId, immediateMin, immediateMax) in enumerate(constantRequire):
             if immediateMin == immediateMax:
                 code = code.replace(f"arg{argId}", str(immediateMin))
+                isOuter = False
                 continue
 
             result = f"switch (arg{argId}) {{\n"
 
             for value in range(immediateMin, immediateMax + 1):
-                result += f"case {value}:\n"
-                nextConstantRequire = constantRequire
+                result += f"    case {value}:\n"
+                nextConstantRequire = constantRequire.copy()
                 nextConstantRequire[i] = (argId, value, value)
-                result += getCallCode(func, nextConstantRequire) + "\n"
-                result += "break;\n"
-            result += "default:\n"
-            result += "PyErr_SetString(PyExc_ValueError, \"Invalid argument (out of range)\");\n"
-            result += "return nullptr;\n"
+
+                nextCallCode = getCallCode(func, nextConstantRequire)
+                formattedCallCode = ""
+                for line in nextCallCode.split("\n"):
+                    if i == len(constantRequire) - 1:
+                        formattedCallCode += f"    {line}\n"
+                    else:
+                        formattedCallCode += f"        {line}\n"
+                result += formattedCallCode
+                result += "        break;\n"
+            result += "    default:\n"
+            result += "        PyErr_SetString(PyExc_ValueError, \"Invalid argument (out of range)\");\n"
+            result += "        return nullptr;\n"
 
             result += "}"
+
+            if isOuter:
+                result = f"""
+#if defined(__clang__) || defined(__GNUC__)
+{result}
+#else
+    PyErr_SetString(PyExc_NotImplementedError, "AVX-512 is not supported on this architecture.");
+    return nullptr;
+#endif
+"""
 
             return result
     return code

@@ -1,15 +1,13 @@
 import platform
 import unittest
 
-import pytest
 from keystone import Ks, KS_ARCH_X86, KS_MODE_64
 
 from pyfastutil.unsafe import ASM, Unsafe
 from tests.benchmark import benchmark_ASM
 
 
-@pytest.mark.skipif(platform.system() != "Windows", reason="ASM only support Windows now.")
-@unittest.skipIf(platform.system() != "Windows", "ASM only support Windows now.")
+@unittest.skipUnless(platform.win32_edition() is not None, "ASM only support Windows now.")
 class TestASM(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
