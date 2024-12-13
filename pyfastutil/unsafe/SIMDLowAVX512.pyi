@@ -65,21 +65,19 @@ class SIMDLowAVX512:
     
     def __exit__(self, exc_type, exc_val, exc_tb) -> None: ...
 
-    def _mm512_int2mask(self, __result: Ptr, __M: int) -> RaisesNotImplementedError:
+    def mm512_int2mask(self, __result: Ptr, __M: int) -> None:
         """
-        _mm512_int2mask is not supported in PyFastUtil.
+        Executes the _mm512_int2mask operation.
 
         C method prototype:
             _mm512_int2mask(__M: int) -> __mmask16
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm512_mask2int(self, __result: Ptr, __M: Ptr) -> None:
+    def mm512_mask2int(self, __result: Ptr, __M: Ptr) -> None:
         """
         Executes the _mm512_mask2int operation.
 
@@ -91,7 +89,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set_epi64(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int, __E: int, __F: int, __G: int, __H: int) -> None:
+    def mm512_set_epi64(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int, __E: int, __F: int, __G: int, __H: int) -> None:
         """
         Executes the _mm512_set_epi64 operation.
 
@@ -103,7 +101,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set_epi32(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int, __E: int, __F: int, __G: int, __H: int, __I: int, __J: int, __K: int, __L: int, __M: int, __N: int, __O: int, __P: int) -> None:
+    def mm512_set_epi32(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int, __E: int, __F: int, __G: int, __H: int, __I: int, __J: int, __K: int, __L: int, __M: int, __N: int, __O: int, __P: int) -> None:
         """
         Executes the _mm512_set_epi32 operation.
 
@@ -115,7 +113,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set_epi16(self, __result: Ptr, __q31: int, __q30: int, __q29: int, __q28: int, __q27: int, __q26: int, __q25: int, __q24: int, __q23: int, __q22: int, __q21: int, __q20: int, __q19: int, __q18: int, __q17: int, __q16: int, __q15: int, __q14: int, __q13: int, __q12: int, __q11: int, __q10: int, __q09: int, __q08: int, __q07: int, __q06: int, __q05: int, __q04: int, __q03: int, __q02: int, __q01: int, __q00: int) -> None:
+    def mm512_set_epi16(self, __result: Ptr, __q31: int, __q30: int, __q29: int, __q28: int, __q27: int, __q26: int, __q25: int, __q24: int, __q23: int, __q22: int, __q21: int, __q20: int, __q19: int, __q18: int, __q17: int, __q16: int, __q15: int, __q14: int, __q13: int, __q12: int, __q11: int, __q10: int, __q09: int, __q08: int, __q07: int, __q06: int, __q05: int, __q04: int, __q03: int, __q02: int, __q01: int, __q00: int) -> None:
         """
         Executes the _mm512_set_epi16 operation.
 
@@ -127,7 +125,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set_epi8(self, __result: Ptr, __q63: int, __q62: int, __q61: int, __q60: int, __q59: int, __q58: int, __q57: int, __q56: int, __q55: int, __q54: int, __q53: int, __q52: int, __q51: int, __q50: int, __q49: int, __q48: int, __q47: int, __q46: int, __q45: int, __q44: int, __q43: int, __q42: int, __q41: int, __q40: int, __q39: int, __q38: int, __q37: int, __q36: int, __q35: int, __q34: int, __q33: int, __q32: int, __q31: int, __q30: int, __q29: int, __q28: int, __q27: int, __q26: int, __q25: int, __q24: int, __q23: int, __q22: int, __q21: int, __q20: int, __q19: int, __q18: int, __q17: int, __q16: int, __q15: int, __q14: int, __q13: int, __q12: int, __q11: int, __q10: int, __q09: int, __q08: int, __q07: int, __q06: int, __q05: int, __q04: int, __q03: int, __q02: int, __q01: int, __q00: int) -> None:
+    def mm512_set_epi8(self, __result: Ptr, __q63: int, __q62: int, __q61: int, __q60: int, __q59: int, __q58: int, __q57: int, __q56: int, __q55: int, __q54: int, __q53: int, __q52: int, __q51: int, __q50: int, __q49: int, __q48: int, __q47: int, __q46: int, __q45: int, __q44: int, __q43: int, __q42: int, __q41: int, __q40: int, __q39: int, __q38: int, __q37: int, __q36: int, __q35: int, __q34: int, __q33: int, __q32: int, __q31: int, __q30: int, __q29: int, __q28: int, __q27: int, __q26: int, __q25: int, __q24: int, __q23: int, __q22: int, __q21: int, __q20: int, __q19: int, __q18: int, __q17: int, __q16: int, __q15: int, __q14: int, __q13: int, __q12: int, __q11: int, __q10: int, __q09: int, __q08: int, __q07: int, __q06: int, __q05: int, __q04: int, __q03: int, __q02: int, __q01: int, __q00: int) -> None:
         """
         Executes the _mm512_set_epi8 operation.
 
@@ -139,7 +137,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set_pd(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int, __E: int, __F: int, __G: int, __H: int) -> None:
+    def mm512_set_pd(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int, __E: int, __F: int, __G: int, __H: int) -> None:
         """
         Executes the _mm512_set_pd operation.
 
@@ -151,7 +149,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set_ps(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int, __E: int, __F: int, __G: int, __H: int, __I: int, __J: int, __K: int, __L: int, __M: int, __N: int, __O: int, __P: int) -> None:
+    def mm512_set_ps(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int, __E: int, __F: int, __G: int, __H: int, __I: int, __J: int, __K: int, __L: int, __M: int, __N: int, __O: int, __P: int) -> None:
         """
         Executes the _mm512_set_ps operation.
 
@@ -163,7 +161,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_undefined_ps(self, __result: Ptr) -> None:
+    def mm512_undefined_ps(self, __result: Ptr) -> None:
         """
         Executes the _mm512_undefined_ps operation.
 
@@ -175,7 +173,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_undefined_pd(self, __result: Ptr) -> None:
+    def mm512_undefined_pd(self, __result: Ptr) -> None:
         """
         Executes the _mm512_undefined_pd operation.
 
@@ -187,7 +185,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_undefined_epi32(self, __result: Ptr) -> None:
+    def mm512_undefined_epi32(self, __result: Ptr) -> None:
         """
         Executes the _mm512_undefined_epi32 operation.
 
@@ -199,7 +197,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set1_epi8(self, __result: Ptr, __A: int) -> None:
+    def mm512_set1_epi8(self, __result: Ptr, __A: int) -> None:
         """
         Executes the _mm512_set1_epi8 operation.
 
@@ -211,7 +209,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set1_epi16(self, __result: Ptr, __A: int) -> None:
+    def mm512_set1_epi16(self, __result: Ptr, __A: int) -> None:
         """
         Executes the _mm512_set1_epi16 operation.
 
@@ -223,7 +221,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set1_pd(self, __result: Ptr, __A: int) -> None:
+    def mm512_set1_pd(self, __result: Ptr, __A: int) -> None:
         """
         Executes the _mm512_set1_pd operation.
 
@@ -235,7 +233,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set1_ps(self, __result: Ptr, __A: int) -> None:
+    def mm512_set1_ps(self, __result: Ptr, __A: int) -> None:
         """
         Executes the _mm512_set1_ps operation.
 
@@ -247,7 +245,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set4_epi32(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int) -> RaisesNotImplementedError:
+    def mm512_set4_epi32(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int) -> RaisesNotImplementedError:
         """
         _mm512_set4_epi32 is not supported in PyFastUtil.
 
@@ -261,7 +259,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_set4_epi64(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int) -> None:
+    def mm512_set4_epi64(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int) -> None:
         """
         Executes the _mm512_set4_epi64 operation.
 
@@ -273,7 +271,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set4_pd(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int) -> None:
+    def mm512_set4_pd(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int) -> None:
         """
         Executes the _mm512_set4_pd operation.
 
@@ -285,7 +283,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set4_ps(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int) -> None:
+    def mm512_set4_ps(self, __result: Ptr, __A: int, __B: int, __C: int, __D: int) -> None:
         """
         Executes the _mm512_set4_ps operation.
 
@@ -297,7 +295,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_setzero_ps(self, __result: Ptr) -> None:
+    def mm512_setzero_ps(self, __result: Ptr) -> None:
         """
         Executes the _mm512_setzero_ps operation.
 
@@ -309,7 +307,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_setzero(self, __result: Ptr) -> None:
+    def mm512_setzero(self, __result: Ptr) -> None:
         """
         Executes the _mm512_setzero operation.
 
@@ -321,7 +319,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_setzero_pd(self, __result: Ptr) -> None:
+    def mm512_setzero_pd(self, __result: Ptr) -> None:
         """
         Executes the _mm512_setzero_pd operation.
 
@@ -333,7 +331,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_setzero_epi32(self, __result: Ptr) -> None:
+    def mm512_setzero_epi32(self, __result: Ptr) -> None:
         """
         Executes the _mm512_setzero_epi32 operation.
 
@@ -345,7 +343,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_setzero_si512(self, __result: Ptr) -> None:
+    def mm512_setzero_si512(self, __result: Ptr) -> None:
         """
         Executes the _mm512_setzero_si512 operation.
 
@@ -357,7 +355,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mov_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_mov_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_mov_pd operation.
 
@@ -369,7 +367,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_mov_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_mov_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_mov_pd operation.
 
@@ -381,7 +379,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mov_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_mov_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_mov_ps operation.
 
@@ -393,7 +391,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_mov_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_mov_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_mov_ps operation.
 
@@ -405,7 +403,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_load_pd(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_load_pd(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_load_pd operation.
 
@@ -417,7 +415,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_load_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_load_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_load_pd operation.
 
@@ -429,7 +427,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_load_pd(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_load_pd(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_load_pd operation.
 
@@ -441,7 +439,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_store_pd(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_store_pd(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_store_pd operation.
 
@@ -453,7 +451,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_store_pd(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_store_pd(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_store_pd operation.
 
@@ -465,7 +463,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_load_ps(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_load_ps(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_load_ps operation.
 
@@ -477,7 +475,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_load_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_load_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_load_ps operation.
 
@@ -489,7 +487,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_load_ps(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_load_ps(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_load_ps operation.
 
@@ -501,7 +499,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_store_ps(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_store_ps(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_store_ps operation.
 
@@ -513,7 +511,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_store_ps(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_store_ps(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_store_ps operation.
 
@@ -525,7 +523,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mov_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_mov_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_mov_epi64 operation.
 
@@ -537,7 +535,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_mov_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_mov_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_mov_epi64 operation.
 
@@ -549,7 +547,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_load_epi64(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_load_epi64(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_load_epi64 operation.
 
@@ -561,7 +559,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_load_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_load_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_load_epi64 operation.
 
@@ -573,7 +571,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_load_epi64(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_load_epi64(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_load_epi64 operation.
 
@@ -585,7 +583,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_store_epi64(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_store_epi64(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_store_epi64 operation.
 
@@ -597,7 +595,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_store_epi64(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_store_epi64(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_store_epi64 operation.
 
@@ -609,7 +607,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mov_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_mov_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_mov_epi32 operation.
 
@@ -621,7 +619,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_mov_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_mov_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_mov_epi32 operation.
 
@@ -633,7 +631,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_load_si512(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_load_si512(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_load_si512 operation.
 
@@ -645,7 +643,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_load_epi32(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_load_epi32(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_load_epi32 operation.
 
@@ -657,7 +655,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_load_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_load_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_load_epi32 operation.
 
@@ -669,7 +667,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_load_epi32(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_load_epi32(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_load_epi32 operation.
 
@@ -681,7 +679,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_store_si512(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_store_si512(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_store_si512 operation.
 
@@ -693,7 +691,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_store_epi32(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_store_epi32(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_store_epi32 operation.
 
@@ -705,7 +703,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_store_epi32(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_store_epi32(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_store_epi32 operation.
 
@@ -717,7 +715,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mullo_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mullo_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mullo_epi32 operation.
 
@@ -729,7 +727,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_mullo_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_mullo_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_mullo_epi32 operation.
 
@@ -741,7 +739,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mullo_epi32(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_mullo_epi32(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_mullo_epi32 operation.
 
@@ -753,7 +751,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mullox_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mullox_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mullox_epi64 operation.
 
@@ -765,7 +763,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mullox_epi64(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_mullox_epi64(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_mullox_epi64 operation.
 
@@ -777,7 +775,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sllv_epi32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_sllv_epi32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_sllv_epi32 operation.
 
@@ -789,7 +787,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sllv_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_sllv_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_sllv_epi32 operation.
 
@@ -801,7 +799,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sllv_epi32(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_sllv_epi32(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_sllv_epi32 operation.
 
@@ -813,7 +811,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_srav_epi32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_srav_epi32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_srav_epi32 operation.
 
@@ -825,7 +823,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_srav_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_srav_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_srav_epi32 operation.
 
@@ -837,7 +835,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_srav_epi32(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_srav_epi32(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_srav_epi32 operation.
 
@@ -849,7 +847,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_srlv_epi32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_srlv_epi32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_srlv_epi32 operation.
 
@@ -861,7 +859,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_srlv_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_srlv_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_srlv_epi32 operation.
 
@@ -873,7 +871,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_srlv_epi32(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_srlv_epi32(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_srlv_epi32 operation.
 
@@ -885,7 +883,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_add_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_add_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_add_epi64 operation.
 
@@ -897,7 +895,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_add_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_add_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_add_epi64 operation.
 
@@ -909,7 +907,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_add_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_add_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_add_epi64 operation.
 
@@ -921,7 +919,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sub_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_sub_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_sub_epi64 operation.
 
@@ -933,7 +931,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sub_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_sub_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_sub_epi64 operation.
 
@@ -945,7 +943,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sub_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_sub_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_sub_epi64 operation.
 
@@ -957,7 +955,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sllv_epi64(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_sllv_epi64(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_sllv_epi64 operation.
 
@@ -969,7 +967,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sllv_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_sllv_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_sllv_epi64 operation.
 
@@ -981,7 +979,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sllv_epi64(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_sllv_epi64(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_sllv_epi64 operation.
 
@@ -993,7 +991,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_srav_epi64(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_srav_epi64(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_srav_epi64 operation.
 
@@ -1005,7 +1003,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_srav_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_srav_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_srav_epi64 operation.
 
@@ -1017,7 +1015,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_srav_epi64(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_srav_epi64(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_srav_epi64 operation.
 
@@ -1029,7 +1027,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_srlv_epi64(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_srlv_epi64(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_srlv_epi64 operation.
 
@@ -1041,7 +1039,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_srlv_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_srlv_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_srlv_epi64 operation.
 
@@ -1053,7 +1051,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_srlv_epi64(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_srlv_epi64(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_srlv_epi64 operation.
 
@@ -1065,7 +1063,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_add_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_add_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_add_epi32 operation.
 
@@ -1077,7 +1075,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_add_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_add_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_add_epi32 operation.
 
@@ -1089,7 +1087,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_add_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_add_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_add_epi32 operation.
 
@@ -1101,7 +1099,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mul_epi32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mul_epi32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mul_epi32 operation.
 
@@ -1113,7 +1111,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mul_epi32(self, __result: Ptr, __W: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_mul_epi32(self, __result: Ptr, __W: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_mul_epi32 operation.
 
@@ -1125,7 +1123,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_mul_epi32(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_mul_epi32(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_mul_epi32 operation.
 
@@ -1137,7 +1135,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sub_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_sub_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_sub_epi32 operation.
 
@@ -1149,7 +1147,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sub_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_sub_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_sub_epi32 operation.
 
@@ -1161,7 +1159,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sub_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_sub_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_sub_epi32 operation.
 
@@ -1173,7 +1171,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mul_epu32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mul_epu32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mul_epu32 operation.
 
@@ -1185,7 +1183,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mul_epu32(self, __result: Ptr, __W: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_mul_epu32(self, __result: Ptr, __W: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_mul_epu32 operation.
 
@@ -1197,7 +1195,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_mul_epu32(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_mul_epu32(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_mul_epu32 operation.
 
@@ -1209,7 +1207,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_slli_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_slli_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_slli_epi64 operation.
 
@@ -1221,7 +1219,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_slli_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_mask_slli_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_mask_slli_epi64 operation.
 
@@ -1233,7 +1231,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_slli_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_maskz_slli_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_maskz_slli_epi64 operation.
 
@@ -1245,7 +1243,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sll_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_sll_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_sll_epi64 operation.
 
@@ -1257,7 +1255,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sll_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_sll_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_sll_epi64 operation.
 
@@ -1269,7 +1267,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sll_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_sll_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_sll_epi64 operation.
 
@@ -1281,7 +1279,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_srli_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_srli_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_srli_epi64 operation.
 
@@ -1293,7 +1291,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_srli_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_mask_srli_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_mask_srli_epi64 operation.
 
@@ -1305,7 +1303,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_srli_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_maskz_srli_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_maskz_srli_epi64 operation.
 
@@ -1317,7 +1315,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_srl_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_srl_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_srl_epi64 operation.
 
@@ -1329,7 +1327,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_srl_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_srl_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_srl_epi64 operation.
 
@@ -1341,7 +1339,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_srl_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_srl_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_srl_epi64 operation.
 
@@ -1353,7 +1351,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_srai_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_srai_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_srai_epi64 operation.
 
@@ -1365,7 +1363,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_srai_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_mask_srai_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_mask_srai_epi64 operation.
 
@@ -1377,7 +1375,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_srai_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_maskz_srai_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_maskz_srai_epi64 operation.
 
@@ -1389,7 +1387,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sra_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_sra_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_sra_epi64 operation.
 
@@ -1401,7 +1399,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sra_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_sra_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_sra_epi64 operation.
 
@@ -1413,7 +1411,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sra_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_sra_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_sra_epi64 operation.
 
@@ -1425,7 +1423,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_slli_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_slli_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_slli_epi32 operation.
 
@@ -1437,7 +1435,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_slli_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_mask_slli_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_mask_slli_epi32 operation.
 
@@ -1449,7 +1447,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_slli_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_maskz_slli_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_maskz_slli_epi32 operation.
 
@@ -1461,7 +1459,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sll_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_sll_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_sll_epi32 operation.
 
@@ -1473,7 +1471,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sll_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_sll_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_sll_epi32 operation.
 
@@ -1485,7 +1483,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sll_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_sll_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_sll_epi32 operation.
 
@@ -1497,7 +1495,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_srli_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_srli_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_srli_epi32 operation.
 
@@ -1509,7 +1507,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_srli_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_mask_srli_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_mask_srli_epi32 operation.
 
@@ -1521,7 +1519,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_srli_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_maskz_srli_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_maskz_srli_epi32 operation.
 
@@ -1533,7 +1531,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_srl_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_srl_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_srl_epi32 operation.
 
@@ -1545,7 +1543,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_srl_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_srl_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_srl_epi32 operation.
 
@@ -1557,7 +1555,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_srl_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_srl_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_srl_epi32 operation.
 
@@ -1569,7 +1567,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_srai_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_srai_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_srai_epi32 operation.
 
@@ -1581,7 +1579,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_srai_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_mask_srai_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_mask_srai_epi32 operation.
 
@@ -1593,7 +1591,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_srai_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_maskz_srai_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_maskz_srai_epi32 operation.
 
@@ -1605,7 +1603,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sra_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_sra_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_sra_epi32 operation.
 
@@ -1617,7 +1615,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sra_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_sra_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_sra_epi32 operation.
 
@@ -1629,7 +1627,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sra_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_sra_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_sra_epi32 operation.
 
@@ -1641,7 +1639,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_add_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_add_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_add_round_sd is not supported in PyFastUtil.
 
@@ -1655,7 +1653,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_add_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_add_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_add_round_sd is not supported in PyFastUtil.
 
@@ -1669,7 +1667,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_add_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_add_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_add_round_sd is not supported in PyFastUtil.
 
@@ -1683,7 +1681,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_add_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_add_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_add_round_ss is not supported in PyFastUtil.
 
@@ -1697,7 +1695,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_add_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_add_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_add_round_ss is not supported in PyFastUtil.
 
@@ -1711,7 +1709,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_add_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_add_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_add_round_ss is not supported in PyFastUtil.
 
@@ -1725,7 +1723,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_sub_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_sub_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_sub_round_sd is not supported in PyFastUtil.
 
@@ -1739,7 +1737,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_sub_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_sub_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_sub_round_sd is not supported in PyFastUtil.
 
@@ -1753,7 +1751,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_sub_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_sub_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_sub_round_sd is not supported in PyFastUtil.
 
@@ -1767,7 +1765,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_sub_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_sub_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_sub_round_ss is not supported in PyFastUtil.
 
@@ -1781,7 +1779,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_sub_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_sub_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_sub_round_ss is not supported in PyFastUtil.
 
@@ -1795,7 +1793,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_sub_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_sub_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_sub_round_ss is not supported in PyFastUtil.
 
@@ -1809,7 +1807,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_ternarylogic_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_ternarylogic_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_ternarylogic_epi64 is not supported in PyFastUtil.
 
@@ -1823,7 +1821,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_ternarylogic_epi64(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_ternarylogic_epi64(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_ternarylogic_epi64 is not supported in PyFastUtil.
 
@@ -1837,7 +1835,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_ternarylogic_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_ternarylogic_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_ternarylogic_epi64 is not supported in PyFastUtil.
 
@@ -1851,7 +1849,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_ternarylogic_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_ternarylogic_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_ternarylogic_epi32 is not supported in PyFastUtil.
 
@@ -1865,7 +1863,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_ternarylogic_epi32(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_ternarylogic_epi32(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_ternarylogic_epi32 is not supported in PyFastUtil.
 
@@ -1879,7 +1877,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_ternarylogic_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_ternarylogic_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_ternarylogic_epi32 is not supported in PyFastUtil.
 
@@ -1893,7 +1891,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_rcp14_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_rcp14_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_rcp14_pd operation.
 
@@ -1905,7 +1903,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_rcp14_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_rcp14_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_rcp14_pd operation.
 
@@ -1917,7 +1915,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_rcp14_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_rcp14_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_rcp14_pd operation.
 
@@ -1929,7 +1927,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_rcp14_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_rcp14_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_rcp14_ps operation.
 
@@ -1941,7 +1939,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_rcp14_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_rcp14_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_rcp14_ps operation.
 
@@ -1953,7 +1951,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_rcp14_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_rcp14_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_rcp14_ps operation.
 
@@ -1965,7 +1963,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_rcp14_sd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_rcp14_sd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_rcp14_sd operation.
 
@@ -1977,7 +1975,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_rcp14_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_rcp14_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_rcp14_sd operation.
 
@@ -1989,7 +1987,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_rcp14_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_rcp14_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_rcp14_sd operation.
 
@@ -2001,7 +1999,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_rcp14_ss(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_rcp14_ss(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_rcp14_ss operation.
 
@@ -2013,7 +2011,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_rcp14_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_rcp14_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_rcp14_ss operation.
 
@@ -2025,7 +2023,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_rcp14_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_rcp14_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_rcp14_ss operation.
 
@@ -2037,7 +2035,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_rsqrt14_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_rsqrt14_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_rsqrt14_pd operation.
 
@@ -2049,7 +2047,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_rsqrt14_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_rsqrt14_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_rsqrt14_pd operation.
 
@@ -2061,7 +2059,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_rsqrt14_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_rsqrt14_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_rsqrt14_pd operation.
 
@@ -2073,7 +2071,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_rsqrt14_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_rsqrt14_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_rsqrt14_ps operation.
 
@@ -2085,7 +2083,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_rsqrt14_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_rsqrt14_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_rsqrt14_ps operation.
 
@@ -2097,7 +2095,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_rsqrt14_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_rsqrt14_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_rsqrt14_ps operation.
 
@@ -2109,7 +2107,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_rsqrt14_sd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_rsqrt14_sd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_rsqrt14_sd operation.
 
@@ -2121,7 +2119,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_rsqrt14_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_rsqrt14_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_rsqrt14_sd operation.
 
@@ -2133,7 +2131,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_rsqrt14_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_rsqrt14_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_rsqrt14_sd operation.
 
@@ -2145,7 +2143,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_rsqrt14_ss(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_rsqrt14_ss(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_rsqrt14_ss operation.
 
@@ -2157,7 +2155,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_rsqrt14_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_rsqrt14_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_rsqrt14_ss operation.
 
@@ -2169,7 +2167,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_rsqrt14_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_rsqrt14_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_rsqrt14_ss operation.
 
@@ -2181,7 +2179,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sqrt_round_pd(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_sqrt_round_pd(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_sqrt_round_pd is not supported in PyFastUtil.
 
@@ -2195,7 +2193,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_sqrt_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_sqrt_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_sqrt_round_pd is not supported in PyFastUtil.
 
@@ -2209,7 +2207,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_sqrt_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_sqrt_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_sqrt_round_pd is not supported in PyFastUtil.
 
@@ -2223,7 +2221,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_sqrt_round_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_sqrt_round_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_sqrt_round_ps is not supported in PyFastUtil.
 
@@ -2237,7 +2235,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_sqrt_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_sqrt_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_sqrt_round_ps is not supported in PyFastUtil.
 
@@ -2251,7 +2249,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_sqrt_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_sqrt_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_sqrt_round_ps is not supported in PyFastUtil.
 
@@ -2265,7 +2263,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_sqrt_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_sqrt_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_sqrt_round_sd is not supported in PyFastUtil.
 
@@ -2279,7 +2277,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_sqrt_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_sqrt_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_sqrt_round_sd is not supported in PyFastUtil.
 
@@ -2293,7 +2291,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_sqrt_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_sqrt_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_sqrt_round_sd is not supported in PyFastUtil.
 
@@ -2307,7 +2305,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_sqrt_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_sqrt_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_sqrt_round_ss is not supported in PyFastUtil.
 
@@ -2321,7 +2319,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_sqrt_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_sqrt_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_sqrt_round_ss is not supported in PyFastUtil.
 
@@ -2335,7 +2333,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_sqrt_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_sqrt_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_sqrt_round_ss is not supported in PyFastUtil.
 
@@ -2349,7 +2347,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvtepi8_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi8_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi8_epi32 operation.
 
@@ -2361,7 +2359,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi8_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi8_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi8_epi32 operation.
 
@@ -2373,7 +2371,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi8_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi8_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi8_epi32 operation.
 
@@ -2385,7 +2383,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepi8_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi8_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi8_epi64 operation.
 
@@ -2397,7 +2395,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi8_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi8_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi8_epi64 operation.
 
@@ -2409,7 +2407,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi8_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi8_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi8_epi64 operation.
 
@@ -2421,7 +2419,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepi16_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi16_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi16_epi32 operation.
 
@@ -2433,7 +2431,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi16_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi16_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi16_epi32 operation.
 
@@ -2445,7 +2443,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi16_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi16_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi16_epi32 operation.
 
@@ -2457,7 +2455,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepi16_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi16_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi16_epi64 operation.
 
@@ -2469,7 +2467,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi16_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi16_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi16_epi64 operation.
 
@@ -2481,7 +2479,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi16_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi16_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi16_epi64 operation.
 
@@ -2493,7 +2491,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepi32_epi64(self, __result: Ptr, __X: Ptr) -> None:
+    def mm512_cvtepi32_epi64(self, __result: Ptr, __X: Ptr) -> None:
         """
         Executes the _mm512_cvtepi32_epi64 operation.
 
@@ -2505,7 +2503,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi32_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr) -> None:
+    def mm512_mask_cvtepi32_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi32_epi64 operation.
 
@@ -2517,7 +2515,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi32_epi64(self, __result: Ptr, __U: Ptr, __X: Ptr) -> None:
+    def mm512_maskz_cvtepi32_epi64(self, __result: Ptr, __U: Ptr, __X: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi32_epi64 operation.
 
@@ -2529,7 +2527,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepu8_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepu8_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepu8_epi32 operation.
 
@@ -2541,7 +2539,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepu8_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepu8_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepu8_epi32 operation.
 
@@ -2553,7 +2551,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepu8_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepu8_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepu8_epi32 operation.
 
@@ -2565,7 +2563,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepu8_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepu8_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepu8_epi64 operation.
 
@@ -2577,7 +2575,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepu8_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepu8_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepu8_epi64 operation.
 
@@ -2589,7 +2587,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepu8_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepu8_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepu8_epi64 operation.
 
@@ -2601,7 +2599,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepu16_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepu16_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepu16_epi32 operation.
 
@@ -2613,7 +2611,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepu16_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepu16_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepu16_epi32 operation.
 
@@ -2625,7 +2623,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepu16_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepu16_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepu16_epi32 operation.
 
@@ -2637,7 +2635,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepu16_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepu16_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepu16_epi64 operation.
 
@@ -2649,7 +2647,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepu16_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepu16_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepu16_epi64 operation.
 
@@ -2661,7 +2659,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepu16_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepu16_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepu16_epi64 operation.
 
@@ -2673,7 +2671,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepu32_epi64(self, __result: Ptr, __X: Ptr) -> None:
+    def mm512_cvtepu32_epi64(self, __result: Ptr, __X: Ptr) -> None:
         """
         Executes the _mm512_cvtepu32_epi64 operation.
 
@@ -2685,7 +2683,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepu32_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr) -> None:
+    def mm512_mask_cvtepu32_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepu32_epi64 operation.
 
@@ -2697,7 +2695,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepu32_epi64(self, __result: Ptr, __U: Ptr, __X: Ptr) -> None:
+    def mm512_maskz_cvtepu32_epi64(self, __result: Ptr, __U: Ptr, __X: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepu32_epi64 operation.
 
@@ -2709,7 +2707,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_add_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
+    def mm512_add_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
         Executes the _mm512_add_round_pd operation.
 
@@ -2721,7 +2719,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_add_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_add_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_add_round_pd is not supported in PyFastUtil.
 
@@ -2735,7 +2733,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_add_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_add_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_add_round_pd is not supported in PyFastUtil.
 
@@ -2749,7 +2747,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_add_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_add_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_add_round_ps is not supported in PyFastUtil.
 
@@ -2763,7 +2761,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_add_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_add_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_add_round_ps is not supported in PyFastUtil.
 
@@ -2777,7 +2775,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_add_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_add_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_add_round_ps is not supported in PyFastUtil.
 
@@ -2791,7 +2789,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_sub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_sub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_sub_round_pd is not supported in PyFastUtil.
 
@@ -2805,7 +2803,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_sub_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_sub_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_sub_round_pd is not supported in PyFastUtil.
 
@@ -2819,7 +2817,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_sub_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_sub_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_sub_round_pd is not supported in PyFastUtil.
 
@@ -2833,7 +2831,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_sub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
+    def mm512_sub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
         Executes the _mm512_sub_round_ps operation.
 
@@ -2845,7 +2843,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sub_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_sub_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_sub_round_ps is not supported in PyFastUtil.
 
@@ -2859,7 +2857,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_sub_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_sub_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_sub_round_ps is not supported in PyFastUtil.
 
@@ -2873,7 +2871,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mul_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mul_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mul_round_pd is not supported in PyFastUtil.
 
@@ -2887,7 +2885,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_mul_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_mul_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_mul_round_pd is not supported in PyFastUtil.
 
@@ -2901,7 +2899,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_mul_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_mul_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_mul_round_pd is not supported in PyFastUtil.
 
@@ -2915,7 +2913,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mul_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
+    def mm512_mul_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
         Executes the _mm512_mul_round_ps operation.
 
@@ -2927,7 +2925,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mul_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_mul_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_mul_round_ps is not supported in PyFastUtil.
 
@@ -2941,7 +2939,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_mul_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_mul_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_mul_round_ps is not supported in PyFastUtil.
 
@@ -2955,7 +2953,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_div_round_pd(self, __result: Ptr, __M: Ptr, __V: Ptr, __R: int) -> None:
+    def mm512_div_round_pd(self, __result: Ptr, __M: Ptr, __V: Ptr, __R: int) -> None:
         """
         Executes the _mm512_div_round_pd operation.
 
@@ -2967,7 +2965,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_div_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_div_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_div_round_pd is not supported in PyFastUtil.
 
@@ -2981,7 +2979,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_div_round_pd(self, __result: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_div_round_pd(self, __result: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_div_round_pd is not supported in PyFastUtil.
 
@@ -2995,7 +2993,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_div_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_div_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_div_round_ps is not supported in PyFastUtil.
 
@@ -3009,7 +3007,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_div_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_div_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_div_round_ps is not supported in PyFastUtil.
 
@@ -3023,7 +3021,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_div_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_div_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_div_round_ps is not supported in PyFastUtil.
 
@@ -3037,7 +3035,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mul_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mul_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mul_round_sd is not supported in PyFastUtil.
 
@@ -3051,7 +3049,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_mul_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_mul_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_mul_round_sd is not supported in PyFastUtil.
 
@@ -3065,7 +3063,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_mul_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_mul_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_mul_round_sd is not supported in PyFastUtil.
 
@@ -3079,7 +3077,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mul_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mul_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mul_round_ss is not supported in PyFastUtil.
 
@@ -3093,7 +3091,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_mul_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_mul_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_mul_round_ss is not supported in PyFastUtil.
 
@@ -3107,7 +3105,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_mul_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_mul_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_mul_round_ss is not supported in PyFastUtil.
 
@@ -3121,7 +3119,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_div_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_div_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_div_round_sd is not supported in PyFastUtil.
 
@@ -3135,7 +3133,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_div_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_div_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_div_round_sd is not supported in PyFastUtil.
 
@@ -3149,7 +3147,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_div_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_div_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_div_round_sd is not supported in PyFastUtil.
 
@@ -3163,7 +3161,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_div_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_div_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_div_round_ss is not supported in PyFastUtil.
 
@@ -3177,7 +3175,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_div_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_div_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_div_round_ss is not supported in PyFastUtil.
 
@@ -3191,7 +3189,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_div_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_div_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_div_round_ss is not supported in PyFastUtil.
 
@@ -3205,7 +3203,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_max_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_max_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_max_round_pd is not supported in PyFastUtil.
 
@@ -3219,7 +3217,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_max_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_max_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_max_round_pd is not supported in PyFastUtil.
 
@@ -3233,7 +3231,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_max_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_max_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_max_round_pd is not supported in PyFastUtil.
 
@@ -3247,7 +3245,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_max_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_max_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_max_round_ps is not supported in PyFastUtil.
 
@@ -3261,7 +3259,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_max_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_max_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_max_round_ps is not supported in PyFastUtil.
 
@@ -3275,7 +3273,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_max_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_max_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_max_round_ps is not supported in PyFastUtil.
 
@@ -3289,7 +3287,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_min_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_min_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_min_round_pd is not supported in PyFastUtil.
 
@@ -3303,7 +3301,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_min_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_min_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_min_round_pd is not supported in PyFastUtil.
 
@@ -3317,7 +3315,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_min_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_min_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_min_round_pd is not supported in PyFastUtil.
 
@@ -3331,7 +3329,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_min_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_min_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_min_round_ps is not supported in PyFastUtil.
 
@@ -3345,7 +3343,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_min_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_min_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_min_round_ps is not supported in PyFastUtil.
 
@@ -3359,7 +3357,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_min_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_min_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_min_round_ps is not supported in PyFastUtil.
 
@@ -3373,7 +3371,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_scalef_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_scalef_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_scalef_round_pd is not supported in PyFastUtil.
 
@@ -3387,7 +3385,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_scalef_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_scalef_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_scalef_round_pd is not supported in PyFastUtil.
 
@@ -3401,7 +3399,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_scalef_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_scalef_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_scalef_round_pd is not supported in PyFastUtil.
 
@@ -3415,7 +3413,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_scalef_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_scalef_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_scalef_round_ps is not supported in PyFastUtil.
 
@@ -3429,7 +3427,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_scalef_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_scalef_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_scalef_round_ps is not supported in PyFastUtil.
 
@@ -3443,7 +3441,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_scalef_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_scalef_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_scalef_round_ps is not supported in PyFastUtil.
 
@@ -3457,7 +3455,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_scalef_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_scalef_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_scalef_round_sd is not supported in PyFastUtil.
 
@@ -3471,7 +3469,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_scalef_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_scalef_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_scalef_round_sd is not supported in PyFastUtil.
 
@@ -3485,7 +3483,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_scalef_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_scalef_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_scalef_round_sd is not supported in PyFastUtil.
 
@@ -3499,7 +3497,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_scalef_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_scalef_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_scalef_round_ss is not supported in PyFastUtil.
 
@@ -3513,7 +3511,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_scalef_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_scalef_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_scalef_round_ss is not supported in PyFastUtil.
 
@@ -3527,7 +3525,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_scalef_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_scalef_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_scalef_round_ss is not supported in PyFastUtil.
 
@@ -3541,7 +3539,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fmadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fmadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fmadd_round_pd is not supported in PyFastUtil.
 
@@ -3555,7 +3553,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fmadd_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fmadd_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fmadd_round_pd is not supported in PyFastUtil.
 
@@ -3569,7 +3567,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fmadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fmadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fmadd_round_pd is not supported in PyFastUtil.
 
@@ -3583,7 +3581,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fmadd_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fmadd_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fmadd_round_pd is not supported in PyFastUtil.
 
@@ -3597,7 +3595,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fmadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fmadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fmadd_round_ps is not supported in PyFastUtil.
 
@@ -3611,7 +3609,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fmadd_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fmadd_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fmadd_round_ps is not supported in PyFastUtil.
 
@@ -3625,7 +3623,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fmadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fmadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fmadd_round_ps is not supported in PyFastUtil.
 
@@ -3639,7 +3637,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fmadd_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fmadd_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fmadd_round_ps is not supported in PyFastUtil.
 
@@ -3653,7 +3651,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fmsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fmsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fmsub_round_pd is not supported in PyFastUtil.
 
@@ -3667,7 +3665,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fmsub_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fmsub_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fmsub_round_pd is not supported in PyFastUtil.
 
@@ -3681,7 +3679,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fmsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fmsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fmsub_round_pd is not supported in PyFastUtil.
 
@@ -3695,7 +3693,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fmsub_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fmsub_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fmsub_round_pd is not supported in PyFastUtil.
 
@@ -3709,7 +3707,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fmsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fmsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fmsub_round_ps is not supported in PyFastUtil.
 
@@ -3723,7 +3721,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fmsub_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fmsub_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fmsub_round_ps is not supported in PyFastUtil.
 
@@ -3737,7 +3735,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fmsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fmsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fmsub_round_ps is not supported in PyFastUtil.
 
@@ -3751,7 +3749,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fmsub_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fmsub_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fmsub_round_ps is not supported in PyFastUtil.
 
@@ -3765,7 +3763,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fmaddsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fmaddsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fmaddsub_round_pd is not supported in PyFastUtil.
 
@@ -3779,7 +3777,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fmaddsub_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fmaddsub_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fmaddsub_round_pd is not supported in PyFastUtil.
 
@@ -3793,7 +3791,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fmaddsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fmaddsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fmaddsub_round_pd is not supported in PyFastUtil.
 
@@ -3807,7 +3805,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fmaddsub_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fmaddsub_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fmaddsub_round_pd is not supported in PyFastUtil.
 
@@ -3821,7 +3819,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fmaddsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fmaddsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fmaddsub_round_ps is not supported in PyFastUtil.
 
@@ -3835,7 +3833,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fmaddsub_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fmaddsub_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fmaddsub_round_ps is not supported in PyFastUtil.
 
@@ -3849,7 +3847,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fmaddsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fmaddsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fmaddsub_round_ps is not supported in PyFastUtil.
 
@@ -3863,7 +3861,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fmaddsub_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fmaddsub_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fmaddsub_round_ps is not supported in PyFastUtil.
 
@@ -3877,7 +3875,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fmsubadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fmsubadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fmsubadd_round_pd is not supported in PyFastUtil.
 
@@ -3891,7 +3889,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fmsubadd_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fmsubadd_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fmsubadd_round_pd is not supported in PyFastUtil.
 
@@ -3905,7 +3903,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fmsubadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fmsubadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fmsubadd_round_pd is not supported in PyFastUtil.
 
@@ -3919,7 +3917,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fmsubadd_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fmsubadd_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fmsubadd_round_pd is not supported in PyFastUtil.
 
@@ -3933,7 +3931,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fmsubadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fmsubadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fmsubadd_round_ps is not supported in PyFastUtil.
 
@@ -3947,7 +3945,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fmsubadd_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fmsubadd_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fmsubadd_round_ps is not supported in PyFastUtil.
 
@@ -3961,7 +3959,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fmsubadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fmsubadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fmsubadd_round_ps is not supported in PyFastUtil.
 
@@ -3975,7 +3973,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fmsubadd_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fmsubadd_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fmsubadd_round_ps is not supported in PyFastUtil.
 
@@ -3989,7 +3987,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fnmadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fnmadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fnmadd_round_pd is not supported in PyFastUtil.
 
@@ -4003,7 +4001,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fnmadd_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fnmadd_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fnmadd_round_pd is not supported in PyFastUtil.
 
@@ -4017,7 +4015,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fnmadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fnmadd_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fnmadd_round_pd is not supported in PyFastUtil.
 
@@ -4031,7 +4029,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fnmadd_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fnmadd_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fnmadd_round_pd is not supported in PyFastUtil.
 
@@ -4045,7 +4043,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fnmadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fnmadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fnmadd_round_ps is not supported in PyFastUtil.
 
@@ -4059,7 +4057,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fnmadd_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fnmadd_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fnmadd_round_ps is not supported in PyFastUtil.
 
@@ -4073,7 +4071,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fnmadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fnmadd_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fnmadd_round_ps is not supported in PyFastUtil.
 
@@ -4087,7 +4085,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fnmadd_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fnmadd_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fnmadd_round_ps is not supported in PyFastUtil.
 
@@ -4101,7 +4099,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fnmsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fnmsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fnmsub_round_pd is not supported in PyFastUtil.
 
@@ -4115,7 +4113,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fnmsub_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fnmsub_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fnmsub_round_pd is not supported in PyFastUtil.
 
@@ -4129,7 +4127,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fnmsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fnmsub_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fnmsub_round_pd is not supported in PyFastUtil.
 
@@ -4143,7 +4141,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fnmsub_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fnmsub_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fnmsub_round_pd is not supported in PyFastUtil.
 
@@ -4157,7 +4155,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fnmsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_fnmsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fnmsub_round_ps is not supported in PyFastUtil.
 
@@ -4171,7 +4169,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fnmsub_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fnmsub_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fnmsub_round_ps is not supported in PyFastUtil.
 
@@ -4185,7 +4183,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask3_fnmsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask3_fnmsub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask3_fnmsub_round_ps is not supported in PyFastUtil.
 
@@ -4199,7 +4197,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fnmsub_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fnmsub_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fnmsub_round_ps is not supported in PyFastUtil.
 
@@ -4213,7 +4211,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_abs_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_abs_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_abs_epi64 operation.
 
@@ -4225,7 +4223,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_abs_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_abs_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_abs_epi64 operation.
 
@@ -4237,7 +4235,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_abs_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_abs_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_abs_epi64 operation.
 
@@ -4249,7 +4247,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_abs_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_abs_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_abs_epi32 operation.
 
@@ -4261,7 +4259,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_abs_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_abs_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_abs_epi32 operation.
 
@@ -4273,7 +4271,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_abs_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_abs_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_abs_epi32 operation.
 
@@ -4285,7 +4283,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_broadcastss_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_broadcastss_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_broadcastss_ps operation.
 
@@ -4297,7 +4295,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_broadcastss_ps(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_broadcastss_ps(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_broadcastss_ps operation.
 
@@ -4309,7 +4307,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_broadcastss_ps(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_broadcastss_ps(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_broadcastss_ps operation.
 
@@ -4321,7 +4319,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_broadcastsd_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_broadcastsd_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_broadcastsd_pd operation.
 
@@ -4333,7 +4331,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_broadcastsd_pd(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_broadcastsd_pd(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_broadcastsd_pd operation.
 
@@ -4345,7 +4343,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_broadcastsd_pd(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_broadcastsd_pd(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_broadcastsd_pd operation.
 
@@ -4357,7 +4355,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_broadcastd_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_broadcastd_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_broadcastd_epi32 operation.
 
@@ -4369,7 +4367,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_broadcastd_epi32(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_broadcastd_epi32(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_broadcastd_epi32 operation.
 
@@ -4381,7 +4379,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_broadcastd_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_broadcastd_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_broadcastd_epi32 operation.
 
@@ -4393,7 +4391,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set1_epi32(self, __result: Ptr, __A: int) -> RaisesNotImplementedError:
+    def mm512_set1_epi32(self, __result: Ptr, __A: int) -> RaisesNotImplementedError:
         """
         _mm512_set1_epi32 is not supported in PyFastUtil.
 
@@ -4407,7 +4405,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_set1_epi32(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: int) -> RaisesNotImplementedError:
+    def mm512_mask_set1_epi32(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_set1_epi32 is not supported in PyFastUtil.
 
@@ -4421,7 +4419,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_set1_epi32(self, __result: Ptr, __M: Ptr, __A: int) -> RaisesNotImplementedError:
+    def mm512_maskz_set1_epi32(self, __result: Ptr, __M: Ptr, __A: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_set1_epi32 is not supported in PyFastUtil.
 
@@ -4435,7 +4433,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_broadcastq_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_broadcastq_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_broadcastq_epi64 operation.
 
@@ -4447,7 +4445,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_broadcastq_epi64(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_broadcastq_epi64(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_broadcastq_epi64 operation.
 
@@ -4459,7 +4457,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_broadcastq_epi64(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_broadcastq_epi64(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_broadcastq_epi64 operation.
 
@@ -4471,7 +4469,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_set1_epi64(self, __result: Ptr, __A: int) -> None:
+    def mm512_set1_epi64(self, __result: Ptr, __A: int) -> None:
         """
         Executes the _mm512_set1_epi64 operation.
 
@@ -4483,7 +4481,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_set1_epi64(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: int) -> None:
+    def mm512_mask_set1_epi64(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: int) -> None:
         """
         Executes the _mm512_mask_set1_epi64 operation.
 
@@ -4495,7 +4493,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_set1_epi64(self, __result: Ptr, __M: Ptr, __A: int) -> None:
+    def mm512_maskz_set1_epi64(self, __result: Ptr, __M: Ptr, __A: int) -> None:
         """
         Executes the _mm512_maskz_set1_epi64 operation.
 
@@ -4507,7 +4505,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_broadcast_f32x4(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_broadcast_f32x4(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_broadcast_f32x4 operation.
 
@@ -4519,7 +4517,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_broadcast_f32x4(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_broadcast_f32x4(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_broadcast_f32x4 operation.
 
@@ -4531,7 +4529,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_broadcast_f32x4(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_broadcast_f32x4(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_broadcast_f32x4 operation.
 
@@ -4543,7 +4541,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_broadcast_i32x4(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_broadcast_i32x4(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_broadcast_i32x4 operation.
 
@@ -4555,7 +4553,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_broadcast_i32x4(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_broadcast_i32x4(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_broadcast_i32x4 operation.
 
@@ -4567,7 +4565,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_broadcast_i32x4(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_broadcast_i32x4(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_broadcast_i32x4 operation.
 
@@ -4579,7 +4577,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_broadcast_f64x4(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_broadcast_f64x4(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_broadcast_f64x4 operation.
 
@@ -4591,7 +4589,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_broadcast_f64x4(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_broadcast_f64x4(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_broadcast_f64x4 operation.
 
@@ -4603,7 +4601,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_broadcast_f64x4(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_broadcast_f64x4(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_broadcast_f64x4 operation.
 
@@ -4615,7 +4613,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_broadcast_i64x4(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_broadcast_i64x4(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_broadcast_i64x4 operation.
 
@@ -4627,7 +4625,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_broadcast_i64x4(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_broadcast_i64x4(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_broadcast_i64x4 operation.
 
@@ -4639,7 +4637,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_broadcast_i64x4(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_broadcast_i64x4(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_broadcast_i64x4 operation.
 
@@ -4651,7 +4649,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_shuffle_epi32(self, __result: Ptr, __A: Ptr, __mask: MM_PERM_ENUM) -> None:
+    def mm512_shuffle_epi32(self, __result: Ptr, __A: Ptr, __mask: MM_PERM_ENUM) -> None:
         """
         Executes the _mm512_shuffle_epi32 operation.
 
@@ -4663,7 +4661,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_shuffle_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __mask: MM_PERM_ENUM) -> None:
+    def mm512_mask_shuffle_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __mask: MM_PERM_ENUM) -> None:
         """
         Executes the _mm512_mask_shuffle_epi32 operation.
 
@@ -4675,7 +4673,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_shuffle_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __mask: MM_PERM_ENUM) -> None:
+    def mm512_maskz_shuffle_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __mask: MM_PERM_ENUM) -> None:
         """
         Executes the _mm512_maskz_shuffle_epi32 operation.
 
@@ -4687,7 +4685,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_shuffle_i64x2(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_shuffle_i64x2(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_shuffle_i64x2 is not supported in PyFastUtil.
 
@@ -4701,7 +4699,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_shuffle_i64x2(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_shuffle_i64x2(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_shuffle_i64x2 is not supported in PyFastUtil.
 
@@ -4715,7 +4713,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_shuffle_i64x2(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_shuffle_i64x2(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_shuffle_i64x2 is not supported in PyFastUtil.
 
@@ -4729,7 +4727,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_shuffle_i32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_shuffle_i32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_shuffle_i32x4 is not supported in PyFastUtil.
 
@@ -4743,7 +4741,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_shuffle_i32x4(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_shuffle_i32x4(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_shuffle_i32x4 is not supported in PyFastUtil.
 
@@ -4757,7 +4755,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_shuffle_i32x4(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_shuffle_i32x4(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_shuffle_i32x4 is not supported in PyFastUtil.
 
@@ -4771,7 +4769,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_shuffle_f64x2(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_shuffle_f64x2(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_shuffle_f64x2 is not supported in PyFastUtil.
 
@@ -4785,7 +4783,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_shuffle_f64x2(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_shuffle_f64x2(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_shuffle_f64x2 is not supported in PyFastUtil.
 
@@ -4799,7 +4797,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_shuffle_f64x2(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_shuffle_f64x2(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_shuffle_f64x2 is not supported in PyFastUtil.
 
@@ -4813,7 +4811,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_shuffle_f32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_shuffle_f32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_shuffle_f32x4 is not supported in PyFastUtil.
 
@@ -4827,7 +4825,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_shuffle_f32x4(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_shuffle_f32x4(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_shuffle_f32x4 is not supported in PyFastUtil.
 
@@ -4841,7 +4839,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_shuffle_f32x4(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_shuffle_f32x4(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_shuffle_f32x4 is not supported in PyFastUtil.
 
@@ -4855,7 +4853,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_rolv_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_rolv_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_rolv_epi32 operation.
 
@@ -4867,7 +4865,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_rolv_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_rolv_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_rolv_epi32 operation.
 
@@ -4879,7 +4877,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_rolv_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_rolv_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_rolv_epi32 operation.
 
@@ -4891,7 +4889,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_rorv_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_rorv_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_rorv_epi32 operation.
 
@@ -4903,7 +4901,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_rorv_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_rorv_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_rorv_epi32 operation.
 
@@ -4915,7 +4913,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_rorv_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_rorv_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_rorv_epi32 operation.
 
@@ -4927,7 +4925,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_rolv_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_rolv_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_rolv_epi64 operation.
 
@@ -4939,7 +4937,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_rolv_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_rolv_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_rolv_epi64 operation.
 
@@ -4951,7 +4949,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_rolv_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_rolv_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_rolv_epi64 operation.
 
@@ -4963,7 +4961,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_rorv_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_rorv_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_rorv_epi64 operation.
 
@@ -4975,7 +4973,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_rorv_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_rorv_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_rorv_epi64 operation.
 
@@ -4987,7 +4985,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_rorv_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_rorv_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_rorv_epi64 operation.
 
@@ -4999,7 +4997,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtt_roundpd_epi32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvtt_roundpd_epi32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvtt_roundpd_epi32 is not supported in PyFastUtil.
 
@@ -5013,7 +5011,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvtt_roundpd_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvtt_roundpd_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvtt_roundpd_epi32 is not supported in PyFastUtil.
 
@@ -5027,7 +5025,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvtt_roundpd_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvtt_roundpd_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvtt_roundpd_epi32 is not supported in PyFastUtil.
 
@@ -5041,7 +5039,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvtt_roundpd_epu32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvtt_roundpd_epu32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvtt_roundpd_epu32 is not supported in PyFastUtil.
 
@@ -5055,7 +5053,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvtt_roundpd_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvtt_roundpd_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvtt_roundpd_epu32 is not supported in PyFastUtil.
 
@@ -5069,7 +5067,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvtt_roundpd_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvtt_roundpd_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvtt_roundpd_epu32 is not supported in PyFastUtil.
 
@@ -5083,7 +5081,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvt_roundpd_epi32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvt_roundpd_epi32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvt_roundpd_epi32 is not supported in PyFastUtil.
 
@@ -5097,7 +5095,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvt_roundpd_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvt_roundpd_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvt_roundpd_epi32 is not supported in PyFastUtil.
 
@@ -5111,7 +5109,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvt_roundpd_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvt_roundpd_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvt_roundpd_epi32 is not supported in PyFastUtil.
 
@@ -5125,7 +5123,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvt_roundpd_epu32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvt_roundpd_epu32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvt_roundpd_epu32 is not supported in PyFastUtil.
 
@@ -5139,7 +5137,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvt_roundpd_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvt_roundpd_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvt_roundpd_epu32 is not supported in PyFastUtil.
 
@@ -5153,7 +5151,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvt_roundpd_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvt_roundpd_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvt_roundpd_epu32 is not supported in PyFastUtil.
 
@@ -5167,7 +5165,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvtt_roundps_epi32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvtt_roundps_epi32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvtt_roundps_epi32 is not supported in PyFastUtil.
 
@@ -5181,7 +5179,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvtt_roundps_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvtt_roundps_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvtt_roundps_epi32 is not supported in PyFastUtil.
 
@@ -5195,7 +5193,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvtt_roundps_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvtt_roundps_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvtt_roundps_epi32 is not supported in PyFastUtil.
 
@@ -5209,7 +5207,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvtt_roundps_epu32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvtt_roundps_epu32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvtt_roundps_epu32 is not supported in PyFastUtil.
 
@@ -5223,7 +5221,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvtt_roundps_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvtt_roundps_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvtt_roundps_epu32 is not supported in PyFastUtil.
 
@@ -5237,7 +5235,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvtt_roundps_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvtt_roundps_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvtt_roundps_epu32 is not supported in PyFastUtil.
 
@@ -5251,7 +5249,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvt_roundps_epi32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvt_roundps_epi32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvt_roundps_epi32 is not supported in PyFastUtil.
 
@@ -5265,7 +5263,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvt_roundps_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvt_roundps_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvt_roundps_epi32 is not supported in PyFastUtil.
 
@@ -5279,7 +5277,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvt_roundps_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvt_roundps_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvt_roundps_epi32 is not supported in PyFastUtil.
 
@@ -5293,7 +5291,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvt_roundps_epu32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvt_roundps_epu32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvt_roundps_epu32 is not supported in PyFastUtil.
 
@@ -5307,7 +5305,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvt_roundps_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvt_roundps_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvt_roundps_epu32 is not supported in PyFastUtil.
 
@@ -5321,7 +5319,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvt_roundps_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvt_roundps_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvt_roundps_epu32 is not supported in PyFastUtil.
 
@@ -5335,7 +5333,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtu32_sd(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm_cvtu32_sd(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm_cvtu32_sd operation.
 
@@ -5347,7 +5345,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvt_roundu64_sd(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundu64_sd(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundu64_sd is not supported in PyFastUtil.
 
@@ -5361,7 +5359,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundi64_sd(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundi64_sd(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundi64_sd is not supported in PyFastUtil.
 
@@ -5375,7 +5373,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundsi64_sd(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundsi64_sd(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundsi64_sd is not supported in PyFastUtil.
 
@@ -5389,7 +5387,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundu32_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundu32_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundu32_ss is not supported in PyFastUtil.
 
@@ -5403,7 +5401,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundsi32_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundsi32_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundsi32_ss is not supported in PyFastUtil.
 
@@ -5417,7 +5415,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundi32_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundi32_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundi32_ss is not supported in PyFastUtil.
 
@@ -5431,7 +5429,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundu64_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundu64_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundu64_ss is not supported in PyFastUtil.
 
@@ -5445,7 +5443,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundsi64_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundsi64_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundsi64_ss is not supported in PyFastUtil.
 
@@ -5459,7 +5457,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundi64_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundi64_ss(self, __result: Ptr, __A: Ptr, __B: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundi64_ss is not supported in PyFastUtil.
 
@@ -5473,7 +5471,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvtepi32_epi8(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi32_epi8(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi32_epi8 operation.
 
@@ -5485,7 +5483,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi32_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi32_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi32_storeu_epi8 operation.
 
@@ -5497,7 +5495,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi32_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi32_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi32_epi8 operation.
 
@@ -5509,7 +5507,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi32_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi32_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi32_epi8 operation.
 
@@ -5521,7 +5519,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtsepi32_epi8(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtsepi32_epi8(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtsepi32_epi8 operation.
 
@@ -5533,7 +5531,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtsepi32_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtsepi32_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtsepi32_storeu_epi8 operation.
 
@@ -5545,7 +5543,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtsepi32_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtsepi32_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtsepi32_epi8 operation.
 
@@ -5557,7 +5555,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtsepi32_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtsepi32_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtsepi32_epi8 operation.
 
@@ -5569,7 +5567,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtusepi32_epi8(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtusepi32_epi8(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtusepi32_epi8 operation.
 
@@ -5581,7 +5579,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtusepi32_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtusepi32_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtusepi32_storeu_epi8 operation.
 
@@ -5593,7 +5591,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtusepi32_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtusepi32_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtusepi32_epi8 operation.
 
@@ -5605,7 +5603,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtusepi32_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtusepi32_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtusepi32_epi8 operation.
 
@@ -5617,7 +5615,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepi32_epi16(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi32_epi16(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi32_epi16 operation.
 
@@ -5629,7 +5627,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi32_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi32_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi32_storeu_epi16 operation.
 
@@ -5641,7 +5639,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi32_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi32_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi32_epi16 operation.
 
@@ -5653,7 +5651,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi32_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi32_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi32_epi16 operation.
 
@@ -5665,7 +5663,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtsepi32_epi16(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtsepi32_epi16(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtsepi32_epi16 operation.
 
@@ -5677,7 +5675,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtsepi32_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtsepi32_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtsepi32_storeu_epi16 operation.
 
@@ -5689,7 +5687,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtsepi32_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtsepi32_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtsepi32_epi16 operation.
 
@@ -5701,7 +5699,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtsepi32_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtsepi32_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtsepi32_epi16 operation.
 
@@ -5713,7 +5711,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtusepi32_epi16(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtusepi32_epi16(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtusepi32_epi16 operation.
 
@@ -5725,7 +5723,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtusepi32_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtusepi32_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtusepi32_storeu_epi16 operation.
 
@@ -5737,7 +5735,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtusepi32_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtusepi32_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtusepi32_epi16 operation.
 
@@ -5749,7 +5747,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtusepi32_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtusepi32_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtusepi32_epi16 operation.
 
@@ -5761,7 +5759,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepi64_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi64_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi64_epi32 operation.
 
@@ -5773,7 +5771,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi64_storeu_epi32(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi64_storeu_epi32(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi64_storeu_epi32 operation.
 
@@ -5785,7 +5783,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi64_epi32(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi64_epi32(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi64_epi32 operation.
 
@@ -5797,7 +5795,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi64_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi64_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi64_epi32 operation.
 
@@ -5809,7 +5807,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtsepi64_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtsepi64_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtsepi64_epi32 operation.
 
@@ -5821,7 +5819,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtsepi64_storeu_epi32(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtsepi64_storeu_epi32(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtsepi64_storeu_epi32 operation.
 
@@ -5833,7 +5831,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtsepi64_epi32(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtsepi64_epi32(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtsepi64_epi32 operation.
 
@@ -5845,7 +5843,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtsepi64_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtsepi64_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtsepi64_epi32 operation.
 
@@ -5857,7 +5855,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtusepi64_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtusepi64_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtusepi64_epi32 operation.
 
@@ -5869,7 +5867,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtusepi64_storeu_epi32(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtusepi64_storeu_epi32(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtusepi64_storeu_epi32 operation.
 
@@ -5881,7 +5879,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtusepi64_epi32(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtusepi64_epi32(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtusepi64_epi32 operation.
 
@@ -5893,7 +5891,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtusepi64_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtusepi64_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtusepi64_epi32 operation.
 
@@ -5905,7 +5903,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepi64_epi16(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi64_epi16(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi64_epi16 operation.
 
@@ -5917,7 +5915,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi64_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi64_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi64_storeu_epi16 operation.
 
@@ -5929,7 +5927,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi64_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi64_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi64_epi16 operation.
 
@@ -5941,7 +5939,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi64_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi64_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi64_epi16 operation.
 
@@ -5953,7 +5951,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtsepi64_epi16(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtsepi64_epi16(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtsepi64_epi16 operation.
 
@@ -5965,7 +5963,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtsepi64_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtsepi64_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtsepi64_storeu_epi16 operation.
 
@@ -5977,7 +5975,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtsepi64_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtsepi64_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtsepi64_epi16 operation.
 
@@ -5989,7 +5987,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtsepi64_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtsepi64_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtsepi64_epi16 operation.
 
@@ -6001,7 +5999,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtusepi64_epi16(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtusepi64_epi16(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtusepi64_epi16 operation.
 
@@ -6013,7 +6011,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtusepi64_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtusepi64_storeu_epi16(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtusepi64_storeu_epi16 operation.
 
@@ -6025,7 +6023,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtusepi64_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtusepi64_epi16(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtusepi64_epi16 operation.
 
@@ -6037,7 +6035,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtusepi64_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtusepi64_epi16(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtusepi64_epi16 operation.
 
@@ -6049,7 +6047,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepi64_epi8(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi64_epi8(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi64_epi8 operation.
 
@@ -6061,7 +6059,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi64_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi64_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi64_storeu_epi8 operation.
 
@@ -6073,7 +6071,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi64_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi64_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi64_epi8 operation.
 
@@ -6085,7 +6083,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi64_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi64_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi64_epi8 operation.
 
@@ -6097,7 +6095,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtsepi64_epi8(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtsepi64_epi8(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtsepi64_epi8 operation.
 
@@ -6109,7 +6107,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtsepi64_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtsepi64_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtsepi64_storeu_epi8 operation.
 
@@ -6121,7 +6119,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtsepi64_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtsepi64_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtsepi64_epi8 operation.
 
@@ -6133,7 +6131,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtsepi64_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtsepi64_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtsepi64_epi8 operation.
 
@@ -6145,7 +6143,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtusepi64_epi8(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtusepi64_epi8(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtusepi64_epi8 operation.
 
@@ -6157,7 +6155,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtusepi64_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtusepi64_storeu_epi8(self, __P: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtusepi64_storeu_epi8 operation.
 
@@ -6169,7 +6167,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtusepi64_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtusepi64_epi8(self, __result: Ptr, __O: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtusepi64_epi8 operation.
 
@@ -6181,7 +6179,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtusepi64_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtusepi64_epi8(self, __result: Ptr, __M: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtusepi64_epi8 operation.
 
@@ -6193,7 +6191,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepi32_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi32_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi32_pd operation.
 
@@ -6205,7 +6203,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi32_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi32_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi32_pd operation.
 
@@ -6217,7 +6215,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi32_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi32_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi32_pd operation.
 
@@ -6229,7 +6227,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepu32_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepu32_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepu32_pd operation.
 
@@ -6241,7 +6239,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepu32_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepu32_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepu32_pd operation.
 
@@ -6253,7 +6251,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepu32_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepu32_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepu32_pd operation.
 
@@ -6265,7 +6263,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvt_roundepi32_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvt_roundepi32_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvt_roundepi32_ps is not supported in PyFastUtil.
 
@@ -6279,7 +6277,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvt_roundepi32_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvt_roundepi32_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvt_roundepi32_ps is not supported in PyFastUtil.
 
@@ -6293,7 +6291,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvt_roundepi32_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvt_roundepi32_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvt_roundepi32_ps is not supported in PyFastUtil.
 
@@ -6307,7 +6305,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvt_roundepu32_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvt_roundepu32_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvt_roundepu32_ps is not supported in PyFastUtil.
 
@@ -6321,7 +6319,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvt_roundepu32_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvt_roundepu32_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvt_roundepu32_ps is not supported in PyFastUtil.
 
@@ -6335,7 +6333,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvt_roundepu32_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvt_roundepu32_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvt_roundepu32_ps is not supported in PyFastUtil.
 
@@ -6349,7 +6347,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_extractf64x4_pd(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_extractf64x4_pd(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_extractf64x4_pd is not supported in PyFastUtil.
 
@@ -6363,7 +6361,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_extractf64x4_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_extractf64x4_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_extractf64x4_pd is not supported in PyFastUtil.
 
@@ -6377,7 +6375,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_extractf64x4_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_extractf64x4_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_extractf64x4_pd is not supported in PyFastUtil.
 
@@ -6391,7 +6389,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_extractf32x4_ps(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_extractf32x4_ps(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_extractf32x4_ps is not supported in PyFastUtil.
 
@@ -6405,7 +6403,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_extractf32x4_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_extractf32x4_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_extractf32x4_ps is not supported in PyFastUtil.
 
@@ -6419,7 +6417,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_extractf32x4_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_extractf32x4_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_extractf32x4_ps is not supported in PyFastUtil.
 
@@ -6433,7 +6431,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_extracti64x4_epi64(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_extracti64x4_epi64(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_extracti64x4_epi64 is not supported in PyFastUtil.
 
@@ -6447,7 +6445,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_extracti64x4_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_extracti64x4_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_extracti64x4_epi64 is not supported in PyFastUtil.
 
@@ -6461,7 +6459,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_extracti64x4_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_extracti64x4_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_extracti64x4_epi64 is not supported in PyFastUtil.
 
@@ -6475,7 +6473,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_extracti32x4_epi32(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_extracti32x4_epi32(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_extracti32x4_epi32 is not supported in PyFastUtil.
 
@@ -6489,7 +6487,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_extracti32x4_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_extracti32x4_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_extracti32x4_epi32 is not supported in PyFastUtil.
 
@@ -6503,7 +6501,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_extracti32x4_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_extracti32x4_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_extracti32x4_epi32 is not supported in PyFastUtil.
 
@@ -6517,7 +6515,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_inserti32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_inserti32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_inserti32x4 is not supported in PyFastUtil.
 
@@ -6531,7 +6529,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_insertf32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_insertf32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_insertf32x4 is not supported in PyFastUtil.
 
@@ -6545,7 +6543,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_inserti64x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_inserti64x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_inserti64x4 is not supported in PyFastUtil.
 
@@ -6559,7 +6557,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_inserti64x4(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_inserti64x4(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_inserti64x4 is not supported in PyFastUtil.
 
@@ -6573,7 +6571,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_inserti64x4(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_inserti64x4(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_inserti64x4 is not supported in PyFastUtil.
 
@@ -6587,7 +6585,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_insertf64x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_insertf64x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_insertf64x4 is not supported in PyFastUtil.
 
@@ -6601,7 +6599,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_insertf64x4(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_insertf64x4(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_insertf64x4 is not supported in PyFastUtil.
 
@@ -6615,7 +6613,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_insertf64x4(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_insertf64x4(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_insertf64x4 is not supported in PyFastUtil.
 
@@ -6629,7 +6627,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_loadu_pd(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_loadu_pd(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_loadu_pd operation.
 
@@ -6641,7 +6639,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_loadu_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_loadu_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_loadu_pd operation.
 
@@ -6653,7 +6651,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_loadu_pd(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_loadu_pd(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_loadu_pd operation.
 
@@ -6665,7 +6663,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_storeu_pd(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_storeu_pd(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_storeu_pd operation.
 
@@ -6677,7 +6675,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_storeu_pd(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_storeu_pd(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_storeu_pd operation.
 
@@ -6689,7 +6687,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_loadu_ps(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_loadu_ps(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_loadu_ps operation.
 
@@ -6701,7 +6699,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_loadu_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_loadu_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_loadu_ps operation.
 
@@ -6713,7 +6711,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_loadu_ps(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_loadu_ps(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_loadu_ps operation.
 
@@ -6725,7 +6723,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_storeu_ps(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_storeu_ps(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_storeu_ps operation.
 
@@ -6737,7 +6735,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_storeu_ps(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_storeu_ps(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_storeu_ps operation.
 
@@ -6749,7 +6747,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_load_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm_mask_load_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm_mask_load_ss operation.
 
@@ -6761,7 +6759,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_load_ss(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm_maskz_load_ss(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm_maskz_load_ss operation.
 
@@ -6773,7 +6771,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_load_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm_mask_load_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm_mask_load_sd operation.
 
@@ -6785,7 +6783,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_load_sd(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm_maskz_load_sd(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm_maskz_load_sd operation.
 
@@ -6797,7 +6795,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_move_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_move_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_move_ss operation.
 
@@ -6809,7 +6807,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_move_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_move_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_move_ss operation.
 
@@ -6821,7 +6819,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_move_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_move_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_move_sd operation.
 
@@ -6833,7 +6831,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_move_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_move_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_move_sd operation.
 
@@ -6845,7 +6843,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_store_ss(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm_mask_store_ss(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_mask_store_ss operation.
 
@@ -6857,7 +6855,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_store_sd(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm_mask_store_sd(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_mask_store_sd operation.
 
@@ -6869,7 +6867,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_loadu_epi64(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_loadu_epi64(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_loadu_epi64 operation.
 
@@ -6881,7 +6879,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_loadu_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_loadu_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_loadu_epi64 operation.
 
@@ -6893,7 +6891,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_loadu_epi64(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_loadu_epi64(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_loadu_epi64 operation.
 
@@ -6905,7 +6903,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_storeu_epi64(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_storeu_epi64(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_storeu_epi64 operation.
 
@@ -6917,7 +6915,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_storeu_epi64(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_storeu_epi64(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_storeu_epi64 operation.
 
@@ -6929,7 +6927,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_loadu_si512(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_loadu_si512(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_loadu_si512 operation.
 
@@ -6941,7 +6939,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_loadu_epi32(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_loadu_epi32(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_loadu_epi32 operation.
 
@@ -6953,7 +6951,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_loadu_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_loadu_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_loadu_epi32 operation.
 
@@ -6965,7 +6963,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_loadu_epi32(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_loadu_epi32(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_loadu_epi32 operation.
 
@@ -6977,7 +6975,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_storeu_si512(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_storeu_si512(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_storeu_si512 operation.
 
@@ -6989,7 +6987,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_storeu_epi32(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_storeu_epi32(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_storeu_epi32 operation.
 
@@ -7001,7 +6999,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_storeu_epi32(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_storeu_epi32(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_storeu_epi32 operation.
 
@@ -7013,7 +7011,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permutevar_pd(self, __result: Ptr, __A: Ptr, __C: Ptr) -> None:
+    def mm512_permutevar_pd(self, __result: Ptr, __A: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_permutevar_pd operation.
 
@@ -7025,7 +7023,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_permutevar_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __C: Ptr) -> None:
+    def mm512_mask_permutevar_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_permutevar_pd operation.
 
@@ -7037,7 +7035,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_permutevar_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_permutevar_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_permutevar_pd operation.
 
@@ -7049,7 +7047,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permutevar_ps(self, __result: Ptr, __A: Ptr, __C: Ptr) -> None:
+    def mm512_permutevar_ps(self, __result: Ptr, __A: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_permutevar_ps operation.
 
@@ -7061,7 +7059,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_permutevar_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __C: Ptr) -> None:
+    def mm512_mask_permutevar_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_permutevar_ps operation.
 
@@ -7073,7 +7071,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_permutevar_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_permutevar_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_permutevar_ps operation.
 
@@ -7085,7 +7083,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permutex2var_epi64(self, __result: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_permutex2var_epi64(self, __result: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_permutex2var_epi64 operation.
 
@@ -7097,7 +7095,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_permutex2var_epi64(self, __result: Ptr, __A: Ptr, __U: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_mask_permutex2var_epi64(self, __result: Ptr, __A: Ptr, __U: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_permutex2var_epi64 operation.
 
@@ -7109,7 +7107,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask2_permutex2var_epi64(self, __result: Ptr, __A: Ptr, __I: Ptr, __U: Ptr, __B: Ptr) -> None:
+    def mm512_mask2_permutex2var_epi64(self, __result: Ptr, __A: Ptr, __I: Ptr, __U: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask2_permutex2var_epi64 operation.
 
@@ -7121,7 +7119,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_permutex2var_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_permutex2var_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_permutex2var_epi64 operation.
 
@@ -7133,7 +7131,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permutex2var_epi32(self, __result: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_permutex2var_epi32(self, __result: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_permutex2var_epi32 operation.
 
@@ -7145,7 +7143,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_permutex2var_epi32(self, __result: Ptr, __A: Ptr, __U: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_mask_permutex2var_epi32(self, __result: Ptr, __A: Ptr, __U: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_permutex2var_epi32 operation.
 
@@ -7157,7 +7155,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask2_permutex2var_epi32(self, __result: Ptr, __A: Ptr, __I: Ptr, __U: Ptr, __B: Ptr) -> None:
+    def mm512_mask2_permutex2var_epi32(self, __result: Ptr, __A: Ptr, __I: Ptr, __U: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask2_permutex2var_epi32 operation.
 
@@ -7169,7 +7167,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_permutex2var_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_permutex2var_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_permutex2var_epi32 operation.
 
@@ -7181,7 +7179,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permutex2var_pd(self, __result: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_permutex2var_pd(self, __result: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_permutex2var_pd operation.
 
@@ -7193,7 +7191,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_permutex2var_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_mask_permutex2var_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_permutex2var_pd operation.
 
@@ -7205,7 +7203,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask2_permutex2var_pd(self, __result: Ptr, __A: Ptr, __I: Ptr, __U: Ptr, __B: Ptr) -> None:
+    def mm512_mask2_permutex2var_pd(self, __result: Ptr, __A: Ptr, __I: Ptr, __U: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask2_permutex2var_pd operation.
 
@@ -7217,7 +7215,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_permutex2var_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_permutex2var_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_permutex2var_pd operation.
 
@@ -7229,7 +7227,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permutex2var_ps(self, __result: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_permutex2var_ps(self, __result: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_permutex2var_ps operation.
 
@@ -7241,7 +7239,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_permutex2var_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_mask_permutex2var_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_permutex2var_ps operation.
 
@@ -7253,7 +7251,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask2_permutex2var_ps(self, __result: Ptr, __A: Ptr, __I: Ptr, __U: Ptr, __B: Ptr) -> None:
+    def mm512_mask2_permutex2var_ps(self, __result: Ptr, __A: Ptr, __I: Ptr, __U: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask2_permutex2var_ps operation.
 
@@ -7265,7 +7263,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_permutex2var_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_permutex2var_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __I: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_permutex2var_ps operation.
 
@@ -7277,7 +7275,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permute_pd(self, __result: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
+    def mm512_permute_pd(self, __result: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
         """
         _mm512_permute_pd is not supported in PyFastUtil.
 
@@ -7291,7 +7289,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_permute_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
+    def mm512_mask_permute_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_permute_pd is not supported in PyFastUtil.
 
@@ -7305,7 +7303,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_permute_pd(self, __result: Ptr, __U: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
+    def mm512_maskz_permute_pd(self, __result: Ptr, __U: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_permute_pd is not supported in PyFastUtil.
 
@@ -7319,7 +7317,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_permute_ps(self, __result: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
+    def mm512_permute_ps(self, __result: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
         """
         _mm512_permute_ps is not supported in PyFastUtil.
 
@@ -7333,7 +7331,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_permute_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
+    def mm512_mask_permute_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_permute_ps is not supported in PyFastUtil.
 
@@ -7347,7 +7345,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_permute_ps(self, __result: Ptr, __U: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
+    def mm512_maskz_permute_ps(self, __result: Ptr, __U: Ptr, __X: Ptr, __C: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_permute_ps is not supported in PyFastUtil.
 
@@ -7361,7 +7359,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_permutex_epi64(self, __result: Ptr, __X: Ptr, __I: int) -> RaisesNotImplementedError:
+    def mm512_permutex_epi64(self, __result: Ptr, __X: Ptr, __I: int) -> RaisesNotImplementedError:
         """
         _mm512_permutex_epi64 is not supported in PyFastUtil.
 
@@ -7375,7 +7373,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_permutex_epi64(self, __result: Ptr, __W: Ptr, __M: Ptr, __X: Ptr, __I: int) -> RaisesNotImplementedError:
+    def mm512_mask_permutex_epi64(self, __result: Ptr, __W: Ptr, __M: Ptr, __X: Ptr, __I: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_permutex_epi64 is not supported in PyFastUtil.
 
@@ -7389,7 +7387,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_permutex_epi64(self, __result: Ptr, __M: Ptr, __X: Ptr, __I: int) -> RaisesNotImplementedError:
+    def mm512_maskz_permutex_epi64(self, __result: Ptr, __M: Ptr, __X: Ptr, __I: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_permutex_epi64 is not supported in PyFastUtil.
 
@@ -7403,7 +7401,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_permutex_pd(self, __result: Ptr, __X: Ptr, __M: int) -> RaisesNotImplementedError:
+    def mm512_permutex_pd(self, __result: Ptr, __X: Ptr, __M: int) -> RaisesNotImplementedError:
         """
         _mm512_permutex_pd is not supported in PyFastUtil.
 
@@ -7417,7 +7415,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_permutex_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __M: int) -> RaisesNotImplementedError:
+    def mm512_mask_permutex_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __M: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_permutex_pd is not supported in PyFastUtil.
 
@@ -7431,7 +7429,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_permutex_pd(self, __result: Ptr, __U: Ptr, __X: Ptr, __M: int) -> RaisesNotImplementedError:
+    def mm512_maskz_permutex_pd(self, __result: Ptr, __U: Ptr, __X: Ptr, __M: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_permutex_pd is not supported in PyFastUtil.
 
@@ -7445,7 +7443,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_permutexvar_epi64(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_permutexvar_epi64(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_permutexvar_epi64 operation.
 
@@ -7457,7 +7455,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permutexvar_epi64(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_permutexvar_epi64(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_permutexvar_epi64 operation.
 
@@ -7469,7 +7467,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_permutexvar_epi64(self, __result: Ptr, __W: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_permutexvar_epi64(self, __result: Ptr, __W: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_permutexvar_epi64 operation.
 
@@ -7481,7 +7479,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_permutexvar_epi32(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_permutexvar_epi32(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_permutexvar_epi32 operation.
 
@@ -7493,7 +7491,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permutexvar_epi32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_permutexvar_epi32(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_permutexvar_epi32 operation.
 
@@ -7505,7 +7503,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_permutexvar_epi32(self, __result: Ptr, __W: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_permutexvar_epi32(self, __result: Ptr, __W: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_permutexvar_epi32 operation.
 
@@ -7517,7 +7515,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permutexvar_pd(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_permutexvar_pd(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_permutexvar_pd operation.
 
@@ -7529,7 +7527,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_permutexvar_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_permutexvar_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_permutexvar_pd operation.
 
@@ -7541,7 +7539,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_permutexvar_pd(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_permutexvar_pd(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_permutexvar_pd operation.
 
@@ -7553,7 +7551,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_permutexvar_ps(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_permutexvar_ps(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_permutexvar_ps operation.
 
@@ -7565,7 +7563,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_permutexvar_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_permutexvar_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_permutexvar_ps operation.
 
@@ -7577,7 +7575,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_permutexvar_ps(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_maskz_permutexvar_ps(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_maskz_permutexvar_ps operation.
 
@@ -7589,7 +7587,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_shuffle_ps(self, __result: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_shuffle_ps(self, __result: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_shuffle_ps is not supported in PyFastUtil.
 
@@ -7603,7 +7601,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_shuffle_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_shuffle_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_shuffle_ps is not supported in PyFastUtil.
 
@@ -7617,7 +7615,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_shuffle_ps(self, __result: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> None:
+    def mm512_maskz_shuffle_ps(self, __result: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> None:
         """
         Executes the _mm512_maskz_shuffle_ps operation.
 
@@ -7629,7 +7627,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_shuffle_pd(self, __result: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_shuffle_pd(self, __result: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_shuffle_pd is not supported in PyFastUtil.
 
@@ -7643,7 +7641,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_shuffle_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_shuffle_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_shuffle_pd is not supported in PyFastUtil.
 
@@ -7657,7 +7655,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_shuffle_pd(self, __result: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_shuffle_pd(self, __result: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_shuffle_pd is not supported in PyFastUtil.
 
@@ -7671,7 +7669,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fixupimm_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_fixupimm_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fixupimm_round_pd is not supported in PyFastUtil.
 
@@ -7685,7 +7683,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fixupimm_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fixupimm_round_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fixupimm_round_pd is not supported in PyFastUtil.
 
@@ -7699,7 +7697,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fixupimm_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fixupimm_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fixupimm_round_pd is not supported in PyFastUtil.
 
@@ -7713,7 +7711,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fixupimm_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_fixupimm_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_fixupimm_round_ps is not supported in PyFastUtil.
 
@@ -7727,7 +7725,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fixupimm_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_fixupimm_round_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fixupimm_round_ps is not supported in PyFastUtil.
 
@@ -7741,7 +7739,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fixupimm_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fixupimm_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fixupimm_round_ps is not supported in PyFastUtil.
 
@@ -7755,7 +7753,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fixupimm_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_fixupimm_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_fixupimm_round_sd is not supported in PyFastUtil.
 
@@ -7769,7 +7767,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fixupimm_round_sd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_fixupimm_round_sd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fixupimm_round_sd is not supported in PyFastUtil.
 
@@ -7783,7 +7781,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fixupimm_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_fixupimm_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fixupimm_round_sd is not supported in PyFastUtil.
 
@@ -7797,7 +7795,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fixupimm_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_fixupimm_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_fixupimm_round_ss is not supported in PyFastUtil.
 
@@ -7811,7 +7809,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fixupimm_round_ss(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_fixupimm_round_ss(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fixupimm_round_ss is not supported in PyFastUtil.
 
@@ -7825,7 +7823,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fixupimm_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_fixupimm_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fixupimm_round_ss is not supported in PyFastUtil.
 
@@ -7839,7 +7837,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_movehdup_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_movehdup_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_movehdup_ps operation.
 
@@ -7851,7 +7849,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_movehdup_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_movehdup_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_movehdup_ps operation.
 
@@ -7863,7 +7861,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_movehdup_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_movehdup_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_movehdup_ps operation.
 
@@ -7875,7 +7873,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_moveldup_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_moveldup_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_moveldup_ps operation.
 
@@ -7887,7 +7885,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_moveldup_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_moveldup_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_moveldup_ps operation.
 
@@ -7899,7 +7897,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_moveldup_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_moveldup_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_moveldup_ps operation.
 
@@ -7911,7 +7909,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_or_si512(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_or_si512(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_or_si512 operation.
 
@@ -7923,7 +7921,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_or_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_or_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_or_epi32 operation.
 
@@ -7935,7 +7933,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_or_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_or_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_or_epi32 operation.
 
@@ -7947,7 +7945,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_or_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_or_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_or_epi32 operation.
 
@@ -7959,7 +7957,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_or_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_or_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_or_epi64 operation.
 
@@ -7971,7 +7969,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_or_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_or_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_or_epi64 operation.
 
@@ -7983,7 +7981,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_or_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_or_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_or_epi64 operation.
 
@@ -7995,7 +7993,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_xor_si512(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_xor_si512(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_xor_si512 operation.
 
@@ -8007,7 +8005,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_xor_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_xor_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_xor_epi32 operation.
 
@@ -8019,7 +8017,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_xor_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_xor_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_xor_epi32 operation.
 
@@ -8031,7 +8029,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_xor_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_xor_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_xor_epi32 operation.
 
@@ -8043,7 +8041,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_xor_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_xor_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_xor_epi64 operation.
 
@@ -8055,7 +8053,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_xor_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_xor_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_xor_epi64 operation.
 
@@ -8067,7 +8065,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_xor_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_xor_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_xor_epi64 operation.
 
@@ -8079,7 +8077,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_rol_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm512_rol_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm512_rol_epi32 is not supported in PyFastUtil.
 
@@ -8093,7 +8091,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_rol_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm512_mask_rol_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_rol_epi32 is not supported in PyFastUtil.
 
@@ -8107,7 +8105,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_rol_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm512_maskz_rol_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_rol_epi32 is not supported in PyFastUtil.
 
@@ -8121,7 +8119,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_ror_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_ror_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_ror_epi32 operation.
 
@@ -8133,7 +8131,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_ror_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm512_mask_ror_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_ror_epi32 is not supported in PyFastUtil.
 
@@ -8147,7 +8145,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_ror_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
+    def mm512_maskz_ror_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm512_maskz_ror_epi32 operation.
 
@@ -8159,7 +8157,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_rol_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm512_rol_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm512_rol_epi64 is not supported in PyFastUtil.
 
@@ -8173,7 +8171,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_rol_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm512_mask_rol_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_rol_epi64 is not supported in PyFastUtil.
 
@@ -8187,7 +8185,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_rol_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm512_maskz_rol_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_rol_epi64 is not supported in PyFastUtil.
 
@@ -8201,7 +8199,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_ror_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm512_ror_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm512_ror_epi64 is not supported in PyFastUtil.
 
@@ -8215,7 +8213,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_ror_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm512_mask_ror_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_ror_epi64 is not supported in PyFastUtil.
 
@@ -8229,7 +8227,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_ror_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm512_maskz_ror_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_ror_epi64 is not supported in PyFastUtil.
 
@@ -8243,7 +8241,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_and_si512(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_and_si512(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_and_si512 operation.
 
@@ -8255,7 +8253,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_and_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_and_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_and_epi32 operation.
 
@@ -8267,7 +8265,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_and_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_and_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_and_epi32 operation.
 
@@ -8279,7 +8277,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_and_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_and_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_and_epi32 operation.
 
@@ -8291,7 +8289,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_and_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_and_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_and_epi64 operation.
 
@@ -8303,7 +8301,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_and_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_and_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_and_epi64 operation.
 
@@ -8315,7 +8313,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_and_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_and_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_and_epi64 operation.
 
@@ -8327,7 +8325,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_andnot_si512(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_andnot_si512(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_andnot_si512 operation.
 
@@ -8339,7 +8337,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_andnot_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_andnot_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_andnot_epi32 operation.
 
@@ -8351,7 +8349,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_andnot_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_andnot_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_andnot_epi32 operation.
 
@@ -8363,7 +8361,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_andnot_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_andnot_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_andnot_epi32 operation.
 
@@ -8375,7 +8373,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_andnot_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_andnot_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_andnot_epi64 operation.
 
@@ -8387,7 +8385,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_andnot_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_andnot_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_andnot_epi64 operation.
 
@@ -8399,7 +8397,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_andnot_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_andnot_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_andnot_epi64 operation.
 
@@ -8411,7 +8409,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_test_epi32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_test_epi32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_test_epi32_mask operation.
 
@@ -8423,7 +8421,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_test_epi32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_test_epi32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_test_epi32_mask operation.
 
@@ -8435,7 +8433,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_test_epi64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_test_epi64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_test_epi64_mask operation.
 
@@ -8447,7 +8445,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_test_epi64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_test_epi64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_test_epi64_mask operation.
 
@@ -8459,7 +8457,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_testn_epi32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_testn_epi32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_testn_epi32_mask operation.
 
@@ -8471,7 +8469,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_testn_epi32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_testn_epi32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_testn_epi32_mask operation.
 
@@ -8483,7 +8481,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_testn_epi64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_testn_epi64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_testn_epi64_mask operation.
 
@@ -8495,7 +8493,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_testn_epi64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_testn_epi64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_testn_epi64_mask operation.
 
@@ -8507,7 +8505,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_abs_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_abs_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_abs_ps operation.
 
@@ -8519,7 +8517,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_abs_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_abs_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_abs_ps operation.
 
@@ -8531,7 +8529,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_abs_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_abs_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_abs_pd operation.
 
@@ -8543,7 +8541,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_abs_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_abs_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_abs_pd operation.
 
@@ -8555,7 +8553,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_unpackhi_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_unpackhi_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_unpackhi_epi32 operation.
 
@@ -8567,7 +8565,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_unpackhi_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_unpackhi_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_unpackhi_epi32 operation.
 
@@ -8579,7 +8577,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_unpackhi_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_unpackhi_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_unpackhi_epi32 operation.
 
@@ -8591,7 +8589,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_unpackhi_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_unpackhi_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_unpackhi_epi64 operation.
 
@@ -8603,7 +8601,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_unpackhi_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_unpackhi_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_unpackhi_epi64 operation.
 
@@ -8615,7 +8613,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_unpackhi_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_unpackhi_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_unpackhi_epi64 operation.
 
@@ -8627,7 +8625,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_unpacklo_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_unpacklo_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_unpacklo_epi32 operation.
 
@@ -8639,7 +8637,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_unpacklo_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_unpacklo_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_unpacklo_epi32 operation.
 
@@ -8651,7 +8649,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_unpacklo_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_unpacklo_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_unpacklo_epi32 operation.
 
@@ -8663,7 +8661,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_unpacklo_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_unpacklo_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_unpacklo_epi64 operation.
 
@@ -8675,7 +8673,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_unpacklo_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_unpacklo_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_unpacklo_epi64 operation.
 
@@ -8687,7 +8685,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_unpacklo_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_unpacklo_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_unpacklo_epi64 operation.
 
@@ -8699,7 +8697,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvt_roundss_u64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundss_u64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundss_u64 is not supported in PyFastUtil.
 
@@ -8713,7 +8711,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundss_si64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundss_si64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundss_si64 is not supported in PyFastUtil.
 
@@ -8727,7 +8725,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundss_i64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundss_i64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundss_i64 is not supported in PyFastUtil.
 
@@ -8741,7 +8739,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundss_u64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundss_u64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundss_u64 is not supported in PyFastUtil.
 
@@ -8755,7 +8753,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundss_i64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundss_i64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundss_i64 is not supported in PyFastUtil.
 
@@ -8769,7 +8767,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundss_si64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundss_si64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundss_si64 is not supported in PyFastUtil.
 
@@ -8783,7 +8781,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundss_u32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundss_u32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundss_u32 is not supported in PyFastUtil.
 
@@ -8797,7 +8795,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundss_si32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundss_si32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundss_si32 is not supported in PyFastUtil.
 
@@ -8811,7 +8809,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundss_i32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundss_i32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundss_i32 is not supported in PyFastUtil.
 
@@ -8825,7 +8823,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundss_u32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundss_u32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundss_u32 is not supported in PyFastUtil.
 
@@ -8839,7 +8837,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundss_i32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundss_i32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundss_i32 is not supported in PyFastUtil.
 
@@ -8853,7 +8851,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundss_si32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundss_si32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundss_si32 is not supported in PyFastUtil.
 
@@ -8867,7 +8865,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundsd_u64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundsd_u64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundsd_u64 is not supported in PyFastUtil.
 
@@ -8881,7 +8879,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundsd_si64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundsd_si64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundsd_si64 is not supported in PyFastUtil.
 
@@ -8895,7 +8893,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundsd_i64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundsd_i64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundsd_i64 is not supported in PyFastUtil.
 
@@ -8909,7 +8907,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundsd_u64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundsd_u64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundsd_u64 is not supported in PyFastUtil.
 
@@ -8923,7 +8921,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundsd_si64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundsd_si64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundsd_si64 is not supported in PyFastUtil.
 
@@ -8937,7 +8935,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundsd_i64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundsd_i64(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundsd_i64 is not supported in PyFastUtil.
 
@@ -8951,7 +8949,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundsd_u32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundsd_u32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundsd_u32 is not supported in PyFastUtil.
 
@@ -8965,7 +8963,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundsd_si32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundsd_si32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundsd_si32 is not supported in PyFastUtil.
 
@@ -8979,7 +8977,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundsd_i32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundsd_i32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundsd_i32 is not supported in PyFastUtil.
 
@@ -8993,7 +8991,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundsd_u32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundsd_u32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundsd_u32 is not supported in PyFastUtil.
 
@@ -9007,7 +9005,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundsd_i32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundsd_i32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundsd_i32 is not supported in PyFastUtil.
 
@@ -9021,7 +9019,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtt_roundsd_si32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvtt_roundsd_si32(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvtt_roundsd_si32 is not supported in PyFastUtil.
 
@@ -9035,7 +9033,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_movedup_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_movedup_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_movedup_pd operation.
 
@@ -9047,7 +9045,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_movedup_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_movedup_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_movedup_pd operation.
 
@@ -9059,7 +9057,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_movedup_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_movedup_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_movedup_pd operation.
 
@@ -9071,7 +9069,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_unpacklo_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_unpacklo_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_unpacklo_pd operation.
 
@@ -9083,7 +9081,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_unpacklo_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_unpacklo_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_unpacklo_pd operation.
 
@@ -9095,7 +9093,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_unpacklo_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_unpacklo_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_unpacklo_pd operation.
 
@@ -9107,7 +9105,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_unpackhi_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_unpackhi_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_unpackhi_pd operation.
 
@@ -9119,7 +9117,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_unpackhi_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_unpackhi_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_unpackhi_pd operation.
 
@@ -9131,7 +9129,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_unpackhi_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_unpackhi_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_unpackhi_pd operation.
 
@@ -9143,7 +9141,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_unpackhi_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_unpackhi_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_unpackhi_ps operation.
 
@@ -9155,7 +9153,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_unpackhi_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_unpackhi_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_unpackhi_ps operation.
 
@@ -9167,7 +9165,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_unpackhi_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_unpackhi_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_unpackhi_ps operation.
 
@@ -9179,7 +9177,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvt_roundps_pd(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvt_roundps_pd(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvt_roundps_pd is not supported in PyFastUtil.
 
@@ -9193,7 +9191,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvt_roundps_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvt_roundps_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvt_roundps_pd is not supported in PyFastUtil.
 
@@ -9207,7 +9205,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvt_roundps_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvt_roundps_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvt_roundps_pd is not supported in PyFastUtil.
 
@@ -9221,7 +9219,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvt_roundph_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvt_roundph_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvt_roundph_ps is not supported in PyFastUtil.
 
@@ -9235,7 +9233,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvt_roundph_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvt_roundph_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvt_roundph_ps is not supported in PyFastUtil.
 
@@ -9249,7 +9247,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvt_roundph_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvt_roundph_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvt_roundph_ps is not supported in PyFastUtil.
 
@@ -9263,7 +9261,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvt_roundps_ph(self, __result: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
+    def mm512_cvt_roundps_ph(self, __result: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
         """
         _mm512_cvt_roundps_ph is not supported in PyFastUtil.
 
@@ -9277,7 +9275,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvtps_ph(self, __result: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
+    def mm512_cvtps_ph(self, __result: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
         """
         _mm512_cvtps_ph is not supported in PyFastUtil.
 
@@ -9291,7 +9289,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvt_roundps_ph(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvt_roundps_ph(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvt_roundps_ph is not supported in PyFastUtil.
 
@@ -9305,7 +9303,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvtps_ph(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvtps_ph(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvtps_ph is not supported in PyFastUtil.
 
@@ -9319,7 +9317,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvt_roundps_ph(self, __result: Ptr, __W: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvt_roundps_ph(self, __result: Ptr, __W: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvt_roundps_ph is not supported in PyFastUtil.
 
@@ -9333,7 +9331,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvtps_ph(self, __result: Ptr, __W: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvtps_ph(self, __result: Ptr, __W: Ptr, __A: Ptr, __I: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvtps_ph is not supported in PyFastUtil.
 
@@ -9347,7 +9345,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cvt_roundpd_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_cvt_roundpd_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cvt_roundpd_ps is not supported in PyFastUtil.
 
@@ -9361,7 +9359,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cvt_roundpd_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cvt_roundpd_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cvt_roundpd_ps is not supported in PyFastUtil.
 
@@ -9375,7 +9373,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_cvt_roundpd_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_cvt_roundpd_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_cvt_roundpd_ps is not supported in PyFastUtil.
 
@@ -9389,7 +9387,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundsd_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundsd_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundsd_ss is not supported in PyFastUtil.
 
@@ -9403,7 +9401,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_cvt_roundsd_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_cvt_roundsd_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_cvt_roundsd_ss is not supported in PyFastUtil.
 
@@ -9417,7 +9415,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_cvt_roundsd_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_cvt_roundsd_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_cvt_roundsd_ss is not supported in PyFastUtil.
 
@@ -9431,7 +9429,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvt_roundss_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_cvt_roundss_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cvt_roundss_sd is not supported in PyFastUtil.
 
@@ -9445,7 +9443,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_cvt_roundss_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_cvt_roundss_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_cvt_roundss_sd is not supported in PyFastUtil.
 
@@ -9459,7 +9457,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_cvt_roundss_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_cvt_roundss_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_cvt_roundss_sd is not supported in PyFastUtil.
 
@@ -9473,7 +9471,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_stream_si512(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_stream_si512(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_stream_si512 operation.
 
@@ -9485,7 +9483,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_stream_ps(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_stream_ps(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_stream_ps operation.
 
@@ -9497,7 +9495,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_stream_pd(self, __P: Ptr, __A: Ptr) -> None:
+    def mm512_stream_pd(self, __P: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_stream_pd operation.
 
@@ -9509,7 +9507,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_stream_load_si512(self, __result: Ptr, __P: Ptr) -> None:
+    def mm512_stream_load_si512(self, __result: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_stream_load_si512 operation.
 
@@ -9521,7 +9519,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_getexp_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
+    def mm_getexp_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
         Executes the _mm_getexp_round_ss operation.
 
@@ -9533,7 +9531,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_getexp_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
+    def mm_mask_getexp_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
         Executes the _mm_mask_getexp_round_ss operation.
 
@@ -9545,7 +9543,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_getexp_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
+    def mm_maskz_getexp_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
         Executes the _mm_maskz_getexp_round_ss operation.
 
@@ -9557,7 +9555,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_getexp_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
+    def mm_getexp_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
         Executes the _mm_getexp_round_sd operation.
 
@@ -9569,7 +9567,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_getexp_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
+    def mm_mask_getexp_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
         Executes the _mm_mask_getexp_round_sd operation.
 
@@ -9581,7 +9579,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_getexp_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
+    def mm_maskz_getexp_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
         Executes the _mm_maskz_getexp_round_sd operation.
 
@@ -9593,7 +9591,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_getexp_round_ps(self, __result: Ptr, __A: Ptr, __R: int) -> None:
+    def mm512_getexp_round_ps(self, __result: Ptr, __A: Ptr, __R: int) -> None:
         """
         Executes the _mm512_getexp_round_ps operation.
 
@@ -9605,7 +9603,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_getexp_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_getexp_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_getexp_round_ps is not supported in PyFastUtil.
 
@@ -9619,7 +9617,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_getexp_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_getexp_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_getexp_round_ps is not supported in PyFastUtil.
 
@@ -9633,7 +9631,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_getexp_round_pd(self, __result: Ptr, __A: Ptr, __R: int) -> None:
+    def mm512_getexp_round_pd(self, __result: Ptr, __A: Ptr, __R: int) -> None:
         """
         Executes the _mm512_getexp_round_pd operation.
 
@@ -9645,7 +9643,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_getexp_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_getexp_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_getexp_round_pd is not supported in PyFastUtil.
 
@@ -9659,7 +9657,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_getexp_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_getexp_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_getexp_round_pd is not supported in PyFastUtil.
 
@@ -9673,7 +9671,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_getmant_round_pd(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
+    def mm512_getmant_round_pd(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
         Executes the _mm512_getmant_round_pd operation.
 
@@ -9685,7 +9683,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_getmant_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
+    def mm512_mask_getmant_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
         Executes the _mm512_mask_getmant_round_pd operation.
 
@@ -9697,7 +9695,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_getmant_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
+    def mm512_maskz_getmant_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
         Executes the _mm512_maskz_getmant_round_pd operation.
 
@@ -9709,7 +9707,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_getmant_round_ps(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
+    def mm512_getmant_round_ps(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
         Executes the _mm512_getmant_round_ps operation.
 
@@ -9721,7 +9719,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_getmant_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
+    def mm512_mask_getmant_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
         Executes the _mm512_mask_getmant_round_ps operation.
 
@@ -9733,7 +9731,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_getmant_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
+    def mm512_maskz_getmant_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
         Executes the _mm512_maskz_getmant_round_ps operation.
 
@@ -9745,7 +9743,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_getmant_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
+    def mm_getmant_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
         Executes the _mm_getmant_round_sd operation.
 
@@ -9757,7 +9755,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_getmant_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_getmant_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_getmant_round_sd is not supported in PyFastUtil.
 
@@ -9771,7 +9769,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_getmant_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_getmant_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_getmant_round_sd is not supported in PyFastUtil.
 
@@ -9785,7 +9783,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_getmant_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
+    def mm_getmant_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
         """
         _mm_getmant_round_ss is not supported in PyFastUtil.
 
@@ -9799,7 +9797,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_getmant_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_getmant_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_getmant_round_ss is not supported in PyFastUtil.
 
@@ -9813,7 +9811,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_getmant_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_getmant_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_getmant_round_ss is not supported in PyFastUtil.
 
@@ -9827,7 +9825,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_roundscale_round_ps(self, __result: Ptr, __A: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_roundscale_round_ps(self, __result: Ptr, __A: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_roundscale_round_ps is not supported in PyFastUtil.
 
@@ -9841,7 +9839,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_roundscale_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_roundscale_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_roundscale_round_ps is not supported in PyFastUtil.
 
@@ -9855,7 +9853,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_roundscale_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_roundscale_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_roundscale_round_ps is not supported in PyFastUtil.
 
@@ -9869,7 +9867,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_roundscale_round_pd(self, __result: Ptr, __A: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_roundscale_round_pd(self, __result: Ptr, __A: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_roundscale_round_pd is not supported in PyFastUtil.
 
@@ -9883,7 +9881,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_roundscale_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_roundscale_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_roundscale_round_pd is not supported in PyFastUtil.
 
@@ -9897,7 +9895,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_roundscale_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_maskz_roundscale_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_roundscale_round_pd is not supported in PyFastUtil.
 
@@ -9911,7 +9909,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_roundscale_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_roundscale_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_roundscale_round_ss is not supported in PyFastUtil.
 
@@ -9925,7 +9923,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_roundscale_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_roundscale_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_roundscale_round_ss is not supported in PyFastUtil.
 
@@ -9939,7 +9937,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_roundscale_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_roundscale_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_roundscale_round_ss is not supported in PyFastUtil.
 
@@ -9953,7 +9951,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_roundscale_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_roundscale_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_roundscale_round_sd is not supported in PyFastUtil.
 
@@ -9967,7 +9965,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_roundscale_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_roundscale_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_roundscale_round_sd is not supported in PyFastUtil.
 
@@ -9981,7 +9979,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_roundscale_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_roundscale_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_roundscale_round_sd is not supported in PyFastUtil.
 
@@ -9995,7 +9993,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_floor_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_floor_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_floor_ps operation.
 
@@ -10007,7 +10005,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_floor_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_floor_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_floor_pd operation.
 
@@ -10019,7 +10017,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_ceil_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_ceil_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_ceil_ps operation.
 
@@ -10031,7 +10029,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_ceil_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_ceil_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_ceil_pd operation.
 
@@ -10043,7 +10041,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_floor_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_floor_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_floor_ps operation.
 
@@ -10055,7 +10053,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_floor_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_floor_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_floor_pd operation.
 
@@ -10067,7 +10065,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_ceil_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_ceil_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_ceil_ps operation.
 
@@ -10079,7 +10077,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_ceil_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_ceil_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_ceil_pd operation.
 
@@ -10091,7 +10089,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_alignr_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_alignr_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_alignr_epi32 is not supported in PyFastUtil.
 
@@ -10105,7 +10103,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_alignr_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_alignr_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_alignr_epi32 is not supported in PyFastUtil.
 
@@ -10119,7 +10117,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_alignr_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_alignr_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_alignr_epi32 is not supported in PyFastUtil.
 
@@ -10133,7 +10131,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_alignr_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_alignr_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_alignr_epi64 is not supported in PyFastUtil.
 
@@ -10147,7 +10145,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_alignr_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_alignr_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_alignr_epi64 is not supported in PyFastUtil.
 
@@ -10161,7 +10159,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_alignr_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_alignr_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_alignr_epi64 is not supported in PyFastUtil.
 
@@ -10175,7 +10173,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cmpeq_epi32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_cmpeq_epi32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_cmpeq_epi32_mask operation.
 
@@ -10187,7 +10185,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpeq_epi32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_cmpeq_epi32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpeq_epi32_mask operation.
 
@@ -10199,7 +10197,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpeq_epi64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_cmpeq_epi64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpeq_epi64_mask operation.
 
@@ -10211,7 +10209,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpeq_epi64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_cmpeq_epi64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_cmpeq_epi64_mask operation.
 
@@ -10223,7 +10221,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpgt_epi32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_cmpgt_epi32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_cmpgt_epi32_mask operation.
 
@@ -10235,7 +10233,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpgt_epi32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_cmpgt_epi32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpgt_epi32_mask operation.
 
@@ -10247,7 +10245,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpgt_epi64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_cmpgt_epi64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpgt_epi64_mask operation.
 
@@ -10259,7 +10257,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpgt_epi64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_cmpgt_epi64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_cmpgt_epi64_mask operation.
 
@@ -10271,7 +10269,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpge_epi32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpge_epi32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpge_epi32_mask operation.
 
@@ -10283,7 +10281,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpge_epi32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpge_epi32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpge_epi32_mask operation.
 
@@ -10295,7 +10293,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpge_epu32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpge_epu32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpge_epu32_mask operation.
 
@@ -10307,7 +10305,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpge_epu32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpge_epu32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpge_epu32_mask operation.
 
@@ -10319,7 +10317,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpge_epi64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpge_epi64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpge_epi64_mask operation.
 
@@ -10331,7 +10329,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpge_epi64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpge_epi64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpge_epi64_mask operation.
 
@@ -10343,7 +10341,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpge_epu64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpge_epu64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpge_epu64_mask operation.
 
@@ -10355,7 +10353,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpge_epu64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpge_epu64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpge_epu64_mask operation.
 
@@ -10367,7 +10365,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmple_epi32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmple_epi32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmple_epi32_mask operation.
 
@@ -10379,7 +10377,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmple_epi32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmple_epi32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmple_epi32_mask operation.
 
@@ -10391,7 +10389,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmple_epu32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmple_epu32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmple_epu32_mask operation.
 
@@ -10403,7 +10401,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmple_epu32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmple_epu32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmple_epu32_mask operation.
 
@@ -10415,7 +10413,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmple_epi64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmple_epi64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmple_epi64_mask operation.
 
@@ -10427,7 +10425,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmple_epi64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmple_epi64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmple_epi64_mask operation.
 
@@ -10439,7 +10437,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmple_epu64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmple_epu64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmple_epu64_mask operation.
 
@@ -10451,7 +10449,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmple_epu64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmple_epu64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmple_epu64_mask operation.
 
@@ -10463,7 +10461,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmplt_epi32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmplt_epi32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmplt_epi32_mask operation.
 
@@ -10475,7 +10473,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmplt_epi32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmplt_epi32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmplt_epi32_mask operation.
 
@@ -10487,7 +10485,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmplt_epu32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmplt_epu32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmplt_epu32_mask operation.
 
@@ -10499,7 +10497,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmplt_epu32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmplt_epu32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmplt_epu32_mask operation.
 
@@ -10511,7 +10509,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmplt_epi64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmplt_epi64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmplt_epi64_mask operation.
 
@@ -10523,7 +10521,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmplt_epi64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmplt_epi64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmplt_epi64_mask operation.
 
@@ -10535,7 +10533,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmplt_epu64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmplt_epu64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmplt_epu64_mask operation.
 
@@ -10547,7 +10545,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmplt_epu64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmplt_epu64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmplt_epu64_mask operation.
 
@@ -10559,7 +10557,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpneq_epi32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpneq_epi32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpneq_epi32_mask operation.
 
@@ -10571,7 +10569,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpneq_epi32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpneq_epi32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpneq_epi32_mask operation.
 
@@ -10583,7 +10581,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpneq_epu32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpneq_epu32_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpneq_epu32_mask operation.
 
@@ -10595,7 +10593,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpneq_epu32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpneq_epu32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpneq_epu32_mask operation.
 
@@ -10607,7 +10605,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpneq_epi64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpneq_epi64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpneq_epi64_mask operation.
 
@@ -10619,7 +10617,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpneq_epi64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpneq_epi64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpneq_epi64_mask operation.
 
@@ -10631,7 +10629,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpneq_epu64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpneq_epu64_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpneq_epu64_mask operation.
 
@@ -10643,7 +10641,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpneq_epu64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpneq_epu64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpneq_epu64_mask operation.
 
@@ -10655,7 +10653,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _kshiftli_mask16(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def kshiftli_mask16(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _kshiftli_mask16 is not supported in PyFastUtil.
 
@@ -10669,7 +10667,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _kshiftri_mask16(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def kshiftri_mask16(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _kshiftri_mask16 is not supported in PyFastUtil.
 
@@ -10683,7 +10681,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cmp_epi64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_cmp_epi64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_cmp_epi64_mask is not supported in PyFastUtil.
 
@@ -10697,7 +10695,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cmp_epi32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_cmp_epi32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_cmp_epi32_mask is not supported in PyFastUtil.
 
@@ -10711,7 +10709,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cmp_epu64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_cmp_epu64_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_cmp_epu64_mask is not supported in PyFastUtil.
 
@@ -10725,7 +10723,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cmp_epu32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_cmp_epu32_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_cmp_epu32_mask is not supported in PyFastUtil.
 
@@ -10739,7 +10737,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cmp_round_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_cmp_round_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cmp_round_pd_mask is not supported in PyFastUtil.
 
@@ -10753,7 +10751,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cmp_round_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_cmp_round_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_cmp_round_ps_mask is not supported in PyFastUtil.
 
@@ -10767,7 +10765,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cmp_epi64_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_mask_cmp_epi64_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cmp_epi64_mask is not supported in PyFastUtil.
 
@@ -10781,7 +10779,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cmp_epi32_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_mask_cmp_epi32_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cmp_epi32_mask is not supported in PyFastUtil.
 
@@ -10795,7 +10793,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cmp_epu64_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_mask_cmp_epu64_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cmp_epu64_mask is not supported in PyFastUtil.
 
@@ -10809,7 +10807,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cmp_epu32_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_mask_cmp_epu32_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cmp_epu32_mask is not supported in PyFastUtil.
 
@@ -10823,7 +10821,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cmp_round_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cmp_round_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cmp_round_pd_mask is not supported in PyFastUtil.
 
@@ -10837,7 +10835,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cmp_round_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
+    def mm512_mask_cmp_round_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cmp_round_ps_mask is not supported in PyFastUtil.
 
@@ -10851,7 +10849,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cmp_round_sd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cmp_round_sd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cmp_round_sd_mask is not supported in PyFastUtil.
 
@@ -10865,7 +10863,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_cmp_round_sd_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_cmp_round_sd_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_cmp_round_sd_mask is not supported in PyFastUtil.
 
@@ -10879,7 +10877,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cmp_round_ss_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
+    def mm_cmp_round_ss_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_cmp_round_ss_mask is not supported in PyFastUtil.
 
@@ -10893,7 +10891,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_cmp_round_ss_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_cmp_round_ss_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_cmp_round_ss_mask is not supported in PyFastUtil.
 
@@ -10907,7 +10905,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i32gather_ps(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i32gather_ps(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i32gather_ps is not supported in PyFastUtil.
 
@@ -10921,7 +10919,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i32gather_ps(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i32gather_ps(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i32gather_ps is not supported in PyFastUtil.
 
@@ -10935,7 +10933,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i32gather_pd(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i32gather_pd(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i32gather_pd is not supported in PyFastUtil.
 
@@ -10949,7 +10947,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i32gather_pd(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i32gather_pd(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i32gather_pd is not supported in PyFastUtil.
 
@@ -10963,7 +10961,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i64gather_ps(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i64gather_ps(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i64gather_ps is not supported in PyFastUtil.
 
@@ -10977,7 +10975,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i64gather_ps(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i64gather_ps(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i64gather_ps is not supported in PyFastUtil.
 
@@ -10991,7 +10989,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i64gather_pd(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i64gather_pd(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i64gather_pd is not supported in PyFastUtil.
 
@@ -11005,7 +11003,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i64gather_pd(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i64gather_pd(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i64gather_pd is not supported in PyFastUtil.
 
@@ -11019,7 +11017,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i32gather_epi32(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i32gather_epi32(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i32gather_epi32 is not supported in PyFastUtil.
 
@@ -11033,7 +11031,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i32gather_epi32(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i32gather_epi32(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i32gather_epi32 is not supported in PyFastUtil.
 
@@ -11047,7 +11045,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i32gather_epi64(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i32gather_epi64(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i32gather_epi64 is not supported in PyFastUtil.
 
@@ -11061,7 +11059,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i32gather_epi64(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i32gather_epi64(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i32gather_epi64 is not supported in PyFastUtil.
 
@@ -11075,7 +11073,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i64gather_epi32(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i64gather_epi32(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i64gather_epi32 is not supported in PyFastUtil.
 
@@ -11089,7 +11087,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i64gather_epi32(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i64gather_epi32(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i64gather_epi32 is not supported in PyFastUtil.
 
@@ -11103,7 +11101,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i64gather_epi64(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i64gather_epi64(self, __result: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i64gather_epi64 is not supported in PyFastUtil.
 
@@ -11117,7 +11115,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i64gather_epi64(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i64gather_epi64(self, __result: Ptr, __v1_old: Ptr, __mask: Ptr, __index: Ptr, __addr: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i64gather_epi64 is not supported in PyFastUtil.
 
@@ -11131,7 +11129,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i32scatter_ps(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i32scatter_ps(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i32scatter_ps is not supported in PyFastUtil.
 
@@ -11145,7 +11143,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i32scatter_ps(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i32scatter_ps(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i32scatter_ps is not supported in PyFastUtil.
 
@@ -11159,7 +11157,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i32scatter_pd(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i32scatter_pd(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i32scatter_pd is not supported in PyFastUtil.
 
@@ -11173,7 +11171,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i32scatter_pd(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i32scatter_pd(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i32scatter_pd is not supported in PyFastUtil.
 
@@ -11187,7 +11185,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i64scatter_ps(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i64scatter_ps(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i64scatter_ps is not supported in PyFastUtil.
 
@@ -11201,7 +11199,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i64scatter_ps(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i64scatter_ps(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i64scatter_ps is not supported in PyFastUtil.
 
@@ -11215,7 +11213,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i64scatter_pd(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i64scatter_pd(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i64scatter_pd is not supported in PyFastUtil.
 
@@ -11229,7 +11227,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i64scatter_pd(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i64scatter_pd(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i64scatter_pd is not supported in PyFastUtil.
 
@@ -11243,7 +11241,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i32scatter_epi32(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i32scatter_epi32(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i32scatter_epi32 is not supported in PyFastUtil.
 
@@ -11257,7 +11255,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i32scatter_epi32(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i32scatter_epi32(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i32scatter_epi32 is not supported in PyFastUtil.
 
@@ -11271,7 +11269,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i32scatter_epi64(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i32scatter_epi64(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i32scatter_epi64 is not supported in PyFastUtil.
 
@@ -11285,7 +11283,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i32scatter_epi64(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i32scatter_epi64(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i32scatter_epi64 is not supported in PyFastUtil.
 
@@ -11299,7 +11297,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i64scatter_epi32(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i64scatter_epi32(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i64scatter_epi32 is not supported in PyFastUtil.
 
@@ -11313,7 +11311,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i64scatter_epi32(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i64scatter_epi32(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i64scatter_epi32 is not supported in PyFastUtil.
 
@@ -11327,7 +11325,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_i64scatter_epi64(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_i64scatter_epi64(self, __addr: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_i64scatter_epi64 is not supported in PyFastUtil.
 
@@ -11341,7 +11339,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_i64scatter_epi64(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
+    def mm512_mask_i64scatter_epi64(self, __addr: Ptr, __mask: Ptr, __index: Ptr, __v1: Ptr, __scale: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_i64scatter_epi64 is not supported in PyFastUtil.
 
@@ -11355,7 +11353,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_compress_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_compress_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_compress_pd operation.
 
@@ -11367,7 +11365,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_compress_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_compress_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_compress_pd operation.
 
@@ -11379,7 +11377,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_compressstoreu_pd(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_compressstoreu_pd(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_compressstoreu_pd operation.
 
@@ -11391,7 +11389,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_compress_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_compress_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_compress_ps operation.
 
@@ -11403,7 +11401,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_compress_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_compress_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_compress_ps operation.
 
@@ -11415,7 +11413,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_compressstoreu_ps(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_compressstoreu_ps(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_compressstoreu_ps operation.
 
@@ -11427,7 +11425,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_compress_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_compress_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_compress_epi64 operation.
 
@@ -11439,7 +11437,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_compress_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_compress_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_compress_epi64 operation.
 
@@ -11451,7 +11449,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_compressstoreu_epi64(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_compressstoreu_epi64(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_compressstoreu_epi64 operation.
 
@@ -11463,7 +11461,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_compress_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_compress_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_compress_epi32 operation.
 
@@ -11475,7 +11473,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_compress_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_compress_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_compress_epi32 operation.
 
@@ -11487,7 +11485,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_compressstoreu_epi32(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_compressstoreu_epi32(self, __P: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_compressstoreu_epi32 operation.
 
@@ -11499,7 +11497,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_expand_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_expand_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_expand_pd operation.
 
@@ -11511,7 +11509,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_expand_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_expand_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_expand_pd operation.
 
@@ -11523,7 +11521,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_expandloadu_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_expandloadu_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_expandloadu_pd operation.
 
@@ -11535,7 +11533,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_expandloadu_pd(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_expandloadu_pd(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_expandloadu_pd operation.
 
@@ -11547,7 +11545,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_expand_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_expand_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_expand_ps operation.
 
@@ -11559,7 +11557,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_expand_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_expand_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_expand_ps operation.
 
@@ -11571,7 +11569,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_expandloadu_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_expandloadu_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_expandloadu_ps operation.
 
@@ -11583,7 +11581,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_expandloadu_ps(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_expandloadu_ps(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_expandloadu_ps operation.
 
@@ -11595,7 +11593,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_expand_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_expand_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_expand_epi64 operation.
 
@@ -11607,7 +11605,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_expand_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_expand_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_expand_epi64 operation.
 
@@ -11619,7 +11617,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_expandloadu_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_expandloadu_epi64(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_expandloadu_epi64 operation.
 
@@ -11631,7 +11629,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_expandloadu_epi64(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_expandloadu_epi64(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_expandloadu_epi64 operation.
 
@@ -11643,7 +11641,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_expand_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_expand_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_expand_epi32 operation.
 
@@ -11655,7 +11653,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_expand_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_expand_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_expand_epi32 operation.
 
@@ -11667,7 +11665,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_expandloadu_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_mask_expandloadu_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_mask_expandloadu_epi32 operation.
 
@@ -11679,7 +11677,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_expandloadu_epi32(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
+    def mm512_maskz_expandloadu_epi32(self, __result: Ptr, __U: Ptr, __P: Ptr) -> None:
         """
         Executes the _mm512_maskz_expandloadu_epi32 operation.
 
@@ -11691,7 +11689,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _kortest_mask16_u8(self, __result: Ptr, __A: Ptr, __B: Ptr, __CF: Ptr) -> None:
+    def kortest_mask16_u8(self, __result: Ptr, __A: Ptr, __B: Ptr, __CF: Ptr) -> None:
         """
         Executes the _kortest_mask16_u8 operation.
 
@@ -11703,7 +11701,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _kortestz_mask16_u8(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def kortestz_mask16_u8(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _kortestz_mask16_u8 operation.
 
@@ -11715,7 +11713,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _kortestc_mask16_u8(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def kortestc_mask16_u8(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _kortestc_mask16_u8 operation.
 
@@ -11727,7 +11725,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _cvtmask16_u32(self, __result: Ptr, __A: Ptr) -> None:
+    def cvtmask16_u32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _cvtmask16_u32 operation.
 
@@ -11739,7 +11737,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _cvtu32_mask16(self, __result: Ptr, __A: int) -> None:
+    def cvtu32_mask16(self, __result: Ptr, __A: int) -> None:
         """
         Executes the _cvtu32_mask16 operation.
 
@@ -11751,7 +11749,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _load_mask16(self, __result: Ptr, __A: Ptr) -> None:
+    def load_mask16(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _load_mask16 operation.
 
@@ -11763,7 +11761,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _store_mask16(self, __A: Ptr, __B: Ptr) -> None:
+    def store_mask16(self, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _store_mask16 operation.
 
@@ -11775,7 +11773,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_kand(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_kand(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_kand operation.
 
@@ -11787,7 +11785,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_kandn(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_kandn(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_kandn operation.
 
@@ -11799,7 +11797,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_kor(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_kor(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_kor operation.
 
@@ -11811,7 +11809,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_kortestz(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_kortestz(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_kortestz operation.
 
@@ -11823,7 +11821,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_kortestc(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_kortestc(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_kortestc operation.
 
@@ -11835,7 +11833,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_kxnor(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_kxnor(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_kxnor operation.
 
@@ -11847,7 +11845,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_kxor(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_kxor(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_kxor operation.
 
@@ -11859,7 +11857,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_knot(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_knot(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_knot operation.
 
@@ -11871,7 +11869,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_kunpackb(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_kunpackb(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_kunpackb operation.
 
@@ -11883,7 +11881,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_inserti32x4(self, __result: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_inserti32x4(self, __result: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_inserti32x4 is not supported in PyFastUtil.
 
@@ -11897,7 +11895,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_insertf32x4(self, __result: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_insertf32x4(self, __result: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_insertf32x4 is not supported in PyFastUtil.
 
@@ -11911,7 +11909,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_inserti32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_inserti32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_inserti32x4 is not supported in PyFastUtil.
 
@@ -11925,7 +11923,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_insertf32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_insertf32x4(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_insertf32x4 is not supported in PyFastUtil.
 
@@ -11939,7 +11937,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_max_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_max_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_max_epi64 operation.
 
@@ -11951,7 +11949,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_max_epi64(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_max_epi64(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_max_epi64 operation.
 
@@ -11963,7 +11961,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_max_epi64(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_max_epi64(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_max_epi64 operation.
 
@@ -11975,7 +11973,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_min_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_min_epi64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_min_epi64 operation.
 
@@ -11987,7 +11985,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_min_epi64(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_min_epi64(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_min_epi64 operation.
 
@@ -11999,7 +11997,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_min_epi64(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_min_epi64(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_min_epi64 operation.
 
@@ -12011,7 +12009,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_max_epu64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_max_epu64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_max_epu64 operation.
 
@@ -12023,7 +12021,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_max_epu64(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_max_epu64(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_max_epu64 operation.
 
@@ -12035,7 +12033,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_max_epu64(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_max_epu64(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_max_epu64 operation.
 
@@ -12047,7 +12045,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_min_epu64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_min_epu64(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_min_epu64 operation.
 
@@ -12059,7 +12057,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_min_epu64(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_min_epu64(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_min_epu64 operation.
 
@@ -12071,7 +12069,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_min_epu64(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_min_epu64(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_min_epu64 operation.
 
@@ -12083,7 +12081,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_max_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_max_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_max_epi32 operation.
 
@@ -12095,7 +12093,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_max_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_max_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_max_epi32 operation.
 
@@ -12107,7 +12105,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_max_epi32(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_max_epi32(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_max_epi32 operation.
 
@@ -12119,7 +12117,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_min_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_min_epi32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_min_epi32 operation.
 
@@ -12131,7 +12129,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_min_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_min_epi32(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_min_epi32 operation.
 
@@ -12143,7 +12141,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_min_epi32(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_min_epi32(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_min_epi32 operation.
 
@@ -12155,7 +12153,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_max_epu32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_max_epu32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_max_epu32 operation.
 
@@ -12167,7 +12165,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_max_epu32(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_max_epu32(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_max_epu32 operation.
 
@@ -12179,7 +12177,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_max_epu32(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_max_epu32(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_max_epu32 operation.
 
@@ -12191,7 +12189,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_min_epu32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_min_epu32(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_min_epu32 operation.
 
@@ -12203,7 +12201,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_min_epu32(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_min_epu32(self, __result: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_min_epu32 operation.
 
@@ -12215,7 +12213,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_min_epu32(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_min_epu32(self, __result: Ptr, __W: Ptr, __M: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_min_epu32 operation.
 
@@ -12227,7 +12225,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_unpacklo_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_unpacklo_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_unpacklo_ps operation.
 
@@ -12239,7 +12237,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_unpacklo_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_unpacklo_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_unpacklo_ps operation.
 
@@ -12251,7 +12249,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_unpacklo_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_unpacklo_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_unpacklo_ps operation.
 
@@ -12263,7 +12261,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_max_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_max_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_max_round_sd is not supported in PyFastUtil.
 
@@ -12277,7 +12275,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_max_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_max_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_max_round_sd is not supported in PyFastUtil.
 
@@ -12291,7 +12289,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_max_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_max_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_max_round_sd is not supported in PyFastUtil.
 
@@ -12305,7 +12303,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_max_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_max_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_max_round_ss is not supported in PyFastUtil.
 
@@ -12319,7 +12317,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_max_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_max_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_max_round_ss is not supported in PyFastUtil.
 
@@ -12333,7 +12331,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_max_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_max_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_max_round_ss is not supported in PyFastUtil.
 
@@ -12347,7 +12345,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_min_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_min_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_min_round_sd is not supported in PyFastUtil.
 
@@ -12361,7 +12359,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_min_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_min_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_min_round_sd is not supported in PyFastUtil.
 
@@ -12375,7 +12373,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_min_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_min_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_min_round_sd is not supported in PyFastUtil.
 
@@ -12389,7 +12387,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_min_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_min_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_min_round_ss is not supported in PyFastUtil.
 
@@ -12403,7 +12401,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_min_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_min_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_min_round_ss is not supported in PyFastUtil.
 
@@ -12417,7 +12415,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_min_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_min_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_min_round_ss is not supported in PyFastUtil.
 
@@ -12431,7 +12429,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_blend_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __W: Ptr) -> None:
+    def mm512_mask_blend_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __W: Ptr) -> None:
         """
         Executes the _mm512_mask_blend_pd operation.
 
@@ -12443,7 +12441,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_blend_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __W: Ptr) -> None:
+    def mm512_mask_blend_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __W: Ptr) -> None:
         """
         Executes the _mm512_mask_blend_ps operation.
 
@@ -12455,7 +12453,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_blend_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __W: Ptr) -> None:
+    def mm512_mask_blend_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr, __W: Ptr) -> None:
         """
         Executes the _mm512_mask_blend_epi64 operation.
 
@@ -12467,7 +12465,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_blend_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __W: Ptr) -> None:
+    def mm512_mask_blend_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __W: Ptr) -> None:
         """
         Executes the _mm512_mask_blend_epi32 operation.
 
@@ -12479,7 +12477,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_fmadd_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_fmadd_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_fmadd_round_sd is not supported in PyFastUtil.
 
@@ -12493,7 +12491,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fmadd_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_fmadd_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_fmadd_round_ss is not supported in PyFastUtil.
 
@@ -12507,7 +12505,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fmsub_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_fmsub_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_fmsub_round_sd is not supported in PyFastUtil.
 
@@ -12521,7 +12519,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fmsub_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_fmsub_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_fmsub_round_ss is not supported in PyFastUtil.
 
@@ -12535,7 +12533,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fnmadd_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_fnmadd_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_fnmadd_round_sd is not supported in PyFastUtil.
 
@@ -12549,7 +12547,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fnmadd_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_fnmadd_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_fnmadd_round_ss is not supported in PyFastUtil.
 
@@ -12563,7 +12561,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fnmsub_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_fnmsub_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_fnmsub_round_sd is not supported in PyFastUtil.
 
@@ -12577,7 +12575,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fnmsub_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_fnmsub_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_fnmsub_round_ss is not supported in PyFastUtil.
 
@@ -12591,7 +12589,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fmadd_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_fmadd_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_fmadd_sd operation.
 
@@ -12603,7 +12601,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_fmadd_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_fmadd_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_fmadd_ss operation.
 
@@ -12615,7 +12613,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask3_fmadd_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
+    def mm_mask3_fmadd_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm_mask3_fmadd_sd operation.
 
@@ -12627,7 +12625,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask3_fmadd_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
+    def mm_mask3_fmadd_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm_mask3_fmadd_ss operation.
 
@@ -12639,7 +12637,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_fmadd_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_fmadd_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_fmadd_sd operation.
 
@@ -12651,7 +12649,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_fmadd_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_fmadd_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_fmadd_ss operation.
 
@@ -12663,7 +12661,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_fmsub_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_fmsub_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_fmsub_sd operation.
 
@@ -12675,7 +12673,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_fmsub_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_fmsub_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_fmsub_ss operation.
 
@@ -12687,7 +12685,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask3_fmsub_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
+    def mm_mask3_fmsub_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm_mask3_fmsub_sd operation.
 
@@ -12699,7 +12697,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask3_fmsub_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
+    def mm_mask3_fmsub_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm_mask3_fmsub_ss operation.
 
@@ -12711,7 +12709,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_fmsub_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_fmsub_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_fmsub_sd operation.
 
@@ -12723,7 +12721,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_fmsub_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_fmsub_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_fmsub_ss operation.
 
@@ -12735,7 +12733,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_fnmadd_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_fnmadd_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_fnmadd_sd operation.
 
@@ -12747,7 +12745,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_fnmadd_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_fnmadd_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_fnmadd_ss operation.
 
@@ -12759,7 +12757,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask3_fnmadd_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
+    def mm_mask3_fnmadd_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm_mask3_fnmadd_sd operation.
 
@@ -12771,7 +12769,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask3_fnmadd_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
+    def mm_mask3_fnmadd_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm_mask3_fnmadd_ss operation.
 
@@ -12783,7 +12781,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_fnmadd_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_fnmadd_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_fnmadd_sd operation.
 
@@ -12795,7 +12793,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_fnmadd_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_fnmadd_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_fnmadd_ss operation.
 
@@ -12807,7 +12805,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_fnmsub_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_fnmsub_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_fnmsub_sd operation.
 
@@ -12819,7 +12817,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_fnmsub_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_fnmsub_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_fnmsub_ss operation.
 
@@ -12831,7 +12829,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask3_fnmsub_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
+    def mm_mask3_fnmsub_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm_mask3_fnmsub_sd operation.
 
@@ -12843,7 +12841,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask3_fnmsub_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
+    def mm_mask3_fnmsub_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm_mask3_fnmsub_ss operation.
 
@@ -12855,7 +12853,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_fnmsub_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_fnmsub_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_fnmsub_sd operation.
 
@@ -12867,7 +12865,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_fnmsub_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_fnmsub_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_fnmsub_ss operation.
 
@@ -12879,7 +12877,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_fmadd_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_fmadd_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fmadd_round_sd is not supported in PyFastUtil.
 
@@ -12893,7 +12891,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fmadd_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_fmadd_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fmadd_round_ss is not supported in PyFastUtil.
 
@@ -12907,7 +12905,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask3_fmadd_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask3_fmadd_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask3_fmadd_round_sd is not supported in PyFastUtil.
 
@@ -12921,7 +12919,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask3_fmadd_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask3_fmadd_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask3_fmadd_round_ss is not supported in PyFastUtil.
 
@@ -12935,7 +12933,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fmadd_round_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_fmadd_round_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fmadd_round_sd is not supported in PyFastUtil.
 
@@ -12949,7 +12947,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fmadd_round_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_fmadd_round_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fmadd_round_ss is not supported in PyFastUtil.
 
@@ -12963,7 +12961,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fmsub_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_fmsub_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fmsub_round_sd is not supported in PyFastUtil.
 
@@ -12977,7 +12975,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fmsub_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_fmsub_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fmsub_round_ss is not supported in PyFastUtil.
 
@@ -12991,7 +12989,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask3_fmsub_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask3_fmsub_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask3_fmsub_round_sd is not supported in PyFastUtil.
 
@@ -13005,7 +13003,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask3_fmsub_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask3_fmsub_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask3_fmsub_round_ss is not supported in PyFastUtil.
 
@@ -13019,7 +13017,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fmsub_round_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_fmsub_round_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fmsub_round_sd is not supported in PyFastUtil.
 
@@ -13033,7 +13031,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fmsub_round_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_fmsub_round_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fmsub_round_ss is not supported in PyFastUtil.
 
@@ -13047,7 +13045,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fnmadd_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_fnmadd_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fnmadd_round_sd is not supported in PyFastUtil.
 
@@ -13061,7 +13059,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fnmadd_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_fnmadd_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fnmadd_round_ss is not supported in PyFastUtil.
 
@@ -13075,7 +13073,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask3_fnmadd_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask3_fnmadd_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask3_fnmadd_round_sd is not supported in PyFastUtil.
 
@@ -13089,7 +13087,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask3_fnmadd_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask3_fnmadd_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask3_fnmadd_round_ss is not supported in PyFastUtil.
 
@@ -13103,7 +13101,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fnmadd_round_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_fnmadd_round_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fnmadd_round_sd is not supported in PyFastUtil.
 
@@ -13117,7 +13115,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fnmadd_round_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_fnmadd_round_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fnmadd_round_ss is not supported in PyFastUtil.
 
@@ -13131,7 +13129,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fnmsub_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_fnmsub_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fnmsub_round_sd is not supported in PyFastUtil.
 
@@ -13145,7 +13143,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fnmsub_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask_fnmsub_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fnmsub_round_ss is not supported in PyFastUtil.
 
@@ -13159,7 +13157,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask3_fnmsub_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask3_fnmsub_round_sd(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask3_fnmsub_round_sd is not supported in PyFastUtil.
 
@@ -13173,7 +13171,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask3_fnmsub_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_mask3_fnmsub_round_ss(self, __result: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __U: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask3_fnmsub_round_ss is not supported in PyFastUtil.
 
@@ -13187,7 +13185,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fnmsub_round_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_fnmsub_round_sd(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fnmsub_round_sd is not supported in PyFastUtil.
 
@@ -13201,7 +13199,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fnmsub_round_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def mm_maskz_fnmsub_round_ss(self, __result: Ptr, __U: Ptr, __W: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fnmsub_round_ss is not supported in PyFastUtil.
 
@@ -13215,7 +13213,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_comi_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
+    def mm_comi_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_comi_round_ss is not supported in PyFastUtil.
 
@@ -13229,7 +13227,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_comi_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
+    def mm_comi_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __P: int, __R: int) -> RaisesNotImplementedError:
         """
         _mm_comi_round_sd is not supported in PyFastUtil.
 
@@ -13243,7 +13241,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_sqrt_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_sqrt_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_sqrt_pd operation.
 
@@ -13255,7 +13253,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sqrt_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_sqrt_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_sqrt_pd operation.
 
@@ -13267,7 +13265,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sqrt_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_sqrt_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_sqrt_pd operation.
 
@@ -13279,7 +13277,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sqrt_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_sqrt_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_sqrt_ps operation.
 
@@ -13291,7 +13289,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sqrt_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_sqrt_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_sqrt_ps operation.
 
@@ -13303,7 +13301,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sqrt_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_sqrt_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_sqrt_ps operation.
 
@@ -13315,7 +13313,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_add_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_add_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_add_pd operation.
 
@@ -13327,7 +13325,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_add_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_add_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_add_pd operation.
 
@@ -13339,7 +13337,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_add_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_add_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_add_pd operation.
 
@@ -13351,7 +13349,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_add_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_add_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_add_ps operation.
 
@@ -13363,7 +13361,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_add_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_add_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_add_ps operation.
 
@@ -13375,7 +13373,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_add_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_add_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_add_ps operation.
 
@@ -13387,7 +13385,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_add_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_add_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_add_sd operation.
 
@@ -13399,7 +13397,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_add_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_add_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_add_sd operation.
 
@@ -13411,7 +13409,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_add_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_add_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_add_ss operation.
 
@@ -13423,7 +13421,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_add_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_add_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_add_ss operation.
 
@@ -13435,7 +13433,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_sub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_sub_pd operation.
 
@@ -13447,7 +13445,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sub_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_sub_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_sub_pd operation.
 
@@ -13459,7 +13457,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sub_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_sub_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_sub_pd operation.
 
@@ -13471,7 +13469,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_sub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_sub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_sub_ps operation.
 
@@ -13483,7 +13481,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_sub_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_sub_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_sub_ps operation.
 
@@ -13495,7 +13493,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_sub_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_sub_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_sub_ps operation.
 
@@ -13507,7 +13505,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_sub_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_sub_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_sub_sd operation.
 
@@ -13519,7 +13517,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_sub_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_sub_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_sub_sd operation.
 
@@ -13531,7 +13529,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_sub_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_sub_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_sub_ss operation.
 
@@ -13543,7 +13541,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_sub_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_sub_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_sub_ss operation.
 
@@ -13555,7 +13553,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mul_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mul_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mul_pd operation.
 
@@ -13567,7 +13565,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mul_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_mul_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_mul_pd operation.
 
@@ -13579,7 +13577,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_mul_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_mul_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_mul_pd operation.
 
@@ -13591,7 +13589,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mul_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mul_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mul_ps operation.
 
@@ -13603,7 +13601,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_mul_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_mul_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_mul_ps operation.
 
@@ -13615,7 +13613,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_mul_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_mul_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_mul_ps operation.
 
@@ -13627,7 +13625,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_mul_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_mul_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_mul_sd operation.
 
@@ -13639,7 +13637,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_mul_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_mul_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_mul_sd operation.
 
@@ -13651,7 +13649,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_mul_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_mul_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_mul_ss operation.
 
@@ -13663,7 +13661,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_mul_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_mul_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_mul_ss operation.
 
@@ -13675,7 +13673,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_div_pd(self, __result: Ptr, __M: Ptr, __V: Ptr) -> None:
+    def mm512_div_pd(self, __result: Ptr, __M: Ptr, __V: Ptr) -> None:
         """
         Executes the _mm512_div_pd operation.
 
@@ -13687,7 +13685,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_div_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __M: Ptr, __V: Ptr) -> None:
+    def mm512_mask_div_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __M: Ptr, __V: Ptr) -> None:
         """
         Executes the _mm512_mask_div_pd operation.
 
@@ -13699,7 +13697,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_div_pd(self, __result: Ptr, __U: Ptr, __M: Ptr, __V: Ptr) -> None:
+    def mm512_maskz_div_pd(self, __result: Ptr, __U: Ptr, __M: Ptr, __V: Ptr) -> None:
         """
         Executes the _mm512_maskz_div_pd operation.
 
@@ -13711,7 +13709,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_div_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_div_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_div_ps operation.
 
@@ -13723,7 +13721,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_div_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_div_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_div_ps operation.
 
@@ -13735,7 +13733,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_div_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_div_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_div_ps operation.
 
@@ -13747,7 +13745,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_div_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_div_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_div_sd operation.
 
@@ -13759,7 +13757,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_div_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_div_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_div_sd operation.
 
@@ -13771,7 +13769,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_div_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_div_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_div_ss operation.
 
@@ -13783,7 +13781,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_div_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_div_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_div_ss operation.
 
@@ -13795,7 +13793,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_max_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_max_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_max_pd operation.
 
@@ -13807,7 +13805,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_max_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_max_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_max_pd operation.
 
@@ -13819,7 +13817,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_max_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_max_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_max_pd operation.
 
@@ -13831,7 +13829,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_max_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_max_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_max_ps operation.
 
@@ -13843,7 +13841,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_max_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_max_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_max_ps operation.
 
@@ -13855,7 +13853,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_max_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_max_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_max_ps operation.
 
@@ -13867,7 +13865,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_max_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_max_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_max_sd operation.
 
@@ -13879,7 +13877,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_max_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_max_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_max_sd operation.
 
@@ -13891,7 +13889,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_max_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_max_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_max_ss operation.
 
@@ -13903,7 +13901,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_max_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_max_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_max_ss operation.
 
@@ -13915,7 +13913,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_min_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_min_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_min_pd operation.
 
@@ -13927,7 +13925,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_min_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_min_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_min_pd operation.
 
@@ -13939,7 +13937,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_min_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_min_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_min_pd operation.
 
@@ -13951,7 +13949,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_min_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_min_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_min_ps operation.
 
@@ -13963,7 +13961,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_min_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_min_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_min_ps operation.
 
@@ -13975,7 +13973,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_min_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_min_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_min_ps operation.
 
@@ -13987,7 +13985,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_min_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_min_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_min_sd operation.
 
@@ -13999,7 +13997,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_min_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_min_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_min_sd operation.
 
@@ -14011,7 +14009,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_min_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_min_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_min_ss operation.
 
@@ -14023,7 +14021,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_min_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_min_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_min_ss operation.
 
@@ -14035,7 +14033,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_scalef_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_scalef_pd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_scalef_pd operation.
 
@@ -14047,7 +14045,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_scalef_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_scalef_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_scalef_pd operation.
 
@@ -14059,7 +14057,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_scalef_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_scalef_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_scalef_pd operation.
 
@@ -14071,7 +14069,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_scalef_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_scalef_ps(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_scalef_ps operation.
 
@@ -14083,7 +14081,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_scalef_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_scalef_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_scalef_ps operation.
 
@@ -14095,7 +14093,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_scalef_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_maskz_scalef_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_maskz_scalef_ps operation.
 
@@ -14107,7 +14105,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_scalef_sd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_scalef_sd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_scalef_sd operation.
 
@@ -14119,7 +14117,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_scalef_ss(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_scalef_ss(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_scalef_ss operation.
 
@@ -14131,7 +14129,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fmadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fmadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fmadd_pd operation.
 
@@ -14143,7 +14141,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fmadd_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fmadd_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fmadd_pd operation.
 
@@ -14155,7 +14153,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fmadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fmadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fmadd_pd operation.
 
@@ -14167,7 +14165,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fmadd_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fmadd_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fmadd_pd operation.
 
@@ -14179,7 +14177,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fmadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fmadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fmadd_ps operation.
 
@@ -14191,7 +14189,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fmadd_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fmadd_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fmadd_ps operation.
 
@@ -14203,7 +14201,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fmadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fmadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fmadd_ps operation.
 
@@ -14215,7 +14213,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fmadd_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fmadd_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fmadd_ps operation.
 
@@ -14227,7 +14225,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fmsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fmsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fmsub_pd operation.
 
@@ -14239,7 +14237,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fmsub_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fmsub_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fmsub_pd operation.
 
@@ -14251,7 +14249,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fmsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fmsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fmsub_pd operation.
 
@@ -14263,7 +14261,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fmsub_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fmsub_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fmsub_pd operation.
 
@@ -14275,7 +14273,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fmsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fmsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fmsub_ps operation.
 
@@ -14287,7 +14285,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fmsub_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fmsub_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fmsub_ps operation.
 
@@ -14299,7 +14297,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fmsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fmsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fmsub_ps operation.
 
@@ -14311,7 +14309,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fmsub_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fmsub_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fmsub_ps operation.
 
@@ -14323,7 +14321,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fmaddsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fmaddsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fmaddsub_pd operation.
 
@@ -14335,7 +14333,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fmaddsub_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fmaddsub_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fmaddsub_pd operation.
 
@@ -14347,7 +14345,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fmaddsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fmaddsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fmaddsub_pd operation.
 
@@ -14359,7 +14357,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fmaddsub_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fmaddsub_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fmaddsub_pd operation.
 
@@ -14371,7 +14369,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fmaddsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fmaddsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fmaddsub_ps operation.
 
@@ -14383,7 +14381,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fmaddsub_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fmaddsub_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fmaddsub_ps operation.
 
@@ -14395,7 +14393,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fmaddsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fmaddsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fmaddsub_ps operation.
 
@@ -14407,7 +14405,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fmaddsub_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fmaddsub_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fmaddsub_ps operation.
 
@@ -14419,7 +14417,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fmsubadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fmsubadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fmsubadd_pd operation.
 
@@ -14431,7 +14429,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fmsubadd_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fmsubadd_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fmsubadd_pd operation.
 
@@ -14443,7 +14441,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fmsubadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fmsubadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fmsubadd_pd operation.
 
@@ -14455,7 +14453,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fmsubadd_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fmsubadd_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fmsubadd_pd operation.
 
@@ -14467,7 +14465,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fmsubadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fmsubadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fmsubadd_ps operation.
 
@@ -14479,7 +14477,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fmsubadd_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fmsubadd_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fmsubadd_ps operation.
 
@@ -14491,7 +14489,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fmsubadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fmsubadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fmsubadd_ps operation.
 
@@ -14503,7 +14501,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fmsubadd_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fmsubadd_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fmsubadd_ps operation.
 
@@ -14515,7 +14513,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fnmadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fnmadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fnmadd_pd operation.
 
@@ -14527,7 +14525,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fnmadd_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fnmadd_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fnmadd_pd operation.
 
@@ -14539,7 +14537,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fnmadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fnmadd_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fnmadd_pd operation.
 
@@ -14551,7 +14549,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fnmadd_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fnmadd_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fnmadd_pd operation.
 
@@ -14563,7 +14561,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fnmadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fnmadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fnmadd_ps operation.
 
@@ -14575,7 +14573,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fnmadd_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fnmadd_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fnmadd_ps operation.
 
@@ -14587,7 +14585,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fnmadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fnmadd_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fnmadd_ps operation.
 
@@ -14599,7 +14597,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fnmadd_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fnmadd_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fnmadd_ps operation.
 
@@ -14611,7 +14609,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fnmsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fnmsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fnmsub_pd operation.
 
@@ -14623,7 +14621,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fnmsub_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fnmsub_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fnmsub_pd operation.
 
@@ -14635,7 +14633,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fnmsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fnmsub_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fnmsub_pd operation.
 
@@ -14647,7 +14645,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fnmsub_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fnmsub_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fnmsub_pd operation.
 
@@ -14659,7 +14657,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fnmsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_fnmsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_fnmsub_ps operation.
 
@@ -14671,7 +14669,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_fnmsub_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_mask_fnmsub_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_mask_fnmsub_ps operation.
 
@@ -14683,7 +14681,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask3_fnmsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
+    def mm512_mask3_fnmsub_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __U: Ptr) -> None:
         """
         Executes the _mm512_mask3_fnmsub_ps operation.
 
@@ -14695,7 +14693,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_fnmsub_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
+    def mm512_maskz_fnmsub_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr) -> None:
         """
         Executes the _mm512_maskz_fnmsub_ps operation.
 
@@ -14707,7 +14705,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvttpd_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvttpd_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvttpd_epi32 operation.
 
@@ -14719,7 +14717,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvttpd_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvttpd_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvttpd_epi32 operation.
 
@@ -14731,7 +14729,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvttpd_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvttpd_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvttpd_epi32 operation.
 
@@ -14743,7 +14741,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvttpd_epu32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvttpd_epu32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvttpd_epu32 operation.
 
@@ -14755,7 +14753,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvttpd_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvttpd_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvttpd_epu32 operation.
 
@@ -14767,7 +14765,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvttpd_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvttpd_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvttpd_epu32 operation.
 
@@ -14779,7 +14777,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtpd_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtpd_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtpd_epi32 operation.
 
@@ -14791,7 +14789,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtpd_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtpd_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtpd_epi32 operation.
 
@@ -14803,7 +14801,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtpd_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtpd_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtpd_epi32 operation.
 
@@ -14815,7 +14813,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtpd_epu32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtpd_epu32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtpd_epu32 operation.
 
@@ -14827,7 +14825,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtpd_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtpd_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtpd_epu32 operation.
 
@@ -14839,7 +14837,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtpd_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtpd_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtpd_epu32 operation.
 
@@ -14851,7 +14849,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvttps_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvttps_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvttps_epi32 operation.
 
@@ -14863,7 +14861,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvttps_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvttps_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvttps_epi32 operation.
 
@@ -14875,7 +14873,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvttps_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvttps_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvttps_epi32 operation.
 
@@ -14887,7 +14885,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvttps_epu32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvttps_epu32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvttps_epu32 operation.
 
@@ -14899,7 +14897,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvttps_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvttps_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvttps_epu32 operation.
 
@@ -14911,7 +14909,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvttps_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvttps_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvttps_epu32 operation.
 
@@ -14923,7 +14921,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtps_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtps_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtps_epi32 operation.
 
@@ -14935,7 +14933,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtps_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtps_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtps_epi32 operation.
 
@@ -14947,7 +14945,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtps_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtps_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtps_epi32 operation.
 
@@ -14959,7 +14957,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtps_epu32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtps_epu32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtps_epu32 operation.
 
@@ -14971,7 +14969,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtps_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtps_epu32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtps_epu32 operation.
 
@@ -14983,7 +14981,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtps_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtps_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtps_epu32 operation.
 
@@ -14995,7 +14993,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtsd_f64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtsd_f64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtsd_f64 operation.
 
@@ -15007,7 +15005,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtss_f32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtss_f32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtss_f32 operation.
 
@@ -15019,7 +15017,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvtu64_ss(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm_cvtu64_ss(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm_cvtu64_ss operation.
 
@@ -15031,7 +15029,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvtu64_sd(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm_cvtu64_sd(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm_cvtu64_sd operation.
 
@@ -15043,7 +15041,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvtu32_ss(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm_cvtu32_ss(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm_cvtu32_ss operation.
 
@@ -15055,7 +15053,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepi32_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepi32_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepi32_ps operation.
 
@@ -15067,7 +15065,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepi32_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepi32_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepi32_ps operation.
 
@@ -15079,7 +15077,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepi32_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepi32_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepi32_ps operation.
 
@@ -15091,7 +15089,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtepu32_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtepu32_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtepu32_ps operation.
 
@@ -15103,7 +15101,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtepu32_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtepu32_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtepu32_ps operation.
 
@@ -15115,7 +15113,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtepu32_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtepu32_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtepu32_ps operation.
 
@@ -15127,7 +15125,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_fixupimm_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_fixupimm_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_fixupimm_pd is not supported in PyFastUtil.
 
@@ -15141,7 +15139,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fixupimm_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_fixupimm_pd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fixupimm_pd is not supported in PyFastUtil.
 
@@ -15155,7 +15153,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fixupimm_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fixupimm_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fixupimm_pd is not supported in PyFastUtil.
 
@@ -15169,7 +15167,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_fixupimm_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_fixupimm_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_fixupimm_ps is not supported in PyFastUtil.
 
@@ -15183,7 +15181,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_fixupimm_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_fixupimm_ps(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_fixupimm_ps is not supported in PyFastUtil.
 
@@ -15197,7 +15195,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_fixupimm_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_fixupimm_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_fixupimm_ps is not supported in PyFastUtil.
 
@@ -15211,7 +15209,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fixupimm_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_fixupimm_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_fixupimm_sd is not supported in PyFastUtil.
 
@@ -15225,7 +15223,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fixupimm_sd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_mask_fixupimm_sd(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fixupimm_sd is not supported in PyFastUtil.
 
@@ -15239,7 +15237,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fixupimm_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_maskz_fixupimm_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fixupimm_sd is not supported in PyFastUtil.
 
@@ -15253,7 +15251,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_fixupimm_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_fixupimm_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_fixupimm_ss is not supported in PyFastUtil.
 
@@ -15267,7 +15265,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_fixupimm_ss(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_mask_fixupimm_ss(self, __result: Ptr, __A: Ptr, __U: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_mask_fixupimm_ss is not supported in PyFastUtil.
 
@@ -15281,7 +15279,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_fixupimm_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_maskz_fixupimm_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_fixupimm_ss is not supported in PyFastUtil.
 
@@ -15295,7 +15293,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtss_u64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvtss_u64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvtss_u64 operation.
 
@@ -15307,7 +15305,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvttss_u64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvttss_u64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvttss_u64 operation.
 
@@ -15319,7 +15317,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvttss_i64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvttss_i64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvttss_i64 operation.
 
@@ -15331,7 +15329,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtsi512_si32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtsi512_si32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtsi512_si32 operation.
 
@@ -15343,7 +15341,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvtss_u32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvtss_u32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvtss_u32 operation.
 
@@ -15355,7 +15353,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvttss_u32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvttss_u32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvttss_u32 operation.
 
@@ -15367,7 +15365,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvttss_i32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvttss_i32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvttss_i32 operation.
 
@@ -15379,7 +15377,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvtsd_i32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvtsd_i32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvtsd_i32 operation.
 
@@ -15391,7 +15389,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvtss_i32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvtss_i32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvtss_i32 operation.
 
@@ -15403,7 +15401,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvti32_sd(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm_cvti32_sd(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm_cvti32_sd is not supported in PyFastUtil.
 
@@ -15417,7 +15415,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvti32_ss(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def mm_cvti32_ss(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
         """
         _mm_cvti32_ss is not supported in PyFastUtil.
 
@@ -15431,7 +15429,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cvtsd_u64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvtsd_u64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvtsd_u64 operation.
 
@@ -15443,7 +15441,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvttsd_u64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvttsd_u64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvttsd_u64 operation.
 
@@ -15455,7 +15453,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvttsd_i64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvttsd_i64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvttsd_i64 operation.
 
@@ -15467,7 +15465,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvtsd_i64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvtsd_i64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvtsd_i64 operation.
 
@@ -15479,7 +15477,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvtss_i64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvtss_i64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvtss_i64 operation.
 
@@ -15491,7 +15489,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvti64_sd(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm_cvti64_sd(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm_cvti64_sd operation.
 
@@ -15503,7 +15501,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvti64_ss(self, __result: Ptr, __A: Ptr, __B: int) -> None:
+    def mm_cvti64_ss(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
         Executes the _mm_cvti64_ss operation.
 
@@ -15515,7 +15513,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvtsd_u32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvtsd_u32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvtsd_u32 operation.
 
@@ -15527,7 +15525,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvttsd_u32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvttsd_u32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvttsd_u32 operation.
 
@@ -15539,7 +15537,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_cvttsd_i32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm_cvttsd_i32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm_cvttsd_i32 operation.
 
@@ -15551,7 +15549,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtps_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtps_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtps_pd operation.
 
@@ -15563,7 +15561,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtps_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtps_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtps_pd operation.
 
@@ -15575,7 +15573,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtps_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtps_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtps_pd operation.
 
@@ -15587,7 +15585,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtph_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtph_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtph_ps operation.
 
@@ -15599,7 +15597,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtph_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtph_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtph_ps operation.
 
@@ -15611,7 +15609,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtph_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtph_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtph_ps operation.
 
@@ -15623,7 +15621,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cvtpd_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_cvtpd_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_cvtpd_ps operation.
 
@@ -15635,7 +15633,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cvtpd_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_cvtpd_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_cvtpd_ps operation.
 
@@ -15647,7 +15645,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_cvtpd_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_cvtpd_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_cvtpd_ps operation.
 
@@ -15659,7 +15657,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_getexp_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_getexp_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_getexp_ps operation.
 
@@ -15671,7 +15669,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_getexp_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_getexp_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_getexp_ps operation.
 
@@ -15683,7 +15681,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_getexp_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_getexp_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_getexp_ps operation.
 
@@ -15695,7 +15693,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_getexp_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_getexp_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_getexp_pd operation.
 
@@ -15707,7 +15705,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_getexp_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_getexp_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_getexp_pd operation.
 
@@ -15719,7 +15717,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_maskz_getexp_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_maskz_getexp_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_maskz_getexp_pd operation.
 
@@ -15731,7 +15729,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_getexp_ss(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_getexp_ss(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_getexp_ss operation.
 
@@ -15743,7 +15741,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_getexp_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_getexp_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_getexp_ss operation.
 
@@ -15755,7 +15753,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_getexp_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_getexp_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_getexp_ss operation.
 
@@ -15767,7 +15765,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_getexp_sd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_getexp_sd(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_getexp_sd operation.
 
@@ -15779,7 +15777,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_mask_getexp_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_mask_getexp_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_mask_getexp_sd operation.
 
@@ -15791,7 +15789,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_maskz_getexp_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm_maskz_getexp_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm_maskz_getexp_sd operation.
 
@@ -15803,7 +15801,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_getmant_pd(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm512_getmant_pd(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_getmant_pd is not supported in PyFastUtil.
 
@@ -15817,7 +15815,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_getmant_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm512_mask_getmant_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_mask_getmant_pd is not supported in PyFastUtil.
 
@@ -15831,7 +15829,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_getmant_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm512_maskz_getmant_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_maskz_getmant_pd is not supported in PyFastUtil.
 
@@ -15845,7 +15843,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_getmant_ps(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm512_getmant_ps(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_getmant_ps is not supported in PyFastUtil.
 
@@ -15859,7 +15857,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_getmant_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm512_mask_getmant_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_mask_getmant_ps is not supported in PyFastUtil.
 
@@ -15873,7 +15871,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_getmant_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm512_maskz_getmant_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_maskz_getmant_ps is not supported in PyFastUtil.
 
@@ -15887,7 +15885,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_getmant_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm_getmant_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_getmant_sd is not supported in PyFastUtil.
 
@@ -15901,7 +15899,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_getmant_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm_mask_getmant_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_mask_getmant_sd is not supported in PyFastUtil.
 
@@ -15915,7 +15913,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_getmant_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm_maskz_getmant_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_maskz_getmant_sd is not supported in PyFastUtil.
 
@@ -15929,7 +15927,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_getmant_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm_getmant_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_getmant_ss is not supported in PyFastUtil.
 
@@ -15943,7 +15941,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_getmant_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm_mask_getmant_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_mask_getmant_ss is not supported in PyFastUtil.
 
@@ -15957,7 +15955,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_getmant_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
+    def mm_maskz_getmant_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_maskz_getmant_ss is not supported in PyFastUtil.
 
@@ -15971,7 +15969,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_roundscale_ps(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_roundscale_ps(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_roundscale_ps is not supported in PyFastUtil.
 
@@ -15985,7 +15983,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_roundscale_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_roundscale_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_roundscale_ps is not supported in PyFastUtil.
 
@@ -15999,7 +15997,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_roundscale_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_roundscale_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_roundscale_ps is not supported in PyFastUtil.
 
@@ -16013,7 +16011,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_roundscale_pd(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_roundscale_pd(self, __result: Ptr, __A: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_roundscale_pd is not supported in PyFastUtil.
 
@@ -16027,7 +16025,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_roundscale_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_mask_roundscale_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_roundscale_pd is not supported in PyFastUtil.
 
@@ -16041,7 +16039,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_roundscale_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm512_maskz_roundscale_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm512_maskz_roundscale_pd is not supported in PyFastUtil.
 
@@ -16055,7 +16053,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_roundscale_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_roundscale_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_roundscale_ss is not supported in PyFastUtil.
 
@@ -16069,7 +16067,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_roundscale_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_mask_roundscale_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_mask_roundscale_ss is not supported in PyFastUtil.
 
@@ -16083,7 +16081,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_roundscale_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_maskz_roundscale_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_roundscale_ss is not supported in PyFastUtil.
 
@@ -16097,7 +16095,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_roundscale_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_roundscale_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_roundscale_sd is not supported in PyFastUtil.
 
@@ -16111,7 +16109,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_roundscale_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_mask_roundscale_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __D: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_mask_roundscale_sd is not supported in PyFastUtil.
 
@@ -16125,7 +16123,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_roundscale_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def mm_maskz_roundscale_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: Ptr, __imm: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_roundscale_sd is not supported in PyFastUtil.
 
@@ -16139,7 +16137,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cmp_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_cmp_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_cmp_pd_mask is not supported in PyFastUtil.
 
@@ -16153,7 +16151,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cmp_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_cmp_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_cmp_ps_mask is not supported in PyFastUtil.
 
@@ -16167,7 +16165,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cmp_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_mask_cmp_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cmp_ps_mask is not supported in PyFastUtil.
 
@@ -16181,7 +16179,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_cmp_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm512_mask_cmp_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm512_mask_cmp_pd_mask is not supported in PyFastUtil.
 
@@ -16195,7 +16193,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cmp_sd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm_cmp_sd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm_cmp_sd_mask is not supported in PyFastUtil.
 
@@ -16209,7 +16207,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_cmp_sd_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm_mask_cmp_sd_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm_mask_cmp_sd_mask is not supported in PyFastUtil.
 
@@ -16223,7 +16221,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_cmp_ss_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm_cmp_ss_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm_cmp_ss_mask is not supported in PyFastUtil.
 
@@ -16237,7 +16235,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_cmp_ss_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
+    def mm_mask_cmp_ss_mask(self, __result: Ptr, __M: Ptr, __X: Ptr, __Y: Ptr, __P: int) -> RaisesNotImplementedError:
         """
         _mm_mask_cmp_ss_mask is not supported in PyFastUtil.
 
@@ -16251,7 +16249,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_cmpeq_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpeq_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpeq_pd_mask operation.
 
@@ -16263,7 +16261,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpeq_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpeq_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpeq_pd_mask operation.
 
@@ -16275,7 +16273,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmplt_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmplt_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmplt_pd_mask operation.
 
@@ -16287,7 +16285,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmplt_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmplt_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmplt_pd_mask operation.
 
@@ -16299,7 +16297,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmple_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmple_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmple_pd_mask operation.
 
@@ -16311,7 +16309,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmple_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmple_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmple_pd_mask operation.
 
@@ -16323,7 +16321,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpunord_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpunord_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpunord_pd_mask operation.
 
@@ -16335,7 +16333,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpunord_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpunord_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpunord_pd_mask operation.
 
@@ -16347,7 +16345,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpneq_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpneq_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpneq_pd_mask operation.
 
@@ -16359,7 +16357,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpneq_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpneq_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpneq_pd_mask operation.
 
@@ -16371,7 +16369,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpnlt_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpnlt_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpnlt_pd_mask operation.
 
@@ -16383,7 +16381,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpnlt_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpnlt_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpnlt_pd_mask operation.
 
@@ -16395,7 +16393,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpnle_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpnle_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpnle_pd_mask operation.
 
@@ -16407,7 +16405,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpnle_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpnle_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpnle_pd_mask operation.
 
@@ -16419,7 +16417,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpord_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpord_pd_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpord_pd_mask operation.
 
@@ -16431,7 +16429,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpord_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpord_pd_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpord_pd_mask operation.
 
@@ -16443,7 +16441,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpeq_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpeq_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpeq_ps_mask operation.
 
@@ -16455,7 +16453,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpeq_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpeq_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpeq_ps_mask operation.
 
@@ -16467,7 +16465,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmplt_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmplt_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmplt_ps_mask operation.
 
@@ -16479,7 +16477,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmplt_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmplt_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmplt_ps_mask operation.
 
@@ -16491,7 +16489,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmple_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmple_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmple_ps_mask operation.
 
@@ -16503,7 +16501,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmple_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmple_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmple_ps_mask operation.
 
@@ -16515,7 +16513,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpunord_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpunord_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpunord_ps_mask operation.
 
@@ -16527,7 +16525,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpunord_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpunord_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpunord_ps_mask operation.
 
@@ -16539,7 +16537,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpneq_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpneq_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpneq_ps_mask operation.
 
@@ -16551,7 +16549,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpneq_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpneq_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpneq_ps_mask operation.
 
@@ -16563,7 +16561,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpnlt_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpnlt_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpnlt_ps_mask operation.
 
@@ -16575,7 +16573,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpnlt_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpnlt_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpnlt_ps_mask operation.
 
@@ -16587,7 +16585,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpnle_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpnle_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpnle_ps_mask operation.
 
@@ -16599,7 +16597,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpnle_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpnle_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpnle_ps_mask operation.
 
@@ -16611,7 +16609,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpord_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_cmpord_ps_mask(self, __result: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_cmpord_ps_mask operation.
 
@@ -16623,7 +16621,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpord_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
+    def mm512_mask_cmpord_ps_mask(self, __result: Ptr, __U: Ptr, __X: Ptr, __Y: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpord_ps_mask operation.
 
@@ -16635,7 +16633,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_kmov(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_kmov(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_kmov operation.
 
@@ -16647,7 +16645,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castpd_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castpd_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castpd_ps operation.
 
@@ -16659,7 +16657,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castpd_si512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castpd_si512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castpd_si512 operation.
 
@@ -16671,7 +16669,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castps_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castps_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castps_pd operation.
 
@@ -16683,7 +16681,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castps_si512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castps_si512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castps_si512 operation.
 
@@ -16695,7 +16693,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castsi512_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castsi512_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castsi512_ps operation.
 
@@ -16707,7 +16705,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castsi512_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castsi512_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castsi512_pd operation.
 
@@ -16719,7 +16717,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castpd512_pd128(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castpd512_pd128(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castpd512_pd128 operation.
 
@@ -16731,7 +16729,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castps512_ps128(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castps512_ps128(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castps512_ps128 operation.
 
@@ -16743,7 +16741,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castsi512_si128(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castsi512_si128(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castsi512_si128 operation.
 
@@ -16755,7 +16753,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castpd512_pd256(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castpd512_pd256(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castpd512_pd256 operation.
 
@@ -16767,7 +16765,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castps512_ps256(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castps512_ps256(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castps512_ps256 operation.
 
@@ -16779,7 +16777,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castsi512_si256(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castsi512_si256(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castsi512_si256 operation.
 
@@ -16791,7 +16789,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castpd128_pd512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castpd128_pd512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castpd128_pd512 operation.
 
@@ -16803,7 +16801,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castps128_ps512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castps128_ps512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castps128_ps512 operation.
 
@@ -16815,7 +16813,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castsi128_si512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castsi128_si512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castsi128_si512 operation.
 
@@ -16827,7 +16825,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castpd256_pd512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castpd256_pd512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castpd256_pd512 operation.
 
@@ -16839,7 +16837,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castps256_ps512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castps256_ps512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castps256_ps512 operation.
 
@@ -16851,7 +16849,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_castsi256_si512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_castsi256_si512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_castsi256_si512 operation.
 
@@ -16863,7 +16861,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_zextpd128_pd512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_zextpd128_pd512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_zextpd128_pd512 operation.
 
@@ -16875,7 +16873,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_zextps128_ps512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_zextps128_ps512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_zextps128_ps512 operation.
 
@@ -16887,7 +16885,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_zextsi128_si512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_zextsi128_si512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_zextsi128_si512 operation.
 
@@ -16899,7 +16897,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_zextpd256_pd512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_zextpd256_pd512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_zextpd256_pd512 operation.
 
@@ -16911,7 +16909,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_zextps256_ps512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_zextps256_ps512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_zextps256_ps512 operation.
 
@@ -16923,7 +16921,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_zextsi256_si512(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_zextsi256_si512(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_zextsi256_si512 operation.
 
@@ -16935,7 +16933,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpeq_epu32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_cmpeq_epu32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_cmpeq_epu32_mask operation.
 
@@ -16947,7 +16945,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpeq_epu32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_cmpeq_epu32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpeq_epu32_mask operation.
 
@@ -16959,7 +16957,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpeq_epu64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_cmpeq_epu64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpeq_epu64_mask operation.
 
@@ -16971,7 +16969,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpeq_epu64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_cmpeq_epu64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_cmpeq_epu64_mask operation.
 
@@ -16983,7 +16981,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpgt_epu32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_cmpgt_epu32_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_cmpgt_epu32_mask operation.
 
@@ -16995,7 +16993,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpgt_epu32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_cmpgt_epu32_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpgt_epu32_mask operation.
 
@@ -17007,7 +17005,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_cmpgt_epu64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_mask_cmpgt_epu64_mask(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_mask_cmpgt_epu64_mask operation.
 
@@ -17019,7 +17017,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_cmpgt_epu64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
+    def mm512_cmpgt_epu64_mask(self, __result: Ptr, __A: Ptr, __B: Ptr) -> None:
         """
         Executes the _mm512_cmpgt_epu64_mask operation.
 
@@ -17031,7 +17029,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_add_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_add_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_add_epi32 operation.
 
@@ -17043,7 +17041,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_mul_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_mul_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_mul_epi32 operation.
 
@@ -17055,7 +17053,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_and_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_and_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_and_epi32 operation.
 
@@ -17067,7 +17065,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_or_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_or_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_or_epi32 operation.
 
@@ -17079,7 +17077,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_add_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_add_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_add_epi32 operation.
 
@@ -17091,7 +17089,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_mul_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_mul_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_mul_epi32 operation.
 
@@ -17103,7 +17101,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_and_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_and_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_and_epi32 operation.
 
@@ -17115,7 +17113,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_or_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_or_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_or_epi32 operation.
 
@@ -17127,7 +17125,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_min_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_min_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_min_epi32 operation.
 
@@ -17139,7 +17137,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_max_epi32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_max_epi32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_max_epi32 operation.
 
@@ -17151,7 +17149,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_min_epu32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_min_epu32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_min_epu32 operation.
 
@@ -17163,7 +17161,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_max_epu32(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_max_epu32(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_max_epu32 operation.
 
@@ -17175,7 +17173,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_min_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_min_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_min_epi32 operation.
 
@@ -17187,7 +17185,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_max_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_max_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_max_epi32 operation.
 
@@ -17199,7 +17197,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_min_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_min_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_min_epu32 operation.
 
@@ -17211,7 +17209,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_max_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_max_epu32(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_max_epu32 operation.
 
@@ -17223,7 +17221,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_add_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_add_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_add_ps operation.
 
@@ -17235,7 +17233,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_mul_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_mul_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_mul_ps operation.
 
@@ -17247,7 +17245,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_add_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_add_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_add_ps operation.
 
@@ -17259,7 +17257,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_mul_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_mul_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_mul_ps operation.
 
@@ -17271,7 +17269,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_min_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_min_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_min_ps operation.
 
@@ -17283,7 +17281,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_max_ps(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_max_ps(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_max_ps operation.
 
@@ -17295,7 +17293,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_min_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_min_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_min_ps operation.
 
@@ -17307,7 +17305,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_max_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_max_ps(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_max_ps operation.
 
@@ -17319,7 +17317,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_add_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_add_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_add_epi64 operation.
 
@@ -17331,7 +17329,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_mul_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_mul_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_mul_epi64 operation.
 
@@ -17343,7 +17341,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_and_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_and_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_and_epi64 operation.
 
@@ -17355,7 +17353,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_or_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_or_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_or_epi64 operation.
 
@@ -17367,7 +17365,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_add_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_add_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_add_epi64 operation.
 
@@ -17379,7 +17377,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_mul_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_mul_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_mul_epi64 operation.
 
@@ -17391,7 +17389,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_and_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_and_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_and_epi64 operation.
 
@@ -17403,7 +17401,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_or_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_or_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_or_epi64 operation.
 
@@ -17415,7 +17413,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_min_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_min_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_min_epi64 operation.
 
@@ -17427,7 +17425,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_max_epi64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_max_epi64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_max_epi64 operation.
 
@@ -17439,7 +17437,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_min_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_min_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_min_epi64 operation.
 
@@ -17451,7 +17449,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_max_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_max_epi64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_max_epi64 operation.
 
@@ -17463,7 +17461,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_min_epu64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_min_epu64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_min_epu64 operation.
 
@@ -17475,7 +17473,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_max_epu64(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_max_epu64(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_max_epu64 operation.
 
@@ -17487,7 +17485,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_min_epu64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_min_epu64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_min_epu64 operation.
 
@@ -17499,7 +17497,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_max_epu64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_max_epu64(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_max_epu64 operation.
 
@@ -17511,7 +17509,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_add_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_add_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_add_pd operation.
 
@@ -17523,7 +17521,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_mul_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_mul_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_mul_pd operation.
 
@@ -17535,7 +17533,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_add_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_add_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_add_pd operation.
 
@@ -17547,7 +17545,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_mul_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_mul_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_mul_pd operation.
 
@@ -17559,7 +17557,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_min_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_min_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_min_pd operation.
 
@@ -17571,7 +17569,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_reduce_max_pd(self, __result: Ptr, __A: Ptr) -> None:
+    def mm512_reduce_max_pd(self, __result: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_reduce_max_pd operation.
 
@@ -17583,7 +17581,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_mask_reduce_min_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
+    def mm512_mask_reduce_min_pd(self, __result: Ptr, __U: Ptr, __A: Ptr) -> None:
         """
         Executes the _mm512_mask_reduce_min_pd operation.
 
