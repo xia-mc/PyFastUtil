@@ -9,7 +9,7 @@ from tests.benchmark import benchmark_ASM
 
 
 @pytest.mark.skipUnless(platform.system() == "Windows", "ASM only support Windows now.")
-@unittest.skipUnless(platform.system() == "Windows", "ASM only support Windows now.")
+@unittest.skipIf(platform.system() != "Windows", "ASM only support Windows now.")
 class TestASM(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
