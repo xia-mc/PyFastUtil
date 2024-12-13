@@ -2,7 +2,6 @@
 // Created by xia__mc on 2024/12/10.
 //
 
-#include <format>
 #include "ASM.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "utils/memory/FastMemcpy.h"
@@ -275,7 +274,7 @@ static PyObject *ASM_freeFunction([[maybe_unused]] PyObject *__restrict self,
     } catch (const std::out_of_range& e) {
         PyErr_SetString(
                 PyExc_ValueError,
-                std::format("Invalid argument, does this function still exist? ({})", e.what()).c_str());
+                (std::string("Invalid argument, does this function still exist? (") + e.what() + ")").c_str());
         return nullptr;
     }
 
