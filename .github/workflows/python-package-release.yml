@@ -1,10 +1,8 @@
 name: Python package
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  release:
+    types: [ created ]
 
 jobs:
   lint:
@@ -92,3 +90,12 @@ jobs:
           file: ./coverage.xml
           flags: unittests
           name: codecov-umbrella
+
+      - name: Upload to PyPI
+        shell: bash
+        run: |
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            ./upload.cmd
+          else
+            chmod +x ./upload.sh && ./upload.sh
+          fi

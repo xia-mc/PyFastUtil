@@ -211,7 +211,7 @@ This project is licensed under the **Apache License 2.0**. For more details, see
 - [x] Add Numpy support.
 - [x] Provide bindings for SIMD utility functions.
 - [x] Provide raw AVX512 bindings.
-- [ ] Perform comprehensive testing and benchmarking.
+- [x] Perform comprehensive testing and benchmarking.
 - [x] Publish to PyPI.
 
 ## Contribution
