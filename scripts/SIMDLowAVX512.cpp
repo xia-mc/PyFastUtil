@@ -4033,7 +4033,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_add_round_pd_impl([[maybe_un
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     const int arg3 = (const int) PyFast_AsInt(*(((PyObject **) args) + 3));
@@ -4158,7 +4158,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_sub_round_ps_impl([[maybe_un
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     const int arg3 = (const int) PyFast_AsInt(*(((PyObject **) args) + 3));
@@ -4253,7 +4253,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mul_round_ps_impl([[maybe_un
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     const int arg3 = (const int) PyFast_AsInt(*(((PyObject **) args) + 3));
@@ -4318,7 +4318,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_div_round_pd_impl([[maybe_un
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     const int arg3 = (const int) PyFast_AsInt(*(((PyObject **) args) + 3));
@@ -5910,7 +5910,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_shuffle_epi32_impl([[maybe_u
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     _MM_PERM_ENUM arg2 = (_MM_PERM_ENUM) PyFast_AsChar(*(((PyObject **) args) + 2));
 
@@ -6707,7 +6707,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_shuffle_epi32_impl([[ma
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     __m512i arg3 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
@@ -7506,7 +7506,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_shuffle_epi32_impl([[m
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __mmask16 arg1 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     _MM_PERM_ENUM arg3 = (_MM_PERM_ENUM) PyFast_AsChar(*(((PyObject **) args) + 3));
@@ -11995,7 +11995,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_shuffle_ps_impl([[mayb
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __mmask16 arg1 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
@@ -13366,7 +13366,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_ror_epi32_impl([[maybe_unuse
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512i arg1 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     int arg2 = (int) PyFast_AsInt(*(((PyObject **) args) + 2));
 
@@ -13501,7 +13501,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_ror_epi32_impl([[maybe
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __mmask16 arg1 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m512i arg2 = (__m512i) *((__m512i*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     int arg3 = (int) PyFast_AsInt(*(((PyObject **) args) + 3));
@@ -15199,7 +15199,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_getexp_round_ss_impl([[maybe_un
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m128 arg2 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     const int arg3 = (const int) PyFast_AsInt(*(((PyObject **) args) + 3));
@@ -15244,7 +15244,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_getexp_round_ss_impl([[may
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m128 arg1 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __mmask8 arg2 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
@@ -15291,7 +15291,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_getexp_round_ss_impl([[ma
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __mmask8 arg1 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m128 arg2 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     __m128 arg3 = (__m128) *((__m128*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
@@ -15337,7 +15337,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_getexp_round_sd_impl([[maybe_un
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m128d arg2 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     const int arg3 = (const int) PyFast_AsInt(*(((PyObject **) args) + 3));
@@ -15382,7 +15382,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_mask_getexp_round_sd_impl([[may
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __mmask8 arg2 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
@@ -15429,7 +15429,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_maskz_getexp_round_sd_impl([[ma
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __mmask8 arg1 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m128d arg2 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     __m128d arg3 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
@@ -15475,7 +15475,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_getexp_round_ps_impl([[maybe
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     const int arg2 = (const int) PyFast_AsInt(*(((PyObject **) args) + 2));
 
@@ -15536,7 +15536,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_getexp_round_pd_impl([[maybe
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     const int arg2 = (const int) PyFast_AsInt(*(((PyObject **) args) + 2));
 
@@ -15597,7 +15597,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_getmant_round_pd_impl([[mayb
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
     _MM_MANTISSA_NORM_ENUM arg2;
@@ -15955,7 +15955,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_getmant_round_pd_impl([
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512d arg1 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __mmask8 arg2 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     __m512d arg3 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
@@ -16315,7 +16315,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_getmant_round_pd_impl(
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __mmask8 arg1 = (__mmask8) *((__mmask8*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m512d arg2 = (__m512d) *((__m512d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
@@ -16674,7 +16674,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_getmant_round_ps_impl([[mayb
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
 
     _MM_MANTISSA_NORM_ENUM arg2;
@@ -17032,7 +17032,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_mask_getmant_round_ps_impl([
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m512 arg1 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __mmask16 arg2 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
     __m512 arg3 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 3)));
@@ -17392,7 +17392,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm512_maskz_getmant_round_ps_impl(
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __mmask16 arg1 = (__mmask16) *((__mmask16*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m512 arg2 = (__m512) *((__m512*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
@@ -17751,7 +17751,7 @@ static __forceinline PyObject *SIMDLowAVX512__mm_getmant_round_sd_impl([[maybe_u
         return nullptr;
     }
 
-#if defined(__clang__) || defined(__GNUC__)
+#if !defined(__clang__) && !defined(__GNUC__)
     __m128d arg1 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 1)));
     __m128d arg2 = (__m128d) *((__m128d*) PyLong_AsVoidPtr(*(((PyObject **) args) + 2)));
 
