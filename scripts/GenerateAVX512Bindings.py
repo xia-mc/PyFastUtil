@@ -716,7 +716,7 @@ def main():
 
         callCode = getCallCode(function, constantRequire)
         if len(constantRequire) > 0:
-            argParseCode = f"#if defined(__clang__) || defined(__GNUC__)\n{argParseCode}"
+            argParseCode = f"#if !defined(__clang__) && !defined(__GNUC__)\n{argParseCode}"
             callCode = (f"{formatCode(callCode)}\n\n"
                         f"    Py_RETURN_NONE;\n"
                         f"#else\n"
