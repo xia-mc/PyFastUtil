@@ -33,7 +33,7 @@ else:
         "-std=c++20", "-Wall", "-fvisibility=hidden",
         "-Wno-error=unknown-pragmas",
         "-mavx", "-mavx2", "-mavx512f", "-mavx512bw", "-mavx512dq", "-mavx512vl",
-        "-fno-tree-vectorize"
+        "-fno-tree-vectorize", "-fno-strict-enums"
     ]
     EXTRA_LINK_ARG = ["-flto"]
 
