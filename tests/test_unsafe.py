@@ -1,4 +1,5 @@
 import ctypes
+import platform
 import struct
 import sys
 import unittest
@@ -60,6 +61,7 @@ class TestUnsafe(unittest.TestCase):
             self.assertEqual(result, 3)
             unsafe.free(ptr)
 
+    @unittest.skipUnless(platform.system() == "Windows", "ASM only support Windows now.")
     def test_callVoid(self):
         with ASM() as asm, Unsafe() as unsafe:
             voidFunc = asm.makeFunction(self.ks.asm("ret", as_bytes=True)[0])
@@ -68,6 +70,7 @@ class TestUnsafe(unittest.TestCase):
 
             asm.freeFunction(voidFunc)
 
+    @unittest.skipUnless(platform.system() == "Windows", "ASM only support Windows now.")
     def test_callInt(self):
         with ASM() as asm, Unsafe() as unsafe:
             func = asm.makeFunction(self.ks.asm("mov eax, 123456; ret", as_bytes=True)[0])
@@ -76,6 +79,7 @@ class TestUnsafe(unittest.TestCase):
 
             asm.freeFunction(func)
 
+    @unittest.skipUnless(platform.system() == "Windows", "ASM only support Windows now.")
     def test_callLongLong(self):
         with ASM() as asm, Unsafe() as unsafe:
             func = asm.makeFunction(self.ks.asm("mov rax, 12345678910; ret", as_bytes=True)[0])
@@ -84,6 +88,7 @@ class TestUnsafe(unittest.TestCase):
 
             asm.freeFunction(func)
 
+    @unittest.skipUnless(platform.system() == "Windows", "ASM only support Windows now.")
     def test_callCall(self):
         with ASM() as asm, Unsafe() as unsafe:
             func = asm.makeFunction(self.ks.asm("mov rax, 12345678910; ret", as_bytes=True)[0])
@@ -95,6 +100,7 @@ class TestUnsafe(unittest.TestCase):
 
             asm.freeFunction(func)
 
+    @unittest.skipUnless(platform.system() == "Windows", "ASM only support Windows now.")
     def test_call_16bytes(self):
         with ASM() as asm, Unsafe() as unsafe:
             funcRet16Bytes = asm.makeFunction(self.ks.asm("""
@@ -116,6 +122,7 @@ class TestUnsafe(unittest.TestCase):
             asm.freeFunction(funcRet16Bytes)
             asm.freeFunction(funcProxy)
 
+    @unittest.skipUnless(platform.system() == "Windows", "ASM only support Windows now.")
     def test_call_size_zero(self):
         with ASM() as asm, Unsafe() as unsafe:
             voidFunc = asm.makeFunction(self.ks.asm("ret", as_bytes=True)[0])

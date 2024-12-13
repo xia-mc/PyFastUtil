@@ -7,7 +7,7 @@ from pyfastutil.unsafe import ASM, Unsafe
 from tests.benchmark import benchmark_ASM
 
 
-@unittest.skipUnless(platform.win32_edition() is not None, "ASM only support Windows now.")
+@unittest.skipUnless(platform.system() == "Windows", "ASM only support Windows now.")
 class TestASM(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
