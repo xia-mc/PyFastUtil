@@ -140,10 +140,7 @@ static __forceinline PyObject *SIMDLowAVX512_{function_name}_impl([[maybe_unused
     }
 
 {arg_parsing}
-
 {operation}
-
-    Py_RETURN_NONE;
 #else
     PyErr_SetString(PyExc_NotImplementedError, "AVX-512 is not supported on this architecture.");
     return nullptr;
@@ -631,7 +628,6 @@ def getCallCode(func: SIMDFunc, constantRequire: list[tuple[int, int, int]]) -> 
     else:
         code = f"    {func.name}({args});"
 
-    isOuter = True
     if len(constantRequire) > 0:
         if len(constantRequire) > 4:
             raise NotImplementedError(len(constantRequire))
@@ -639,7 +635,6 @@ def getCallCode(func: SIMDFunc, constantRequire: list[tuple[int, int, int]]) -> 
         for i, (argId, immediateMin, immediateMax) in enumerate(constantRequire):
             if immediateMin == immediateMax:
                 code = code.replace(f"arg{argId}", str(immediateMin))
-                isOuter = False
                 continue
 
             result = f"switch (arg{argId}) {{\n"
@@ -663,16 +658,6 @@ def getCallCode(func: SIMDFunc, constantRequire: list[tuple[int, int, int]]) -> 
             result += "        return nullptr;\n"
 
             result += "}"
-
-            if isOuter:
-                result = f"""
-#if defined(__clang__) || defined(__GNUC__)
-{result}
-#else
-    PyErr_SetString(PyExc_NotImplementedError, "AVX-512 is not supported on this architecture.");
-    return nullptr;
-#endif
-"""
 
             return result
     return code
@@ -729,12 +714,25 @@ def main():
         if curImmediateGenerated != 1:
             immediateGenerated += curImmediateGenerated
 
+        callCode = getCallCode(function, constantRequire)
+        if len(constantRequire) > 0:
+            argParseCode = f"#if defined(__clang__) || defined(__GNUC__)\n{argParseCode}"
+            callCode = (f"{formatCode(callCode)}\n\n"
+                        f"    Py_RETURN_NONE;\n"
+                        f"#else\n"
+                        f"    PyErr_SetString(PyExc_NotImplementedError, \"Target C Method require immediate numbers, "
+                        f"and this method is not supported in GCC/Clang now.\");\n"
+                        f"    return nullptr;\n"
+                        f"#endif")
+        else:
+            callCode = f"{callCode}\n\n    Py_RETURN_NONE;"
+
         funcCode = funcCode.replace("{num_args}", str(num_args))
         funcCode = funcCode.replace("{function_name}", function.name)
-        funcCode = funcCode.replace("{arg_parsing}", argParseCode)
 
         # operation
-        funcCode = funcCode.replace("{operation}", getCallCode(function, constantRequire))
+        funcCode = funcCode.replace("{arg_parsing}", argParseCode)
+        funcCode = funcCode.replace("{operation}", callCode)
         functionsGenerated += 1
         function_def += funcCode
 
@@ -797,6 +795,13 @@ def main():
     size = os.stat(RESULT_PYI_FILE).st_size
     lines = pyi.count("\n")
     print(f"Generated '{RESULT_PYI_FILE}' with {size} bytes and {lines} lines.")
+
+
+def formatCode(code: str) -> str:
+    result = ""
+    for line in code.split("\n"):
+        result += f"    {line}\n"
+    return result
 
 
 if __name__ == '__main__':
