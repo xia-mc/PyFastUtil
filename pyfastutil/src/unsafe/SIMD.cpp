@@ -13,16 +13,16 @@
 #pragma ide diagnostic ignored "bugprone-macro-parentheses"
 
 #define DEFINE_SIMD_FUNCTION(type, name) \
-    static PyObject *SIMD_memcpy##name([[maybe_unused]] PyObject *self, \
-                                        PyObject *const *args, Py_ssize_t nargs) { \
+    static PyObject *SIMD_memcpy##name([[maybe_unused]] PyObject *__restrict self, \
+                                        PyObject *const *__restrict args, Py_ssize_t nargs) { \
         return SIMD_memcpy<type>(args, nargs); \
     } \
-    static PyObject *SIMD_memcpy##name##Aligned([[maybe_unused]] PyObject *self, \
-                                                PyObject *const *args, Py_ssize_t nargs) { \
+    static PyObject *SIMD_memcpy##name##Aligned([[maybe_unused]] PyObject *__restrict self, \
+                                                PyObject *const *__restrict args, Py_ssize_t nargs) { \
         return SIMD_memcpyAligned<type>(args, nargs); \
     } \
-    static PyObject *SIMD_reverse##name([[maybe_unused]] PyObject *self, \
-                                        PyObject *const *args, Py_ssize_t nargs) { \
+    static PyObject *SIMD_reverse##name([[maybe_unused]] PyObject *__restrict self, \
+                                        PyObject *const *__restrict args, Py_ssize_t nargs) { \
         return SIMD_reverse<type>(args, nargs); \
     }
 #pragma clang diagnostic pop

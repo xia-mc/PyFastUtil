@@ -26,7 +26,15 @@
 #include "stdbool.h"
 #endif
 
-#if defined(_WIN32) || defined(_WIN64) || defined(WIN32) || defined(WIN64) || defined(WINNT)
+#if defined(_WIN64) || defined(WIN64)
+#define WINDOWS64
+#endif
+
+#if (defined(_WIN32) || defined(WIN32)) && !defined(WINDOWS64)
+#define WINDOWS32
+#endif
+
+#if defined(WINDOWS32) || defined(WINDOWS64) || defined(WINNT)
 #define WINDOWS
 #endif
 

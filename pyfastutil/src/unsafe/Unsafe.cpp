@@ -5,6 +5,7 @@
 #include "Unsafe.h"
 #include "mutex"
 #include "utils/memory/AlignedAllocator.h"
+#include "utils/memory/FastMemcpy.h"
 #include "utils/PythonUtils.h"
 
 extern "C" {
@@ -156,6 +157,91 @@ static PyObject *Unsafe_set([[maybe_unused]] PyObject *self, PyObject *args) {
     Py_RETURN_NONE;
 }
 
+static PyObject *Unsafe_callVoid([[maybe_unused]] PyObject *__restrict self,
+                                 PyObject *const *__restrict args, Py_ssize_t nargs) {
+    if (nargs != 1) {
+        PyErr_SetString(PyExc_TypeError,
+                        "Function takes exactly 1 arguments (__func)");
+        return nullptr;
+    }
+
+    void *func = PyLong_AsVoidPtr(*args);
+    if (PyErr_Occurred()) {
+        return nullptr;
+    }
+
+    ((void (*)()) func)();
+
+    Py_RETURN_NONE;
+}
+
+static PyObject *Unsafe_callInt([[maybe_unused]] PyObject *__restrict self,
+                                PyObject *const *__restrict args, Py_ssize_t nargs) {
+    if (nargs != 1) {
+        PyErr_SetString(PyExc_TypeError,
+                        "Function takes exactly 1 arguments (__func)");
+        return nullptr;
+    }
+
+    void *func = PyLong_AsVoidPtr(*args);
+    if (PyErr_Occurred()) {
+        return nullptr;
+    }
+
+    return PyFast_FromInt(((int (*)()) func)());
+}
+
+static PyObject *Unsafe_callLongLong([[maybe_unused]] PyObject *__restrict self,
+                                     PyObject *const *__restrict args, Py_ssize_t nargs) {
+    if (nargs != 1) {
+        PyErr_SetString(PyExc_TypeError,
+                        "Function takes exactly 1 arguments (__func)");
+        return nullptr;
+    }
+
+    void *func = PyLong_AsVoidPtr(*args);
+    if (PyErr_Occurred()) {
+        return nullptr;
+    }
+
+    return PyLong_FromLongLong(((long long (*)()) func)());
+}
+
+static PyObject *Unsafe_call([[maybe_unused]] PyObject *__restrict self,
+                             PyObject *const *__restrict args, Py_ssize_t nargs) noexcept {
+    if (nargs != 3) {
+        PyErr_SetString(PyExc_TypeError,
+                        "Function takes exactly 3 arguments (__func, __result, __size)");
+        return nullptr;
+    }
+
+    void *func = PyLong_AsVoidPtr(args[0]);
+    void *result = PyLong_AsVoidPtr(args[1]);
+    size_t size = PyLong_AsSize_t(args[2]);
+    if (PyErr_Occurred()) {
+        return nullptr;
+    }
+
+    if (size == 0) {
+        ((void (*)()) func)();
+        Py_RETURN_NONE;
+    }
+
+#if defined(WINDOWS64) || defined(__x86_64__) || defined(__x86_64) || defined(__ppc64__)
+    int64_t buffer = ((int64_t(*)()) func)();
+#else
+    int32_t buffer = ((int32_t(*)()) func)();
+#endif
+
+    if (size > sizeof(buffer)) {
+        fast_memcpy(result, (void *) buffer, size);
+    } else {
+        fast_memcpy(result, &buffer, size);
+    }
+
+    Py_RETURN_NONE;
+}
+
 static PyObject *Unsafe_getAddress([[maybe_unused]] PyObject *self, PyObject *pyObject) {
     return PyLong_FromVoidPtr(pyObject);
 }
@@ -278,6 +364,10 @@ static PyMethodDef Unsafe_methods[] = {
         {"aligned_free",   (PyCFunction) Unsafe_alignedFree,   METH_O,        nullptr},
         {"get",            (PyCFunction) Unsafe_get,           METH_VARARGS,  nullptr},
         {"set",            (PyCFunction) Unsafe_set,           METH_VARARGS,  nullptr},
+        {"callVoid",       (PyCFunction) Unsafe_callVoid,      METH_FASTCALL, nullptr},
+        {"callInt",        (PyCFunction) Unsafe_callInt,       METH_FASTCALL, nullptr},
+        {"callLongLong",   (PyCFunction) Unsafe_callLongLong,  METH_FASTCALL, nullptr},
+        {"call",           (PyCFunction) Unsafe_call,          METH_FASTCALL, nullptr},
         {"get_address",    (PyCFunction) Unsafe_getAddress,    METH_O,        nullptr},
         {"as_object",      (PyCFunction) Unsafe_as_object,     METH_O,        nullptr},
         {"memcpy",         (PyCFunction) Unsafe_memcpy,        METH_FASTCALL, nullptr},

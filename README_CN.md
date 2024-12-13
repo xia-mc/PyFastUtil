@@ -8,27 +8,25 @@
    <img src="./mascot.png" alt="Project Mascot" width="500">
 </p>
 
-## 让 Python 更快一点
+## 让 Python 再快一点
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/xia-mc/PyFastUtil)](https://img.shields.io/github/issues/xia-mc/PyFastUtil)
-![Version](https://img.shields.io/badge/CPython-3.9_or_later-blue)
+![Version](https://img.shields.io/badge/CPython-3.9_and_later-blue)
 [![Build](https://img.shields.io/github/actions/workflow/status/xia-mc/PyFastUtil/python-package.yml)](https://github.com/xia-mc/PyFastUtil/actions)
 
 </div>
 
 ## 简介
 
-**PyFastUtil** 是一个为 Python 提供的高性能工具库，灵感来源于 Java 中的 [FastUtil](https://fastutil.di.unimi.it/) 库。然而，**PyFastUtil 并不是 FastUtil 的 Python 绑定**，而是一个**从零开始重新实现**的库，旨在为 Python 带来与 Java FastUtil 相同的效率和功能。
-
-> **注意**: PyFastUtil 仍处于**早期开发阶段**。代码库正在积极开发中，尚未准备好用于生产环境。
-> 我们正在努力使其功能齐全并经过广泛测试，之后会发布到 PyPI。
+**PyFastUtil** 是一个为 Python 提供的高性能工具库，灵感来源于 Java 中的 [FastUtil](https://fastutil.di.unimi.it/) 库。然而，**PyFastUtil 并不是 FastUtil 的 Python 绑定**，而是一个从零开始重新实现的库，旨在为 CPython 带来与 C 般的效率和功能。
 
 ### 功能
 
 - 在实现所有对应 Python 数据结构接口的同时，通过针对性优化大幅提升性能，并允许用户根据需求选择最合适的数据结构类型。
 - 完全使用 C/C++ 实现，并通过 SIMD 等硬件针对性优化，旨在最大化提升数据结构的性能。
 - 提供一些高效的 C API Python 绑定，允许高级用户执行一些“不安全”的底层操作。
+- 提供内联汇编的能力，允许高级用户在运行时动态生成/调用/销毁C函数。
 
 ### 性能测试
 
@@ -41,122 +39,163 @@
 #### 针对类型特化的列表（以 `IntArrayList` 为例）
 
 ```text
+Preparing data...
 ---Python list & IntArrayList Benchmark---
 Batch size: 10000
 Repeat: 3
 
-Python list sort time: 1.31 ms
-PyFastUtil IntArrayList sort time: 0.03 ms
-PyFastUtil speed of Python list (sort): 4139.240 %
+Python list init time: 0.02 ms
+PyFastUtil IntArrayList init time: 0.08 ms
+PyFastUtil speed of Python list (init): 29.788 %
 
-Python list append time: 0.44 ms
-PyFastUtil IntArrayList append time: 0.43 ms
-PyFastUtil speed of Python list (append): 102.314 %
+Python list copy time: 0.02 ms
+PyFastUtil IntArrayList copy time: 0.00 ms
+PyFastUtil speed of Python list (copy): 766.102 %
 
-Python list insert time: 71.75 ms
-PyFastUtil IntArrayList insert time: 10.68 ms
-PyFastUtil speed of Python list (insert): 671.948 %
+Python list to_python time: 0.02 ms
+PyFastUtil IntArrayList to_python time: 0.27 ms
+PyFastUtil speed of Python list (to_python): 5.821 %
 
-Python list pop time: 0.34 ms
-PyFastUtil IntArrayList pop time: 0.40 ms
-PyFastUtil speed of Python list (pop): 85.341 %
+Python list sequential_access time: 0.00 ms
+PyFastUtil IntArrayList sequential_access time: 0.00 ms
+PyFastUtil speed of Python list (sequential_access): 126.667 %
 
-Python list remove time: 5.13 ms
-PyFastUtil IntArrayList remove time: 2.55 ms
-PyFastUtil speed of Python list (remove): 201.138 %
+Python list random_access time: 0.39 ms
+PyFastUtil IntArrayList random_access time: 0.62 ms
+PyFastUtil speed of Python list (random_access): 62.423 %
 
-Python list contains time: 536.74 ms
-PyFastUtil IntArrayList contains time: 15.29 ms
-PyFastUtil speed of Python list (contains): 3511.205 %
+Python list sort time: 1.29 ms
+PyFastUtil IntArrayList sort time: 0.04 ms
+PyFastUtil speed of Python list (sort): 3344.483 %
 
-Python list index time: 414.75 ms
-PyFastUtil IntArrayList index time: 3.85 ms
-PyFastUtil speed of Python list (index): 10764.189 %
+Python list append time: 0.23 ms
+PyFastUtil IntArrayList append time: 0.32 ms
+PyFastUtil speed of Python list (append): 72.517 %
 
-Python list extend time: 0.09 ms
-PyFastUtil IntArrayList extend time: 0.20 ms
-PyFastUtil speed of Python list (extend): 44.228 %
+Python list insert time: 70.74 ms
+PyFastUtil IntArrayList insert time: 10.93 ms
+PyFastUtil speed of Python list (insert): 647.349 %
+
+Python list pop time: 0.29 ms
+PyFastUtil IntArrayList pop time: 0.35 ms
+PyFastUtil speed of Python list (pop): 85.143 %
+
+Python list remove time: 5.50 ms
+PyFastUtil IntArrayList remove time: 2.54 ms
+PyFastUtil speed of Python list (remove): 216.749 %
+
+Python list contains time: 258.02 ms
+PyFastUtil IntArrayList contains time: 2.61 ms
+PyFastUtil speed of Python list (contains): 9896.599 %
+
+Python list index time: 438.12 ms
+PyFastUtil IntArrayList index time: 3.77 ms
+PyFastUtil speed of Python list (index): 11618.038 %
+
+Python list extend time: 0.08 ms
+PyFastUtil IntArrayList extend time: 0.14 ms
+PyFastUtil speed of Python list (extend): 58.433 %
+
+Python list reverse time: 0.00 ms
+PyFastUtil IntArrayList reverse time: 0.00 ms
+PyFastUtil speed of Python list (reverse): 378.948 %
 
 
-Avg speed of PyFastUtil compared to Python list: 2439.950 %
+Avg speed of PyFastUtil compared to Python list: 1950.647 %
 ```
 
 #### 针对存储通用类型的列表（以 `ObjectArrayList` 为例）
 
 ```text
+Preparing data...
 ---Python list & ObjectArrayList Benchmark---
 Batch size: 10000
 Repeat: 3
 
-Python list sort time: 125.56 ms
-PyFastUtil ObjectArrayList sort time: 116.61 ms
-PyFastUtil speed of Python list (sort): 107.668 %
+Python list init time: 0.06 ms
+PyFastUtil ObjectArrayList init time: 0.05 ms
+PyFastUtil speed of Python list (init): 129.484 %
 
-Python list append time: 0.30 ms
-PyFastUtil ObjectArrayList append time: 0.35 ms
-PyFastUtil speed of Python list (append): 86.724 %
+Python list copy time: 0.07 ms
+PyFastUtil ObjectArrayList copy time: 0.03 ms
+PyFastUtil speed of Python list (copy): 268.376 %
 
-Python list insert time: 81.55 ms
-PyFastUtil ObjectArrayList insert time: 23.95 ms
-PyFastUtil speed of Python list (insert): 340.471 %
+Python list to_python time: 0.03 ms
+PyFastUtil ObjectArrayList to_python time: 0.03 ms
+PyFastUtil speed of Python list (to_python): 99.325 %
 
-Python list pop time: 0.44 ms
-PyFastUtil ObjectArrayList pop time: 0.32 ms
-PyFastUtil speed of Python list (pop): 139.226 %
+Python list sequential_access time: 0.00 ms
+PyFastUtil ObjectArrayList sequential_access time: 0.00 ms
+PyFastUtil speed of Python list (sequential_access): 139.130 %
 
-Python list remove time: 5.25 ms
-PyFastUtil ObjectArrayList remove time: 5.14 ms
-PyFastUtil speed of Python list (remove): 102.170 %
+Python list random_access time: 0.22 ms
+PyFastUtil ObjectArrayList random_access time: 0.31 ms
+PyFastUtil speed of Python list (random_access): 71.053 %
 
-Python list contains time: 1140.28 ms
-PyFastUtil ObjectArrayList contains time: 16.37 ms
-PyFastUtil speed of Python list (contains): 6966.576 %
+Python list sort time: 1039.91 ms
+PyFastUtil ObjectArrayList sort time: 1003.55 ms
+PyFastUtil speed of Python list (sort): 103.623 %
 
-Python list index time: 866.88 ms
-PyFastUtil ObjectArrayList index time: 6.77 ms
-PyFastUtil speed of Python list (index): 12803.132 %
+Python list append time: 0.27 ms
+PyFastUtil ObjectArrayList append time: 0.33 ms
+PyFastUtil speed of Python list (append): 81.091 %
 
-Python list extend time: 0.12 ms
-PyFastUtil ObjectArrayList extend time: 0.15 ms
-PyFastUtil speed of Python list (extend): 80.975 %
+Python list insert time: 72.43 ms
+PyFastUtil ObjectArrayList insert time: 20.82 ms
+PyFastUtil speed of Python list (insert): 347.893 %
+
+Python list pop time: 0.36 ms
+PyFastUtil ObjectArrayList pop time: 0.27 ms
+PyFastUtil speed of Python list (pop): 130.323 %
+
+Python list remove time: 5.17 ms
+PyFastUtil ObjectArrayList remove time: 5.17 ms
+PyFastUtil speed of Python list (remove): 100.102 %
+
+Python list contains time: 665.64 ms
+PyFastUtil ObjectArrayList contains time: 3.77 ms
+PyFastUtil speed of Python list (contains): 17634.553 %
+
+Python list index time: 985.46 ms
+PyFastUtil ObjectArrayList index time: 6.80 ms
+PyFastUtil speed of Python list (index): 14501.919 %
+
+Python list extend time: 0.08 ms
+PyFastUtil ObjectArrayList extend time: 0.12 ms
+PyFastUtil speed of Python list (extend): 73.264 %
+
+Python list reverse time: 0.00 ms
+PyFastUtil ObjectArrayList reverse time: 0.00 ms
+PyFastUtil speed of Python list (reverse): 106.000 %
 
 
-Avg speed of PyFastUtil compared to Python list: 2578.368 %
+Avg speed of PyFastUtil compared to Python list: 2413.296 %
 ```
 
 ## 安装
 
-目前，**PyFastUtil** 还未正式发布到 PyPI。您可以选择从 **Test PyPI** 安装测试版本，或者克隆仓库并从源代码进行构建。
-
-### 选项 1：从 Test PyPI 安装
-
-您可以从 **Test PyPI** 安装最新的预发布版本：
-
-```bash
-pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pyfastutil
+### 从 PyPI 安装 PyFastUtil:
+```shell
+pip install PyFastUtil
 ```
 
-> **注意**: Test PyPI 是一个用于测试的独立软件包仓库，其上的包可能不如正式发布的版本稳定。
-
----
-
-### 选项 2：从源代码构建
+### 或者，从源代码构建
 
 如果您希望从源代码构建项目，请按照以下步骤操作：
 
 1. 克隆仓库：
-    ```bash
+    ```shell
     git clone https://github.com/yourusername/PyFastUtil.git
     cd PyFastUtil
     ```
 
 2. 构建项目：
     - 在 **Windows** 上：
-      ```bash
-      build.cmd
+      ```shell
+      ./build.cmd
       ```
     - 在 **Linux/macOS** 上：
-      ```bash
+      ```shell
       ./build.sh
       ```
 
@@ -168,11 +207,12 @@ pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://
 
 ## 开发路线图
 
-- [ ] 实现核心数据结构（例如，快速列表、映射、集合）。
+- [ ] 实现int, float, double的ArrayList, LinkedList。
 - [x] Numpy 支持。
-- [ ] 提供 SIMD 和内联汇编的 Python 绑定。
+- [x] 提供 SIMD 封装函数的绑定。
+- [x] 提供 AVX512 的原始底层绑定。
 - [ ] 进行全面的测试和基准测试。
-- [ ] 发布到 PyPI。
+- [x] 发布到 PyPI。
 
 ## 贡献
 

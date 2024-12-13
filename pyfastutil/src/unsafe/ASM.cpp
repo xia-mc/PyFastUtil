@@ -2,14 +2,19 @@
 // Created by xia__mc on 2024/12/10.
 //
 
+#include <format>
 #include "ASM.h"
 #include "utils/memory/AlignedAllocator.h"
 #include "utils/memory/FastMemcpy.h"
 #include "Compat.h"
+#include "utils/include/UnorderedDense.h"
 
 #ifdef WINDOWS
 
 #include "windows.h"
+
+static auto map = ankerl::unordered_dense::map<void *, std::pair<size_t, DWORD>>();
+static auto lock = std::mutex();
 
 #endif
 
@@ -58,6 +63,10 @@ static PyObject *ASM_run([[maybe_unused]] PyObject *__restrict self,
     }
 
     const auto size = (size_t) PyBytes_Size(args[0]) * sizeof(unsigned char);
+    if (size == 0) {
+        PyErr_SetString(PyExc_ValueError, "Expected a non-empty bytes object.");
+        return nullptr;
+    }
 
     unsigned char *__restrict target;
     const bool aligned = (uintptr_t) code % 16 == 0;
@@ -109,8 +118,8 @@ static PyObject *ASM_run([[maybe_unused]] PyObject *__restrict self,
 static PyObject *ASM_runFast([[maybe_unused]] PyObject *__restrict self,
                              PyObject *const *__restrict args, [[maybe_unused]] Py_ssize_t nargs) noexcept {
 #ifdef WINDOWS
-    const auto *__restrict code = (const unsigned char *) PyBytes_AS_STRING(args[0]);
-    const auto size = (size_t) PyBytes_GET_SIZE(args[0]) * sizeof(unsigned char);
+    const auto *__restrict code = (const unsigned char *) PyBytes_AS_STRING(*args);
+    const auto size = (size_t) PyBytes_GET_SIZE(*args) * sizeof(unsigned char);
 
     if ((uintptr_t) code % 16 != 0) {
         unsigned char *__restrict target;
@@ -162,11 +171,164 @@ static PyObject *ASM_runFast([[maybe_unused]] PyObject *__restrict self,
 #endif
 }
 
+static PyObject *ASM_makeFunction([[maybe_unused]] PyObject *__restrict self,
+                              PyObject *const *__restrict args, [[maybe_unused]] Py_ssize_t nargs) noexcept {
+#ifdef WINDOWS
+    if (nargs != 1) {
+        PyErr_SetString(PyExc_TypeError, "Function takes exactly 1 arguments (__code)");
+        return nullptr;
+    }
+
+    if (!PyBytes_Check(args[0])) {
+        PyErr_SetString(PyExc_TypeError, "Expected a bytes object.");
+        return nullptr;
+    }
+
+    const auto *__restrict code = (const unsigned char *) PyBytes_AsString(args[0]);
+    if (code == nullptr) {
+        PyErr_SetString(PyExc_ValueError, "Failed to convert argument to c str.");
+        return nullptr;
+    }
+
+    const auto size = (size_t) PyBytes_Size(args[0]) * sizeof(unsigned char);
+    if (size == 0) {
+        PyErr_SetString(PyExc_ValueError, "Expected a non-empty bytes object.");
+        return nullptr;
+    }
+
+    unsigned char *__restrict target;
+    try {
+        target = (unsigned char *) alignedAlloc(size, 16);
+    } catch (const std::exception &e) {
+        PyErr_SetString(PyExc_MemoryError, e.what());
+        return nullptr;
+    }
+    fast_memcpy(target, code, size);
+
+    DWORD oldProtect;
+    if (!VirtualProtect((LPVOID) target, size,
+                        PAGE_EXECUTE_READWRITE, &oldProtect)) {
+        PyErr_SetString(PyExc_OSError, "Failed to make ASM executable.");
+        alignedFree(target);
+        return nullptr;
+    }
+
+    lock.lock();
+
+    assert(map.find(target) == map.end());
+    map[target] = std::pair(size, oldProtect);
+
+    lock.unlock();
+    return PyLong_FromVoidPtr(target);
+#else
+    PyErr_SetString(PyExc_NotImplementedError, "ASM is not supported on this architecture.");
+    return nullptr;
+#endif
+}
+
+static PyObject *ASM_makeFunctionFast([[maybe_unused]] PyObject *__restrict self,
+                              PyObject *const *__restrict args, [[maybe_unused]] Py_ssize_t nargs) noexcept {
+#ifdef WINDOWS
+    const auto *__restrict code = (const unsigned char *) PyBytes_AS_STRING(args[0]);
+    const auto size = (size_t) PyBytes_GET_SIZE(args[0]) * sizeof(unsigned char);
+
+    unsigned char *__restrict target;
+    try {
+        target = (unsigned char *) alignedAlloc(size, 16);
+    } catch (const std::exception &e) {
+        PyErr_SetString(PyExc_MemoryError, e.what());
+        return nullptr;
+    }
+    fast_memcpy(target, code, size);
+
+    DWORD oldProtect;
+    if (!VirtualProtect((LPVOID) target, size,
+                        PAGE_EXECUTE_READWRITE, &oldProtect)) {
+        PyErr_SetString(PyExc_OSError, "Failed to make ASM executable.");
+        alignedFree(target);
+        return nullptr;
+    }
+
+    map[target] = std::pair(size, oldProtect);
+    return PyLong_FromVoidPtr(target);
+#else
+    PyErr_SetString(PyExc_NotImplementedError, "ASM is not supported on this architecture.");
+    return nullptr;
+#endif
+}
+
+static PyObject *ASM_freeFunction([[maybe_unused]] PyObject *__restrict self,
+                              PyObject *const *__restrict args, [[maybe_unused]] Py_ssize_t nargs) noexcept {
+#ifdef WINDOWS
+    if (nargs != 1) {
+        PyErr_SetString(PyExc_TypeError, "Function takes exactly 1 arguments (__func)");
+        return nullptr;
+    }
+
+    void *target = PyLong_AsVoidPtr(args[0]);
+    std::pair<size_t, DWORD> metadata;
+
+    lock.lock();
+
+    try {
+        metadata = map.at(target);
+    } catch (const std::out_of_range& e) {
+        PyErr_SetString(
+                PyExc_ValueError,
+                std::format("Invalid argument, does this function still exist? ({})", e.what()).c_str());
+        return nullptr;
+    }
+
+    size_t size = metadata.first;
+    DWORD oldProtect = metadata.second;
+
+    if (!VirtualProtect((LPVOID) target, size, oldProtect, &oldProtect)) {
+        PyErr_SetString(PyExc_OSError, "Failed to restore memory protection.");
+        return nullptr;
+    }
+
+    alignedFree(target);
+    map.erase(target);
+
+    lock.unlock();
+    Py_RETURN_NONE;
+#else
+    PyErr_SetString(PyExc_NotImplementedError, "ASM is not supported on this architecture.");
+    return nullptr;
+#endif
+}
+
+static PyObject *ASM_freeFunctionFast([[maybe_unused]] PyObject *__restrict self,
+                              PyObject *const *__restrict args, [[maybe_unused]] Py_ssize_t nargs) noexcept {
+#ifdef WINDOWS
+    void *__restrict target = PyLong_AsVoidPtr(*args);
+    const std::pair<size_t, DWORD> metadata = map[(void *) target];
+
+    if (!VirtualProtect((LPVOID) target, metadata.first,
+                        metadata.second, (DWORD *) &(metadata.second))) {
+        PyErr_SetString(PyExc_OSError, "Failed to restore memory protection.");
+        return nullptr;
+    }
+
+    alignedFree(target);
+    map.erase((void *) target);
+
+    Py_RETURN_NONE;
+#else
+    PyErr_SetString(PyExc_NotImplementedError, "ASM is not supported on this architecture.");
+    return nullptr;
+#endif
+}
+
 static PyMethodDef ASM_methods[] = {
         {"__enter__", (PyCFunction) ASM_enter, METH_NOARGS, nullptr},
         {"__exit__", (PyCFunction) ASM_exit, METH_FASTCALL, nullptr},
         {"run", (PyCFunction) ASM_run, METH_FASTCALL, nullptr},
         {"runFast", (PyCFunction) ASM_runFast, METH_FASTCALL, nullptr},
+        {"makeFunction", (PyCFunction) ASM_makeFunction, METH_FASTCALL, nullptr},
+        {"makeFunctionFast", (PyCFunction) ASM_makeFunctionFast, METH_FASTCALL, nullptr},
+        {"freeFunction", (PyCFunction) ASM_freeFunction, METH_FASTCALL, nullptr},
+        {"freeFunctionFast", (PyCFunction) ASM_freeFunctionFast, METH_FASTCALL, nullptr},
         {nullptr, nullptr, 0, nullptr}
 };
 

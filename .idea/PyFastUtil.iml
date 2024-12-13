@@ -257,12 +257,20 @@
       <excludeFolder url="file://$MODULE_DIR$/cmake-build-debug" />
       <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
       <excludeFolder url="file://$MODULE_DIR$/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/cmake-build-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/CMakeFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/cmake-build-debug" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Python 3.12 (PyFastUtil) interpreter library" level="application" />
   </component>
   <component name="PackageRequirementsSettings">
-    <option name="versionSpecifier" value="Don't specify version" />
+    <option name="versionSpecifier" />
   </component>
 </module>

@@ -1,6 +1,8 @@
 
 from typing import TypeVar, NoReturn
 
+from .__SIMDLowAVX512Defines import *
+
 Ptr = TypeVar("Ptr", bound=int)
 NULL: Ptr
 
@@ -2707,18 +2709,16 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_add_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm512_add_round_pd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
-        _mm512_add_round_pd is not supported in PyFastUtil.
+        Executes the _mm512_add_round_pd operation.
 
         C method prototype:
             _mm512_add_round_pd(__A: __m512d, __B: __m512d, __R: const int) -> __m512d
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
     def _mm512_mask_add_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
@@ -2833,18 +2833,16 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_sub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm512_sub_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
-        _mm512_sub_round_ps is not supported in PyFastUtil.
+        Executes the _mm512_sub_round_ps operation.
 
         C method prototype:
             _mm512_sub_round_ps(__A: __m512, __B: __m512, __R: const int) -> __m512
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
     def _mm512_mask_sub_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
@@ -2917,18 +2915,16 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mul_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm512_mul_round_ps(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
-        _mm512_mul_round_ps is not supported in PyFastUtil.
+        Executes the _mm512_mul_round_ps operation.
 
         C method prototype:
             _mm512_mul_round_ps(__A: __m512, __B: __m512, __R: const int) -> __m512
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
     def _mm512_mask_mul_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
@@ -2959,18 +2955,16 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_div_round_pd(self, __result: Ptr, __M: Ptr, __V: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm512_div_round_pd(self, __result: Ptr, __M: Ptr, __V: Ptr, __R: int) -> None:
         """
-        _mm512_div_round_pd is not supported in PyFastUtil.
+        Executes the _mm512_div_round_pd operation.
 
         C method prototype:
             _mm512_div_round_pd(__M: __m512d, __V: __m512d, __R: const int) -> __m512d
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
     def _mm512_mask_div_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __R: int) -> RaisesNotImplementedError:
@@ -4657,46 +4651,40 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_shuffle_epi32(self, __result: Ptr, __A: Ptr, __mask: int) -> RaisesNotImplementedError:
+    def _mm512_shuffle_epi32(self, __result: Ptr, __A: Ptr, __mask: MM_PERM_ENUM) -> None:
         """
-        _mm512_shuffle_epi32 is not supported in PyFastUtil.
+        Executes the _mm512_shuffle_epi32 operation.
 
         C method prototype:
             _mm512_shuffle_epi32(__A: __m512i, __mask: _MM_PERM_ENUM) -> __m512i
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm512_mask_shuffle_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __mask: int) -> RaisesNotImplementedError:
+    def _mm512_mask_shuffle_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __mask: MM_PERM_ENUM) -> None:
         """
-        _mm512_mask_shuffle_epi32 is not supported in PyFastUtil.
+        Executes the _mm512_mask_shuffle_epi32 operation.
 
         C method prototype:
             _mm512_mask_shuffle_epi32(__W: __m512i, __U: __mmask16, __A: __m512i, __mask: _MM_PERM_ENUM) -> __m512i
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm512_maskz_shuffle_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __mask: int) -> RaisesNotImplementedError:
+    def _mm512_maskz_shuffle_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __mask: MM_PERM_ENUM) -> None:
         """
-        _mm512_maskz_shuffle_epi32 is not supported in PyFastUtil.
+        Executes the _mm512_maskz_shuffle_epi32 operation.
 
         C method prototype:
             _mm512_maskz_shuffle_epi32(__U: __mmask16, __A: __m512i, __mask: _MM_PERM_ENUM) -> __m512i
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
     def _mm512_shuffle_i64x2(self, __result: Ptr, __A: Ptr, __B: Ptr, __imm: int) -> RaisesNotImplementedError:
@@ -7629,18 +7617,16 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_shuffle_ps(self, __result: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
+    def _mm512_maskz_shuffle_ps(self, __result: Ptr, __U: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> None:
         """
-        _mm512_maskz_shuffle_ps is not supported in PyFastUtil.
+        Executes the _mm512_maskz_shuffle_ps operation.
 
         C method prototype:
             _mm512_maskz_shuffle_ps(__U: __mmask16, __M: __m512, __V: __m512, __imm: const int) -> __m512
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
     def _mm512_shuffle_pd(self, __result: Ptr, __M: Ptr, __V: Ptr, __imm: int) -> RaisesNotImplementedError:
@@ -8135,18 +8121,16 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_ror_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def _mm512_ror_epi32(self, __result: Ptr, __A: Ptr, __B: int) -> None:
         """
-        _mm512_ror_epi32 is not supported in PyFastUtil.
+        Executes the _mm512_ror_epi32 operation.
 
         C method prototype:
             _mm512_ror_epi32(__A: __m512i, __B: int) -> __m512i
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
     def _mm512_mask_ror_epi32(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
@@ -8163,18 +8147,16 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_ror_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
+    def _mm512_maskz_ror_epi32(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int) -> None:
         """
-        _mm512_maskz_ror_epi32 is not supported in PyFastUtil.
+        Executes the _mm512_maskz_ror_epi32 operation.
 
         C method prototype:
             _mm512_maskz_ror_epi32(__U: __mmask16, __A: __m512i, __B: int) -> __m512i
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
     def _mm512_rol_epi64(self, __result: Ptr, __A: Ptr, __B: int) -> RaisesNotImplementedError:
@@ -9539,102 +9521,88 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm_getexp_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm_getexp_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
-        _mm_getexp_round_ss is not supported in PyFastUtil.
+        Executes the _mm_getexp_round_ss operation.
 
         C method prototype:
             _mm_getexp_round_ss(__A: __m128, __B: __m128, __R: const int) -> __m128
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm_mask_getexp_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm_mask_getexp_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
-        _mm_mask_getexp_round_ss is not supported in PyFastUtil.
+        Executes the _mm_mask_getexp_round_ss operation.
 
         C method prototype:
             _mm_mask_getexp_round_ss(__W: __m128, __U: __mmask8, __A: __m128, __B: __m128, __R: const int) -> __m128
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm_maskz_getexp_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm_maskz_getexp_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
-        _mm_maskz_getexp_round_ss is not supported in PyFastUtil.
+        Executes the _mm_maskz_getexp_round_ss operation.
 
         C method prototype:
             _mm_maskz_getexp_round_ss(__U: __mmask8, __A: __m128, __B: __m128, __R: const int) -> __m128
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm_getexp_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm_getexp_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
-        _mm_getexp_round_sd is not supported in PyFastUtil.
+        Executes the _mm_getexp_round_sd operation.
 
         C method prototype:
             _mm_getexp_round_sd(__A: __m128d, __B: __m128d, __R: const int) -> __m128d
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm_mask_getexp_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm_mask_getexp_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
-        _mm_mask_getexp_round_sd is not supported in PyFastUtil.
+        Executes the _mm_mask_getexp_round_sd operation.
 
         C method prototype:
             _mm_mask_getexp_round_sd(__W: __m128d, __U: __mmask8, __A: __m128d, __B: __m128d, __R: const int) -> __m128d
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm_maskz_getexp_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm_maskz_getexp_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __R: int) -> None:
         """
-        _mm_maskz_getexp_round_sd is not supported in PyFastUtil.
+        Executes the _mm_maskz_getexp_round_sd operation.
 
         C method prototype:
             _mm_maskz_getexp_round_sd(__U: __mmask8, __A: __m128d, __B: __m128d, __R: const int) -> __m128d
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm512_getexp_round_ps(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm512_getexp_round_ps(self, __result: Ptr, __A: Ptr, __R: int) -> None:
         """
-        _mm512_getexp_round_ps is not supported in PyFastUtil.
+        Executes the _mm512_getexp_round_ps operation.
 
         C method prototype:
             _mm512_getexp_round_ps(__A: __m512, __R: const int) -> __m512
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
     def _mm512_mask_getexp_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
@@ -9665,18 +9633,16 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_getexp_round_pd(self, __result: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
+    def _mm512_getexp_round_pd(self, __result: Ptr, __A: Ptr, __R: int) -> None:
         """
-        _mm512_getexp_round_pd is not supported in PyFastUtil.
+        Executes the _mm512_getexp_round_pd operation.
 
         C method prototype:
             _mm512_getexp_round_pd(__A: __m512d, __R: const int) -> __m512d
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
     def _mm512_mask_getexp_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __R: int) -> RaisesNotImplementedError:
@@ -9707,105 +9673,91 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_getmant_round_pd(self, __result: Ptr, __A: Ptr, __B: int, __C: int, __R: int) -> RaisesNotImplementedError:
+    def _mm512_getmant_round_pd(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
-        _mm512_getmant_round_pd is not supported in PyFastUtil.
+        Executes the _mm512_getmant_round_pd operation.
 
         C method prototype:
             _mm512_getmant_round_pd(__A: __m512d, __B: _MM_MANTISSA_NORM_ENUM, __C: _MM_MANTISSA_SIGN_ENUM, __R: const int) -> __m512d
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm512_mask_getmant_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int, __C: int, __R: int) -> RaisesNotImplementedError:
+    def _mm512_mask_getmant_round_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
-        _mm512_mask_getmant_round_pd is not supported in PyFastUtil.
+        Executes the _mm512_mask_getmant_round_pd operation.
 
         C method prototype:
             _mm512_mask_getmant_round_pd(__W: __m512d, __U: __mmask8, __A: __m512d, __B: _MM_MANTISSA_NORM_ENUM, __C: _MM_MANTISSA_SIGN_ENUM, __R: const int) -> __m512d
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm512_maskz_getmant_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int, __C: int, __R: int) -> RaisesNotImplementedError:
+    def _mm512_maskz_getmant_round_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
-        _mm512_maskz_getmant_round_pd is not supported in PyFastUtil.
+        Executes the _mm512_maskz_getmant_round_pd operation.
 
         C method prototype:
             _mm512_maskz_getmant_round_pd(__U: __mmask8, __A: __m512d, __B: _MM_MANTISSA_NORM_ENUM, __C: _MM_MANTISSA_SIGN_ENUM, __R: const int) -> __m512d
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm512_getmant_round_ps(self, __result: Ptr, __A: Ptr, __B: int, __C: int, __R: int) -> RaisesNotImplementedError:
+    def _mm512_getmant_round_ps(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
-        _mm512_getmant_round_ps is not supported in PyFastUtil.
+        Executes the _mm512_getmant_round_ps operation.
 
         C method prototype:
             _mm512_getmant_round_ps(__A: __m512, __B: _MM_MANTISSA_NORM_ENUM, __C: _MM_MANTISSA_SIGN_ENUM, __R: const int) -> __m512
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm512_mask_getmant_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int, __C: int, __R: int) -> RaisesNotImplementedError:
+    def _mm512_mask_getmant_round_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
-        _mm512_mask_getmant_round_ps is not supported in PyFastUtil.
+        Executes the _mm512_mask_getmant_round_ps operation.
 
         C method prototype:
             _mm512_mask_getmant_round_ps(__W: __m512, __U: __mmask16, __A: __m512, __B: _MM_MANTISSA_NORM_ENUM, __C: _MM_MANTISSA_SIGN_ENUM, __R: const int) -> __m512
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm512_maskz_getmant_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int, __C: int, __R: int) -> RaisesNotImplementedError:
+    def _mm512_maskz_getmant_round_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
-        _mm512_maskz_getmant_round_ps is not supported in PyFastUtil.
+        Executes the _mm512_maskz_getmant_round_ps operation.
 
         C method prototype:
             _mm512_maskz_getmant_round_ps(__U: __mmask16, __A: __m512, __B: _MM_MANTISSA_NORM_ENUM, __C: _MM_MANTISSA_SIGN_ENUM, __R: const int) -> __m512
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm_getmant_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int, __R: int) -> RaisesNotImplementedError:
+    def _mm_getmant_round_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> None:
         """
-        _mm_getmant_round_sd is not supported in PyFastUtil.
+        Executes the _mm_getmant_round_sd operation.
 
         C method prototype:
             _mm_getmant_round_sd(__A: __m128d, __B: __m128d, __C: _MM_MANTISSA_NORM_ENUM, __D: _MM_MANTISSA_SIGN_ENUM, __R: const int) -> __m128d
 
-        This method is not implemented because it relies on features that are 
-        not currently supported in PyFastUtil. Specifically, it requires 
-        immediate numbers, which cannot be dynamically passed in Python.
-
-        Attempting to call this method will raise a NotImplementedError.
+        This method performs the corresponding AVX-512 operation. Ensure that 
+        all arguments meet the required constraints as specified in the C 
+        method prototype.
         """
         pass
-    def _mm_mask_getmant_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int, __R: int) -> RaisesNotImplementedError:
+    def _mm_mask_getmant_round_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_getmant_round_sd is not supported in PyFastUtil.
 
@@ -9819,7 +9771,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_getmant_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int, __R: int) -> RaisesNotImplementedError:
+    def _mm_maskz_getmant_round_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_getmant_round_sd is not supported in PyFastUtil.
 
@@ -9833,7 +9785,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_getmant_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int, __R: int) -> RaisesNotImplementedError:
+    def _mm_getmant_round_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
         """
         _mm_getmant_round_ss is not supported in PyFastUtil.
 
@@ -9847,7 +9799,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_getmant_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int, __R: int) -> RaisesNotImplementedError:
+    def _mm_mask_getmant_round_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
         """
         _mm_mask_getmant_round_ss is not supported in PyFastUtil.
 
@@ -9861,7 +9813,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_getmant_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int, __R: int) -> RaisesNotImplementedError:
+    def _mm_maskz_getmant_round_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM, __R: int) -> RaisesNotImplementedError:
         """
         _mm_maskz_getmant_round_ss is not supported in PyFastUtil.
 
@@ -15851,7 +15803,7 @@ class SIMDLowAVX512:
         method prototype.
         """
         pass
-    def _mm512_getmant_pd(self, __result: Ptr, __A: Ptr, __B: int, __C: int) -> RaisesNotImplementedError:
+    def _mm512_getmant_pd(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_getmant_pd is not supported in PyFastUtil.
 
@@ -15865,7 +15817,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_getmant_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int, __C: int) -> RaisesNotImplementedError:
+    def _mm512_mask_getmant_pd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_mask_getmant_pd is not supported in PyFastUtil.
 
@@ -15879,7 +15831,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_getmant_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int, __C: int) -> RaisesNotImplementedError:
+    def _mm512_maskz_getmant_pd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_maskz_getmant_pd is not supported in PyFastUtil.
 
@@ -15893,7 +15845,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_getmant_ps(self, __result: Ptr, __A: Ptr, __B: int, __C: int) -> RaisesNotImplementedError:
+    def _mm512_getmant_ps(self, __result: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_getmant_ps is not supported in PyFastUtil.
 
@@ -15907,7 +15859,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_mask_getmant_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: int, __C: int) -> RaisesNotImplementedError:
+    def _mm512_mask_getmant_ps(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_mask_getmant_ps is not supported in PyFastUtil.
 
@@ -15921,7 +15873,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm512_maskz_getmant_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: int, __C: int) -> RaisesNotImplementedError:
+    def _mm512_maskz_getmant_ps(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: MM_MANTISSA_NORM_ENUM, __C: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm512_maskz_getmant_ps is not supported in PyFastUtil.
 
@@ -15935,7 +15887,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_getmant_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int) -> RaisesNotImplementedError:
+    def _mm_getmant_sd(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_getmant_sd is not supported in PyFastUtil.
 
@@ -15949,7 +15901,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_getmant_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int) -> RaisesNotImplementedError:
+    def _mm_mask_getmant_sd(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_mask_getmant_sd is not supported in PyFastUtil.
 
@@ -15963,7 +15915,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_getmant_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int) -> RaisesNotImplementedError:
+    def _mm_maskz_getmant_sd(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_maskz_getmant_sd is not supported in PyFastUtil.
 
@@ -15977,7 +15929,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_getmant_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int) -> RaisesNotImplementedError:
+    def _mm_getmant_ss(self, __result: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_getmant_ss is not supported in PyFastUtil.
 
@@ -15991,7 +15943,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_mask_getmant_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int) -> RaisesNotImplementedError:
+    def _mm_mask_getmant_ss(self, __result: Ptr, __W: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_mask_getmant_ss is not supported in PyFastUtil.
 
@@ -16005,7 +15957,7 @@ class SIMDLowAVX512:
         Attempting to call this method will raise a NotImplementedError.
         """
         pass
-    def _mm_maskz_getmant_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: int, __D: int) -> RaisesNotImplementedError:
+    def _mm_maskz_getmant_ss(self, __result: Ptr, __U: Ptr, __A: Ptr, __B: Ptr, __C: MM_MANTISSA_NORM_ENUM, __D: MM_MANTISSA_SIGN_ENUM) -> RaisesNotImplementedError:
         """
         _mm_maskz_getmant_ss is not supported in PyFastUtil.
 

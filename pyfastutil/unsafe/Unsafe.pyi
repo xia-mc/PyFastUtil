@@ -128,6 +128,105 @@ class Unsafe:
         """
         pass
 
+    def callVoid(self, __func: Ptr) -> None:
+        """
+        Calls a C function at the given memory address with no return value.
+
+        :param __func: A `Ptr` representing the memory address of the C function to call.
+
+        **Details**:
+            - This method directly invokes the C function at the specified address.
+            - The function being called must not require any arguments, as this method does not support argument passing.
+            - If the function has a return value, it will be ignored.
+
+        **Limitations**:
+            - This method does not support passing arguments to the function. To pass arguments, you can use the
+              `ASM` class to create a wrapper function with inline assembly.
+
+        **Warning**:
+            - The execution of C functions is inherently unsafe and may result in segmentation faults or undefined behavior
+              if the function is invalid or improperly used.
+            - Python exceptions will not be raised if the function fails or causes a crash. It is the caller's responsibility
+              to ensure that the function is valid and safe to execute.
+        """
+        pass
+
+    def callInt(self, __func: Ptr) -> int:
+        """
+        Calls a C function at the given memory address and returns an `int` result.
+
+        :param __func: A `Ptr` representing the memory address of the C function to call.
+        :return: An `int` representing the result returned by the C function.
+
+        **Details**:
+            - This method directly invokes the C function at the specified address and interprets its return value as an `int`.
+            - The function being called must not require any arguments, as this method does not support argument passing.
+
+        **Limitations**:
+            - This method does not support passing arguments to the function. To pass arguments, you can use the
+              `ASM` class to create a wrapper function with inline assembly.
+
+        **Warning**:
+            - The execution of C functions is inherently unsafe and may result in segmentation faults or undefined behavior
+              if the function is invalid or improperly used.
+            - Python exceptions will not be raised if the function fails or causes a crash. It is the caller's responsibility
+              to ensure that the function is valid and safe to execute.
+        """
+        pass
+
+    def callLongLong(self, __func: Ptr) -> int:
+        """
+        Calls a C function at the given memory address and returns a `long long` result.
+
+        :param __func: A `Ptr` representing the memory address of the C function to call.
+        :return: An `int` representing the result returned by the C function, interpreted as a `long long`.
+
+        **Details**:
+            - This method directly invokes the C function at the specified address and interprets its return value as a `long long`.
+            - The function being called must not require any arguments, as this method does not support argument passing.
+
+        **Limitations**:
+            - This method does not support passing arguments to the function. To pass arguments, you can use the
+              `ASM` class to create a wrapper function with inline assembly.
+
+        **Warning**:
+            - The execution of C functions is inherently unsafe and may result in segmentation faults or undefined behavior
+              if the function is invalid or improperly used.
+            - Python exceptions will not be raised if the function fails or causes a crash. It is the caller's responsibility
+              to ensure that the function is valid and safe to execute.
+        """
+        pass
+
+    def call(self, __func: Ptr, __result: Ptr, __size: int) -> None:
+        """
+        Calls a C function at the given memory address and writes its return value to a memory block.
+
+        :param __func: A `Ptr` representing the memory address of the C function to call.
+        :param __result: A `Ptr` representing the memory address where the return value will be written.
+        :param __size: The size of the return value in bytes.
+
+        **Behavior**:
+            - If `__size == 0`, this behaves like `Unsafe.callVoid()`, and `__result` is ignored.
+            - The function uses the platform's default calling convention.
+            - On Windows x64:
+                - Return values larger than 16 bytes are returned as pointers to memory.
+                - **This method does not support handling return values between 9 and 16 bytes.** For such cases, use the `ASM` class to create a custom wrapper function.
+
+        **Limitations**:
+            - Only supports calling functions with no arguments.
+            - The caller must ensure `__result` points to a memory block large enough to hold the return value.
+            - On Windows x64, return values between 9 and 16 bytes cannot be handled correctly by this method.
+
+        **Recommendation**:
+            - For complex return values (e.g., structures larger than 8 bytes but smaller than 16 bytes on Windows x64), consider using the `ASM` class to create a wrapper function that processes the return value directly.
+
+        **Warning**:
+            - This method is inherently unsafe. Invalid function pointers or incorrect usage may cause crashes or undefined behavior.
+            - Advanced users can set `__size` to 8 to receive a pointer for large return values and manage the memory manually.
+        """
+        pass
+
+
     def get_address(self, __object: object) -> Ptr:
         """
         Returns the memory address of a Python object.

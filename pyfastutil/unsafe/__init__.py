@@ -9,6 +9,8 @@ from ..__pyfastutil import SIMDLowAVX512 as __SIMDLowAVX512
 # noinspection PyUnresolvedReferences
 from ..__pyfastutil import ASM as __ASM
 
+from .__SIMDLowAVX512Defines import *
+
 Ptr = TypeVar("Ptr", bound=int)
 NULL = 0
 

@@ -1,3 +1,8 @@
+from typing import TypeVar
+
+Ptr = TypeVar("Ptr", bound=int)
+
+
 class ASM:
     """
     A class for executing raw machine instructions. This class provides methods to execute
@@ -85,5 +90,100 @@ class ASM:
               input is valid.
             - Invalid or misaligned instructions can cause crashes, undefined behavior, or security risks.
             - **No Python exceptions will be raised if the instructions fail or cause crashes.**
+        """
+        pass
+
+    def makeFunction(self, __code: bytes) -> Ptr:
+        """
+        Creates a callable C function from the provided machine code.
+
+        :param __code: A `bytes` object containing valid, pre-compiled machine instructions.
+
+        :return: A `Ptr` representing the starting address of the created function. This pointer
+                 can be used with `Unsafe.call`-series functions to invoke the function.
+
+        **Details**:
+            - This method allocates memory for the function, marks it as executable, and copies the
+              provided machine code into the allocated memory.
+            - The returned `Ptr` is a new reference and must be released using `freeFunction`
+              to avoid memory leaks.
+            - This method is thread-safe and performs validation on the input `__code`.
+            - Do not mix `makeFunction` with `Unsafe.malloc` or `Unsafe.set`. Functions created by
+              `makeFunction` must be managed exclusively with `makeFunction` and `freeFunction`.
+
+        **Warning**:
+            - Improper or invalid machine code can cause crashes, undefined behavior, or security risks.
+            - The execution of machine instructions is inherently unsafe and may result in system instability.
+        """
+        pass
+
+    def makeFunctionFast(self, __code: bytes) -> Ptr:
+        """
+        Creates a callable C function from the provided machine code, without performing validation
+        or memory alignment checks.
+
+        :param __code: A `bytes` object containing valid, pre-compiled machine instructions.
+
+        :return: A `Ptr` representing the starting address of the created function. This pointer
+                 can be used with `Unsafe.call`-series functions to invoke the function.
+
+        **Details**:
+            - This method is similar to `makeFunction`, but skips input validation and alignment checks
+              for performance reasons.
+            - The caller is responsible for ensuring that `__code` is valid, properly aligned, and executable.
+            - The returned `Ptr` is a new reference and must be released using `freeFunctionFast`
+              to avoid memory leaks.
+            - This method is **not thread-safe** and should only be used in single-threaded contexts.
+            - Do not mix `makeFunctionFast` with `Unsafe.malloc` or `Unsafe.set`. Functions created by
+              `makeFunctionFast` must be managed exclusively with `makeFunctionFast` and `freeFunctionFast`.
+
+        **Warning**:
+            - Invalid or misaligned machine code can cause crashes, undefined behavior, or security risks.
+            - This method is inherently unsafe and may result in system instability.
+        """
+        pass
+
+    def freeFunction(self, __func: Ptr) -> None:
+        """
+        Releases the memory associated with a function created by `makeFunction`.
+
+        :param __func: A `Ptr` representing the starting address of a function previously created
+                       by `makeFunction`.
+
+        **Details**:
+            - This method frees the memory allocated for the function, ensuring no memory leaks occur.
+            - The `__func` pointer must be the return value of a previous `makeFunction` call and must
+              not have been released already.
+            - Attempting to release an invalid or previously freed pointer will raise a `ValueError`.
+            - This method is thread-safe and ensures proper synchronization when freeing resources.
+            - Do not mix `freeFunction` with `Unsafe.free`. Functions created by `makeFunction` must
+              be managed exclusively with `makeFunction` and `freeFunction`.
+
+        **Warning**:
+            - Passing invalid or previously freed pointers to this method can result in undefined behavior.
+            - Ensure that the function pointer is not used after it has been freed.
+        """
+        pass
+
+    def freeFunctionFast(self, __func: Ptr) -> None:
+        """
+        Releases the memory associated with a function created by `makeFunctionFast`, without
+        performing validation.
+
+        :param __func: A `Ptr` representing the starting address of a function previously created
+                       by `makeFunctionFast`.
+
+        **Details**:
+            - This method is similar to `freeFunction`, but skips input validation for performance reasons.
+            - The caller is responsible for ensuring that `__func` is valid and was created by
+              `makeFunctionFast`.
+            - This method is **not thread-safe** and should only be used in single-threaded contexts.
+            - Do not mix `freeFunctionFast` with `Unsafe.free`. Functions created by `makeFunctionFast`
+              must be managed exclusively with `makeFunctionFast` and `freeFunctionFast`.
+
+        **Warning**:
+            - Passing invalid or previously freed pointers to this method can result in undefined behavior.
+            - This method is inherently unsafe and may result in system instability.
+            - Ensure that the function pointer is not used after it has been freed.
         """
         pass

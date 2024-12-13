@@ -1,11 +1,22 @@
+import ctypes
 import struct
 import sys
 import unittest
 
-from pyfastutil.unsafe import Unsafe, NULL
+from keystone import Ks, KS_ARCH_X86, KS_MODE_64
+
+from pyfastutil.unsafe import Unsafe, NULL, ASM
 
 
 class TestUnsafe(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        """
+        Set up resources for the test class. This method runs once before all tests.
+        """
+        # Initialize Keystone assembler for x86-64
+        cls.ks = Ks(KS_ARCH_X86, KS_MODE_64)
 
     def test_malloc_and_free(self):
         with Unsafe() as unsafe:
@@ -48,6 +59,71 @@ class TestUnsafe(unittest.TestCase):
             result = struct.unpack('i', unsafe.get(ptr + 4 * 2, 4))[0]
             self.assertEqual(result, 3)
             unsafe.free(ptr)
+
+    def test_callVoid(self):
+        with ASM() as asm, Unsafe() as unsafe:
+            voidFunc = asm.makeFunction(self.ks.asm("ret", as_bytes=True)[0])
+
+            unsafe.callVoid(voidFunc)
+
+            asm.freeFunction(voidFunc)
+
+    def test_callInt(self):
+        with ASM() as asm, Unsafe() as unsafe:
+            func = asm.makeFunction(self.ks.asm("mov eax, 123456; ret", as_bytes=True)[0])
+
+            self.assertEqual(unsafe.callInt(func), 123456)
+
+            asm.freeFunction(func)
+
+    def test_callLongLong(self):
+        with ASM() as asm, Unsafe() as unsafe:
+            func = asm.makeFunction(self.ks.asm("mov rax, 12345678910; ret", as_bytes=True)[0])
+
+            self.assertEqual(unsafe.callLongLong(func), 12345678910)
+
+            asm.freeFunction(func)
+
+    def test_callCall(self):
+        with ASM() as asm, Unsafe() as unsafe:
+            func = asm.makeFunction(self.ks.asm("mov rax, 12345678910; ret", as_bytes=True)[0])
+
+            callResult = unsafe.malloc(8)
+            unsafe.call(func, callResult, 8)
+            self.assertEqual(unsafe.get(callResult, 8), bytes(ctypes.c_longlong(12345678910)))
+            unsafe.free(callResult)
+
+            asm.freeFunction(func)
+
+    def test_call_16bytes(self):
+        with ASM() as asm, Unsafe() as unsafe:
+            funcRet16Bytes = asm.makeFunction(self.ks.asm("""
+                mov rax, 123456
+                mov rdx, 123456
+                ret
+            """, as_bytes=True)[0])
+            funcProxy = asm.makeFunction(self.ks.asm(f"""
+                push rcx
+                mov rcx, {hex(funcRet16Bytes)}
+                call rcx
+                imul rax, rdx
+                pop rcx
+                ret
+            """, as_bytes=True)[0])
+
+            self.assertEqual(unsafe.callLongLong(funcProxy), 123456 * 123456)
+
+            asm.freeFunction(funcRet16Bytes)
+            asm.freeFunction(funcProxy)
+
+    def test_call_size_zero(self):
+        with ASM() as asm, Unsafe() as unsafe:
+            voidFunc = asm.makeFunction(self.ks.asm("ret", as_bytes=True)[0])
+
+            # size == 0, should behave like callVoid, pass NULL as result pointer
+            unsafe.call(voidFunc, NULL, 0)
+
+            asm.freeFunction(voidFunc)
 
     def test_memcpy(self):
         with Unsafe() as unsafe:
