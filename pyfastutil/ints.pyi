@@ -512,5 +512,5 @@ class IntLinkedListIter(Iterator[int]):
         """
         pass
 
-class IntIntHashMap(dict[int, int]):
-    pass
+# class IntIntHashMap(dict[int, int]):
+#     pass

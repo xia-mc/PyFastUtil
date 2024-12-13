@@ -44,7 +44,7 @@ PyMODINIT_FUNC PyInit___pyfastutil() {
     PyModule_AddObject(parent, "BigIntArrayListIter", PyInit_BigIntArrayListIter());
     PyModule_AddObject(parent, "IntLinkedList", PyInit_IntLinkedList());
     PyModule_AddObject(parent, "IntLinkedListIter", PyInit_IntLinkedListIter());
-    PyModule_AddObject(parent, "IntIntHashMap", PyInit_IntIntHashMap());
+//    PyModule_AddObject(parent, "IntIntHashMap", PyInit_IntIntHashMap());
 
     PyModule_AddObject(parent, "ObjectArrayList", PyInit_ObjectArrayList());
     PyModule_AddObject(parent, "ObjectArrayListIter", PyInit_ObjectArrayListIter());
