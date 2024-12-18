@@ -622,31 +622,74 @@ static int BigIntArrayList_setitem_slice(PyObject *pySelf, PyObject *slice, PyOb
         return -1;
     }
 
-    if (PySequence_Size(value) != sliceLength) {
-        PyErr_SetString(PyExc_ValueError, "attempt to assign sequence of size different from slice");
+    Py_ssize_t newLength = PySequence_Size(value);
+
+    if (step != 1) {
+        PyErr_SetString(PyExc_NotImplementedError, "step must be 1 for slice assignment");
         return -1;
     }
 
     PyObject *item = nullptr;
     try {
-        for (Py_ssize_t i = 0; i < sliceLength; i++) {
-            Py_ssize_t index = start + i * step;
-
-            if (value == nullptr) {
-                self->vector.erase(self->vector.begin() + index);
-            } else {
+        if (newLength == sliceLength) {  // only change elements
+            for (Py_ssize_t i = 0; i < sliceLength; i++) {
                 item = PySequence_GetItem(value, i);
                 if (item == nullptr) {
                     return -1;
                 }
 
-                self->vector[static_cast<size_t>(index)] = PyLong_AsLongLong(item);
+                self->vector[static_cast<size_t>(start + i)] = PyLong_AsLong(item);
+                SAFE_DECREF(item);
                 if (PyErr_Occurred()) {
-                    SAFE_DECREF(item);
+                    return -1;
+                }
+            }
+        } else if (newLength < sliceLength) {  // less elements
+            for (Py_ssize_t i = 0; i < newLength; i++) {
+                item = PySequence_GetItem(value, i);
+                if (item == nullptr) {
                     return -1;
                 }
 
+                self->vector[static_cast<size_t>(start + i)] = PyLong_AsLong(item);
                 SAFE_DECREF(item);
+                if (PyErr_Occurred()) {
+                    return -1;
+                }
+            }
+
+            self->vector.erase(
+                    self->vector.begin() + start + newLength,
+                    self->vector.begin() + stop
+            );
+        } else {  // more elements
+            for (Py_ssize_t i = 0; i < sliceLength; i++) {
+                item = PySequence_GetItem(value, i);
+                if (item == nullptr) {
+                    return -1;
+                }
+
+                self->vector[static_cast<size_t>(start + i)] = PyLong_AsLong(item);
+                SAFE_DECREF(item);
+                if (PyErr_Occurred()) {
+                    return -1;
+                }
+            }
+
+            for (Py_ssize_t i = sliceLength; i < newLength; i++) {
+                item = PySequence_GetItem(value, i);
+                if (item == nullptr) {
+                    return -1;
+                }
+
+                self->vector.insert(
+                        self->vector.begin() + start + i,
+                        PyLong_AsLong(item)
+                );
+                SAFE_DECREF(item);
+                if (PyErr_Occurred()) {
+                    return -1;
+                }
             }
         }
     } catch (const std::exception &e) {
@@ -654,6 +697,7 @@ static int BigIntArrayList_setitem_slice(PyObject *pySelf, PyObject *slice, PyOb
         PyErr_SetString(PyExc_RuntimeError, e.what());
         return -1;
     }
+
     return 0;
 }
 
@@ -896,7 +940,7 @@ static __forceinline PyObject *BigIntArrayList_eq(PyObject *pySelf, PyObject *py
         if (item == nullptr) return nullptr;
         long long self_value = self->vector[i];
         long long other_value = PyLong_AsLongLong(item);
-        if (PyErr_Occurred()) {  // can't be convert to int
+        if (PyErr_Occurred()) {  // can't be converted to int
             SAFE_DECREF(item);
             Py_RETURN_FALSE;
         }

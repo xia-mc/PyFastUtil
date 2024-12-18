@@ -736,7 +736,7 @@ namespace ankerl::unordered_dense {
                 return operator[](m_size - 1);
             }
 
-            void pop_back() {
+            constexpr void pop_back() {
                 back().~T();
                 --m_size;
             }
@@ -1883,7 +1883,7 @@ namespace ankerl::unordered_dense {
                 }
 
                 // nonstandard API: expose the underlying values container
-                [[nodiscard]] auto values() const noexcept -> value_container_type const& {
+                [[nodiscard]] constexpr auto values() const noexcept -> value_container_type const& {
                     return m_values;
                 }
 

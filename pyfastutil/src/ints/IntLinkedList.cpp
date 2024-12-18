@@ -577,37 +577,86 @@ static int IntLinkedList_setitem_slice(PyObject *pySelf, PyObject *slice, PyObje
         return -1;
     }
 
-    if (PySequence_Size(value) != sliceLength) {
-        PyErr_SetString(PyExc_ValueError, "attempt to assign sequence of size different from slice");
+    Py_ssize_t newLength = PySequence_Size(value);
+
+    if (step != 1) {
+        PyErr_SetString(PyExc_NotImplementedError, "step must be 1 for slice assignment");
         return -1;
     }
 
-    PyObject *item = nullptr;
     try {
-        for (Py_ssize_t i = 0; i < sliceLength; i++) {
-            Py_ssize_t index = start + i * step;
+        auto iter = at(self->list, static_cast<size_t>(start));
 
-            if (value == nullptr) {
-                auto iter = at(self->list, static_cast<size_t>(index));
-                self->list.erase(iter);
-            } else {
-                item = PySequence_GetItem(value, i);
+        if (newLength == sliceLength) {  // only change elements
+            for (Py_ssize_t i = 0; i < sliceLength; i++) {
+                PyObject *item = PySequence_GetItem(value, i);
                 if (item == nullptr) {
                     return -1;
                 }
 
-                *at(self->list, static_cast<size_t>(index)) = PyLong_AsLong(item);
+                *iter = PyLong_AsLong(item);
+                SAFE_DECREF(item);
                 if (PyErr_Occurred()) {
-                    SAFE_DECREF(item);
+                    return -1;
+                }
+
+                ++iter;
+            }
+        } else if (newLength < sliceLength) {  // less elements
+            for (Py_ssize_t i = 0; i < newLength; i++) {
+                PyObject *item = PySequence_GetItem(value, i);
+                if (item == nullptr) {
+                    return -1;
+                }
+
+                *iter = PyLong_AsLong(item);
+                SAFE_DECREF(item);
+                if (PyErr_Occurred()) {
+                    return -1;
+                }
+
+                ++iter;
+            }
+
+            auto eraseStart = iter;
+            for (Py_ssize_t i = newLength; i < sliceLength; i++) {
+                ++iter;
+            }
+            self->list.erase(eraseStart, iter);
+        } else {  // more elements
+            for (Py_ssize_t i = 0; i < sliceLength; i++) {
+                PyObject *item = PySequence_GetItem(value, i);
+                if (item == nullptr) {
+                    return -1;
+                }
+
+                *iter = PyLong_AsLong(item);
+                SAFE_DECREF(item);
+                if (PyErr_Occurred()) {
+                    return -1;
+                }
+
+                ++iter;
+            }
+
+            for (Py_ssize_t i = sliceLength; i < newLength; i++) {
+                PyObject *item = PySequence_GetItem(value, i);
+                if (item == nullptr) {
+                    return -1;
+                }
+
+                self->list.insert(iter, PyLong_AsLong(item));
+                SAFE_DECREF(item);
+                if (PyErr_Occurred()) {
                     return -1;
                 }
             }
         }
     } catch (const std::exception &e) {
-        SAFE_DECREF(item);
         PyErr_SetString(PyExc_RuntimeError, e.what());
         return -1;
     }
+
     return 0;
 }
 

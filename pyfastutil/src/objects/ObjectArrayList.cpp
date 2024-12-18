@@ -11,6 +11,7 @@
 #include "utils/simd/BitonicSort.h"
 #include "utils/simd/SIMDUtils.h"
 #include "utils/memory/AlignedAllocator.h"
+#include "utils/memory/FastMemcpy.h"
 #include "objects/ObjectArrayListIter.h"
 #include "utils/include/CPythonSort.h"
 
@@ -153,7 +154,7 @@ static PyObject *ObjectArrayList_to_list(PyObject *pySelf) {
     }
 
     result->allocated = size;
-    memcpy(result->ob_item, self->vector.data(), size * sizeof(PyObject *));
+    fast_memcpy(result->ob_item, self->vector.data(), size * sizeof(PyObject *));
 
     return reinterpret_cast<PyObject*>(result);
 }
@@ -214,6 +215,16 @@ static PyObject *ObjectArrayList_extend(PyObject *pySelf, PyObject *const *args,
         self->vector.insert(self->vector.end(), iter->vector.begin(), iter->vector.end());
         for (const auto &item: iter->vector) {
             Py_INCREF(item);
+        }
+        Py_RETURN_NONE;
+    }
+
+    if (Py_TYPE(iterable) == &PyList_Type) {
+        const auto *iter = reinterpret_cast<PyListObject *>(iterable);
+        const auto last = iter->ob_item + PyList_GET_SIZE(iter);
+        self->vector.insert(self->vector.end(), iter->ob_item, last);
+        for (PyObject **item = iter->ob_item; item < last; ++item) {
+            Py_INCREF(*item);
         }
         Py_RETURN_NONE;
     }
@@ -519,7 +530,6 @@ static int ObjectArrayList_setitem(PyObject *pySelf, Py_ssize_t pyIndex, PyObjec
     return 0;
 }
 
-
 static int ObjectArrayList_setitem_slice(PyObject *pySelf, PyObject *slice, PyObject *value) {
     if (PyIndex_Check(slice)) {
         Py_ssize_t index = PyNumber_AsSsize_t(slice, PyExc_IndexError);
@@ -543,37 +553,105 @@ static int ObjectArrayList_setitem_slice(PyObject *pySelf, PyObject *slice, PyOb
         return -1;
     }
 
-    if (PySequence_Size(value) != sliceLength) {
-        PyErr_SetString(PyExc_ValueError, "attempt to assign sequence of size different from slice");
+    Py_ssize_t newLength = PySequence_Size(value);
+
+    if (step != 1) {
+        PyErr_SetString(PyExc_NotImplementedError, "step must be 1 for slice assignment");
         return -1;
     }
 
-    PyObject *item = nullptr;
     try {
-        for (Py_ssize_t i = 0; i < sliceLength; i++) {
-            Py_ssize_t index = start + i * step;
+        PyObject **startPtr = self->vector.data() + start;
 
-            if (value == nullptr) {
-                SAFE_DECREF(self->vector[static_cast<size_t>(index)]);
-                self->vector.erase(self->vector.begin() + index);
-            } else {
-                item = PySequence_GetItem(value, i);
+        // Helper function to handle fast memcpy and reference counting
+        static const auto fastCopy = [](PyObject **dest, PyObject **src, Py_ssize_t length) {
+            for (Py_ssize_t i = 0; i < length; i++) {
+                SAFE_DECREF(dest[i]);  // Decrease reference for old item
+                Py_INCREF(src[i]);    // Increase reference for new item
+            }
+            fast_memcpy(dest, src, length * sizeof(PyObject *));
+        };
+
+        // Helper function to handle generic copy (non-optimized path)
+        static const auto genericCopy = [](PyObject **dest, PyObject *srcSeq, Py_ssize_t length) {
+            for (Py_ssize_t i = 0; i < length; i++) {
+                PyObject *item = PySequence_GetItem(srcSeq, i);
                 if (item == nullptr) {
+                    return -1;  // Exception already set
+                }
+                SAFE_DECREF(dest[i]);
+                dest[i] = item;
+            }
+            return 0;
+        };
+
+        if (newLength == sliceLength) {  // Case 1: Replace elements
+            if (Py_TYPE(value) == &ObjectArrayListType) {
+                auto *fastValue = reinterpret_cast<ObjectArrayList *>(value);
+                fastCopy(startPtr, fastValue->vector.data(), sliceLength);
+            } else if (Py_TYPE(value) == &PyList_Type) {
+                auto *fastValue = reinterpret_cast<PyListObject *>(value);
+                fastCopy(startPtr, fastValue->ob_item, sliceLength);
+            } else {
+                if (genericCopy(startPtr, value, sliceLength) < 0) {
+                    return -1;
+                }
+            }
+        } else if (newLength < sliceLength) {  // Case 2: Replace and remove extra elements
+            if (Py_TYPE(value) == &ObjectArrayListType) {
+                auto *fastValue = reinterpret_cast<ObjectArrayList *>(value);
+                fastCopy(startPtr, fastValue->vector.data(), newLength);
+            } else if (Py_TYPE(value) == &PyList_Type) {
+                auto *fastValue = reinterpret_cast<PyListObject *>(value);
+                fastCopy(startPtr, fastValue->ob_item, newLength);
+            } else {
+                if (genericCopy(startPtr, value, newLength) < 0) {
+                    return -1;
+                }
+            }
+
+            // Remove extra elements
+            for (Py_ssize_t i = newLength; i < sliceLength; i++) {
+                SAFE_DECREF(startPtr[i]);
+            }
+            self->vector.erase(self->vector.begin() + start + newLength, self->vector.begin() + stop);
+        } else {  // Case 3: Replace and insert additional elements
+            if (Py_TYPE(value) == &ObjectArrayListType) {
+                auto *fastValue = reinterpret_cast<ObjectArrayList *>(value);
+                fastCopy(startPtr, fastValue->vector.data(), sliceLength);
+                self->vector.insert(
+                        self->vector.begin() + start + sliceLength,
+                        fastValue->vector.data() + sliceLength,
+                        fastValue->vector.data() + newLength
+                );
+            } else if (Py_TYPE(value) == &PyList_Type) {
+                auto *fastValue = reinterpret_cast<PyListObject *>(value);
+                fastCopy(startPtr, fastValue->ob_item, sliceLength);
+                self->vector.insert(
+                        self->vector.begin() + start + sliceLength,
+                        fastValue->ob_item + sliceLength,
+                        fastValue->ob_item + newLength
+                );
+            } else {
+                if (genericCopy(startPtr, value, sliceLength) < 0) {
                     return -1;
                 }
 
-                self->vector[static_cast<size_t>(index)] = item;
-                if (PyErr_Occurred()) {
-                    SAFE_DECREF(item);
-                    return -1;
+                // Insert additional elements
+                for (Py_ssize_t i = sliceLength; i < newLength; i++) {
+                    PyObject *item = PySequence_GetItem(value, i);
+                    if (item == nullptr) {
+                        return -1;
+                    }
+                    self->vector.insert(self->vector.begin() + start + i, item);
                 }
             }
         }
     } catch (const std::exception &e) {
-        SAFE_DECREF(item);
         PyErr_SetString(PyExc_RuntimeError, e.what());
         return -1;
     }
+
     return 0;
 }
 

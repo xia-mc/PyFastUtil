@@ -526,38 +526,49 @@ static int ObjectLinkedList_setitem_slice(PyObject *pySelf, PyObject *slice, PyO
         return -1;
     }
 
-    if (PySequence_Size(value) != sliceLength) {
-        PyErr_SetString(PyExc_ValueError, "attempt to assign sequence of size different from slice");
+    Py_ssize_t newLength = PySequence_Size(value);
+    if (newLength < 0) {
         return -1;
     }
 
     PyObject *item = nullptr;
     try {
-        for (Py_ssize_t i = 0; i < sliceLength; i++) {
-            Py_ssize_t index = start + i * step;
-
-            if (value == nullptr) {
-                auto iter = at(self->list, static_cast<size_t>(index));
+        if (newLength < sliceLength) {
+            auto iter = at(self->list, static_cast<size_t>(start + newLength * step));
+            for (Py_ssize_t i = newLength; i < sliceLength; i++) {
                 SAFE_DECREF(*iter);
-                self->list.erase(iter);
-            } else {
+                iter = self->list.erase(iter);
+            }
+        } else if (newLength > sliceLength) {
+            auto iter = at(self->list, static_cast<size_t>(stop));
+            for (Py_ssize_t i = sliceLength; i < newLength; i++) {
                 item = PySequence_GetItem(value, i);
                 if (item == nullptr) {
                     return -1;
                 }
-
-                *at(self->list, static_cast<size_t>(index)) = item;
-                if (PyErr_Occurred()) {
-                    SAFE_DECREF(item);
-                    return -1;
-                }
+                iter = self->list.insert(iter, item);
+                ++iter;
             }
+        }
+
+        for (Py_ssize_t i = 0; i < newLength; i++) {
+            Py_ssize_t index = start + i * step;
+            auto iter = at(self->list, static_cast<size_t>(index));
+
+            item = PySequence_GetItem(value, i);
+            if (item == nullptr) {
+                return -1;
+            }
+
+            SAFE_DECREF(*iter);
+            *iter = item;
         }
     } catch (const std::exception &e) {
         SAFE_DECREF(item);
         PyErr_SetString(PyExc_RuntimeError, e.what());
         return -1;
     }
+
     return 0;
 }
 

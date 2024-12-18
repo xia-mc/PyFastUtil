@@ -166,3 +166,4 @@ cython_debug/
 /pyfastutil/__pyfastutil.so
 /result.json
 /cmake-build-debug/
+__nativecache__/
