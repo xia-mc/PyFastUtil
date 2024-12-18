@@ -31,7 +31,7 @@ static __forceinline constexpr void PyFast_XDECREF(T *object) noexcept {
     if (UNLIKELY(((PyObject *) object)->ob_refcnt < 0))
         return;
     if (--((PyObject *) object)->ob_refcnt == 0)
-        _Py_Dealloc(object);
+        _Py_Dealloc((PyObject *) object);
 }
 
 template<typename T>
