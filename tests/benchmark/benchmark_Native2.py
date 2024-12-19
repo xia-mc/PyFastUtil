@@ -28,7 +28,7 @@ def native(n):
     return x
 
 
-def setupAsm():
+def setupRealNative():
     global asmFunc
 
     asmCode = f"""
@@ -56,13 +56,25 @@ def realNative():
         return unsafe.callLongLong(asmFunc)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 def main():
     global SIZE
     print(f"---Python & Native & Real-Native for Benchmark---")
     print(f"Batch size: {SIZE}")
     print(f"Repeat: {REPEAT}\n")
 
-    setupAsm()
+    setupRealNative()
     assert python(SIZE) == native(SIZE) == realNative()
     assert native.__doc__ == "<native method>"
 
