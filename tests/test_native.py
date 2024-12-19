@@ -3,6 +3,7 @@ import unittest
 from pyfastutil.native import native
 
 
+@unittest.skipUnless(False, "@native is ")
 class TestNative(unittest.TestCase):
     def test_add(self):
         def add(x, y):

@@ -311,5 +311,5 @@ class _BytecodeTranslator:
 
 
 # noinspection PyUnusedLocal
-def toC(func: FunctionType, arguments: Iterable[Parameter], bytecode: Bytecode, c_int: bool) -> list[str]:
+def toC(func: FunctionType, arguments: Iterable[Parameter], bytecode: Bytecode) -> list[str]:
     return _BytecodeTranslator(func, arguments, bytecode).run()

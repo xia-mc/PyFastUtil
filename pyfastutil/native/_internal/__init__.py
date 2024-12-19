@@ -15,7 +15,7 @@ from . import Compiler, BytecodeTranslator
 NATIVE_CACHE: dict[str, BuiltinFunctionType | FunctionType] = {}
 
 
-def native(func: FunctionType, c_int: bool = False) -> BuiltinFunctionType | FunctionType:
+def native(func: FunctionType) -> BuiltinFunctionType | FunctionType:
     # initialization
     params = inspect.signature(func).parameters.values()
     bytecode = Bytecode(func)
@@ -36,7 +36,7 @@ def native(func: FunctionType, c_int: bool = False) -> BuiltinFunctionType | Fun
 
     # compile
     try:
-        Compiler.compileCode(cacheFolder, func.__name__, moduleName, BytecodeTranslator.toC(func, params, bytecode, c_int))
+        Compiler.compileCode(cacheFolder, func.__name__, moduleName, BytecodeTranslator.toC(func, params, bytecode))
     except NotImplementedError:
         NATIVE_CACHE[hashed] = func
         return func

@@ -2,8 +2,8 @@ import timeit
 
 from pyfastutil.native import native
 
-SIZE = 100000
-REPEAT = 100
+SIZE = 1000000
+REPEAT = 10
 
 
 def python(n):
