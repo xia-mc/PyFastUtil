@@ -1,13 +1,12 @@
+import timeit
 from typing import Optional
 
 from keystone import Ks, KS_ARCH_X86, KS_MODE_64
-from pyfastutil.unsafe import ASM, Unsafe, Ptr
 
-import timeit
+from pyfastutil.unsafe import ASM, Unsafe, Ptr
 
 SIZE = int(1e4)
 REPEAT = 200
-
 
 # Initialize Keystone assembler for amd64
 ks = Ks(KS_ARCH_X86, KS_MODE_64)
@@ -25,22 +24,20 @@ def setupAsm():
     global asmFunc
 
     asmCode = f"""
-        mov rax, 0      # x = 0
-        mov rcx, 0      # i = 0
-        for:
+        xor rax, rax    # x = 0
+        xor rcx, rcx    # i = 0
+    loop:
         cmp rcx, {SIZE} # if i >= {SIZE}
         jnl end
         add rax, rcx    # x += i
         inc rcx         # i += 1
-        jmp for
+        jmp loop
 
-        end:
+    end:
         ret
     """
 
     with ASM() as asm:
-        if asmFunc is not None:
-            asm.freeFunction(asmFunc)
         asmFunc = asm.makeFunction(ks.asm(asmCode, as_bytes=True)[0])
 
 

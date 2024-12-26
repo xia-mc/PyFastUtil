@@ -18,10 +18,9 @@ class SIMDLowAVX512:
     """
     A class for performing AVX-512 SIMD operations.
 
-    This class provides Python bindings for low-level AVX-512 SIMD instructions. It is automatically
-    generated and designed for advanced users who need direct access to AVX-512 operations. All
-    methods in this class map directly to C methods and are intended to be used with aligned memory
-    pointers.
+    This class provides Python bindings for low-level AVX-512 SIMD instructions. It is designed
+    for advanced users who need direct access to AVX-512 operations. All methods in this class
+    map directly to C intrinsics and are intended to be used with aligned memory pointers.
 
     **Key Features**:
         - Supports operations on AVX-512 vectors via 64-byte aligned pointers.
@@ -36,7 +35,7 @@ class SIMDLowAVX512:
         with Unsafe() as unsafe, SIMDLowAVX512() as simd:
             vec512i: Ptr = unsafe.aligned_malloc(64, 64)
             simd._mm512_set_epi64(vec512i, 1, 2, 3, 4, 5, 6, 7, 8)
-            // do some operations ...
+            # do some operations ...
             unsafe.aligned_free(vec512i)
             vec512i = NULL
         ```
@@ -50,6 +49,8 @@ class SIMDLowAVX512:
     **Warnings**:
         - All pointers passed to this class must be 64-byte aligned.
         - Improper use of these methods can lead to memory corruption, crashes, or undefined behavior.
+        - On devices that do not support AVX-512, calling any method in this class results in
+          undefined behavior (e.g., illegal instruction error).
     """
 
     def __init__(self) -> None:

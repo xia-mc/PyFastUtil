@@ -1,4 +1,3 @@
-from typing import TypeVar
 from enum import IntEnum
 
 
